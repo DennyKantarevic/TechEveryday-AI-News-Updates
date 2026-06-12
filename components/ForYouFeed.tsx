@@ -71,6 +71,25 @@ function EmptyRecommendations() {
   );
 }
 
+function PersonalizationDisabledState() {
+  return (
+    <section className="mt-10 border-2 border-dashed border-ink bg-bone p-8 shadow-[6px_6px_0_#111] md:p-10">
+      <div className="max-w-2xl">
+        <div className="inline-flex h-12 w-12 items-center justify-center border-2 border-ink bg-white">
+          <Compass size={22} strokeWidth={2.6} />
+        </div>
+        <h2 className="mt-5 font-display text-4xl font-black leading-none md:text-5xl">
+          Personalization is off
+        </h2>
+        <p className="mt-4 text-sm leading-6 text-ink/75 md:text-base">
+          Turn personalization back on in Account settings to use private saved and reading
+          signals for recommendations.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function LearningFallback({
   recommendations
 }: {
@@ -110,16 +129,29 @@ function LearningFallback({
 
 export default function ForYouFeed({
   articles,
-  learningFoundations = []
+  learningFoundations = [],
+  initialEvents,
+  personalizationEnabled = true
 }: {
   articles: NewsItem[];
   learningFoundations?: readonly FoundationalLearningItem[];
+  initialEvents?: InteractionEvent[];
+  personalizationEnabled?: boolean;
 }) {
-  const [events, setEvents] = useState<InteractionEvent[]>([]);
+  const [events, setEvents] = useState<InteractionEvent[]>(initialEvents ?? []);
 
   useEffect(() => {
+    if (initialEvents) {
+      setEvents(initialEvents);
+      return;
+    }
+
     setEvents(readInteractionEvents());
-  }, []);
+  }, [initialEvents]);
+
+  if (!personalizationEnabled) {
+    return <PersonalizationDisabledState />;
+  }
 
   const enoughSignals = hasEnoughInteractionData(events);
   const recommendations = useMemo(
