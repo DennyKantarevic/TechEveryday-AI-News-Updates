@@ -10,6 +10,7 @@ import { createSecureToken } from "@/lib/security/tokens";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { fileStorage } from "@/lib/storage";
 import { getZonedParts, REFRESH_TIME_ZONE, zonedTimeToUtc } from "@/lib/time";
+import { appBaseUrl } from "@/lib/url/appBaseUrl";
 import type { NewsItem } from "@/types/news";
 
 export const runtime = "nodejs";
@@ -20,10 +21,6 @@ type SubscriptionRow = {
   user_id: string | null;
   email: string;
 };
-
-function appBaseUrl() {
-  return (process.env.APP_BASE_URL || "http://localhost:3000").replace(/\/$/, "");
-}
 
 function isAuthorized(request: NextRequest) {
   const cronSecret = process.env.CRON_SECRET;

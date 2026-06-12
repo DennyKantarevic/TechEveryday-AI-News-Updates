@@ -50,7 +50,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 EMAIL_FROM=
-APP_BASE_URL=
+APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
 X_BEARER_TOKEN=
 NEWS_API_KEY=
 OPENAI_API_KEY=
@@ -67,7 +67,7 @@ CRON_SECRET=
 
 `RESEND_API_KEY` and `EMAIL_FROM` enable confirmation emails and daily newsletter delivery. Configure a verified Resend sender before enabling subscriptions in production.
 
-`APP_BASE_URL` should be the deployed site origin, for example `https://your-domain.com`, so auth callbacks and email links are correct.
+`APP_BASE_URL` should be the deployed site origin, currently `https://tech-everyday-ai-news-updates.vercel.app`, so auth callbacks and email links are correct.
 
 ## Supabase Setup
 
@@ -77,7 +77,7 @@ CRON_SECRET=
 4. Add the deployed callback URL:
 
 ```text
-https://your-domain.com/auth/callback
+https://tech-everyday-ai-news-updates.vercel.app/auth/callback
 ```
 
 5. Add local callback URLs for development:

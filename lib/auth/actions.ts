@@ -2,10 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-
-function appBaseUrl() {
-  return process.env.APP_BASE_URL || "http://localhost:3000";
-}
+import { appUrl } from "@/lib/url/appBaseUrl";
 
 function cleanEmail(formData: FormData) {
   return String(formData.get("email") ?? "")
@@ -24,7 +21,7 @@ export async function signInWithMagicLink(formData: FormData) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${appBaseUrl()}/auth/callback`
+      emailRedirectTo: appUrl("/auth/callback")
     }
   });
 
@@ -46,7 +43,7 @@ export async function signUpWithMagicLink(formData: FormData) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${appBaseUrl()}/auth/callback`,
+      emailRedirectTo: appUrl("/auth/callback"),
       shouldCreateUser: true
     }
   });

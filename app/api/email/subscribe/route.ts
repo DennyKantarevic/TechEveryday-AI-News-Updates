@@ -5,6 +5,7 @@ import { createResendClient, emailFromAddress } from "@/lib/email/resend";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { hashToken } from "@/lib/security/hash";
 import { createSecureToken } from "@/lib/security/tokens";
+import { appUrl } from "@/lib/url/appBaseUrl";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,10 +13,6 @@ export const dynamic = "force-dynamic";
 const subscribeSchema = z.object({
   subscribed: z.boolean()
 });
-
-function appBaseUrl() {
-  return (process.env.APP_BASE_URL || "http://localhost:3000").replace(/\/$/, "");
-}
 
 function confirmationEmailHtml(confirmUrl: string) {
   return `
@@ -58,9 +55,9 @@ export async function POST(request: NextRequest) {
 
   const confirmationToken = createSecureToken();
   const unsubscribeToken = createSecureToken();
-  const confirmationUrl = `${appBaseUrl()}/api/email/confirm?token=${encodeURIComponent(
+  const confirmationUrl = appUrl(`/api/email/confirm?token=${encodeURIComponent(
     confirmationToken
-  )}`;
+  )}`);
   const admin = createAdminSupabaseClient();
 
   const { error } = await admin.from("newsletter_subscriptions").upsert(

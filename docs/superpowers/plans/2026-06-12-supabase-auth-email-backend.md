@@ -552,7 +552,7 @@ import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 function appBaseUrl() {
-  return process.env.APP_BASE_URL || "http://localhost:3000";
+  return process.env.APP_BASE_URL || "https://tech-everyday-ai-news-updates.vercel.app";
 }
 
 export async function signInWithMagicLink(formData: FormData) {
