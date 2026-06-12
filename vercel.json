@@ -7,6 +7,14 @@
     {
       "path": "/api/refresh-news?scheduled=1",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/send-daily-emails",
+      "schedule": "15 11 * * *"
+    },
+    {
+      "path": "/api/cron/send-daily-emails",
+      "schedule": "15 12 * * *"
     }
   ]
 }

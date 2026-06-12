@@ -9,13 +9,16 @@ Repository name: `TechEveryday-AI-News-Updates`
 - Next.js App Router, TypeScript, Tailwind CSS, and Framer Motion.
 - Premium beige and white editorial UI with black outlines, hover motion, and scroll-triggered card reveals.
 - Opening hero animation where `TechEveryday` starts full-screen, shrinks as you scroll, then hands off to a sticky centered navbar title.
-- Eight curated newsletter categories with 3-5 cards where data exists.
+- Seven curated newsletter categories with fresh, information-heavy cards where data exists.
 - Live countdown to the next 7:00 AM America/New_York refresh.
-- Save-to-gallery actions with persistent local JSON storage.
+- Save-to-gallery actions with local fallback storage for logged-out users and Supabase-backed account storage for signed-in users.
 - Separate `/gallery` page with search, category filtering, source filtering, and remove actions.
+- Supabase Auth account system with magic-link sign-in, private saved articles, and account privacy controls.
+- Optional For You personalization using minimal reading events that users can disable or clear.
+- Double opt-in daily email subscriptions through Resend with clear unsubscribe links.
 - Refresh API at `/api/refresh-news`, protected by `CRON_SECRET` outside local development.
 - Optional official X API integration when `X_BEARER_TOKEN` is present. No X scraping.
-- Data layer isolated in `lib/storage.ts` so it can later be replaced by Supabase, Neon, Firebase, or another database.
+- Public daily feed storage remains isolated in `lib/storage.ts`; account data lives in Supabase Postgres with Row Level Security.
 
 ## Tech Stack
 
@@ -23,7 +26,9 @@ Repository name: `TechEveryday-AI-News-Updates`
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Local JSON file storage
+- Local JSON file storage for the public daily snapshot
+- Supabase Auth, Supabase Postgres, and Row Level Security for account data
+- Resend for confirmed daily email delivery
 - Vitest for data-layer tests
 - RSS and arXiv fetching
 
@@ -40,6 +45,12 @@ Open `http://localhost:3000`.
 ## Environment Variables
 
 ```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+EMAIL_FROM=
+APP_BASE_URL=
 X_BEARER_TOKEN=
 NEWS_API_KEY=
 OPENAI_API_KEY=
@@ -51,6 +62,55 @@ CRON_SECRET=
 `OPENAI_API_KEY` is reserved for a future LLM summarizer. The first version uses deterministic source excerpts and does not hallucinate article details.
 
 `CRON_SECRET` protects `/api/refresh-news` for external cron calls. Local development is allowed without a secret when `NODE_ENV=development`.
+
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are browser-safe Supabase values. `SUPABASE_SERVICE_ROLE_KEY` is used only by server routes for email confirmation, unsubscribe, and cron delivery operations.
+
+`RESEND_API_KEY` and `EMAIL_FROM` enable confirmation emails and daily newsletter delivery. Configure a verified Resend sender before enabling subscriptions in production.
+
+`APP_BASE_URL` should be the deployed site origin, for example `https://your-domain.com`, so auth callbacks and email links are correct.
+
+## Supabase Setup
+
+1. Create a Supabase project.
+2. Apply the SQL files in `supabase/migrations/`.
+3. Enable email magic-link auth in Supabase Auth settings.
+4. Add the deployed callback URL:
+
+```text
+https://your-domain.com/auth/callback
+```
+
+5. Add local callback URLs for development:
+
+```text
+http://localhost:3000/auth/callback
+http://localhost:3001/auth/callback
+```
+
+The migrations create:
+
+- `profiles`
+- `user_preferences`
+- `saved_articles`
+- `reading_events`
+- `newsletter_subscriptions`
+- `email_delivery_logs`
+
+RLS is enabled on every account data table. Authenticated users can only access rows where `auth.uid() = user_id`. Anonymous users cannot read private account data. Service-role operations happen only in server route handlers.
+
+## Account Privacy
+
+TechEveryday uses privacy-first account copy and controls. It does not claim complete privacy.
+
+The account system stores only:
+
+- email for login and subscriptions
+- saved articles
+- preferences
+- optional reading signals used for For You recommendations
+- email delivery logs for operational debugging
+
+Users can disable personalization, clear reading history, clear saved articles, unsubscribe from daily email, or sign out from `/account`.
 
 ## Daily Refresh
 
@@ -65,8 +125,10 @@ The refresh pipeline:
 7. Creates concise deterministic summaries from source excerpts.
 8. Assigns each item to one category.
 9. Selects up to five items per category.
-10. Preserves previous category content when no new trusted content exists for that category.
+10. Rejects stale content older than 72 hours instead of filling categories with old items.
 11. Writes `data/daily-news.json`, `data/gallery.json`, and `data/last-refresh.json`.
+
+If a category has no high-signal new items in the last 72 hours, the UI shows a clean empty state instead of stale filler.
 
 Run it locally:
 
@@ -94,10 +156,26 @@ curl -X POST \
 
 - `0 11 * * *`
 - `0 12 * * *`
+- `15 11 * * *`
+- `15 12 * * *`
 
-Those cover 7:00 AM America/New_York across daylight saving and standard time. The route receives `?scheduled=1` and only runs during the 7 AM New York hour if the day has not already refreshed, so the extra UTC call is skipped.
+The first two entries refresh the public daily feed. The `:15` entries send confirmed daily emails shortly after the refresh window. Duplicate email delivery is suppressed by checking `email_delivery_logs` for a successful send to the same email and subject on the current America/New_York day.
 
-Set `CRON_SECRET` in Vercel. Vercel Cron can send the bearer secret when that environment variable is configured; the route also supports `x-cron-secret` or `?secret=` for other schedulers.
+The refresh entries cover 7:00 AM America/New_York across daylight saving and standard time. The route receives `?scheduled=1` and only runs during the 7 AM New York hour if the day has not already refreshed, so the extra UTC call is skipped.
+
+Set `CRON_SECRET` in Vercel. The daily email route requires `Authorization: Bearer $CRON_SECRET` or `?secret=$CRON_SECRET`.
+
+## Email Subscriptions
+
+Daily email updates use double opt-in:
+
+1. A signed-in user enables daily email updates from `/account`.
+2. TechEveryday creates a subscription with `subscribed=false`.
+3. A confirmation token is generated and only its hash is stored.
+4. Resend sends a confirmation email.
+5. `/api/email/confirm` verifies the token hash and enables delivery.
+
+Every daily email includes an unsubscribe link. The unsubscribe route works without login and stores only token hashes.
 
 ## GitHub Actions Fallback
 
@@ -108,13 +186,18 @@ Set `CRON_SECRET` in Vercel. Vercel Cron can send the bearer secret when that en
 
 ## Storage
 
-The first version stores data in local JSON files:
+The public newsletter snapshot stores data in local JSON files:
 
 - `data/daily-news.json`
 - `data/gallery.json`
 - `data/last-refresh.json`
 
-The storage API is centralized in `lib/storage.ts`. Replace that module with Supabase, Neon, Firebase, or another persistent store without rewriting the UI or refresh pipeline.
+The public storage API is centralized in `lib/storage.ts`. Account-owned data is stored in Supabase:
+
+- `saved_articles`
+- `reading_events`
+- `user_preferences`
+- `newsletter_subscriptions`
 
 ## Tests
 
@@ -128,11 +211,13 @@ Current tests cover:
 - Deterministic summary trimming.
 - Category classification, deduplication, and previous-content preservation.
 - Gallery save/remove persistence.
+- Supabase migration RLS coverage.
+- Server-only service role import isolation.
+- Email token hashing and daily email rendering.
 
 ## Future Improvements
 
-- Add hosted database storage for production persistence.
 - Add OpenGraph image extraction fallback for sources that omit RSS images.
 - Add an optional LLM summarizer behind `OPENAI_API_KEY`.
 - Add Hacker News as discovery only, always linking final cards to the original source.
-- Add per-user authentication for private galleries.
+- Add OAuth providers such as Google or GitHub if needed.
