@@ -5,7 +5,7 @@ import type { NewsItem, SourceType } from "@/types/news";
 
 const DEFAULT_LIMIT = 12;
 const ACTIVE_CATEGORY_IDS = new Set<string>(CATEGORY_IDS);
-const REMOVED_TOPIC_SIGNALS = new Set(["cybersecurity", "cyber security"]);
+const REMOVED_TOPIC_SIGNALS = new Set(["cybersecurity", "cyber security", "security"]);
 
 const EVENT_WEIGHTS: Record<InteractionType, number> = {
   article_saved: 6,

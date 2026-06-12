@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Learning - TechEveryday",
   description:
-    "Concise technology foundations that connect AI, systems, security, cloud, and research basics to the current TechEveryday feed."
+    "Concise technology foundations that connect AI, agents, embedded systems, computer systems, developer tools, and cloud infrastructure to the current TechEveryday feed."
 };
 
 export default async function LearningPage() {
@@ -36,7 +36,7 @@ export default async function LearningPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-6 md:text-base">
             A concise reference for the core ideas behind AI, agents, research,
-            systems, embedded devices, security, and cloud infrastructure.
+            systems, embedded devices, developer tools, and cloud infrastructure.
           </p>
         </section>
 

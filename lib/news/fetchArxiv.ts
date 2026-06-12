@@ -1,8 +1,9 @@
 import { XMLParser } from "fast-xml-parser";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { createNewsId } from "@/lib/news/ids";
+import { normalizeTitle } from "@/lib/news/normalizeContent";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
-import { summarizeCandidate, stripMarkup } from "@/lib/news/summarize";
+import { summarizeCandidate } from "@/lib/news/summarize";
 import type { NewsItem } from "@/types/news";
 
 const ARXIV_QUERY = [
@@ -77,7 +78,7 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
     const entries = asArray(parsed.feed?.entry);
     const papers = await Promise.all(
       entries.map(async (entry) => {
-        const title = stripMarkup(entry.title ?? "").replace(/\s+/g, " ").trim();
+        const title = normalizeTitle(entry.title ?? "");
         const url = paperUrl(entry);
 
         if (!title || !url) {

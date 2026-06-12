@@ -137,6 +137,15 @@ export const LEARNING_FOUNDATIONS = [
           "A practical primer on microcontrollers, sensors, memory, real-time constraints, and power limits.",
         url: "https://users.ece.utexas.edu/~valvano/Volume1/",
         tag: "Embedded primer"
+      },
+      {
+        title: "Introduction to Embedded Systems: A Cyber-Physical Systems Approach",
+        author: "Edward A. Lee and Sanjit A. Seshia",
+        year: 2017,
+        whyItMatters:
+          "Connects embedded software to models of computation, feedback, timing, and physical constraints.",
+        url: "https://ptolemy.berkeley.edu/books/leeseshia/",
+        tag: "CPS primer"
       }
     ],
     bridge:
@@ -211,6 +220,15 @@ export const LEARNING_FOUNDATIONS = [
           "A concise primer for commits, branches, pull requests, and collaborative source control.",
         url: "https://docs.github.com/en/get-started/using-git/about-git",
         tag: "Git"
+      },
+      {
+        title: "Pro Git",
+        author: "Scott Chacon and Ben Straub",
+        year: 2014,
+        whyItMatters:
+          "Explains the data model and workflows behind the version-control tool most open source projects use.",
+        url: "https://git-scm.com/book/en/v2",
+        tag: "Version control"
       }
     ],
     bridge:

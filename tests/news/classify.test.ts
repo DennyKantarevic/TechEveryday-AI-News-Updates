@@ -396,6 +396,22 @@ describe("scoreContentQuality", () => {
     expect(score.excludedReason).toMatch(/low-information|low-value/i);
   });
 
+  it("rejects tech-adjacent influencer and sports items without engineering depth", () => {
+    const score = scoreContentQuality(
+      baseItem({
+        title: "The US is requiring foreign influencers to get work visas for the World Cup",
+        summary:
+          "The story focuses on platform creator programs, visas, and sports event logistics without explaining technical systems, infrastructure, or engineering tradeoffs.",
+        category: "cloud-infrastructure",
+        sourceName: "Wired",
+        sourceType: "news",
+        tags: ["influencer", "world cup", "platforms"]
+      })
+    );
+
+    expect(score.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
   it("keeps practical technical explainers and engineering writeups", () => {
     const score = scoreContentQuality(
       baseItem({

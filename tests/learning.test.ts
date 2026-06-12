@@ -61,7 +61,7 @@ describe("learning foundations", () => {
       expect(section.points.length).toBeLessThanOrEqual(3);
       expect(section.bridge).toMatch(/\S/);
       expect(section.categoryIds.length).toBeGreaterThan(0);
-      expect(section.resources.length).toBeGreaterThan(0);
+      expect(section.resources.length).toBeGreaterThanOrEqual(3);
       expect(section.resources.length).toBeLessThanOrEqual(3);
 
       for (const resource of section.resources) {

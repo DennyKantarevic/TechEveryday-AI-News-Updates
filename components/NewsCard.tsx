@@ -87,6 +87,18 @@ function formatTag(tag: string) {
   return CATEGORY_BY_ID[tag as keyof typeof CATEGORY_BY_ID]?.title ?? tag;
 }
 
+function isVisibleTopicTag(tag: string, category: string) {
+  const normalized = tag.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+
+  return (
+    tag !== category &&
+    normalized !== "security" &&
+    normalized !== "cybersecurity" &&
+    normalized !== "cyber security" &&
+    !normalized.includes("security privacy")
+  );
+}
+
 export default function NewsCard({
   item,
   mode = "newsletter",
@@ -126,7 +138,7 @@ export default function NewsCard({
   );
   const category = CATEGORY_BY_ID[item.category];
   const topicTags = item.tags
-    .filter((tag) => tag !== item.category)
+    .filter((tag) => isVisibleTopicTag(tag, item.category))
     .map(formatTag)
     .slice(0, 2);
 
@@ -205,9 +217,6 @@ export default function NewsCard({
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.1em] text-clay">
           <span className="border border-ink/25 bg-bone px-2 py-1">{freshness}</span>
-          <span className="border border-ink/25 bg-white px-2 py-1">
-            Score {item.finalScore.toFixed(1)}
-          </span>
         </div>
         <h3 className="mt-3 font-display text-2xl font-black leading-tight">
           {item.title}
@@ -223,7 +232,7 @@ export default function NewsCard({
         <div className="mt-5 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1 border border-ink/30 bg-paper px-2 py-1 text-xs font-bold">
             <ShieldCheck size={14} strokeWidth={2.4} />
-            {sourceLabel(item.sourceType)} - {Math.round(item.trustScore * 100)}%
+            {sourceLabel(item.sourceType)}
           </span>
           {topicTags.map((tag) => (
             <span key={tag} className="border border-ink/20 px-2 py-1 text-xs">

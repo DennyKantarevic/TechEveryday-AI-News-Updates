@@ -137,7 +137,13 @@ const LOW_VALUE_CONTENT_SIGNALS = [
   "entertainment-only",
   "gossip",
   "creator outrage",
-  "light-interest"
+  "creator program",
+  "influencer",
+  "light-interest",
+  "motorsport",
+  "sports event",
+  "work visa",
+  "world cup"
 ];
 
 const EDUCATIONAL_SIGNALS = [
@@ -456,11 +462,14 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
     lowValueSignals * 2 +
       (LOW_VALUE_PROMO_SIGNALS.some((signal) => title.includes(signal)) ? 2 : 0)
   );
-  const hasUsefulSubstance =
-    educationalScore + technicalDepthScore + practicalUsefulnessScore >= 4 &&
-    technicalDepthScore >= 2;
+  const negatesTechnicalDepth =
+    /without (?:explaining|technical|engineering|infrastructure|systems)|does not explain|lacks (?:technical|engineering|educational)/.test(
+      haystack
+    );
+  const hasHighSignalSubstance =
+    educationalScore >= 2 && technicalDepthScore >= 3 && practicalUsefulnessScore >= 1;
   const excludedReason =
-    noveltyScore >= 2 && !hasUsefulSubstance
+    noveltyScore >= 2 && (negatesTechnicalDepth || !hasHighSignalSubstance)
       ? "Excluded as low-value novelty, drama, or entertainment-only coverage."
       : educationalScore < 1 && technicalDepthScore < 2
         ? "Excluded as low-information coverage without enough educational or technical depth."

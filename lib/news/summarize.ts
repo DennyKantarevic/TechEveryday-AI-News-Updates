@@ -1,21 +1,14 @@
+import { normalizeSummary } from "@/lib/news/normalizeContent";
+
 const FALLBACK_SUMMARY =
   "No source excerpt was provided. Open the original source for full context.";
 
 export function stripMarkup(input: string) {
-  return input
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/\s+/g, " ")
-    .trim();
+  return normalizeSummary(input);
 }
 
 export function summarizeText(input: string, maxSentences = 4) {
-  const clean = stripMarkup(input);
+  const clean = normalizeSummary(input);
 
   if (!clean) {
     return FALLBACK_SUMMARY;

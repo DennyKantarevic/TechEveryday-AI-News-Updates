@@ -131,6 +131,20 @@ describe("NewsCard interaction tracking", () => {
     expect(screen.queryByText("ai-ml")).toBeNull();
   });
 
+  it("does not surface removed cybersecurity labels as card topic tags", () => {
+    render(
+      <NewsCard
+        item={{
+          ...item,
+          tags: ["automation-agentic-systems", "Security", "agent runtime"]
+        }}
+      />
+    );
+
+    expect(screen.queryByText("Security")).not.toBeInTheDocument();
+    expect(screen.getByText("agent runtime")).toBeInTheDocument();
+  });
+
   it("replays standalone card entrance animations with later viewport timing", () => {
     render(<NewsCard item={item} />);
 
@@ -148,5 +162,13 @@ describe("NewsCard interaction tracking", () => {
     expect(screen.getByText("4h ago")).toBeInTheDocument();
     expect(screen.getByText(/Why it matters/i)).toBeInTheDocument();
     expect(screen.getByText(item.whyItMatters)).toBeInTheDocument();
+  });
+
+  it("keeps internal scoring out of the editorial card UI", () => {
+    render(<NewsCard item={item} now={new Date("2026-06-12T12:00:00.000Z")} />);
+
+    expect(screen.queryByText(/Score/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/90%/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/4\.2/)).not.toBeInTheDocument();
   });
 });

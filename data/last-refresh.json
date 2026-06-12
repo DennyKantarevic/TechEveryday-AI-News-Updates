@@ -1,12 +1,12 @@
 {
-  "refreshedAt": "2026-06-12T12:51:50.734Z",
+  "refreshedAt": "2026-06-12T13:10:23.103Z",
   "nextRefreshAt": "2026-06-13T11:00:00.000Z",
   "candidateCount": 219,
   "categoryCounts": {
     "ai-ml": 5,
     "automation-agentic-systems": 3,
     "research-papers": 5,
-    "embedded-systems": 1,
+    "embedded-systems": 0,
     "computer-systems": 0,
     "developer-tools-open-source": 2,
     "cloud-infrastructure": 5
@@ -17,14 +17,14 @@
     "totalCandidatesFound": 219,
     "candidatesAfterFreshness": 129,
     "rejectedByAge": 90,
-    "rejectedByLowQuality": 56,
+    "rejectedByLowQuality": 58,
     "rejectedByDuplicate": 0,
     "rejectedByTrust": 0,
     "finalSelectedByCategory": {
       "ai-ml": 5,
       "automation-agentic-systems": 3,
       "research-papers": 5,
-      "embedded-systems": 1,
+      "embedded-systems": 0,
       "computer-systems": 0,
       "developer-tools-open-source": 2,
       "cloud-infrastructure": 5
@@ -39,10 +39,16 @@
       "MIT Technology Review",
       "NVIDIA Blog",
       "OpenAI Blog",
-      "Wired",
       "arXiv"
     ],
     "rejected": [
+      {
+        "id": "1b8c3b365d32ee45a3f4df7d847c571b87f98af6",
+        "title": "BMW's Neue Klasse M concept brings next-gen EV tech to motorsports",
+        "url": "https://www.theverge.com/transportation/948635/bmw-neue-klasse-m-concept-motorsports-ev",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
       {
         "id": "80c54c0b02ae0385d4c941927a9f5fa3591fb50a",
         "title": "The Nintendo DS is still the best gaming handheld for travel",
@@ -66,31 +72,31 @@
       },
       {
         "id": "71d9356ab2bd9524661e283988a1b20ce1a315a0",
-        "title": "Siri won’t be your AI girlfriend",
+        "title": "Siri won't be your AI girlfriend",
         "url": "https://www.theverge.com/tech/948890/siri-wont-be-your-ai-girlfriend",
         "sourceName": "The Verge",
         "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
         "id": "1e925cb0f65c67d5c9b63f9ba0f57b9317fa98e6",
-        "title": "Logitech’s awesome MX Master 3S mouse drops to under $100",
+        "title": "Logitech's awesome MX Master 3S mouse drops to under $100",
         "url": "https://www.theverge.com/gadgets/948204/logitech-mx-master-3s-mouse-sale-deal",
         "sourceName": "The Verge",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
         "id": "4c93b6c856acc615be399755cd55ed5c66a18d53",
-        "title": "Blink’s six-piece outdoor camera kit is a great deal under $200",
+        "title": "Blink's six-piece outdoor camera kit is a great deal under $200",
         "url": "https://www.theverge.com/gadgets/948459/blink-camera-bundle-aeropress-deal-sale",
         "sourceName": "The Verge",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "a2b3a89c62b54d4b73710329b2eb4312560d2f7e",
-        "title": "Amazon&#8217;s data centers used 2.5 billion gallons of water last year",
-        "url": "https://www.theverge.com/tech/948534/amazon-data-centers-water-use",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "710c319bc4b8339c9b6f502a85636e9e46a66ce0",
+        "title": "Cameras, sensors, and 3D body scans: All the tech helping eliminate blown calls",
+        "url": "https://arstechnica.com/gadgets/2026/06/cameras-sensors-and-3d-body-scans-all-the-tech-helping-eliminate-blown-calls/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
         "id": "2a2c6a9a7be497d0d65f5f68907e770f1805c6f7",
@@ -122,7 +128,7 @@
       },
       {
         "id": "3c68f5eab03a9ea2e0539dfccfea8f32632feb8e",
-        "title": "AcuRite admits new app falls short, delays old app’s May shutdown to fix problems",
+        "title": "AcuRite admits new app falls short, delays old app's May shutdown to fix problems",
         "url": "https://arstechnica.com/gadgets/2026/06/iot-gadget-firm-acurite-delays-forced-app-migration-due-to-new-apps-shortfalls/",
         "sourceName": "Ars Technica",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -192,7 +198,7 @@
       },
       {
         "id": "08661c23de8ea9f74c2ce3821e28705f54df3e9d",
-        "title": "Why Real-Life Disclosure Day Will Look Nothing Like Steven Spielberg’s New Movie",
+        "title": "Why Real-Life Disclosure Day Will Look Nothing Like Steven Spielberg's New Movie",
         "url": "https://www.wired.com/story/real-life-disclosure-day-wont-look-like-steven-spielberg-movie/",
         "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -212,8 +218,15 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
+        "id": "5dd6bde3245e45c0e4dcf1002798fe14f8a0fb73",
+        "title": "The US Is Requiring Foreign Influencers to Get Work Visas for the 2026 World Cup",
+        "url": "https://www.wired.com/story/2026-world-cup-us-influencers-visa/",
+        "sourceName": "Wired",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
         "id": "d89297104b42b51e559f835fcc463f614e84f9b9",
-        "title": "SpaceX IPO Puts Elon Musk’s ‘Extreme’ Ownership to the Test",
+        "title": "SpaceX IPO Puts Elon Musk's 'Extreme' Ownership to the Test",
         "url": "https://www.wired.com/story/spacex-is-now-a-public-company/",
         "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -269,7 +282,7 @@
       },
       {
         "id": "ae54d339b142460d52e490a2d8a8af987f4554fa",
-        "title": "The Download: “reprogramming” aging, and the hidden sense of interoception",
+        "title": "The Download: \"reprogramming\" aging, and the hidden sense of interoception",
         "url": "https://www.technologyreview.com/2026/06/12/1138899/the-download-reprogramming-reverse-aging-interoception/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -283,38 +296,38 @@
       },
       {
         "id": "1c0cc57d28c4e5b3efcb45f51958b4d7c75ffa79",
-        "title": "Why “reprogramming” is the buzziest approach to reversing aging right now",
+        "title": "Why \"reprogramming\" is the buzziest approach to reversing aging right now",
         "url": "https://www.technologyreview.com/2026/06/12/1138829/reprogramming-buzziest-approach-reversing-aging-right-now/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "974308d69e421dbb98cd2f89cdf899d0f988722a",
-        "title": "Inside Interoception: The hidden sense of how you feel inside",
+        "id": "89ed2714d37edf7fda5397de2e1a334457b81da2",
+        "title": "Inside interoception: The hidden sense of how you feel inside",
         "url": "https://www.technologyreview.com/2026/06/12/1138833/inside-interoception-brain-body/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
         "id": "8ce06b3db7705dec4e99542a677f831fc970c1d9",
-        "title": "The Download: soccer’s data renaissance and China’s big nuclear plans",
+        "title": "The Download: soccer's data renaissance and China's big nuclear plans",
         "url": "https://www.technologyreview.com/2026/06/11/1138809/the-download-soccer-football-data-analytics-china-nuclear-power/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
         "id": "b292b7ce4ac94fee7261b6c2c41c3a5c0db3acbd",
-        "title": "Job titles of the future: Nature’s drug designer",
+        "title": "Job titles of the future: Nature's drug designer",
         "url": "https://www.technologyreview.com/2026/06/11/1138502/job-titles-natures-drug-designer-tim-cernak/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
         "id": "7b7c7e70ad34b98f7f7ca922aea1d7aa26398f2b",
-        "title": "Inside soccer’s data renaissance",
+        "title": "Inside soccer's data renaissance",
         "url": "https://www.technologyreview.com/2026/06/11/1138506/inside-soccer-data-renaissance-jesse-davis/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
         "id": "748cbf680ad19edbc32404fda24e15347736b3cc",
@@ -325,7 +338,7 @@
       },
       {
         "id": "35678c6eb4f102766c6564c1dfe83d8138bac1a1",
-        "title": "The Download: the “steroid olympics” and a safer Mythos",
+        "title": "The Download: the \"steroid olympics\" and a safer Mythos",
         "url": "https://www.technologyreview.com/2026/06/10/1138739/the-download-steroid-olympics-enhanced-games-anthropic-mythos/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -339,7 +352,7 @@
       },
       {
         "id": "a14df6e07cc6ea4a89f96b0d9529b94ed2f168aa",
-        "title": "IEEE Celebrates Technology’s Brightest Minds at Annual Event",
+        "title": "IEEE Celebrates Technology's Brightest Minds at Annual Event",
         "url": "https://spectrum.ieee.org/ieee-celebrates-honors-ceremony-2026",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
@@ -374,7 +387,7 @@
       },
       {
         "id": "a4d4e602b349503359bbbcf278b5d4b96a338a57",
-        "title": "IEEE President’s Note: Designing a Safer Digital World for Kids",
+        "title": "IEEE President's Note: Designing a Safer Digital World for Kids",
         "url": "https://spectrum.ieee.org/ieee-presidents-note-june-2026",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
@@ -388,14 +401,14 @@
       },
       {
         "id": "a1f8a801f5ae4892b7e490a2d55b44639dda418c",
-        "title": "This DIY Bipedal Robot Used Pneumatic “Air-Muscles” Instead of Motors",
+        "title": "This DIY Bipedal Robot Used Pneumatic \"Air-Muscles\" Instead of Motors",
         "url": "https://spectrum.ieee.org/shadow-walker-biped-humanoid-robot",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "f3276a36346b1d5de07dba37a884692781bb2fec",
-        "title": "Unlocking dependable responses with Gemini Enterprise Agent Platform’s Agentic RAG",
+        "title": "Unlocking dependable responses with Gemini Enterprise Agent Platform's Agentic RAG",
         "url": "https://research.google/blog/unlocking-dependable-responses-with-gemini-enterprise-agent-platforms-agentic-rag/",
         "sourceName": "Google Research Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -409,7 +422,7 @@
       },
       {
         "id": "4a083277d2db1c81c208726e757604991629965b",
-        "title": "The next chapter in flood resilience: Open sourcing Google’s hydrology framework",
+        "title": "The next chapter in flood resilience: Open sourcing Google's hydrology framework",
         "url": "https://research.google/blog/the-next-chapter-in-flood-resilience-open-sourcing-googles-hydrology-framework/",
         "sourceName": "Google Research Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -577,7 +590,7 @@
       },
       {
         "id": "326b6fcb3594a890082e1166b66673562e3f7ea8",
-        "title": "Vega: Zero-knowledge proofs for digital identity in the age of AI",
+        "title": "Vega: Zero-knowledge proofs for digital identity in the age of AI",
         "url": "https://www.microsoft.com/en-us/research/blog/vega-zero-knowledge-proofs-for-digital-identity-in-the-age-of-ai/",
         "sourceName": "Microsoft Research Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -591,7 +604,7 @@
       },
       {
         "id": "148446cf21a893573cdd768ad0140c7c8d39be75",
-        "title": "mimalloc: A new, high-performance, scalable memory allocator for the modern era",
+        "title": "mimalloc: A new, high-performance, scalable memory allocator for the modern era",
         "url": "https://www.microsoft.com/en-us/research/blog/mimalloc-a-high-performance-scalable-memory-allocator-for-the-modern-era/",
         "sourceName": "Microsoft Research Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -612,7 +625,7 @@
       },
       {
         "id": "35a128de2e0b85331bd2f1fc6dd2d1c666c58979",
-        "title": "SocialReasoning-Bench: Measuring whether AI agents act in users’ best interests",
+        "title": "SocialReasoning-Bench: Measuring whether AI agents act in users' best interests",
         "url": "https://www.microsoft.com/en-us/research/blog/socialreasoning-bench-measuring-whether-ai-agents-act-in-users-best-interests/",
         "sourceName": "Microsoft Research Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -654,7 +667,7 @@
       },
       {
         "id": "78566f7912649216389af34e8deb8fe4646f6dc2",
-        "title": "NVIDIA, KRAFTON, NC and Reigning ‘League of Legends’ Champions T1 Celebrate RTX Spark at Korea’s PC Bangs",
+        "title": "NVIDIA, KRAFTON, NC and Reigning 'League of Legends' Champions T1 Celebrate RTX Spark at Korea's PC Bangs",
         "url": "https://blogs.nvidia.com/blog/krafton-nc-t1-korea-gaming-pc-bang-rtx-spark/",
         "sourceName": "NVIDIA Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -822,7 +835,7 @@
       },
       {
         "id": "921b8e65dc51110fb2831a469270886e6313b164",
-        "title": "Turning Cloudflare’s threat indicators into real-time WAF rules",
+        "title": "Turning Cloudflare's threat indicators into real-time WAF rules",
         "url": "https://blog.cloudflare.com/realtime-threat-intel-waf-rules/",
         "sourceName": "Cloudflare Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -899,7 +912,7 @@
       },
       {
         "id": "877180665f189e38b2b9f97756d20e193ad8b18c",
-        "title": "Browser Run: now running on Cloudflare Containers, it’s faster and more scalable",
+        "title": "Browser Run: now running on Cloudflare Containers, it's faster and more scalable",
         "url": "https://blog.cloudflare.com/browser-run-containers/",
         "sourceName": "Cloudflare Blog",
         "reason": "Rejected because it is older than 72 hours."
@@ -968,6 +981,13 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
+        "id": "84e9fe9c46816f1ceca58e6334c71bb24293ba79",
+        "title": "Maxproof",
+        "url": "https://arxiv.org/abs/2606.13473",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
         "id": "8c1eb400850e8e7d8b7e1977e5c07845bf749190",
         "title": "If you are asking for human attention, demonstrate human effort",
         "url": "https://tombedor.dev/human-attention-and-human-effort/",
@@ -982,23 +1002,9 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "84e9fe9c46816f1ceca58e6334c71bb24293ba79",
-        "title": "Maxproof",
-        "url": "https://arxiv.org/abs/2606.13473",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
         "id": "746a03d2c6289d1b15505c76473d9a054ef5a123",
         "title": "Ryanair dark UX patterns summer 2026 refresher",
         "url": "https://blog.osull.com/2026/06/12/ryanair-dark-ux-patterns-summer-2026-refresher/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "f53307e47e6ba3751c2030e3ec266d071e8baf6a",
-        "title": "The Future of Email",
-        "url": "https://www.fastmail.com/blog/the-future-of-email/",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
@@ -1013,6 +1019,13 @@
         "id": "c28fd236aa38fb6416c936e1c80ac34cce3ef76b",
         "title": "Show HN: Homebrew 6.0.0",
         "url": "https://brew.sh/2026/06/11/homebrew-6.0.0/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "f53307e47e6ba3751c2030e3ec266d071e8baf6a",
+        "title": "The Future of Email",
+        "url": "https://www.fastmail.com/blog/the-future-of-email/",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
@@ -1052,16 +1065,16 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "ad7d6b7d269b2d3e0e5c818a418a12ef16663e41",
-        "title": "David Hockney, Who Restored the Human Form to Art, Dies at 88",
-        "url": "https://www.nytimes.com/2026/06/12/arts/design/david-hockney-dead.html",
+        "id": "3f01e513e889a0cd577005925f3c680ad3560706",
+        "title": "MiMo Code is now released and open-source",
+        "url": "https://mimo.xiaomi.com/mimocode",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "3f01e513e889a0cd577005925f3c680ad3560706",
-        "title": "MiMo Code is now released and open-source",
-        "url": "https://mimo.xiaomi.com/mimocode",
+        "id": "66b49090d325da260a489ca8eca80b33e60056fd",
+        "title": "Petition to Withdraw Canada's Bill C-22",
+        "url": "https://www.ourcommons.ca/petitions/en/Petition/Sign/e-7416",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       }
