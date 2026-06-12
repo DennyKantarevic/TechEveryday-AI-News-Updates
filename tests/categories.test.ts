@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CATEGORIES } from "@/config/categories";
+import { TRUSTED_SOURCES } from "@/config/sources";
 
 describe("category labels", () => {
   it("uses the full visible label for the AI category", () => {
@@ -20,5 +21,15 @@ describe("category labels", () => {
       "cloud-infrastructure"
     ]);
     expect(CATEGORIES.map((category) => category.title)).not.toContain("Cybersecurity");
+  });
+
+  it("configures at least three trusted sources for every visible section", () => {
+    for (const category of CATEGORIES) {
+      const sources = TRUSTED_SOURCES.filter((source) =>
+        (source.allowedCategories ?? source.categoryHints).includes(category.id)
+      );
+
+      expect(sources.length, category.title).toBeGreaterThanOrEqual(3);
+    }
   });
 });

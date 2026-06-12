@@ -1,6 +1,7 @@
 import { CATEGORIES } from "@/config/categories";
 import CategorySection from "@/components/CategorySection";
 import Countdown from "@/components/Countdown";
+import BrandWordmark from "@/components/BrandWordmark";
 import HeroTitle from "@/components/HeroTitle";
 import StickyHeader from "@/components/StickyHeader";
 import { filterFreshNewsItems } from "@/lib/news/freshness";
@@ -28,7 +29,7 @@ export default async function HomePage() {
                 Daily briefing
               </p>
               <h1 className="mt-2 font-display text-4xl leading-none md:text-6xl">
-                TechEveryday - AI News Updates
+                <BrandWordmark /> <span>- AI News Updates</span>
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-6 md:text-base">
                 Trusted technology news, research papers, and optional verified X posts

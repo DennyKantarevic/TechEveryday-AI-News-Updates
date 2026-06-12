@@ -80,4 +80,22 @@ describe("scoreNewsItem", () => {
     expect(scored.whyItMatters).toContain("OpenAI plans");
     expect(scored.whyItMatters).not.toContain("openAI");
   });
+
+  it("removes source paywall markers from normalized titles", () => {
+    const scored = scoreNewsItem(
+      {
+        ...candidate(
+          "lwn-mthp",
+          "[$] Automatic mTHP creation in 7.2",
+          "The Linux kernel article explains multi-size transparent huge pages, memory behavior, and performance tradeoffs."
+        ),
+        sourceType: "news",
+        sourceName: "LWN.net",
+        category: "computer-systems"
+      },
+      new Date("2026-06-12T12:00:00.000Z")
+    );
+
+    expect(scored.title).toBe("Automatic mTHP creation in 7.2");
+  });
 });

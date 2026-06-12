@@ -4,6 +4,7 @@ import { createNewsId } from "@/lib/news/ids";
 import { normalizeTitle } from "@/lib/news/normalizeContent";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate } from "@/lib/news/summarize";
+import type { CategoryId } from "@/config/categories";
 import type { NewsItem } from "@/types/news";
 
 const ARXIV_QUERY = [
@@ -55,6 +56,38 @@ function paperUrl(entry: ArxivEntry) {
   );
 }
 
+function categoryForArxivTags(tags: string[], title: string, summary: string): CategoryId {
+  const normalized = new Set(tags.map((tag) => tag.toLowerCase()));
+  const haystack = `${title} ${summary}`.toLowerCase();
+
+  if (
+    normalized.has("cs.dc") ||
+    normalized.has("cs.os") ||
+    normalized.has("cs.ar") ||
+    normalized.has("cs.pf")
+  ) {
+    return "computer-systems";
+  }
+
+  if (normalized.has("cs.ro") || normalized.has("eess.sy")) {
+    return "embedded-systems";
+  }
+
+  if (normalized.has("cs.se")) {
+    return "developer-tools-open-source";
+  }
+
+  if (
+    /\b(agent|agents|agentic|autonomous|tool use|tool-use|workflow|multi-agent|llm agent|language model agent)\b/.test(
+      haystack
+    )
+  ) {
+    return "automation-agentic-systems";
+  }
+
+  return "research-papers";
+}
+
 export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}) {
   const url = `https://export.arxiv.org/api/query?search_query=${ARXIV_QUERY}&start=0&max_results=35&sortBy=submittedDate&sortOrder=descending`;
 
@@ -89,6 +122,7 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
           .map((category) => category.term)
           .filter((term): term is string => Boolean(term));
         const summary = await summarizeCandidate(entry.summary ?? "");
+        const category = categoryForArxivTags(tags, title, summary);
         const authors = asArray(entry.author)
           .map((author) => author.name)
           .filter(Boolean)
@@ -104,10 +138,10 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
             canonicalUrl: canonicalizeUrl(url),
             sourceName: "arXiv",
             sourceType: "paper",
-            category: "research-papers",
+            category,
             publishedAt: parseDate(entry.published || entry.updated, now),
             foundAt: now.toISOString(),
-            imageUrl: placeholderImageForCategory("research-papers", title),
+            imageUrl: placeholderImageForCategory(category, title),
             trustScore: 0.86,
             freshnessScore: 0,
             technicalDepthScore: 0,

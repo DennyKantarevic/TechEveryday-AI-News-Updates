@@ -90,6 +90,7 @@ export function normalizeContentText(input: string) {
 
 export function normalizeTitle(input: string) {
   return normalizeContentText(input)
+    .replace(/^(?:\[\s*[$+!*]\s*\]\s*)+/, "")
     .replace(/^\s*[-–—:|]+\s*/, "")
     .replace(/\s*[-–—:|]+\s*$/, "")
     .trim();

@@ -1,4 +1,5 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
+import { TRUSTED_SOURCES } from "@/config/sources";
 import { evaluateFreshness, isFreshNewsItem } from "@/lib/news/freshness";
 import type { CategoryId } from "@/config/categories";
 import type { NewsItem, RefreshDebug, SourceType } from "@/types/news";
@@ -138,10 +139,34 @@ const LOW_VALUE_CONTENT_SIGNALS = [
   "gossip",
   "creator outrage",
   "creator program",
+  "episode",
+  "celebrity wealth",
+  "ceo says",
+  "ceo comments",
+  "funding round",
+  "founder",
+  "gaming",
   "influencer",
+  "hobby",
+  "lawsuit",
+  "litigation",
   "light-interest",
   "motorsport",
+  "net worth",
+  "personal finances",
+  "phone prices",
+  "prices may rise",
+  "product pricing",
+  "podcast",
+  "pokemon go",
+  "pokémon go",
+  "remote control car",
+  "scale model",
+  "security updates for",
   "sports event",
+  "suicidal",
+  "toy hacks",
+  "trillionaire",
   "work visa",
   "world cup"
 ];
@@ -463,7 +488,7 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
       (LOW_VALUE_PROMO_SIGNALS.some((signal) => title.includes(signal)) ? 2 : 0)
   );
   const negatesTechnicalDepth =
-    /without (?:explaining|technical|engineering|infrastructure|systems)|does not explain|lacks (?:technical|engineering|educational)/.test(
+    /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no focused (?:architecture|benchmark|implementation|engineering|technical)|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
       haystack
     );
   const hasHighSignalSubstance =
@@ -486,6 +511,13 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
 
 function isTrustedRelevant(item: NewsItem) {
   if (item.trustScore < 0.65 || !item.title.trim() || !item.url.trim()) {
+    return false;
+  }
+
+  const configuredSource = TRUSTED_SOURCES.find((source) => source.name === item.sourceName);
+  const configuredCategories = configuredSource?.allowedCategories ?? configuredSource?.categoryHints;
+
+  if (configuredCategories && !configuredCategories.includes(item.category)) {
     return false;
   }
 
@@ -659,25 +691,32 @@ export function selectDailyItemsWithDebug({
     return Math.abs(trustDelta) > 0.04 ? trustDelta : itemTime(right) - itemTime(left);
   });
 
-  const categories = createCategoryRecord((categoryId) => {
-    const newItems = selectDiverseCategoryItems(
+  const selectedNewItemsByCategory = createCategoryRecord((categoryId) =>
+    selectDiverseCategoryItems(
       freshCandidates.filter((item) => item.category === categoryId),
       5
+    )
+  );
+  const allSelectedNewItems = Object.values(selectedNewItemsByCategory).flat();
+  const matchesAnyNewStory = (previous: NewsItem) =>
+    allSelectedNewItems.some(
+      (item) =>
+        item.id === previous.id ||
+        titleSimilarity(item.title, previous.title) >= 0.82 ||
+        (normalizeUrl(item.canonicalUrl || item.url) ===
+          normalizeUrl(previous.canonicalUrl || previous.url) &&
+          titleSimilarity(item.title, previous.title) >= 0.5)
     );
+
+  const categories = createCategoryRecord((categoryId) => {
+    const newItems = selectedNewItemsByCategory[categoryId];
     const previousItems = (previousCategories[categoryId] ?? [])
       .filter((previous) => !previous.id.startsWith("starter-") && !previous.tags.includes("starter"))
       .filter((previous) => isFreshNewsItem(previous, now))
       .filter(isTrustedRelevant)
       .map((previous) => scoreItemForSelection({ ...previous, saved: false }, now));
     const freshTopUp = previousItems.filter(
-      (previous) =>
-        !newItems.some(
-          (item) =>
-            item.id === previous.id ||
-            normalizeUrl(item.canonicalUrl || item.url) ===
-              normalizeUrl(previous.canonicalUrl || previous.url) ||
-            titleSimilarity(item.title, previous.title) >= 0.82
-        )
+      (previous) => !matchesAnyNewStory(previous)
     );
 
     return uniqueById([...newItems, ...freshTopUp])

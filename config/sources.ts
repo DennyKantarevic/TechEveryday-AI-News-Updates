@@ -180,6 +180,46 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     sourceType: "official",
     trustScore: 0.88,
     categoryHints: ["developer-tools-open-source", "automation-agentic-systems"]
+  },
+  {
+    name: "Kubernetes Blog",
+    homepageUrl: "https://kubernetes.io/blog/",
+    rssUrl: "https://kubernetes.io/feed.xml",
+    sourceType: "official",
+    trustScore: 0.88,
+    categoryHints: ["cloud-infrastructure", "computer-systems", "developer-tools-open-source"]
+  },
+  {
+    name: "CNCF Blog",
+    homepageUrl: "https://www.cncf.io/blog/",
+    rssUrl: "https://www.cncf.io/feed/",
+    sourceType: "official",
+    trustScore: 0.84,
+    categoryHints: ["cloud-infrastructure", "developer-tools-open-source", "computer-systems"]
+  },
+  {
+    name: "Hackaday",
+    homepageUrl: "https://hackaday.com",
+    rssUrl: "https://hackaday.com/blog/feed/",
+    sourceType: "blog",
+    trustScore: 0.74,
+    categoryHints: ["embedded-systems", "computer-systems", "developer-tools-open-source"]
+  },
+  {
+    name: "Raspberry Pi News",
+    homepageUrl: "https://www.raspberrypi.com/news/",
+    rssUrl: "https://www.raspberrypi.com/news/feed/",
+    sourceType: "official",
+    trustScore: 0.82,
+    categoryHints: ["embedded-systems", "developer-tools-open-source", "computer-systems"]
+  },
+  {
+    name: "LWN.net",
+    homepageUrl: "https://lwn.net",
+    rssUrl: "https://lwn.net/headlines/rss",
+    sourceType: "news",
+    trustScore: 0.84,
+    categoryHints: ["computer-systems", "developer-tools-open-source", "cloud-infrastructure"]
   }
 ];
 

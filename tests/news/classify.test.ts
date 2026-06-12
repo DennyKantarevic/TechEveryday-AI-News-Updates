@@ -218,6 +218,74 @@ describe("selectDailyItems", () => {
     expect(selected["computer-systems"].map((item) => item.id)).toEqual(["old-systems"]);
   });
 
+  it("does not top up a previous story when the same fresh story moved to another category", () => {
+    const previous = emptyPreviousCategories();
+    previous["research-papers"] = [
+      baseItem({
+        id: "previous-weaver",
+        category: "research-papers",
+        sourceType: "paper",
+        sourceName: "arXiv",
+        title: "WEAVER, Better, Faster, Longer",
+        url: "https://arxiv.org/abs/2606.12345",
+        canonicalUrl: "https://arxiv.org/abs/2606.12345",
+        summary:
+          "A robotics paper with world model architecture, manipulation benchmarks, and implementation details.",
+        publishedAt: "2026-06-12T08:00:00.000Z",
+        foundAt: "2026-06-12T09:00:00.000Z",
+        tags: ["arxiv", "cs.RO"]
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [
+        baseItem({
+          id: "new-weaver",
+          category: "embedded-systems",
+          sourceType: "paper",
+          sourceName: "arXiv",
+          title: "WEAVER, Better, Faster, Longer",
+          url: "https://arxiv.org/abs/2606.12345",
+          canonicalUrl: "https://arxiv.org/abs/2606.12345",
+          summary:
+            "A robotics paper with world model architecture, manipulation benchmarks, and implementation details.",
+          tags: ["arxiv", "cs.RO", "robotics"]
+        })
+      ],
+      previousCategories: previous,
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected["embedded-systems"].map((item) => item.id)).toEqual(["new-weaver"]);
+    expect(selected["research-papers"]).toEqual([]);
+  });
+
+  it("does not preserve previous items whose source no longer covers that category", () => {
+    const previous = emptyPreviousCategories();
+    previous["cloud-infrastructure"] = [
+      baseItem({
+        id: "previous-amiga",
+        category: "cloud-infrastructure",
+        sourceName: "Hackaday",
+        sourceType: "blog",
+        title: "Amiga 1232 Storm CD Packs Every Upgrade into One Wedge",
+        summary: "A short retrocomputing note without cloud infrastructure depth.",
+        url: "https://hackaday.com/2026/06/11/amiga-1232-storm-cd-packs-every-upgrade-into-one-wedge/",
+        canonicalUrl:
+          "https://hackaday.com/2026/06/11/amiga-1232-storm-cd-packs-every-upgrade-into-one-wedge",
+        tags: ["cloud-infrastructure", "Retrocomputing", "Amiga"]
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [],
+      previousCategories: previous,
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected["cloud-infrastructure"]).toEqual([]);
+  });
+
   it("filters entertainment, drama, and fake-podcast style low-signal stories", () => {
     const previous = emptyPreviousCategories();
     previous["developer-tools-open-source"] = [
@@ -410,6 +478,120 @@ describe("scoreContentQuality", () => {
     );
 
     expect(score.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("rejects podcast and lawsuit stories that lack reusable technical detail", () => {
+    const podcast = scoreContentQuality(
+      baseItem({
+        title: "Hackaday Podcast Ep 373: GPS, Danger In Space, and Robby the Robot",
+        summary:
+          "A podcast episode roundup with several interesting topics but no focused architecture, benchmark, implementation, or reproducible engineering detail.",
+        category: "embedded-systems",
+        sourceName: "Hackaday",
+        sourceType: "blog",
+        tags: ["podcast", "episode"]
+      })
+    );
+    const lawsuit = scoreContentQuality(
+      baseItem({
+        title: "Lawsuit: ChatGPT validated suicidal woman's distrust of crisis lines",
+        summary:
+          "A legal story focused on personal harm and litigation rather than technical model architecture, benchmark evidence, or implementation guidance.",
+        category: "embedded-systems",
+        sourceName: "Ars Technica",
+        sourceType: "news",
+        tags: ["lawsuit"]
+      })
+    );
+
+    expect(podcast.excludedReason).toMatch(/low-information|low-value/i);
+    expect(lawsuit.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("rejects celebrity wealth coverage that lacks technical substance", () => {
+    const score = scoreContentQuality(
+      baseItem({
+        title: "Elon Musk is the world's first trillionaire",
+        summary:
+          "A wealth and net worth story about an IPO, shares, and personal finances rather than model architecture, infrastructure, benchmarks, or engineering implementation.",
+        category: "ai-ml",
+        sourceName: "The Verge",
+        sourceType: "news",
+        tags: ["ai"]
+      })
+    );
+
+    expect(score.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("rejects shallow product pricing and hobby novelty posts without reusable technical detail", () => {
+    const phonePrice = scoreContentQuality(
+      baseItem({
+        title: "Nothing CEO says phone prices are going to keep going up",
+        summary:
+          "A CEO comments that RAM costs increased and phone prices may rise, without architecture, benchmarks, implementation details, or developer-reusable technical analysis.",
+        category: "ai-ml",
+        sourceName: "The Verge",
+        sourceType: "news",
+        tags: ["ai"]
+      })
+    );
+    const hobbyCar = scoreContentQuality(
+      baseItem({
+        title: "Building a 1:150 scale Toyota ProBox Micro Remote Control Car",
+        summary:
+          "A hobby scale model car comes to life, but the excerpt does not explain firmware, sensor timing, power constraints, or embedded implementation details.",
+        category: "embedded-systems",
+        sourceName: "Hackaday",
+        sourceType: "blog",
+        tags: ["toy hacks", "scale model"]
+      })
+    );
+
+    expect(phonePrice.excludedReason).toMatch(/low-information|low-value/i);
+    expect(hobbyCar.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("rejects bare security update bulletins without explanatory engineering context", () => {
+    const score = scoreContentQuality(
+      baseItem({
+        title: "Security updates for Friday",
+        summary: "15, linux-azure-fips, lwip, mistral, and ubuntu-kylin-software-center).",
+        category: "cloud-infrastructure",
+        sourceName: "LWN.net",
+        sourceType: "news",
+        tags: ["cloud-infrastructure"]
+      })
+    );
+
+    expect(score.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("rejects startup valuation and gaming-data stories when they lack technical substance", () => {
+    const startup = scoreContentQuality(
+      baseItem({
+        title: "Jeff Bezos' AI startup aims to build an artificial general engineer",
+        summary:
+          "A founder describes a startup, funding round, and valuation according to reports, but the excerpt does not provide model architecture, benchmark results, or implementation details.",
+        category: "ai-ml",
+        sourceName: "The Verge",
+        sourceType: "news",
+        tags: ["ai"]
+      })
+    );
+    const gamingData = scoreContentQuality(
+      baseItem({
+        title: "Pokémon Go players unwittingly contributed to tech with military drone uses",
+        summary: "The repurposing of Pokémon Go data for AI training continues to draw scrutiny.",
+        category: "computer-systems",
+        sourceName: "Ars Technica",
+        sourceType: "news",
+        tags: ["gaming", "ai drones"]
+      })
+    );
+
+    expect(startup.excludedReason).toMatch(/low-information|low-value/i);
+    expect(gamingData.excludedReason).toMatch(/low-information|low-value/i);
   });
 
   it("keeps practical technical explainers and engineering writeups", () => {

@@ -44,12 +44,24 @@ export type RejectedCandidate = {
 
 export type RefreshDebug = {
   totalCandidatesFound: number;
+  fallbackCandidateCount?: number;
   candidatesAfterFreshness: number;
   rejectedByAge: number;
   rejectedByLowQuality: number;
   rejectedByDuplicate: number;
   rejectedByTrust: number;
   finalSelectedByCategory: Record<CategoryId, number>;
+  underfilledCategories?: Partial<
+    Record<
+      CategoryId,
+      {
+        attemptedFallback: boolean;
+        selectedCount: number;
+        targetCount: number;
+        message: string;
+      }
+    >
+  >;
   sourcesUsed: string[];
   rejected: RejectedCandidate[];
 };

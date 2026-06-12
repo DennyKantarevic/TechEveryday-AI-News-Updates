@@ -1,95 +1,190 @@
 {
-  "refreshedAt": "2026-06-12T13:10:23.103Z",
+  "refreshedAt": "2026-06-12T20:44:59.398Z",
   "nextRefreshAt": "2026-06-13T11:00:00.000Z",
-  "candidateCount": 219,
+  "candidateCount": 277,
   "categoryCounts": {
     "ai-ml": 5,
-    "automation-agentic-systems": 3,
+    "automation-agentic-systems": 5,
     "research-papers": 5,
-    "embedded-systems": 0,
-    "computer-systems": 0,
-    "developer-tools-open-source": 2,
-    "cloud-infrastructure": 5
+    "embedded-systems": 5,
+    "computer-systems": 5,
+    "developer-tools-open-source": 5,
+    "cloud-infrastructure": 4
   },
   "status": "success",
   "message": "Refresh completed with fresh high-signal items.",
   "debug": {
-    "totalCandidatesFound": 219,
-    "candidatesAfterFreshness": 129,
-    "rejectedByAge": 90,
-    "rejectedByLowQuality": 58,
+    "totalCandidatesFound": 277,
+    "candidatesAfterFreshness": 152,
+    "rejectedByAge": 125,
+    "rejectedByLowQuality": 76,
     "rejectedByDuplicate": 0,
     "rejectedByTrust": 0,
     "finalSelectedByCategory": {
       "ai-ml": 5,
-      "automation-agentic-systems": 3,
+      "automation-agentic-systems": 5,
       "research-papers": 5,
-      "embedded-systems": 0,
-      "computer-systems": 0,
-      "developer-tools-open-source": 2,
-      "cloud-infrastructure": 5
+      "embedded-systems": 5,
+      "computer-systems": 5,
+      "developer-tools-open-source": 5,
+      "cloud-infrastructure": 4
     },
     "sourcesUsed": [
       "AWS Blog",
-      "Ars Technica",
+      "CNCF Blog",
       "Cloudflare Blog",
       "GitHub Blog",
       "Google Research Blog",
+      "Hackaday",
+      "Hacker News",
       "IEEE Spectrum",
+      "LWN.net",
       "MIT Technology Review",
+      "Microsoft Research Blog",
       "NVIDIA Blog",
       "OpenAI Blog",
       "arXiv"
     ],
     "rejected": [
       {
-        "id": "1b8c3b365d32ee45a3f4df7d847c571b87f98af6",
-        "title": "BMW's Neue Klasse M concept brings next-gen EV tech to motorsports",
-        "url": "https://www.theverge.com/transportation/948635/bmw-neue-klasse-m-concept-motorsports-ev",
+        "id": "d5f0a1efd4e68796f29ec863d18cd4cafb9d1e50",
+        "title": "Nothing CEO says phone prices are going to keep going up",
+        "url": "https://www.theverge.com/gadgets/949403/nothing-carl-pei-ram-phone-prices",
         "sourceName": "The Verge",
         "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
-        "id": "80c54c0b02ae0385d4c941927a9f5fa3591fb50a",
-        "title": "The Nintendo DS is still the best gaming handheld for travel",
-        "url": "https://www.theverge.com/games/942678/nintendo-ds-rules-for-travel",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "e71252ee196865e90f21f4b47c4e39ecbad049a9",
-        "title": "Summer Upgrade Week",
-        "url": "https://www.theverge.com/tech/942658/summer-upgrade-week-2026",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "0a648dd22efe01d356a3d7a79c304c472c6ef2bb",
-        "title": "This portable light is great for way more than camping",
-        "url": "https://www.theverge.com/tech/942932/portable-light-camping-work-travel",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "71d9356ab2bd9524661e283988a1b20ce1a315a0",
-        "title": "Siri won't be your AI girlfriend",
-        "url": "https://www.theverge.com/tech/948890/siri-wont-be-your-ai-girlfriend",
+        "id": "3ed1500ddb24049737b94f586c9a66180b4c6b34",
+        "title": "The world's first trillionaire is a killer",
+        "url": "https://www.theverge.com/tech/949259/the-worlds-first-trillionaire-is-a-killer",
         "sourceName": "The Verge",
         "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
-        "id": "1e925cb0f65c67d5c9b63f9ba0f57b9317fa98e6",
-        "title": "Logitech's awesome MX Master 3S mouse drops to under $100",
-        "url": "https://www.theverge.com/gadgets/948204/logitech-mx-master-3s-mouse-sale-deal",
+        "id": "b6380986fba429c8efe38f63dbe0e53abd2c3b33",
+        "title": "Siri is good now?",
+        "url": "https://www.theverge.com/podcast/949079/siri-ai-good-vergecast",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "e7ce496ea947eb469d5c25b903ad40d8002421b8",
+        "title": "A trillion dollars is a stupid amount of money",
+        "url": "https://www.theverge.com/tech/948917/elon-musk-trillionaire-how-much-visualization",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "bd4f70039b15ebe03a2b384ef4ab2e9862ff8ea2",
+        "title": "Elon Musk is the world's first trillionaire",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/948409/elon-musk-trillionaire-spacex-ipo",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "af5fdabad558ef01bf0757d61313bbae41725a05",
+        "title": "I held the Trump phone",
+        "url": "https://www.theverge.com/tech/948464/trump-phone-t1-hands-on",
         "sourceName": "The Verge",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "4c93b6c856acc615be399755cd55ed5c66a18d53",
-        "title": "Blink's six-piece outdoor camera kit is a great deal under $200",
-        "url": "https://www.theverge.com/gadgets/948459/blink-camera-bundle-aeropress-deal-sale",
+        "id": "cb07d76b4ccc91a37fc33744e0253f783b6a052e",
+        "title": "Govee's rechargeable smart table lamp is down to $60",
+        "url": "https://www.theverge.com/gadgets/948806/govee-table-lamp-classic-jbl-charge-6-deal-sale",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "b5e58cd677f69059e520fca297bfc46d639e5dd0",
+        "title": "SpaceX's massive IPO: all the latest news",
+        "url": "https://www.theverge.com/business/948996/spacex-ipo-elon-musk",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "7979802fbe14f21479364e0b50b120f38b8c1dc2",
+        "title": "Jeff Bezos' AI startup aims to build an 'artificial general engineer'",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/949005/jeff-bezos-prometheus-artificial-general-engineer",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "82d9c5b685f896173d4c8e1e6487eeae1b849e86",
+        "title": "SpaceX is now public",
+        "url": "https://www.theverge.com/science/947926/spacex-ipo-stock-shares-trading-elon-musk",
         "sourceName": "The Verge",
         "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "bfff2a9589f42deea4f32e2ca2c8b71d92745f3a",
+        "title": "PeopleSoft 0-day affecting hundreds of organizations steals gigabytes of data",
+        "url": "https://arstechnica.com/security/2026/06/peoplesoft-0-day-affecting-hundreds-of-organizations-steals-gigabytes-of-data/",
+        "sourceName": "Ars Technica",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "60275110656e78d065e0f81fcd64802506082507",
+        "title": "Controversial FISA spying law expires tonight. The spying will continue.",
+        "url": "https://arstechnica.com/tech-policy/2026/06/controversial-fisa-spying-law-expires-tonight-the-spying-will-continue/",
+        "sourceName": "Ars Technica",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "c9a721615ddcc2b175d8bb9f498a959a39761dcf",
+        "title": "Here's what Jeff Bezos' new startup Prometheus will do",
+        "url": "https://arstechnica.com/ai/2026/06/heres-what-jeff-bezos-new-startup-prometheus-will-do/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "3dee0c31f4f8f93d52a8bbbc1fe8b36e5f34201a",
+        "title": "Have politics finally come for the National Academies of Science?",
+        "url": "https://arstechnica.com/science/2026/06/have-politics-finally-come-for-the-national-academies-of-science/",
+        "sourceName": "Ars Technica",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "0f49b3771e77c8ebd089c4e1d07ba90fd7c57303",
+        "title": "$130 billion in data center projects blocked by protests so far this year",
+        "url": "https://arstechnica.com/tech-policy/2026/06/130-billion-in-data-center-projects-blocked-by-protests-so-far-this-year/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "0f4f7d02b9c2488157ea4345aeded186144b9bb5",
+        "title": "When it comes to total water use, AI data centers are a drop in the bucket",
+        "url": "https://arstechnica.com/ai/2026/06/when-it-comes-to-total-water-use-ai-data-centers-are-a-drop-in-the-bucket/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "6e99cb662666e02ce8119ead4dddb66223aff56b",
+        "title": "Google sues Chinese cybercrime network that used Gemini to automate scams",
+        "url": "https://arstechnica.com/google/2026/06/google-sues-chinese-cybercrime-network-that-used-gemini-to-automate-scams/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "f78a1ac8e470246bba914deeaa282d096b3cab31",
+        "title": "RFK Jr. melts down over NYT report, admits he blacklists reporters",
+        "url": "https://arstechnica.com/health/2026/06/rfk-jr-melts-down-over-nyt-report-admits-he-blacklists-reporters/",
+        "sourceName": "Ars Technica",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "36427b613b1cb03e2074c7753f9dda8e996e65bb",
+        "title": "The biggest race in the world? The 24 Hours of Le Mans is this weekend.",
+        "url": "https://arstechnica.com/cars/2026/06/the-biggest-race-in-the-world-the-24-hours-of-le-mans-is-this-weekend/",
+        "sourceName": "Ars Technica",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "1d33cc4b96e62d364c9d928a16ec1d42a7cd7b8e",
+        "title": "Lawsuit: ChatGPT validated suicidal woman's distrust of crisis lines",
+        "url": "https://arstechnica.com/tech-policy/2026/06/lawsuit-chatgpt-validated-suicidal-womans-distrust-of-crisis-lines/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
         "id": "710c319bc4b8339c9b6f502a85636e9e46a66ce0",
@@ -106,6 +201,13 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
+        "id": "223baf7356fb30f2428fded1c5c76b1c93b2105e",
+        "title": "Pokémon Go players unwittingly contributed to tech with military drone uses",
+        "url": "https://arstechnica.com/ai/2026/06/pokemon-go-players-unwittingly-contributed-to-tech-with-military-drone-uses/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
         "id": "bebd24ef9a915910aebdf7551dcd4167e51acfe7",
         "title": "Verizon sent man a refurbished phone with MDM, then deleted his data remotely",
         "url": "https://arstechnica.com/tech-policy/2026/06/verizon-sent-man-a-refurbished-phone-with-mdm-then-deleted-his-data-remotely/",
@@ -120,59 +222,38 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "5870e597fb86a5671070442c8f828bf2e5d80a59",
-        "title": "Ted Cruz and Ron Wyden try to fight censorship with bipartisan JAWBONE Act",
-        "url": "https://arstechnica.com/tech-policy/2026/06/ted-cruz-and-ron-wyden-try-to-fight-censorship-with-bipartisan-jawbone-act/",
-        "sourceName": "Ars Technica",
+        "id": "9c04e6eb4f771be6a075fed3330d70bc7faeb9ca",
+        "title": "Donald Trump's White House UFC Event Would Be Embarrassing Anywhere",
+        "url": "https://www.wired.com/story/donald-trumps-white-house-ufc-event-would-be-embarrassing-anywhere/",
+        "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "3c68f5eab03a9ea2e0539dfccfea8f32632feb8e",
-        "title": "AcuRite admits new app falls short, delays old app's May shutdown to fix problems",
-        "url": "https://arstechnica.com/gadgets/2026/06/iot-gadget-firm-acurite-delays-forced-app-migration-due-to-new-apps-shortfalls/",
-        "sourceName": "Ars Technica",
+        "id": "252efb1d25cc7e45bac11c45ea0720025017a14b",
+        "title": "Chinese Drivers Are Using Tiny Plastic Heads to Fool Tesla's Autopilot Safeguards",
+        "url": "https://www.wired.com/story/chinese-drivers-are-using-tiny-plastic-heads-to-fool-teslas-autopilot-safeguards/",
+        "sourceName": "Wired",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "ce2b81f4df384418d6ad8eaca82961e9ffeaa41a",
+        "title": "Elon Musk Is the World's First Trillionaire",
+        "url": "https://www.wired.com/story/elon-musk-is-the-worlds-first-trillionaire-wow/",
+        "sourceName": "Wired",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "73a21a0c6a7ee8bd2cceef5ec2dac3e48b40c53d",
+        "title": "Crypto Guys Bought the Answer to the CIA's Mysterious Kryptos Sculpture",
+        "url": "https://www.wired.com/story/crypto-guys-bought-the-answer-to-the-cias-mysterious-kryptos-sculpture/",
+        "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "116db174df87f690089ed55309aa7a8c1c6a9089",
-        "title": "F1 teams spend millions on their simulators—what makes them different?",
-        "url": "https://arstechnica.com/cars/2026/06/whats-so-special-about-a-formula-1-driver-in-the-loop-simulator/",
-        "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "a520f87d3ffd4146c349f2490a05455491bfccd1",
-        "title": "Did Iron Age Britons remove brains of the dead?",
-        "url": "https://arstechnica.com/science/2026/06/did-iron-age-britons-remove-brains-of-the-dead/",
-        "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "76cf2d6e0e5f14ba51fb2e23c4e4ff6e9d3e768e",
-        "title": "\"This cannot continue\": Xbox leaders lay out \"hard truths\" behind sagging brand",
-        "url": "https://arstechnica.com/gaming/2026/06/this-cannot-continue-xbox-leaders-lay-out-hard-truths-behind-sagging-brand/",
-        "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "806ebf75ebf938fd33a1587aa34aa0e1ab234da9",
-        "title": "The first complex cells had genes from a complex mix of species",
-        "url": "https://arstechnica.com/science/2026/06/the-first-complex-cells-had-genes-from-a-complex-mix-of-species/",
-        "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "ecf741fa8f8b2ec9d01e0cbc9ad74200fa9d224d",
-        "title": "Several things I like about macOS 27 Golden Gate that have nothing to do with AI",
-        "url": "https://arstechnica.com/gadgets/2026/06/five-things-i-like-and-one-thing-i-still-want-in-the-macos-27-golden-gate-beta/",
-        "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "91bfff5b985149284edd403a304b56b417fd796a",
-        "title": "Diabetes org apologizes for ejecting scientists over criticism of Trump",
-        "url": "https://arstechnica.com/health/2026/06/diabetes-org-apologizes-for-ejecting-scientists-over-criticism-of-trump/",
-        "sourceName": "Ars Technica",
+        "id": "5bed6817b9c46791d1bde1d1c5c67a818c89a45c",
+        "title": "A White Supremacist Youth Group Helped Orchestrate the Belfast Riots",
+        "url": "https://www.wired.com/story/a-white-supremacist-youth-group-helped-orchestrate-the-belfast-riots/",
+        "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
@@ -197,8 +278,8 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "08661c23de8ea9f74c2ce3821e28705f54df3e9d",
-        "title": "Why Real-Life Disclosure Day Will Look Nothing Like Steven Spielberg's New Movie",
+        "id": "6145fecc664e7d9ffff09612cdac1474f27bf73a",
+        "title": "Real-Life Disclosure Day Will Look Nothing Like Steven Spielberg's New Movie",
         "url": "https://www.wired.com/story/real-life-disclosure-day-wont-look-like-steven-spielberg-movie/",
         "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
@@ -235,48 +316,6 @@
         "id": "7d06a912c2b541710a964cdbe0609721a67e441e",
         "title": "Paramount+ Coupon Codes and Deals for June 2026",
         "url": "https://www.wired.com/story/paramount-plus-coupon-code/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "4b9f1412801c4c274cb49cbcd7184809c2c700ac",
-        "title": "B&H Photo Promo Codes and Deals This June",
-        "url": "https://www.wired.com/story/bh-photo-coupon/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "5c90a27fc0ccd6d255298e94a90b4d433683a052",
-        "title": "Hoka Coupon Codes: 30% Off in June 2026",
-        "url": "https://www.wired.com/story/hoka-coupon-code/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "5e47b9203a3627f71f228e2d60c13601b08ded69",
-        "title": "20% Off Sephora Promo Code | June 2026",
-        "url": "https://www.wired.com/story/sephora-promo-code/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "66070a4cfb953eea96b6def9becaaacf1b81151e",
-        "title": "LG Promo Codes and Coupons for June 2026",
-        "url": "https://www.wired.com/story/lg-promo-code/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "608ecb2c95ede99e7efb3bf608d34b65cb853b6d",
-        "title": "Columbia Promo Codes: 15% Off | June 2026",
-        "url": "https://www.wired.com/story/columbia-promo-code/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "3948bd1de8b0f8328de10a917c9659a0f696d1cf",
-        "title": "30% Off Canon Promo Codes | June 2026",
-        "url": "https://www.wired.com/story/canon-promo-code/",
         "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
@@ -344,6 +383,27 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
+        "id": "c6ec756c2581d37701db0d3ef257b0d3000f8044",
+        "title": "What Size Company Is Right for You?",
+        "url": "https://spectrum.ieee.org/fortune-500-companies-vs-startups",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d488345453870507f62fbcbbea3081a9d4ec478b",
+        "title": "The Pros and Cons of Job Hopping as an Engineer",
+        "url": "https://spectrum.ieee.org/strategic-job-hopping",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3a9cfa6883db27296e9ddb8bd6afd2ffafa35469",
+        "title": "The Computer Science Degree Isn't Dead",
+        "url": "https://spectrum.ieee.org/computer-science-degree-isnt-dead",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
         "id": "83413e99e95cf68bcbcd0bae2e77605bd2ce1b80",
         "title": "Beyond Dexterity: Why Contact May Define the Next Era of Robotics",
         "url": "https://spectrum.ieee.org/agilink-contact-intelligence-robot-manipulation",
@@ -396,13 +456,6 @@
         "id": "429a0d2e8e2589b9017a39b1e78fe7472bc897f6",
         "title": "Why Sardinians Are Fighting the Renewable Energy Transition",
         "url": "https://spectrum.ieee.org/renewable-energy-resistance",
-        "sourceName": "IEEE Spectrum",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "a1f8a801f5ae4892b7e490a2d55b44639dda418c",
-        "title": "This DIY Bipedal Robot Used Pneumatic \"Air-Muscles\" Instead of Motors",
-        "url": "https://spectrum.ieee.org/shadow-walker-biped-humanoid-robot",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
@@ -498,20 +551,6 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "948e1b8f1fb259c6bd6c42c7c8c584147f527e77",
-        "title": "ConvApparel: Measuring and bridging the realism gap in user simulators",
-        "url": "https://research.google/blog/convapparel-measuring-and-bridging-the-realism-gap-in-user-simulators/",
-        "sourceName": "Google Research Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "d591e1244c7025348abee54a8be4f5875112ef0f",
-        "title": "Improving the academic workflow: Introducing two AI agents for better figures and peer review",
-        "url": "https://research.google/blog/improving-the-academic-workflow-introducing-two-ai-agents-for-better-figures-and-peer-review/",
-        "sourceName": "Google Research Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
         "id": "1aa8e31ab451ccb84541aa7736dba3e3c7925711",
         "title": "How engineers at Nextdoor use Codex to build without limits",
         "url": "https://openai.com/index/nextdoor",
@@ -557,13 +596,6 @@
         "id": "69b95669d5308461673e34e13a68b9bef423936f",
         "title": "How Endava is redesigning software delivery around AI agents",
         "url": "https://openai.com/index/endava-frontiers",
-        "sourceName": "OpenAI Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "a2a207ec6736941f29302a3dc89b5c5a4fb14266",
-        "title": "Dreaming: Better memory for a more helpful ChatGPT",
-        "url": "https://openai.com/index/chatgpt-memory-dreaming",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
@@ -627,13 +659,6 @@
         "id": "35a128de2e0b85331bd2f1fc6dd2d1c666c58979",
         "title": "SocialReasoning-Bench: Measuring whether AI agents act in users' best interests",
         "url": "https://www.microsoft.com/en-us/research/blog/socialreasoning-bench-measuring-whether-ai-agents-act-in-users-best-interests/",
-        "sourceName": "Microsoft Research Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "6e612a392430e42c46718b009e4abd7e72a9bd42",
-        "title": "Building realistic electric transmission grid dataset at scale: a pipeline from open dataset",
-        "url": "https://www.microsoft.com/en-us/research/blog/building-realistic-electric-transmission-grid-dataset-at-scale-a-pipeline-from-open-dataset/",
         "sourceName": "Microsoft Research Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
@@ -726,6 +751,13 @@
         "title": "NVIDIA Jetson Brings Agentic AI to the Physical World",
         "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
         "sourceName": "NVIDIA Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "8f2f0887c4cfdc666894274da28d5b178193a5c0",
+        "title": "Anthropic Claude Fable 5 on AWS: Mythos-class capabilities with built-in safeguards now available",
+        "url": "https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/",
+        "sourceName": "AWS Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -925,10 +957,10 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "43a92a191f465cb5b04397454376a43773c9f41a",
-        "title": "Building for the future",
-        "url": "https://blog.cloudflare.com/building-for-the-future/",
-        "sourceName": "Cloudflare Blog",
+        "id": "e88d096653a15720b37546d267596bb2d6378f0b",
+        "title": "From one-off prompts to workflows: How to use custom agents in GitHub Copilot CLI",
+        "url": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/",
+        "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -974,9 +1006,443 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
+        "id": "c7c17de8743070667e3ee51fc8ac052dad0a2b85",
+        "title": "From Kubernetes Dashboard to Headlamp: Understanding the Transition",
+        "url": "https://kubernetes.io/blog/2026/06/01/dashboard-to-headlamp/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7c540bd36d82b08186cea8743fbe757d987696a1",
+        "title": "Reconciling the Past: Correcting Records for Unfixed Kubernetes CVEs",
+        "url": "https://kubernetes.io/blog/2026/05/26/reconciling-unfixed-kubernetes-cves/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4421280851a3e64549705f4ed20e6f879f64a431",
+        "title": "Announcing etcd 3.7.0-beta.0",
+        "url": "https://kubernetes.io/blog/2026/05/20/etcd-370-beta/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ce35d03ae802d19f3f28046286b948b009971ac8",
+        "title": "Kubernetes v1.36: New Metric for Route Sync in the Cloud Controller Manager",
+        "url": "https://kubernetes.io/blog/2026/05/15/ccm-new-metric-route-sync-total/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2bae1974594e5ddaf57492623afef31f6d46d9fa",
+        "title": "Kubernetes v1.36: Mixed Version Proxy Graduates to Beta",
+        "url": "https://kubernetes.io/blog/2026/05/15/kubernetes-1-36-feature-mixed-version-proxy-beta/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ba17fc2b60c5285d5d9a161795f3e41f4c798105",
+        "title": "Kubernetes v1.36: Deprecation and removal of Service ExternalIPs",
+        "url": "https://kubernetes.io/blog/2026/05/14/kubernetes-v1-36-deprecation-and-removal-of-service-externalips/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "8334c4519e69784fdf6f449f2573572ea17a48b8",
+        "title": "Kubernetes v1.36: Advancing Workload-Aware Scheduling",
+        "url": "https://kubernetes.io/blog/2026/05/13/kubernetes-v1-36-advancing-workload-aware-scheduling/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "15665ec441b4eb9a005965355f658e3b2af85b56",
+        "title": "Kubernetes v1.36: PSI Metrics for Kubernetes Graduates to GA",
+        "url": "https://kubernetes.io/blog/2026/05/12/kubernetes-v1-36-psi-metrics-ga/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "36e602b166d7c12e424ee8a56b0826521587221b",
+        "title": "Kubernetes v1.36: Moving Volume Group Snapshots to GA",
+        "url": "https://kubernetes.io/blog/2026/05/08/kubernetes-v1-36-volume-group-snapshot-ga/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7bdb568e1997de4ce68bf11d7f71c9ca43fc53da",
+        "title": "Kubernetes v1.36: More Drivers, New Features, and the Next Era of DRA",
+        "url": "https://kubernetes.io/blog/2026/05/07/kubernetes-v1-36-dra-136-updates/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ac010f2c940b1040110fafa05d918c5a10b4230b",
+        "title": "Kubernetes v1.36: Server-Side Sharded List and Watch",
+        "url": "https://kubernetes.io/blog/2026/05/06/kubernetes-v1-36-server-side-sharded-list-and-watch/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2d51d5c83697bb4cd0255202ef8766eed394754b",
+        "title": "Kubernetes v1.36: Declarative Validation Graduates to GA",
+        "url": "https://kubernetes.io/blog/2026/05/05/kubernetes-v1-36-declarative-validation-ga/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "59da83ce5a89e6480b0c88db631cc414e4dd3fa8",
+        "title": "Kubernetes v1.36: Admission Policies That Can't Be Deleted",
+        "url": "https://kubernetes.io/blog/2026/05/04/kubernetes-v1-36-manifest-based-admission-control/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f9e7ad9802fc4b5f2d58b7d2deef516a0c7536ce",
+        "title": "Kubernetes v1.36: Pod-Level Resource Managers (Alpha)",
+        "url": "https://kubernetes.io/blog/2026/05/01/kubernetes-v1-36-feature-pod-level-resource-managers-alpha/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "277bdb12b28bc0612122b999b0d8a9da07ff36ae",
+        "title": "Kubernetes v1.36: In-Place Vertical Scaling for Pod-Level Resources Graduates to Beta",
+        "url": "https://kubernetes.io/blog/2026/04/30/kubernetes-v1-36-inplace-pod-level-resources-beta/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c1bbd5fac3b77a27fd6db6ef173fa518c651c581",
+        "title": "Kubernetes v1.36: Tiered Memory Protection with Memory QoS",
+        "url": "https://kubernetes.io/blog/2026/04/29/kubernetes-v1-36-memory-qos-tiered-protection/",
+        "sourceName": "Kubernetes Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5c1ce7b6fe3d4c73f3b0ba1f119ec55f8d8472e9",
+        "title": "Solving secret sprawl in multi-account Kubernetes with External Secrets Operator",
+        "url": "https://www.cncf.io/blog/2026/06/09/solving-secret-sprawl-in-multi-account-kubernetes-with-external-secrets-operator/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "11878711224854646ad492aa5c24fec904f9a5f6",
+        "title": "Breaking free of a single datacenter: Practical geo-distributed AI operations with the k0smos platforms",
+        "url": "https://www.cncf.io/blog/2026/06/08/breaking-free-of-a-single-datacenter-practical-geo-distributed-ai-operations-with-the-k0smos-platforms/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bd4c74f2950337afa555dda72356a4495b17b0f3",
+        "title": "Benchmarking KubeVirt performance with virtbench",
+        "url": "https://www.cncf.io/blog/2026/06/08/benchmarking-kubevirt-performance-with-virtbench/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6c8b8a36ec5c242b0bfcd7387f774b5eabef8f63",
+        "title": "Identity and Access Management Whitepaper",
+        "url": "https://www.cncf.io/blog/2026/06/04/identity-and-access-management-whitepaper/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7d9f7020cd59da1852a55324c09216eef8cd374b",
+        "title": "Securing CI/CD for an open source project: Controlling who runs what",
+        "url": "https://www.cncf.io/blog/2026/06/04/securing-ci-cd-for-an-open-source-project-controlling-who-runs-what/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "06554f86ab642dd29791a89971c0ec6936bb8104",
+        "title": "Inspektor Gadget: Results from the first security audit",
+        "url": "https://www.cncf.io/blog/2026/06/03/inspektor-gadget-results-from-the-first-security-audit/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5eed6a72084d20d30bf8c7811b13bb0172fdd1cd",
+        "title": "Mumbai Maha Mahotsav – KubeCon + CloudNativeCon India edition",
+        "url": "https://www.cncf.io/blog/2026/06/02/mumbai-maha-mahotsav-kubecon-cloudnativecon-india-edition/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2184bfb12623c29addaa043fd1cf74e7a54a9fed",
+        "title": "Cloud native is now AI-native: Engineering production-ready AI",
+        "url": "https://www.cncf.io/blog/2026/06/02/cloud-native-is-now-ai-native-engineering-production-ready-ai/",
+        "sourceName": "CNCF Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f4eb0e489e52630cfc3a479e10ebcdd20b4ab466",
+        "title": "Building a 1:150 scale Toyota ProBox Micro Remote Control Car",
+        "url": "https://hackaday.com/2026/06/12/building-a-1150-scale-toyota-probox-micro-remote-control-car/",
+        "sourceName": "Hackaday",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "a6d103bab5f549ec87eb305a310b11e7306cbdea",
+        "title": "Adding Weight to a 3D Print With Plaster of Paris, Cleanly",
+        "url": "https://hackaday.com/2026/06/12/adding-weight-to-a-3d-print-with-plaster-of-paris-cleanly/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "5f27b3e97607bae296fb6011979fe7270530acea",
+        "title": "Hackaday Podcast Ep 373: GPS, Danger In Space, and Robby the Robot",
+        "url": "https://hackaday.com/2026/06/12/hackaday-podcast-episode-373-gps-danger-in-space-and-robby-the-robot/",
+        "sourceName": "Hackaday",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "51a7b88df5e628cf1528b0a92e1b926ea3ad2e75",
+        "title": "A Peek inside the Secret Lagercrantz Suitcase Radio",
+        "url": "https://hackaday.com/2026/06/12/a-peek-inside-the-secret-lagercrantz-suitcase-radio/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "59118b5b175a5fffcaf4798299302801fdc7f53e",
+        "title": "Glue-in Hinge Design Tries Something Different",
+        "url": "https://hackaday.com/2026/06/12/glue-in-hinge-design-tries-something-different/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "dc9d2167a9064360593bbb02a0cdf3ca2b0453cf",
+        "title": "Small device, big business: can a Raspberry Pi replace your desktop PC?",
+        "url": "https://www.raspberrypi.com/news/small-device-big-business-can-a-raspberry-pi-replace-your-desktop-pc/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "e3ebf1bb6c6b45356d1535527fc34c8336f88ac9",
+        "title": "AI Arcade",
+        "url": "https://www.raspberrypi.com/news/ai-arcade/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "78b7bf1d5aef4c89f39fe8197c83f09c015d340e",
+        "title": "Peppe's ghost LiDAR scanner",
+        "url": "https://www.raspberrypi.com/news/peppes-ghost-lidar-scanner/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2f6167f83591347f4bf11459b77e973d531646ff",
+        "title": "Python Projects for Raspberry Pi: the book you've been waiting for to level up your skills",
+        "url": "https://www.raspberrypi.com/news/python-projects-for-raspberry-pi/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5558bb972809d2dc7fc07b58f18a6993582fc1c1",
+        "title": "StreamCrate: portable media server",
+        "url": "https://www.raspberrypi.com/news/streamcrate-portable-media-server/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "886e6cc26660cdf1231bdca56e329f6295d0fc70",
+        "title": "Raspberry Pi Official Magazine presents: Flapulator, the 3D printed calculator",
+        "url": "https://www.raspberrypi.com/news/raspberry-pi-official-magazine-presents-flapulator-the-3d-printed-calculator/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "028dbe25372e0223a4d4a8e24df85e90ad031349",
+        "title": "Bringing LLMs to the edge",
+        "url": "https://www.raspberrypi.com/news/bringing-llms-to-the-edge/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ea08cffe31ac21e2e8ce42310b654d26c189758f",
+        "title": "Welcome to the Raspberry Pi Podcast",
+        "url": "https://www.raspberrypi.com/news/welcome-to-the-raspberry-pi-podcast/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f3941534ac93e9559ebac7e99466e4e37847f0fc",
+        "title": "OVCS: Raspberry Pi–powered electric car",
+        "url": "https://www.raspberrypi.com/news/ovcs-raspberry-pi-powered-electric-car/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6fcb3142540c8c7dd1d84859b7e90175bc59234b",
+        "title": "Powering coexistence: how Raspberry Pi technology is helping WWF protect wildlife and communities in Pakistan",
+        "url": "https://www.raspberrypi.com/news/powering-coexistence-how-raspberry-pi-technology-is-helping-wwf-protect-wildlife-and-communities-in-pakistan/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "41310f7120b77e5e63cff987951edafc725c0a78",
+        "title": "Hundreds of AUR packages compromised",
+        "url": "https://lwn.net/Articles/1077718/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "99acdf41c5c98dc05d1d742646a9101bd2b62321",
+        "title": "Security updates for Friday",
+        "url": "https://lwn.net/Articles/1077703/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "a6a7fe14420f94f4beb07e568ac8cf50ae93f37c",
+        "title": "Homebrew 6.0.0 released",
+        "url": "https://lwn.net/Articles/1077587/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "725e07942eb93d6d3fe5e24fe6d45b4f5c0285a9",
+        "title": "Security updates for Thursday",
+        "url": "https://lwn.net/Articles/1077536/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "fffda5da16145393224e73eb655c3b26d1c222ce",
+        "title": "Security updates for Wednesday",
+        "url": "https://lwn.net/Articles/1077362/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "d562e9b123756f201e06e92faa93e00c85469588",
+        "title": "Future of Ubuntu MATE",
+        "url": "https://lwn.net/Articles/1077221/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d11d679c8fb609bc7bdca2c50af7c122109bd107",
+        "title": "Eliminating long-lived credentials with trusted publishing",
+        "url": "https://lwn.net/Articles/1076205/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "da361b0abb20f13e61f35b55ccd8f0616c80373b",
+        "title": "Asahi Linux warns users not to upgrade to macOS 27 beta",
+        "url": "https://lwn.net/Articles/1077209/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c9aac0de1cfaf1212b0165f50de3024dd51519a6",
+        "title": "BPF loop verification with scalar evolution",
+        "url": "https://lwn.net/Articles/1076121/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "782bc2383ac2f4b65432cfa44db912e3512663ed",
+        "title": "CRISPR tech selectively shreds cancer cells, including \"undruggable\" cancers",
+        "url": "https://innovativegenomics.org/news/crispr-technique-selectively-shreds-cancer-cells/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "441463115b68ec2ced1dc2d61ef8881051fb6fc2",
+        "title": "I Am Not a Reverse Centaur",
+        "url": "https://blog.miguelgrinberg.com/post/i-am-not-a-reverse-centaur",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "4bec297e4812c8533afcce9dad1a24d07d521b32",
+        "title": "How to setup a local coding agent on macOS",
+        "url": "https://ikyle.me/blog/2026/how-to-setup-a-local-coding-agent-on-macos",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "cd3169c0a105d2bf29db5327e98cff1647ee4b62",
+        "title": "Malware developers added nuclear and biological weapons text to to their spyware",
+        "url": "https://twitter.com/jsrailton/status/2064661778978533571",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "a96643afcdafadaca09a9bcfc69dac186c8a6cfe",
+        "title": "Pirates, a naval warfare game inspired by Sid Meier's Pirates",
+        "url": "https://piwodlaiwo.github.io/pirates/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "eb0c6e5d0ee7de25c0ef43f5c803fbc84d86873b",
+        "title": "Where Did Earth Get Its Oceans? Maybe It Made Them Itself",
+        "url": "https://www.quantamagazine.org/where-did-earth-get-its-oceans-maybe-it-made-them-itself-20260612/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "a6418f84118bd178ce31641e8409359af2515f8a",
+        "title": "Slightly reducing the sloppiness of AI generated front end",
+        "url": "https://envs.net/~volpe/blog/posts/reduce-slop.html",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "fd7659b9ed3e40811235f945c20642860aee2cf3",
+        "title": "Launch HN: BitBoard (YC P25) – Analytics Workspace for Agents",
+        "url": "https://bitboard.work/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "51223fea85d1141aee7e2c43fcbf95cd58a3520c",
+        "title": "A PDF that changes based on how its read",
+        "url": "https://sgaud.com/texts/pdf",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "debd24841c36104b62f5b40a6f353b19844e682f",
+        "title": "Law Enforcement's \"Warrior\" Problem (2015)",
+        "url": "https://harvardlawreview.org/forum/vol-128/law-enforcements-warrior-problem/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "e2011957bf31b736d6328241f10a495244437f52",
+        "title": "A dumpster arrived behind my university's library",
+        "url": "https://yalereview.org/article/sheila-liming-the-end-of-books",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
         "id": "f1a8c762a6a909a70dd8f45bb303cd3a4c46b1eb",
         "title": "AI agent bankrupted their operator while trying to scan DN42",
         "url": "https://lantian.pub/en/article/fun/ai-agent-bankrupted-their-operator-scan-dn42lantian.lantian/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "33923b81a5afdd0f9ef12c415c7fba056e7e2958",
+        "title": "Introduction to UEFI HTTP(s) Boot with QEMU/OVMF",
+        "url": "https://blog.yadutaf.fr/2026/06/12/introduction-to-uefi-https-boot-qemu-ovmf/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "cfa74f6e168071410ae43716d88d32eee27a51c4",
+        "title": "There Is Life Before Main in Rust",
+        "url": "https://grack.com/blog/2026/06/11/life-before-main/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "bcdca97feb748d673ce64725cd06c7f970f9c66c",
+        "title": "\"Don't You Just Upload It to ChatGPT?\"",
+        "url": "https://correresmidestino.com/dont-you-just-upload-it-to-chatgpt/",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
@@ -986,98 +1452,9 @@
         "url": "https://arxiv.org/abs/2606.13473",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "8c1eb400850e8e7d8b7e1977e5c07845bf749190",
-        "title": "If you are asking for human attention, demonstrate human effort",
-        "url": "https://tombedor.dev/human-attention-and-human-effort/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "1b25d96603c95cf7491de143684ffc7ef4095e34",
-        "title": "Nobody ever gets credit for fixing problems that never happened (2001) [pdf]",
-        "url": "https://web.mit.edu/nelsonr/www/Repenning=Sterman_CMR_su01_.pdf",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "746a03d2c6289d1b15505c76473d9a054ef5a123",
-        "title": "Ryanair dark UX patterns summer 2026 refresher",
-        "url": "https://blog.osull.com/2026/06/12/ryanair-dark-ux-patterns-summer-2026-refresher/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "8429b39f683519c579210613202fcdad27d7dd8d",
-        "title": "AUR Packages Compromised with Infostealer and Rootkit",
-        "url": "https://discourse.ifin.network/t/400-aur-packages-compromised-with-infostealer-and-rootkit/577",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "c28fd236aa38fb6416c936e1c80ac34cce3ef76b",
-        "title": "Show HN: Homebrew 6.0.0",
-        "url": "https://brew.sh/2026/06/11/homebrew-6.0.0/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "f53307e47e6ba3751c2030e3ec266d071e8baf6a",
-        "title": "The Future of Email",
-        "url": "https://www.fastmail.com/blog/the-future-of-email/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "9a58fa8bd3ffd89486b5044ddbf7a120ed04e706",
-        "title": "How we made hit video game Prince of Persia",
-        "url": "https://www.theguardian.com/culture/2026/jan/05/raiders-of-the-lost-ark-hit-video-game-prince-of-persia",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "b0ad35f54b987ec8275602b2fa5995901fe78a96",
-        "title": "Show HN: FablePool – pool money behind a prompt, and Fable builds it in public",
-        "url": "https://fablepool.com",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "f66aeb94365ddd86934f3ea15763c461cd1880f2",
-        "title": "Vinyl succumbs to Loudness War: more than just collateral damage (2025)",
-        "url": "https://magicvinyldigital.net/2025/04/27/vinyl-succumbs-to-loudness-war-more-than-just-collateral-damage/",
-        "sourceName": "Hacker News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "80e57fd33fe88225e8baf52b604b7d9eadd9dc7d",
-        "title": "Claude Fable is relentlessly proactive",
-        "url": "https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "06c7973b89b85a1115db8ce92b0395e489f51715",
-        "title": "Anthropic apologizes for invisible Claude Fable guardrails",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/948280/anthropic-claude-fable-invisible-distillation-guardrail",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "3f01e513e889a0cd577005925f3c680ad3560706",
-        "title": "MiMo Code is now released and open-source",
-        "url": "https://mimo.xiaomi.com/mimocode",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "66b49090d325da260a489ca8eca80b33e60056fd",
-        "title": "Petition to Withdraw Canada's Bill C-22",
-        "url": "https://www.ourcommons.ca/petitions/en/Petition/Sign/e-7416",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
       }
-    ]
+    ],
+    "fallbackCandidateCount": 0,
+    "underfilledCategories": {}
   }
 }

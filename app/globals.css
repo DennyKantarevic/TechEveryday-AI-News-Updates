@@ -56,6 +56,24 @@ select {
   margin: 0 auto;
 }
 
+.brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.brand-wordmark__tech {
+  font: inherit;
+}
+
+.brand-wordmark__everyday {
+  margin-left: 0.02em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 .hairline {
   position: relative;
 }

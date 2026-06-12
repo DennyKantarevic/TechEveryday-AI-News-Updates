@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import React from "react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import StickyHeader from "@/components/StickyHeader";
 
 vi.mock("framer-motion", async () => {
@@ -19,6 +19,10 @@ vi.mock("framer-motion", async () => {
   };
 });
 
+beforeEach(() => {
+  vi.stubGlobal("scrollTo", vi.fn());
+});
+
 describe("StickyHeader", () => {
   it("links to newsletter, learning, for you, and gallery", () => {
     render(<StickyHeader alwaysVisible />);
@@ -27,5 +31,13 @@ describe("StickyHeader", () => {
     expect(screen.getByRole("link", { name: "Learning" })).toHaveAttribute("href", "/learning");
     expect(screen.getByRole("link", { name: "For You" })).toHaveAttribute("href", "/for-you");
     expect(screen.getByRole("link", { name: "Gallery" })).toHaveAttribute("href", "/gallery");
+  });
+
+  it("resets scroll when the Newsletter tab is clicked", () => {
+    render(<StickyHeader alwaysVisible />);
+
+    fireEvent.click(screen.getByRole("link", { name: "Newsletter" }));
+
+    expect(window.scrollTo).toHaveBeenCalledWith({ left: 0, top: 0 });
   });
 });

@@ -5,6 +5,7 @@ import { classifyCategory } from "@/lib/news/classify";
 import { createNewsId } from "@/lib/news/ids";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate } from "@/lib/news/summarize";
+import type { CategoryId } from "@/config/categories";
 import type { TrustedSourceConfig } from "@/config/sources";
 import type { NewsItem } from "@/types/news";
 
@@ -97,7 +98,40 @@ function parseDate(value: string | undefined, fallback: Date) {
   return Number.isNaN(date.getTime()) ? fallback.toISOString() : date.toISOString();
 }
 
-async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<NewsItem[]> {
+function categoryAllowedForSource(source: TrustedSourceConfig, category: CategoryId) {
+  const allowedCategories = source.allowedCategories ?? source.categoryHints;
+  return allowedCategories.includes(category);
+}
+
+function categoryForSource(
+  source: TrustedSourceConfig,
+  classifiedCategory: CategoryId,
+  title: string,
+  summary: string,
+  tags?: string[]
+) {
+  if (categoryAllowedForSource(source, classifiedCategory)) {
+    return classifiedCategory;
+  }
+
+  const allowedCategories = source.allowedCategories ?? source.categoryHints;
+  const fallbackCategory = classifyCategory({
+    title,
+    summary,
+    sourceName: source.name,
+    sourceType: source.sourceType,
+    hints: allowedCategories,
+    tags
+  });
+
+  return allowedCategories.includes(fallbackCategory) ? fallbackCategory : allowedCategories[0];
+}
+
+async function fetchFeed(
+  source: RssTrustedSourceConfig,
+  now: Date,
+  itemLimit: number
+): Promise<NewsItem[]> {
   try {
     const response = await fetch(source.rssUrl, {
       signal: AbortSignal.timeout(8500),
@@ -113,7 +147,7 @@ async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<New
     const xml = await response.text();
     const feed = await parser.parseString(xml);
     const items = await Promise.all(
-      feed.items.slice(0, 16).map(async (item) => {
+      feed.items.slice(0, itemLimit).map(async (item) => {
         const title = item.title?.trim();
         const url = item.link || item.guid;
 
@@ -123,7 +157,7 @@ async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<New
 
         const excerpt = item.contentSnippet || item.content || item.contentEncoded || "";
         const summary = await summarizeCandidate(excerpt);
-        const category = classifyCategory({
+        const classifiedCategory = classifyCategory({
           title,
           summary,
           sourceName: source.name,
@@ -131,6 +165,13 @@ async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<New
           hints: source.categoryHints,
           tags: item.categories
         });
+        const category = categoryForSource(
+          source,
+          classifiedCategory,
+          title,
+          summary,
+          item.categories
+        );
         const publishedAt = parseDate(item.isoDate || item.pubDate, now);
         const imageUrl =
           articleImageUrl(item, source) ?? placeholderImageForCategory(category, title);
@@ -179,14 +220,39 @@ async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<New
 
 export async function fetchSourceCandidates({
   sources = TRUSTED_SOURCES,
-  now = new Date()
+  now = new Date(),
+  itemLimit = 16
 }: {
   sources?: TrustedSourceConfig[];
   now?: Date;
+  itemLimit?: number;
 } = {}) {
   const rssSources = sources.filter(
     (source): source is RssTrustedSourceConfig => Boolean(source.rssUrl)
   );
-  const results = await Promise.allSettled(rssSources.map((source) => fetchFeed(source, now)));
+  const results = await Promise.allSettled(
+    rssSources.map((source) => fetchFeed(source, now, itemLimit))
+  );
   return results.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
+}
+
+export async function fetchCategoryFallbackCandidates({
+  categoryId,
+  sources = TRUSTED_SOURCES,
+  now = new Date()
+}: {
+  categoryId: CategoryId;
+  sources?: TrustedSourceConfig[];
+  now?: Date;
+}) {
+  const categorySources = sources.filter((source) =>
+    (source.allowedCategories ?? source.categoryHints).includes(categoryId)
+  );
+  const candidates = await fetchSourceCandidates({
+    sources: categorySources,
+    now,
+    itemLimit: 48
+  });
+
+  return candidates.filter((item) => item.category === categoryId);
 }

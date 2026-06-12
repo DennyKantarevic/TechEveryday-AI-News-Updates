@@ -4,11 +4,15 @@ import Link from "next/link";
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bookmark, BookOpen, Newspaper, Sparkles } from "lucide-react";
+import BrandWordmark from "@/components/BrandWordmark";
 
 export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [120, 520], [0, 1]);
   const y = useTransform(scrollY, [120, 520], [-18, 0]);
+  const resetNewsletterIntro = () => {
+    window.scrollTo({ left: 0, top: 0 });
+  };
 
   return (
     <motion.header
@@ -19,6 +23,7 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
         <nav className="flex items-center gap-2" aria-label="Primary">
           <Link
             href="/"
+            onClick={resetNewsletterIntro}
             className="inline-flex h-10 items-center justify-center gap-2 border-2 border-ink bg-white px-2 transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#111] md:px-3"
             aria-label="Newsletter"
           >
@@ -50,9 +55,10 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
         </nav>
         <Link
           href="/"
+          onClick={resetNewsletterIntro}
           className="absolute left-1/2 -translate-x-1/2 font-display text-lg font-black leading-none md:text-2xl"
         >
-          TechEveryday
+          <BrandWordmark />
         </Link>
         <Link
           href="/gallery"

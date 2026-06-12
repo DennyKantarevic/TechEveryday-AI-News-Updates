@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Bookmark, Compass, Newspaper, Sparkles } from "lucide-react";
+import React from "react";
 import { useEffect, useMemo, useState } from "react";
 import NewsCard from "@/components/NewsCard";
 import { CATEGORY_BY_ID } from "@/config/categories";
@@ -30,7 +31,7 @@ function OnboardingState() {
           Build a reading signal
         </h2>
         <p className="mt-4 text-sm leading-6 text-ink/75 md:text-base">
-          For You starts after one save or a couple of article and category interactions.
+          Start reading and saving articles to personalize this page.
         </p>
       </div>
       <div className="mt-7 flex flex-wrap gap-3">

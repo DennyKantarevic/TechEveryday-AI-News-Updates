@@ -2,7 +2,9 @@
 
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
+
+export const PAGE_TRANSITION_SECONDS = 0.92;
 
 export function routeTransitionDirection(pathname: string) {
   if (pathname.startsWith("/learning")) {
@@ -13,27 +15,31 @@ export function routeTransitionDirection(pathname: string) {
     return 1;
   }
 
-  return 0;
+  if (pathname.startsWith("/gallery")) {
+    return 1;
+  }
+
+  return -1;
 }
 
 const pageVariants: Variants = {
   initial: (direction: number) => ({
-    opacity: direction === 0 ? 0 : 0.92,
-    x: direction * 44
+    opacity: 0.86,
+    x: direction < 0 ? "-100vw" : "100vw"
   }),
   animate: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.42,
+      duration: PAGE_TRANSITION_SECONDS,
       ease: [0.22, 1, 0.36, 1]
     }
   },
   exit: (direction: number) => ({
-    opacity: 0,
-    x: direction === 0 ? 0 : direction * -28,
+    opacity: 0.55,
+    x: direction < 0 ? "100vw" : "-100vw",
     transition: {
-      duration: 0.24,
+      duration: 0.42,
       ease: [0.4, 0, 0.2, 1]
     }
   })
@@ -43,6 +49,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const direction = routeTransitionDirection(pathname);
+
+  useEffect(() => {
+    window.scrollTo({ left: 0, top: 0 });
+  }, [pathname]);
 
   if (shouldReduceMotion) {
     return <>{children}</>;

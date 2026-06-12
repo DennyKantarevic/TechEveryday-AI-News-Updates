@@ -4,10 +4,12 @@ import { refreshNews } from "@/lib/news/refreshPipeline";
 import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
 
 const fetchSourceCandidatesMock = vi.hoisted(() => vi.fn());
+const fetchCategoryFallbackCandidatesMock = vi.hoisted(() => vi.fn());
 const fetchArxivPapersMock = vi.hoisted(() => vi.fn());
 const fetchTrustedXPostsMock = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/news/fetchSources", () => ({
+  fetchCategoryFallbackCandidates: fetchCategoryFallbackCandidatesMock,
   fetchSourceCandidates: fetchSourceCandidatesMock
 }));
 
@@ -59,8 +61,10 @@ function emptyDailyNews(): DailyNews {
 describe("refreshNews diagnostics", () => {
   beforeEach(() => {
     fetchSourceCandidatesMock.mockReset();
+    fetchCategoryFallbackCandidatesMock.mockReset();
     fetchArxivPapersMock.mockReset();
     fetchTrustedXPostsMock.mockReset();
+    fetchCategoryFallbackCandidatesMock.mockResolvedValue([]);
   });
 
   it("writes debug counts for age, quality, duplicate, and final category selection", async () => {
@@ -116,5 +120,85 @@ describe("refreshNews diagnostics", () => {
     expect(result.debug.finalSelectedByCategory["cloud-infrastructure"]).toBe(1);
     expect(result.debug.sourcesUsed).toContain("Example Engineering");
     expect(writtenLastRefresh?.debug?.rejectedByAge).toBe(1);
+  });
+
+  it("runs fallback discovery for sections with fewer than three selected items", async () => {
+    fetchSourceCandidatesMock.mockResolvedValue([
+      item({
+        id: "cloud-1",
+        title: "Cloudflare runtime architecture benchmark"
+      }),
+      item({
+        id: "cloud-2",
+        title: "AWS observability architecture guide",
+        sourceName: "AWS Blog"
+      })
+    ]);
+    fetchArxivPapersMock.mockResolvedValue([]);
+    fetchTrustedXPostsMock.mockResolvedValue([]);
+    fetchCategoryFallbackCandidatesMock.mockImplementation(async ({ categoryId }) =>
+      categoryId === "cloud-infrastructure"
+        ? [
+            item({
+              id: "cloud-3",
+              title: "Kubernetes platform reliability engineering writeup",
+              sourceName: "Kubernetes Blog"
+            })
+          ]
+        : []
+    );
+
+    let writtenLastRefresh: LastRefresh | undefined;
+    const storage = {
+      readDailyNews: vi.fn(async () => emptyDailyNews()),
+      writeDailyNews: vi.fn(),
+      writeLastRefresh: vi.fn(async (lastRefresh: LastRefresh) => {
+        writtenLastRefresh = lastRefresh;
+      })
+    };
+
+    const result = await refreshNews({ now, storage: storage as never });
+
+    expect(fetchCategoryFallbackCandidatesMock).toHaveBeenCalledWith({
+      categoryId: "cloud-infrastructure",
+      now
+    });
+    expect(result.dailyNews.categories["cloud-infrastructure"].map((news) => news.id)).toEqual(
+      expect.arrayContaining(["cloud-1", "cloud-2", "cloud-3"])
+    );
+    expect(result.dailyNews.categories["cloud-infrastructure"]).toHaveLength(3);
+    expect(result.debug.fallbackCandidateCount).toBe(1);
+    expect(result.debug.underfilledCategories["cloud-infrastructure"]).toBeUndefined();
+    expect(writtenLastRefresh?.debug?.fallbackCandidateCount).toBe(1);
+  });
+
+  it("logs sections that remain underfilled after fallback discovery", async () => {
+    fetchSourceCandidatesMock.mockResolvedValue([
+      item({
+        id: "embedded-1",
+        title: "Embedded firmware architecture benchmark",
+        category: "embedded-systems",
+        tags: ["embedded", "firmware", "benchmark"]
+      })
+    ]);
+    fetchArxivPapersMock.mockResolvedValue([]);
+    fetchTrustedXPostsMock.mockResolvedValue([]);
+    fetchCategoryFallbackCandidatesMock.mockResolvedValue([]);
+
+    const storage = {
+      readDailyNews: vi.fn(async () => emptyDailyNews()),
+      writeDailyNews: vi.fn(),
+      writeLastRefresh: vi.fn()
+    };
+
+    const result = await refreshNews({ now, storage: storage as never });
+
+    expect(result.debug.underfilledCategories["embedded-systems"]).toEqual({
+      attemptedFallback: true,
+      selectedCount: 1,
+      targetCount: 3,
+      message:
+        "Only 1 high-signal fresh item found after fallback discovery; showing the best available fresh items."
+    });
   });
 });
