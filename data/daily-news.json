@@ -1,26 +1,8 @@
 {
-  "refreshedAt": "2026-06-12T00:09:11.536Z",
+  "refreshedAt": "2026-06-12T02:53:00.638Z",
   "timezone": "America/New_York",
   "categories": {
     "ai-ml": [
-      {
-        "id": "77acfaa80127542b472c5220fbae4f789d12333f",
-        "title": "Supporting Europe’s work in ensuring a trustworthy AI ecosystem",
-        "summary": "OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.",
-        "url": "https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem",
-        "sourceName": "OpenAI Blog",
-        "sourceType": "official",
-        "category": "ai-ml",
-        "publishedAt": "2026-06-11T00:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ESupporting%20Europe%E2%80%99s%20work%20in%20ensuring%20a%20trustworthy%20AI%20ecosystem%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
-        "trustScore": 0.94,
-        "saved": false,
-        "tags": [
-          "ai-ml",
-          "Global Affairs"
-        ]
-      },
       {
         "id": "7ff09c61ac5284b61c37838681aca37dbf1469af",
         "title": "How an astrophysicist uses Codex to help simulate black holes",
@@ -30,48 +12,13 @@
         "sourceType": "official",
         "category": "ai-ml",
         "publishedAt": "2026-06-11T00:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20an%20astrophysicist%20uses%20Codex%20to%20help%20simulate%20black%20holes%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Ccircle%20cx%3D%22266%22%20cy%3D%22300%22%20r%3D%2242%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22430%22%20cy%3D%22224%22%20r%3D%2234%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22592%22%20cy%3D%22322%22%20r%3D%2240%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M304%20282l92-42M462%20244l96%2058M306%20318l246%206%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20an%20astrophysicist%20uses%20Codex%20to%20help%20simulate%20black%20holes%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.94,
         "saved": false,
         "tags": [
           "ai-ml",
           "Applied AI"
-        ]
-      },
-      {
-        "id": "4685ec3a87c9113811b3a539125bcc96439b6ddd",
-        "title": "BBVA puts AI at the core of banking with OpenAI",
-        "summary": "Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.",
-        "url": "https://openai.com/index/bbva",
-        "sourceName": "OpenAI Blog",
-        "sourceType": "official",
-        "category": "ai-ml",
-        "publishedAt": "2026-06-11T00:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EBBVA%20puts%20AI%20at%20the%20core%20of%20banking%20with%20OpenAI%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
-        "trustScore": 0.94,
-        "saved": false,
-        "tags": [
-          "ai-ml"
-        ]
-      },
-      {
-        "id": "9704de9ef52fe1224405dfd4167578825d9551fd",
-        "title": "Access OpenAI models and Codex through your Oracle cloud commitment",
-        "summary": "Access OpenAI models and Codex through Oracle Cloud, using existing commitments to build and deploy AI with enterprise security and governance.",
-        "url": "https://openai.com/index/openai-on-oracle-cloud",
-        "sourceName": "OpenAI Blog",
-        "sourceType": "official",
-        "category": "ai-ml",
-        "publishedAt": "2026-06-10T20:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAccess%20OpenAI%20models%20and%20Codex%20through%20your%20Oracle%20cloud%20commitment%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
-        "trustScore": 0.94,
-        "saved": false,
-        "tags": [
-          "ai-ml",
-          "Company"
         ]
       },
       {
@@ -83,7 +30,7 @@
         "sourceType": "official",
         "category": "ai-ml",
         "publishedAt": "2026-06-10T17:34:55.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
         "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/f-Divergence-hero.png",
         "trustScore": 0.94,
         "saved": false,
@@ -92,6 +39,69 @@
           "Algorithms & Theory",
           "Responsible AI",
           "Security, Privacy and Abuse Prevention"
+        ]
+      },
+      {
+        "id": "d765414b43a9dc717f4a7444738ea5c37ec3d34f",
+        "title": "Making secret scanning more trustworthy: Reducing false positives at scale",
+        "summary": "Alerts are more trustworthy and actionable when noise is reduced. See how we improved the verification step with context-aware LLM reasoning. The post Making secret scanning more trustworthy: Reducing false positives at scale appeared first on The GitHub Blog.",
+        "url": "https://github.blog/security/making-secret-scanning-more-trustworthy-reducing-false-positives-at-scale/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-11T16:00:00.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Ccircle%20cx%3D%22266%22%20cy%3D%22300%22%20r%3D%2242%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22430%22%20cy%3D%22224%22%20r%3D%2234%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22592%22%20cy%3D%22322%22%20r%3D%2240%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M304%20282l92-42M462%20244l96%2058M306%20318l246%206%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EMaking%20secret%20scanning%20more%20trustworthy%3A%20Reducing%20false%20positives%20at%20sca%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "AI & ML",
+          "LLMs",
+          "Security",
+          "Secret Scanning"
+        ]
+      },
+      {
+        "id": "10f2b1a99c343de0113cd0d441c6ded56ae52763",
+        "title": "Google DeepMind is worried about what happens when millions of agents start to interact",
+        "summary": "Google DeepMind is funding research into the potential dangers of situations where millions of different AI agents interact with each other online.",
+        "url": "https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/",
+        "sourceName": "MIT Technology Review",
+        "sourceType": "news",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-11T11:00:45.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Ccircle%20cx%3D%22266%22%20cy%3D%22300%22%20r%3D%2242%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22430%22%20cy%3D%22224%22%20r%3D%2234%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22592%22%20cy%3D%22322%22%20r%3D%2240%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M304%20282l92-42M462%20244l96%2058M306%20318l246%206%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGoogle%20DeepMind%20is%20worried%20about%20what%20happens%20when%20millions%20of%20agents%20st%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Artificial intelligence",
+          "App",
+          "Summary"
+        ]
+      },
+      {
+        "id": "8a27e82c8ce9cebcd137a41df46c8e4cbf3095ad",
+        "title": "For Robotaxis, Safety Must Be Built In, Not Bolted On",
+        "summary": "A car pulls up to the curb. ” No one’s in the driver’s seat. For people who live in one of the dozens of cities now hosting robotaxi services, this is already a reality.",
+        "url": "https://blogs.nvidia.com/blog/halos-os-robotaxi-safety/",
+        "sourceName": "NVIDIA Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-10T19:00:12.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Ccircle%20cx%3D%22266%22%20cy%3D%22300%22%20r%3D%2242%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22430%22%20cy%3D%22224%22%20r%3D%2234%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22592%22%20cy%3D%22322%22%20r%3D%2240%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M304%20282l92-42M462%20244l96%2058M306%20318l246%206%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EFor%20Robotaxis%2C%20Safety%20Must%20Be%20Built%20In%2C%20Not%20Bolted%20On%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.89,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Driving",
+          "Pro Graphics",
+          "Robotics",
+          "NVIDIA DGX",
+          "NVIDIA DRIVE"
         ]
       }
     ],
@@ -105,8 +115,8 @@
         "sourceType": "official",
         "category": "automation-agentic-systems",
         "publishedAt": "2026-06-11T00:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%2360715f%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EOpenAI%20to%20acquire%20Ona%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22238%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22486%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22362%22%20y%3D%22358%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M410%20260h76M572%20296v62M448%20358v-62%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EOpenAI%20to%20acquire%20Ona%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.94,
         "saved": false,
         "tags": [
@@ -123,7 +133,7 @@
         "sourceType": "official",
         "category": "automation-agentic-systems",
         "publishedAt": "2026-06-05T11:26:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
         "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/AgenticRAG_Cover.png",
         "trustScore": 0.94,
         "saved": false,
@@ -136,23 +146,6 @@
         ]
       },
       {
-        "id": "69b95669d5308461673e34e13a68b9bef423936f",
-        "title": "How Endava is redesigning software delivery around AI agents",
-        "summary": "Learn how Endava is using AI agents, ChatGPT Enterprise, and Codex to accelerate software delivery, automate workflows, and build an AI-native culture across the enterprise.",
-        "url": "https://openai.com/index/endava-frontiers",
-        "sourceName": "OpenAI Blog",
-        "sourceType": "official",
-        "category": "automation-agentic-systems",
-        "publishedAt": "2026-06-04T12:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%2360715f%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20Endava%20is%20redesigning%20software%20delivery%20around%20AI%20agents%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
-        "trustScore": 0.94,
-        "saved": false,
-        "tags": [
-          "automation-agentic-systems"
-        ]
-      },
-      {
         "id": "81ace5465c8a6564f8b3f278183664bc9f77227f",
         "title": "Defining Autonomy for Wellness Robots in Senior Care",
         "summary": "An examination of how socially assistive wellness robots could support the seven dimensions of senior wellness, and how a framework can measure their autonomy. What Attendees will Learn Why the senior care crisis exceeds incremental automation. Demographic pressure, workforce shortages, and a daily wellness-programming gap all strain traditional care models.",
@@ -161,8 +154,8 @@
         "sourceType": "news",
         "category": "automation-agentic-systems",
         "publishedAt": "2026-06-11T10:00:01.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://assets.rbl.ms/66892687/origin.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22238%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22486%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22362%22%20y%3D%22358%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M410%20260h76M572%20296v62M448%20358v-62%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDefining%20Autonomy%20for%20Wellness%20Robots%20in%20Senior%20Care%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.86,
         "saved": false,
         "tags": [
@@ -174,6 +167,26 @@
         ]
       },
       {
+        "id": "e88d096653a15720b37546d267596bb2d6378f0b",
+        "title": "From one-off prompts to workflows: How to use custom agents in GitHub Copilot CLI",
+        "summary": "Custom agents let GitHub Copilot CLI understand your stack and team workflows, turning one-off terminal prompts into repeatable, reviewable processes. The post From one-off prompts to workflows: How to use custom agents in GitHub Copilot CLI appeared first on The GitHub Blog.",
+        "url": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-06-09T16:00:00.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22238%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22486%22%20y%3D%22224%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22362%22%20y%3D%22358%22%20width%3D%22172%22%20height%3D%2272%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M410%20260h76M572%20296v62M448%20358v-62%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EFrom%20one-off%20prompts%20to%20workflows%3A%20How%20to%20use%20custom%20agents%20in%20GitHub%20Co%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems",
+          "AI & ML",
+          "GitHub Copilot",
+          "GitHub Copilot CLI"
+        ]
+      },
+      {
         "id": "feba50bbddeab7ac42724ca5d858a16f038cadba",
         "title": "Data Formulator 0.7: AI-powered data analytics for enterprise data",
         "summary": "Data Formulator introduces AI-powered analytics for enterprise data workflows. Data teams can easily bring enterprise data into an AI-ready workspace where users can explore, analyze, and visualize data with AI agents to turn raw data into actionable insights. 7: AI-powered data analytics for enterprise data appeared first on Microsoft Research.",
@@ -182,7 +195,7 @@
         "sourceType": "official",
         "category": "automation-agentic-systems",
         "publishedAt": "2026-05-28T16:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
         "imageUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/DataFormulator-BlogHeroFeature-1400x788-1-scaled.jpg",
         "trustScore": 0.91,
         "saved": false,
@@ -202,8 +215,8 @@
         "sourceType": "official",
         "category": "research-papers",
         "publishedAt": "2026-06-08T00:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23111111%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EIntroducing%20the%20OpenAI%20Economic%20Research%20Exchange%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22258%22%20y%3D%22190%22%20width%3D%22278%22%20height%3D%22358%22%20rx%3D%226%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M310%20260h174M310%20312h154M310%20364h174M310%20416h122%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M612%20260h130M612%20312h90M612%20364h130%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22610%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22690%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EIntroducing%20the%20OpenAI%20Economic%20Research%20Exchange%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.94,
         "saved": false,
         "tags": [
@@ -220,7 +233,7 @@
         "sourceType": "official",
         "category": "research-papers",
         "publishedAt": "2026-06-04T19:47:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
         "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/rPPG-2-final.png",
         "trustScore": 0.94,
         "saved": false,
@@ -232,24 +245,6 @@
         ]
       },
       {
-        "id": "a2a207ec6736941f29302a3dc89b5c5a4fb14266",
-        "title": "Dreaming: Better memory for a more helpful ChatGPT",
-        "summary": "ChatGPT introduces a new memory system to better remember preferences, keeping context fresh and relevant across conversations.",
-        "url": "https://openai.com/index/chatgpt-memory-dreaming",
-        "sourceName": "OpenAI Blog",
-        "sourceType": "official",
-        "category": "research-papers",
-        "publishedAt": "2026-06-04T09:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23111111%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDreaming%3A%20Better%20memory%20for%20a%20more%20helpful%20ChatGPT%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
-        "trustScore": 0.94,
-        "saved": false,
-        "tags": [
-          "research-papers",
-          "Research"
-        ]
-      },
-      {
         "id": "071aa97b898984c0d3c7db138ca92b8bac695b4e",
         "title": "Why Orbital Data Centers Are Harder Than Silicon Valley Thinks",
         "summary": "“Space computing, the final frontier, has arrived,” Nvidia CEO Jensen Huang declared at the Nvidia GTC conference in March. Indeed, the idea of data centers in orbit has gone from science fiction to a serious spending category. Elon Musk’s SpaceX has acquired xAI (also Musk’s) and is planning a constellation of space-based data centers.",
@@ -258,8 +253,8 @@
         "sourceType": "news",
         "category": "research-papers",
         "publishedAt": "2026-06-11T13:00:02.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://spectrum.ieee.org/media-library/globe-surrounded-by-zeroes-and-ones-on-a-blue-background.png?id=66895710&width=980",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22258%22%20y%3D%22190%22%20width%3D%22278%22%20height%3D%22358%22%20rx%3D%226%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M310%20260h174M310%20312h154M310%20364h174M310%20416h122%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M612%20260h130M612%20312h90M612%20364h130%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22610%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22690%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EWhy%20Orbital%20Data%20Centers%20Are%20Harder%20Than%20Silicon%20Valley%20Thinks%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.86,
         "saved": false,
         "tags": [
@@ -271,47 +266,43 @@
         ]
       },
       {
-        "id": "0f11615a1aac29de480c69b31e727cd59fed2377",
-        "title": "Private analytics via zero-trust aggregation",
-        "summary": "Security, Privacy and Abuse Prevention",
-        "url": "https://research.google/blog/private-analytics-via-zero-trust-aggregation/",
-        "sourceName": "Google Research Blog",
+        "id": "58159fae7f857615dfce0b08a814a644d3e9903f",
+        "title": "EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments",
+        "summary": "Large language model (LLM) agents have achieved strong performance on a wide range of benchmarks, yet most evaluations assume static environments. In contrast, real-world deployment is inherently dynamic, requiring agents to continually align their knowledge, skills, and behavior with changing environments and updated task conditions. To address this gap, we introduce EvoArena, a benchmark suite that models environment changes as sequences of progressive updates across terminal, software, and social domains. Authors: Jundong Xu, Qingchuan Li, Jiaying Wu.",
+        "url": "https://arxiv.org/abs/2606.13681v1",
+        "sourceName": "arXiv",
+        "sourceType": "paper",
+        "category": "research-papers",
+        "publishedAt": "2026-06-11T17:59:59.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22258%22%20y%3D%22190%22%20width%3D%22278%22%20height%3D%22358%22%20rx%3D%226%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M310%20260h174M310%20312h154M310%20364h174M310%20416h122%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M612%20260h130M612%20312h90M612%20364h130%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22610%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22690%22%20cy%3D%22468%22%20r%3D%2224%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EEvoArena%3A%20Tracking%20Memory%20Evolution%20for%20Robust%20LLM%20Agents%20in%20Dynamic%20Env%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "arxiv",
+          "cs.CL"
+        ]
+      },
+      {
+        "id": "d16a7491689028760f1c224eab2965d7bbe9f328",
+        "title": "Further Notes on Our Recent Research on AI Delegation and Long-Horizon Reliability",
+        "summary": "Our recent paper, “LLMs Corrupt Your Documents When You Delegate”, has generated discussion about the reliability of AI systems in delegated workflows. We appreciate the interest in this work and want to clarify several important points about what the paper does—and does not—claim. The research aims to develop robust evaluation methods for long-horizon delegated and […] The post Further Notes on Our Recent Research on AI Delegation and Long-Horizon Reliability appeared first on Microsoft Research.",
+        "url": "https://www.microsoft.com/en-us/research/blog/further-notes-on-our-recent-research-on-ai-delegation-and-long-horizon-reliability/",
+        "sourceName": "Microsoft Research Blog",
         "sourceType": "official",
         "category": "research-papers",
-        "publishedAt": "2026-05-27T16:56:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/Private_analytics_via_zero-trust_aggregation_hero_1.png",
-        "trustScore": 0.94,
+        "publishedAt": "2026-05-15T18:06:57.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2024/01/MSR-Chat-Promo.png",
+        "trustScore": 0.91,
         "saved": false,
         "tags": [
           "research-papers",
-          "Security, Privacy and Abuse Prevention"
+          "Research Blog"
         ]
       }
     ],
     "embedded-systems": [
-      {
-        "id": "044d508205afbcbb1b983e3c0ab99220bb33349e",
-        "title": "NVIDIA Jetson Brings Agentic AI to the Physical World",
-        "summary": "Agentic AI is getting physical. 2 and NVIDIA NemoClaw support on NVIDIA Jetson.",
-        "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
-        "sourceName": "NVIDIA Blog",
-        "sourceType": "official",
-        "category": "embedded-systems",
-        "publishedAt": "2026-06-02T02:00:40.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://blogs.nvidia.com/wp-content/uploads/2026/06/robotics-press-jetson-agentic-ready-cptx26-1920x1080-5180550.jpg",
-        "trustScore": 0.89,
-        "saved": false,
-        "tags": [
-          "embedded-systems",
-          "AI",
-          "Hardware",
-          "Robotics",
-          "Agentic AI",
-          "Jetson"
-        ]
-      },
       {
         "id": "b8e08eae9c2c04a31c8a9648109fc66855f2cd0b",
         "title": "Direct-to-Cell Technology: Enabling Satellite Connectivity for Legacy Devices",
@@ -321,8 +312,8 @@
         "sourceType": "news",
         "category": "embedded-systems",
         "publishedAt": "2026-06-02T10:00:02.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://assets.rbl.ms/66784674/origin.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22274%22%20y%3D%22214%22%20width%3D%22300%22%20height%3D%22248%22%20rx%3D%2210%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M330%20214v-54M394%20214v-54M458%20214v-54M522%20214v-54M330%20516v-54M394%20516v-54M458%20516v-54M522%20516v-54%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M574%20268h54M574%20332h54M574%20396h54M220%20268h54M220%20332h54M220%20396h54%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22354%22%20y%3D%22292%22%20width%3D%22140%22%20height%3D%2294%22%20rx%3D%226%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EEmbedded%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDirect-to-Cell%20Technology%3A%20Enabling%20Satellite%20Connectivity%20for%20Legacy%20De%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.86,
         "saved": false,
         "tags": [
@@ -331,6 +322,28 @@
           "Direct-to-cell",
           "Doppler-shift",
           "Satellites"
+        ]
+      },
+      {
+        "id": "044d508205afbcbb1b983e3c0ab99220bb33349e",
+        "title": "NVIDIA Jetson Brings Agentic AI to the Physical World",
+        "summary": "Agentic AI is getting physical. 2 and NVIDIA NemoClaw support on NVIDIA Jetson.",
+        "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
+        "sourceName": "NVIDIA Blog",
+        "sourceType": "official",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-02T02:00:40.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22274%22%20y%3D%22214%22%20width%3D%22300%22%20height%3D%22248%22%20rx%3D%2210%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M330%20214v-54M394%20214v-54M458%20214v-54M522%20214v-54M330%20516v-54M394%20516v-54M458%20516v-54M522%20516v-54%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M574%20268h54M574%20332h54M574%20396h54M220%20268h54M220%20332h54M220%20396h54%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22354%22%20y%3D%22292%22%20width%3D%22140%22%20height%3D%2294%22%20rx%3D%226%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EEmbedded%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ENVIDIA%20Jetson%20Brings%20Agentic%20AI%20to%20the%20Physical%20World%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.89,
+        "saved": false,
+        "tags": [
+          "embedded-systems",
+          "AI",
+          "Hardware",
+          "Robotics",
+          "Agentic AI",
+          "Jetson"
         ]
       },
       {
@@ -398,8 +411,8 @@
         "sourceType": "official",
         "category": "computer-systems",
         "publishedAt": "2026-05-14T13:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6d3ywoUP3OE2DCRAJtAgF7/5aa62c5702a923e30889ebf787925ae8/BLOG-3299_image4.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22244%22%20y%3D%22216%22%20width%3D%22416%22%20height%3D%22270%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M244%20286h416M320%20216v270M458%20216v270%22%20stroke%3D%22%23111111%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M284%20338h74M284%20392h74M498%20338h98M498%20392h76%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EComputer%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EOur%20billing%20pipeline%20was%20suddenly%20slow.%20The%20culprit%20was%20a%20hidden%20bottlen%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.9,
         "saved": false,
         "tags": [
@@ -476,8 +489,8 @@
         "sourceType": "official",
         "category": "developer-tools-open-source",
         "publishedAt": "2026-06-11T21:30:15.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20availability%20report%3A%20May%202026%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22216%22%20width%3D%22450%22%20height%3D%22276%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M250%20282h450%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22292%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23111111%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22334%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%236f6a61%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22376%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23d8ccba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M326%20352l-52%2044%2052%2044M624%20352l52%2044-52%2044M430%20454l82-122%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20availability%20report%3A%20May%202026%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -496,8 +509,8 @@
         "sourceType": "official",
         "category": "developer-tools-open-source",
         "publishedAt": "2026-06-08T21:27:12.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/05/Gemini_Generated_Image_sdi7hqsdi7hqsdi7-1024x559.jpg",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22216%22%20width%3D%22450%22%20height%3D%22276%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M250%20282h450%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22292%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23111111%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22334%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%236f6a61%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22376%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23d8ccba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M326%20352l-52%2044%2052%2044M624%20352l52%2044-52%2044M430%20454l82-122%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAWS%20Weekly%20Roundup%3A%20BYOM%20for%20Amazon%20RDS%20for%20SQL%20Server%2C%20AWS%20IoT%20Device%20S%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -518,8 +531,8 @@
         "sourceType": "official",
         "category": "developer-tools-open-source",
         "publishedAt": "2026-06-10T16:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGive%20GitHub%20Copilot%20CLI%20real%20code%20intelligence%20with%20language%20servers%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22216%22%20width%3D%22450%22%20height%3D%22276%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M250%20282h450%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22292%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23111111%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22334%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%236f6a61%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22376%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23d8ccba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M326%20352l-52%2044%2052%2044M624%20352l52%2044-52%2044M430%20454l82-122%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGive%20GitHub%20Copilot%20CLI%20real%20code%20intelligence%20with%20language%20servers%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -538,8 +551,8 @@
         "sourceType": "official",
         "category": "developer-tools-open-source",
         "publishedAt": "2026-06-08T16:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20for%20Beginners%3A%20Answers%20to%20some%20common%20questions%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22216%22%20width%3D%22450%22%20height%3D%22276%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M250%20282h450%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22292%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23111111%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22334%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%236f6a61%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22376%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23d8ccba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M326%20352l-52%2044%2052%2044M624%20352l52%2044-52%2044M430%20454l82-122%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20for%20Beginners%3A%20Answers%20to%20some%20common%20questions%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -558,8 +571,8 @@
         "sourceType": "official",
         "category": "developer-tools-open-source",
         "publishedAt": "2026-06-02T17:30:03.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://github.blog/wp-content/uploads/2026/06/CCRPlatform_BlogImage_01.jpg?resize=1024%2C637",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22216%22%20width%3D%22450%22%20height%3D%22276%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M250%20282h450%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22292%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23111111%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22334%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%236f6a61%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22376%22%20cy%3D%22249%22%20r%3D%2212%22%20fill%3D%22%23d8ccba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M326%20352l-52%2044%2052%2044M624%20352l52%2044-52%2044M430%20454l82-122%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20Copilot%20app%3A%20The%20agent-native%20desktop%20experience%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -582,8 +595,8 @@
         "sourceType": "official",
         "category": "cybersecurity",
         "publishedAt": "2026-06-09T06:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/5KSSyocxKzsJsOfG4pxOM7/059a597af1b67a3d5a5ccdeda5ab7ca1/image2.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M462%20188l178%2072v118c0%2098-68%20154-178%20194-110-40-178-96-178-194V260l178-72z%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22396%22%20y%3D%22328%22%20width%3D%22132%22%20height%3D%22102%22%20rx%3D%228%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M422%20328v-42c0-58%2080-58%2080%200v42%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDefend%20against%20frontier%20cyber%20models%3A%20Cloudflare's%20architecture%20as%20custo%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.9,
         "saved": false,
         "tags": [
@@ -596,28 +609,6 @@
         ]
       },
       {
-        "id": "921b8e65dc51110fb2831a469270886e6313b164",
-        "title": "Turning Cloudflare’s threat indicators into real-time WAF rules",
-        "summary": "Cloudflare customers can now use Cloudforce One threat intelligence directly within the WAF to block high-risk traffic. intel fields, security teams can automate protection against specific threat actors and targeted industries in real time.",
-        "url": "https://blog.cloudflare.com/realtime-threat-intel-waf-rules/",
-        "sourceName": "Cloudflare Blog",
-        "sourceType": "official",
-        "category": "cybersecurity",
-        "publishedAt": "2026-06-08T13:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1YQOp7XzNrFIHE1HSNhz6b/06d1565243b2902df5a5b294e3e80709/BLOG-3272_image3.png",
-        "trustScore": 0.9,
-        "saved": false,
-        "tags": [
-          "cybersecurity",
-          "Security",
-          "WAF",
-          "Threat Intelligence",
-          "Cloudforce One",
-          "Product News"
-        ]
-      },
-      {
         "id": "5655430d425e80abea0a8511e5f50ac12839ed3e",
         "title": "Improve your application resilience with Amazon Cognito multi-Region replication",
         "summary": "Amazon Cognito now offers multi-Region replication that automatically synchronizes user data, credentials, and pool configurations to a secondary AWS Region, enabling uninterrupted authentication during regional failovers without forced password resets—plus new support for customer managed KMS keys for encryption control.",
@@ -626,8 +617,8 @@
         "sourceType": "official",
         "category": "cybersecurity",
         "publishedAt": "2026-06-03T22:37:29.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/04/22/Screenshot-2026-04-21-at-1.27.34 PM-1024x538.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M462%20188l178%2072v118c0%2098-68%20154-178%20194-110-40-178-96-178-194V260l178-72z%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22396%22%20y%3D%22328%22%20width%3D%22132%22%20height%3D%22102%22%20rx%3D%228%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M422%20328v-42c0-58%2080-58%2080%200v42%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EImprove%20your%20application%20resilience%20with%20Amazon%20Cognito%20multi-Region%20rep%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -640,47 +631,61 @@
         ]
       },
       {
-        "id": "8241b2ec6a180e10ed106e7413445f8023d14a77",
-        "title": "Enforcing the First AS in BGP AS_PATHs",
-        "summary": "BGP is vulnerable to routing hijacks and path leaks that negatively impact traffic on the Internet. RPKI helps solve some of these problems, but for some forged paths, we need to rely on a simpler mechanism: First AS enforcement in BGP.",
-        "url": "https://blog.cloudflare.com/enforce-first-as-bgp/",
-        "sourceName": "Cloudflare Blog",
-        "sourceType": "official",
+        "id": "4c93b6c856acc615be399755cd55ed5c66a18d53",
+        "title": "Blink’s six-piece outdoor camera kit is a great deal under $200",
+        "summary": "You can save on a big set of outdoor security cameras ahead of Prime Day. 99. The bundle includes a Blink Battery Doorbell 2K+, five Blink Outdoor 2K+ cameras, and a Blink Sync Module Core.",
+        "url": "https://www.theverge.com/gadgets/948459/blink-camera-bundle-aeropress-deal-sale",
+        "sourceName": "The Verge",
+        "sourceType": "news",
         "category": "cybersecurity",
-        "publishedAt": "2026-06-03T17:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/GRO488rbjQjXDht7DyzL0/dc61e2e2cc4029ba4b15c235d1104ac1/BLOG-3306_image5.png",
-        "trustScore": 0.9,
+        "publishedAt": "2026-06-11T18:04:43.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M462%20188l178%2072v118c0%2098-68%20154-178%20194-110-40-178-96-178-194V260l178-72z%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22396%22%20y%3D%22328%22%20width%3D%22132%22%20height%3D%22102%22%20rx%3D%228%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M422%20328v-42c0-58%2080-58%2080%200v42%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EBlink%E2%80%99s%20six-piece%20outdoor%20camera%20kit%20is%20a%20great%20deal%20under%20%24200%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.78,
         "saved": false,
         "tags": [
-          "cybersecurity",
-          "BGP",
-          "Routing",
-          "Routing Security",
-          "RPKI",
-          "Radar"
+          "cybersecurity"
         ]
       },
       {
-        "id": "763b9e33e7a2d59a04027ce1a08f1f3e1bb5a632",
-        "title": "Announcing Claude Compliance API support with Cloudflare CASB",
-        "summary": "Cloudflare now integrates with the Claude Compliance API, so that security teams can monitor Claude Enterprise activity directly in the Cloudflare Dashboard.",
-        "url": "https://blog.cloudflare.com/casb-anthropic-integration/",
+        "id": "67bc828464461a9d6fd2b14fa21b5995f066c0a7",
+        "title": "Drug Sites Hijacked Spotify’s Search Ranking Through Fake Podcasts",
+        "summary": "A joint congressional report describes a spam operation that turned tens of thousands of fake podcasts into search-engine bait for illegal pharmacy and scam sites.",
+        "url": "https://www.wired.com/story/drug-sites-hijacked-spotifys-search-ranking-through-fake-podcasts-report-finds/",
+        "sourceName": "Wired",
+        "sourceType": "news",
+        "category": "cybersecurity",
+        "publishedAt": "2026-06-11T16:07:30.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M462%20188l178%2072v118c0%2098-68%20154-178%20194-110-40-178-96-178-194V260l178-72z%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22396%22%20y%3D%22328%22%20width%3D%22132%22%20height%3D%22102%22%20rx%3D%228%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M422%20328v-42c0-58%2080-58%2080%200v42%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDrug%20Sites%20Hijacked%20Spotify%E2%80%99s%20Search%20Ranking%20Through%20Fake%20Podcasts%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.75,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "Security",
+          "Security / Security News"
+        ]
+      },
+      {
+        "id": "921b8e65dc51110fb2831a469270886e6313b164",
+        "title": "Turning Cloudflare’s threat indicators into real-time WAF rules",
+        "summary": "Cloudflare customers can now use Cloudforce One threat intelligence directly within the WAF to block high-risk traffic. intel fields, security teams can automate protection against specific threat actors and targeted industries in real time.",
+        "url": "https://blog.cloudflare.com/realtime-threat-intel-waf-rules/",
         "sourceName": "Cloudflare Blog",
         "sourceType": "official",
         "category": "cybersecurity",
-        "publishedAt": "2026-05-21T17:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%238f3f38%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%238f3f38%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%238f3f38%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAnnouncing%20Claude%20Compliance%20API%20support%20with%20Cloudflare%20CASB%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "publishedAt": "2026-06-08T13:00:00.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M462%20188l178%2072v118c0%2098-68%20154-178%20194-110-40-178-96-178-194V260l178-72z%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22396%22%20y%3D%22328%22%20width%3D%22132%22%20height%3D%22102%22%20rx%3D%228%22%20fill%3D%22%23eee5d6%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M422%20328v-42c0-58%2080-58%2080%200v42%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ETurning%20Cloudflare%E2%80%99s%20threat%20indicators%20into%20real-time%20WAF%20rules%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.9,
         "saved": false,
         "tags": [
           "cybersecurity",
-          "Developer Platform",
-          "Developers",
-          "CASB",
-          "Cloudflare One",
-          "SASE"
+          "Security",
+          "WAF",
+          "Threat Intelligence",
+          "Cloudforce One",
+          "Product News"
         ]
       }
     ],
@@ -694,8 +699,8 @@
         "sourceType": "official",
         "category": "cloud-infrastructure",
         "publishedAt": "2026-06-09T12:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%234f6380%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%234f6380%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%234f6380%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20engineers%20at%20Nextdoor%20use%20Codex%20to%20build%20without%20limits%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22506%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22378%22%20y%3D%22398%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M400%20296h106M581%20348v50M453%20398v-50%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20engineers%20at%20Nextdoor%20use%20Codex%20to%20build%20without%20limits%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.94,
         "saved": false,
         "tags": [
@@ -711,8 +716,8 @@
         "sourceType": "official",
         "category": "cloud-infrastructure",
         "publishedAt": "2026-06-10T15:04:30.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/10/1213311671976503-0-G5_Angled.jpg",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22506%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22378%22%20y%3D%22398%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M400%20296h106M581%20348v50M453%20398v-50%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ENow%20available%3A%20Amazon%20EC2%20M9g%20and%20M9gd%20instances%20powered%20by%20new%20AWS%20Grav%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.88,
         "saved": false,
         "tags": [
@@ -733,8 +738,8 @@
         "sourceType": "official",
         "category": "cloud-infrastructure",
         "publishedAt": "2026-06-10T13:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3dPNpYW2ByViLaO237MJf/c535f739bb0949b908d529bf62e9ad54/1-connectivity-models_2x__4_.png",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22506%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22378%22%20y%3D%22398%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M400%20296h106M581%20348v50M453%20398v-50%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ERoute%20public%20traffic%20to%20private%20applications%20with%20Cloudflare%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
         "trustScore": 0.9,
         "saved": false,
         "tags": [
@@ -747,47 +752,44 @@
         ]
       },
       {
-        "id": "8f2f0887c4cfdc666894274da28d5b178193a5c0",
-        "title": "Anthropic Claude Fable 5 on AWS: Mythos-class capabilities with built-in safeguards now available",
-        "summary": "AWS announces the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS. Claude Fable 5 delivers Mythos-level capabilities available to all customers, with strong safeguards designed to make it safe for broader use.",
-        "url": "https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/",
-        "sourceName": "AWS Blog",
+        "id": "5dbf24f9605ca1f7933f9aee868ca83f11b5f7b9",
+        "title": "Seoul Purpose: How NVIDIA and South Korea Are Building the Future of AI",
+        "summary": "Home to cutting-edge sovereign AI infrastructure and robotics innovators, as well as one of the world’s most passionate gaming communities, South Korea is one of the world’s centers of AI. NVIDIA founder and CEO Jensen Huang is in Seoul this week to meet the partners and builders behind that work. m.",
+        "url": "https://blogs.nvidia.com/blog/korea-ecosystem-2026/",
+        "sourceName": "NVIDIA Blog",
         "sourceType": "official",
         "category": "cloud-infrastructure",
-        "publishedAt": "2026-06-09T17:40:31.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/10/2026-claude-fable-5-in-bedrock-console.jpg",
-        "trustScore": 0.88,
+        "publishedAt": "2026-06-05T05:38:37.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22506%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22378%22%20y%3D%22398%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M400%20296h106M581%20348v50M453%20398v-50%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ESeoul%20Purpose%3A%20How%20NVIDIA%20and%20South%20Korea%20Are%20Building%20the%20Future%20of%20AI%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.89,
         "saved": false,
         "tags": [
           "cloud-infrastructure",
-          "Amazon Bedrock",
-          "Amazon Machine Learning",
-          "Artificial Intelligence",
-          "Launch",
-          "News"
+          "AI Infrastructure",
+          "Corporate"
         ]
       },
       {
-        "id": "3530eb1b2d4c2bcaeb27c05a20bd0c6fc6da66f7",
-        "title": "Your AI bill is out of control. Cloudflare can fix it now.",
-        "summary": "AI Gateway now features real-time spend limits to prevent runaway token bills across multiple AI providers. By integrating with Cloudflare Access, companies can use identity-driven budgets and policies.",
-        "url": "https://blog.cloudflare.com/ai-gateway-spend-limits/",
-        "sourceName": "Cloudflare Blog",
-        "sourceType": "official",
+        "id": "ac320858309cac6056a723a37c0988c8205c990e",
+        "title": "After nearly breaking, NASA's Deep Space Network \"worked well\" on Artemis II",
+        "summary": "\"Some missions are using more than what their paperwork would say.\"",
+        "url": "https://arstechnica.com/space/2026/06/after-nearly-breaking-nasas-deep-space-network-worked-well-on-artemis-ii/",
+        "sourceName": "Ars Technica",
+        "sourceType": "news",
         "category": "cloud-infrastructure",
-        "publishedAt": "2026-06-05T13:00:00.000Z",
-        "foundAt": "2026-06-12T00:09:11.536Z",
-        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6sH9TwbSEn2Ct9UFuC0SAq/1a1330737879497b0e2511ac28baaed5/BLOG-3331_image1.png",
-        "trustScore": 0.9,
+        "publishedAt": "2026-06-11T18:34:01.000Z",
+        "foundAt": "2026-06-12T02:53:00.638Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f7f1e8%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2242%22%20y%3D%2242%22%20width%3D%221116%22%20height%3D%22636%22%20rx%3D%2218%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M96%20156h1008M96%20570h1008%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M128%20214h944M128%20270h944M128%20326h944M128%20382h944M128%20438h944M128%20494h944%22%20stroke%3D%22%23eee5d6%22%20stroke-width%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%22144%22%20y%3D%22188%22%20width%3D%22680%22%20height%3D%22382%22%20rx%3D%2210%22%20fill%3D%22%23f7f1e8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20226h190M874%20288h148M874%20350h190M874%20412h112%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M874%20488h154%22%20stroke%3D%22%236f6a61%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%0A%20%20%20%20%3Crect%20x%3D%22250%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22506%22%20y%3D%22244%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22378%22%20y%3D%22398%22%20width%3D%22150%22%20height%3D%22104%22%20rx%3D%228%22%20fill%3D%22%23fffdf8%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M400%20296h106M581%20348v50M453%20398v-50%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22650%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2296%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAfter%20nearly%20breaking%2C%20NASA's%20Deep%20Space%20Network%20worked%20well%20on%20Artemis%20%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.82,
         "saved": false,
         "tags": [
           "cloud-infrastructure",
-          "AI",
-          "AI Gateway",
-          "Cloudflare Access",
-          "Developers",
-          "Developer Platform"
+          "Science",
+          "Space",
+          "artemis",
+          "artemis II",
+          "Deep Space Network"
         ]
       }
     ]

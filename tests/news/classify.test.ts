@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CATEGORY_IDS } from "@/config/categories";
+import { createCategoryRecord } from "@/config/categories";
 import {
   classifyCategory,
   dedupeCandidates,
@@ -22,6 +22,8 @@ const baseItem = (overrides: Partial<NewsItem>): NewsItem => ({
   saved: overrides.saved ?? false,
   tags: overrides.tags ?? ["ai"]
 });
+
+const emptyPreviousCategories = () => createCategoryRecord(() => [] as NewsItem[]);
 
 describe("classifyCategory", () => {
   it("maps paper items to Research Papers first", () => {
@@ -61,7 +63,7 @@ describe("dedupeCandidates", () => {
 
 describe("selectDailyItems", () => {
   it("preserves previous category content when no trusted new content exists today", () => {
-    const previous = Object.fromEntries(CATEGORY_IDS.map((id) => [id, [] as NewsItem[]]));
+    const previous = emptyPreviousCategories();
     previous["cybersecurity"] = [
       baseItem({
         id: "old-sec",
@@ -82,7 +84,7 @@ describe("selectDailyItems", () => {
   });
 
   it("filters broad trusted-source items that have no technical relevance signal", () => {
-    const previous = Object.fromEntries(CATEGORY_IDS.map((id) => [id, [] as NewsItem[]]));
+    const previous = emptyPreviousCategories();
     previous["computer-systems"] = [
       baseItem({
         id: "old-systems",
@@ -112,7 +114,7 @@ describe("selectDailyItems", () => {
   });
 
   it("does not treat short technical terms as substrings inside unrelated words", () => {
-    const previous = Object.fromEntries(CATEGORY_IDS.map((id) => [id, [] as NewsItem[]]));
+    const previous = emptyPreviousCategories();
     previous["ai-ml"] = [
       baseItem({
         id: "old-ai",
@@ -139,5 +141,66 @@ describe("selectDailyItems", () => {
     });
 
     expect(selected["ai-ml"].map((item) => item.id)).toEqual(["old-ai"]);
+  });
+
+  it("limits single-source dominance when enough same-category alternatives exist", () => {
+    const previous = emptyPreviousCategories();
+    const candidates = [
+      baseItem({
+        id: "openai-1",
+        title: "OpenAI releases a new AI model for developers",
+        url: "https://openai.com/news/1",
+        sourceName: "OpenAI Blog",
+        trustScore: 0.94
+      }),
+      baseItem({
+        id: "openai-2",
+        title: "OpenAI expands model inference infrastructure",
+        url: "https://openai.com/news/2",
+        sourceName: "OpenAI Blog",
+        trustScore: 0.94
+      }),
+      baseItem({
+        id: "openai-3",
+        title: "OpenAI publishes machine learning platform update",
+        url: "https://openai.com/news/3",
+        sourceName: "OpenAI Blog",
+        trustScore: 0.94
+      }),
+      baseItem({
+        id: "openai-4",
+        title: "OpenAI improves multimodal model training",
+        url: "https://openai.com/news/4",
+        sourceName: "OpenAI Blog",
+        trustScore: 0.94
+      }),
+      baseItem({
+        id: "google-1",
+        title: "Google Research shares a new machine learning benchmark",
+        url: "https://research.google/blog/benchmark",
+        sourceName: "Google Research Blog",
+        trustScore: 0.93
+      }),
+      baseItem({
+        id: "anthropic-1",
+        title: "Anthropic details AI agent evaluation research",
+        url: "https://anthropic.com/news/agent-evals",
+        sourceName: "Anthropic News",
+        trustScore: 0.92
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates,
+      previousCategories: previous,
+      now: new Date("2026-06-11T13:00:00.000Z")
+    });
+
+    const aiSources = selected["ai-ml"].map((item) => item.sourceName);
+    const openAiCount = aiSources.filter((source) => source === "OpenAI Blog").length;
+
+    expect(selected["ai-ml"]).toHaveLength(5);
+    expect(openAiCount).toBeLessThanOrEqual(3);
+    expect(new Set(aiSources).size).toBeGreaterThanOrEqual(3);
   });
 });

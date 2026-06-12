@@ -13,6 +13,8 @@ type CustomItem = Parser.Item & {
   mediaThumbnail?: unknown;
 };
 
+type RssTrustedSourceConfig = TrustedSourceConfig & { rssUrl: string };
+
 const parser = new Parser<Record<string, unknown>, CustomItem>({
   customFields: {
     item: [
@@ -63,6 +65,28 @@ function extractImageUrl(item: CustomItem) {
   return imageMatch?.[1];
 }
 
+function usefulImageUrl(url: string | undefined) {
+  const trimmed = url?.trim();
+
+  if (!trimmed) {
+    return undefined;
+  }
+
+  if (/pixel|spacer|tracking|avatar|logo/i.test(trimmed)) {
+    return undefined;
+  }
+
+  return trimmed;
+}
+
+function articleImageUrl(item: CustomItem, source: TrustedSourceConfig) {
+  if (!source.preferArticleImages) {
+    return undefined;
+  }
+
+  return usefulImageUrl(extractImageUrl(item));
+}
+
 function parseDate(value: string | undefined, fallback: Date) {
   if (!value) {
     return fallback.toISOString();
@@ -72,7 +96,7 @@ function parseDate(value: string | undefined, fallback: Date) {
   return Number.isNaN(date.getTime()) ? fallback.toISOString() : date.toISOString();
 }
 
-async function fetchFeed(source: TrustedSourceConfig, now: Date): Promise<NewsItem[]> {
+async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<NewsItem[]> {
   try {
     const response = await fetch(source.rssUrl, {
       signal: AbortSignal.timeout(8500),
@@ -107,7 +131,8 @@ async function fetchFeed(source: TrustedSourceConfig, now: Date): Promise<NewsIt
           tags: item.categories
         });
         const publishedAt = parseDate(item.isoDate || item.pubDate, now);
-        const imageUrl = extractImageUrl(item) ?? placeholderImageForCategory(category, title);
+        const imageUrl =
+          articleImageUrl(item, source) ?? placeholderImageForCategory(category, title);
 
         return {
           id: createNewsId(url, title),
@@ -122,7 +147,9 @@ async function fetchFeed(source: TrustedSourceConfig, now: Date): Promise<NewsIt
           imageUrl,
           trustScore: source.trustScore,
           saved: false,
-          tags: Array.from(new Set([category, ...(item.categories ?? [])])).slice(0, 6)
+          tags: Array.from(
+            new Set([category, ...(source.discoveryOnly ? ["discovery"] : []), ...(item.categories ?? [])])
+          ).slice(0, 6)
         } satisfies NewsItem;
       })
     );
@@ -140,6 +167,9 @@ export async function fetchSourceCandidates({
   sources?: TrustedSourceConfig[];
   now?: Date;
 } = {}) {
-  const results = await Promise.allSettled(sources.map((source) => fetchFeed(source, now)));
+  const rssSources = sources.filter(
+    (source): source is RssTrustedSourceConfig => Boolean(source.rssUrl)
+  );
+  const results = await Promise.allSettled(rssSources.map((source) => fetchFeed(source, now)));
   return results.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
 }

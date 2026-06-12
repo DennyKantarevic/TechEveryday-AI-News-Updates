@@ -287,6 +287,56 @@ function uniqueById(items: NewsItem[]) {
   });
 }
 
+function selectDiverseCategoryItems(items: NewsItem[], limit: number) {
+  const uniqueSourceCount = new Set(items.map((item) => item.sourceName)).size;
+
+  if (uniqueSourceCount <= 1) {
+    return items.slice(0, limit);
+  }
+
+  const selected: NewsItem[] = [];
+  const selectedIds = new Set<string>();
+  const sourceCounts = new Map<string, number>();
+  const addItem = (item: NewsItem) => {
+    selected.push(item);
+    selectedIds.add(item.id);
+    sourceCounts.set(item.sourceName, (sourceCounts.get(item.sourceName) ?? 0) + 1);
+  };
+  const hasItem = (item: NewsItem) => selectedIds.has(item.id);
+
+  for (const item of items) {
+    if (!sourceCounts.has(item.sourceName)) {
+      addItem(item);
+    }
+
+    if (selected.length >= Math.min(limit, uniqueSourceCount)) {
+      break;
+    }
+  }
+
+  for (const item of items) {
+    if (!hasItem(item) && (sourceCounts.get(item.sourceName) ?? 0) < 3) {
+      addItem(item);
+    }
+
+    if (selected.length >= limit) {
+      return selected;
+    }
+  }
+
+  for (const item of items) {
+    if (!hasItem(item)) {
+      addItem(item);
+    }
+
+    if (selected.length >= limit) {
+      break;
+    }
+  }
+
+  return selected;
+}
+
 export function selectDailyItems({
   candidates,
   previousCategories,
@@ -309,7 +359,10 @@ export function selectDailyItems({
     });
 
   return createCategoryRecord((categoryId) => {
-    const newItems = freshCandidates.filter((item) => item.category === categoryId).slice(0, 5);
+    const newItems = selectDiverseCategoryItems(
+      freshCandidates.filter((item) => item.category === categoryId),
+      5
+    );
     const previousItems = previousCategories[categoryId] ?? [];
 
     if (newItems.length === 0) {
