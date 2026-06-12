@@ -13,6 +13,7 @@ const baseItem = (overrides: Partial<NewsItem>): NewsItem => ({
   title: overrides.title ?? "AI agents learn to automate developer workflows",
   summary: overrides.summary ?? "A concise summary.",
   url: overrides.url ?? "https://example.com/item-1",
+  canonicalUrl: overrides.canonicalUrl ?? overrides.url ?? "https://example.com/item-1",
   sourceName: overrides.sourceName ?? "Example Source",
   sourceType: overrides.sourceType ?? "news",
   category: overrides.category ?? "ai-ml",
@@ -20,8 +21,17 @@ const baseItem = (overrides: Partial<NewsItem>): NewsItem => ({
   foundAt: overrides.foundAt ?? "2026-06-11T09:00:00.000Z",
   imageUrl: overrides.imageUrl ?? "data:image/svg+xml,placeholder",
   trustScore: overrides.trustScore ?? 0.9,
+  freshnessScore: overrides.freshnessScore ?? 4,
+  technicalDepthScore: overrides.technicalDepthScore ?? 3,
+  educationalScore: overrides.educationalScore ?? 3,
+  practicalUsefulnessScore: overrides.practicalUsefulnessScore ?? 3,
+  noveltyScore: overrides.noveltyScore ?? 0,
+  finalScore: overrides.finalScore ?? 3.7,
   saved: overrides.saved ?? false,
-  tags: overrides.tags ?? ["ai"]
+  tags: overrides.tags ?? ["ai"],
+  keyClaims: overrides.keyClaims ?? ["A technical system changed."],
+  whyItMatters: overrides.whyItMatters ?? "It helps readers understand a current technical change.",
+  excludedReason: overrides.excludedReason
 });
 
 const emptyPreviousCategories = () => createCategoryRecord(() => [] as NewsItem[]);
@@ -63,14 +73,17 @@ describe("dedupeCandidates", () => {
 });
 
 describe("selectDailyItems", () => {
-  it("preserves previous category content when no trusted new content exists today", () => {
+  it("preserves previous category content only when it is still inside 72 hours", () => {
     const previous = emptyPreviousCategories();
     previous["cloud-infrastructure"] = [
       baseItem({
         id: "old-cloud",
         category: "cloud-infrastructure",
-        title: "Previous cloud story",
-        foundAt: "2026-06-10T12:00:00.000Z"
+        title: "Previous cloud observability architecture story",
+        summary:
+          "An engineering explainer about cloud observability architecture, reliability, tracing, and production operations.",
+        foundAt: "2026-06-10T12:00:00.000Z",
+        tags: ["cloud", "observability", "architecture"]
       })
     ];
 
@@ -84,14 +97,105 @@ describe("selectDailyItems", () => {
     expect(selected["ai-ml"].map((item) => item.id)).toEqual(["new-ai"]);
   });
 
+  it("does not preserve previous category content older than 72 hours", () => {
+    const previous = emptyPreviousCategories();
+    previous["cloud-infrastructure"] = [
+      baseItem({
+        id: "stale-cloud",
+        category: "cloud-infrastructure",
+        title: "Stale cloud story",
+        publishedAt: "2026-06-08T12:59:00.000Z",
+        foundAt: "2026-06-08T13:00:00.000Z"
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [],
+      previousCategories: previous,
+      now: new Date("2026-06-11T13:00:00.000Z")
+    });
+
+    expect(selected["cloud-infrastructure"]).toEqual([]);
+  });
+
+  it("does not preserve starter placeholders even when their timestamps are fresh", () => {
+    const previous = emptyPreviousCategories();
+    previous["embedded-systems"] = [
+      baseItem({
+        id: "starter-embedded-systems-ieee-spectrum",
+        category: "embedded-systems",
+        title: "IEEE Spectrum trusted Embedded Systems source",
+        summary: "Starter content identifies a trusted source but is not a fetched article.",
+        publishedAt: "2026-06-12T09:00:00.000Z",
+        foundAt: "2026-06-12T09:00:00.000Z",
+        tags: ["starter", "embedded-systems"]
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [],
+      previousCategories: previous,
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected["embedded-systems"]).toEqual([]);
+  });
+
+  it("keeps current candidates within 72 hours even when they are not from the same calendar day", () => {
+    const selected = selectDailyItems({
+      candidates: [
+        baseItem({
+          id: "two-day-old-paper",
+          category: "research-papers",
+          sourceType: "paper",
+          sourceName: "arXiv",
+          title: "Distributed systems paper explains consensus benchmark",
+          summary:
+            "A research paper with benchmark, dataset, method, and implementation details for distributed systems.",
+          publishedAt: "2026-06-09T14:00:00.000Z",
+          foundAt: "2026-06-11T13:00:00.000Z",
+          tags: ["arxiv", "benchmark", "distributed systems"]
+        })
+      ],
+      previousCategories: emptyPreviousCategories(),
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected["research-papers"].map((item) => item.id)).toEqual(["two-day-old-paper"]);
+  });
+
+  it("rejects candidates older than 72 hours instead of showing stale filler", () => {
+    const selected = selectDailyItems({
+      candidates: [
+        baseItem({
+          id: "old-ai",
+          category: "ai-ml",
+          title: "Old AI model architecture analysis",
+          summary:
+            "A technical explainer about model architecture, benchmarks, training, and inference.",
+          publishedAt: "2026-06-09T12:59:00.000Z",
+          foundAt: "2026-06-12T13:00:00.000Z",
+          tags: ["ai", "model", "benchmark", "architecture"]
+        })
+      ],
+      previousCategories: emptyPreviousCategories(),
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected["ai-ml"]).toEqual([]);
+  });
+
   it("filters broad trusted-source items that have no technical relevance signal", () => {
     const previous = emptyPreviousCategories();
     previous["computer-systems"] = [
       baseItem({
         id: "old-systems",
         category: "computer-systems",
-        title: "Previous systems story",
-        foundAt: "2026-06-10T12:00:00.000Z"
+        title: "Previous distributed systems runtime story",
+        summary:
+          "A technical analysis of distributed runtime architecture, storage reliability, and operational tradeoffs.",
+        foundAt: "2026-06-10T12:00:00.000Z",
+        tags: ["distributed", "runtime", "storage"]
       })
     ];
 
@@ -120,8 +224,11 @@ describe("selectDailyItems", () => {
       baseItem({
         id: "old-devtools",
         category: "developer-tools-open-source",
-        title: "Previous developer tools story",
-        foundAt: "2026-06-10T12:00:00.000Z"
+        title: "Previous developer tools framework release",
+        summary:
+          "A practical developer guide covering framework APIs, CLI workflows, migration details, and open source maintenance.",
+        foundAt: "2026-06-10T12:00:00.000Z",
+        tags: ["developer", "framework", "cli", "open source"]
       })
     ];
 
@@ -184,8 +291,11 @@ describe("selectDailyItems", () => {
       baseItem({
         id: "old-ai",
         category: "ai-ml",
-        title: "Previous AI story",
-        foundAt: "2026-06-10T12:00:00.000Z"
+        title: "Previous AI model benchmark story",
+        summary:
+          "A technical model benchmark explainer covering training, inference, architecture, and evaluation details.",
+        foundAt: "2026-06-10T12:00:00.000Z",
+        tags: ["ai", "model", "benchmark", "training"]
       })
     ];
 

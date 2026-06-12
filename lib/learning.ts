@@ -1,3 +1,4 @@
+import { isFreshNewsItem } from "@/lib/news/freshness";
 import type { CategoryId } from "@/config/categories";
 import type { DailyNews, NewsItem } from "@/types/news";
 
@@ -286,19 +287,27 @@ function isStarterItem(item: NewsItem) {
 
 export function getLearningCurrentContext(dailyNews: DailyNews, limit = 6) {
   const relevantCategoryIds = new Set<CategoryId>(LEARNING_CATEGORY_IDS);
+  const now = new Date(dailyNews.refreshedAt);
   const relevantItems = Object.values(dailyNews.categories)
     .flat()
-    .filter((item) => relevantCategoryIds.has(item.category) && !isStarterItem(item));
+    .filter(
+      (item) =>
+        relevantCategoryIds.has(item.category) &&
+        isFreshNewsItem(item, now) &&
+        !isStarterItem(item)
+    );
 
   return dedupeById(relevantItems).sort(byNewestPublished).slice(0, Math.max(0, limit));
 }
 
 export function getLearningBridges(dailyNews: DailyNews): LearningBridge[] {
+  const now = new Date(dailyNews.refreshedAt);
+
   return LEARNING_FOUNDATIONS.map((foundation) => {
     const story = dedupeById(
       foundation.categoryIds.flatMap((categoryId) => dailyNews.categories[categoryId] ?? [])
     )
-      .filter((item) => !isStarterItem(item))
+      .filter((item) => isFreshNewsItem(item, now) && !isStarterItem(item))
       .sort(byNewestPublished)[0];
 
     return {

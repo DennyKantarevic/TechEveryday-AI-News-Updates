@@ -62,6 +62,7 @@ async function handleRefresh(request: NextRequest) {
       refreshedAt: result.dailyNews.refreshedAt,
       candidateCount: result.candidateCount,
       sourceBreakdown: result.sourceBreakdown,
+      debug: result.debug,
       categoryCounts: Object.fromEntries(
         Object.entries(result.dailyNews.categories).map(([categoryId, items]) => [
           categoryId,

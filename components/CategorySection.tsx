@@ -39,10 +39,6 @@ export default function CategorySection({
     }
   }, [category.id, items.length]);
 
-  if (!items.length) {
-    return null;
-  }
-
   return (
     <motion.section
       ref={sectionRef}
@@ -68,11 +64,19 @@ export default function CategorySection({
           {category.deck}
         </p>
       </AnimatedSectionHeader>
-      <AnimatedArticleGrid className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {items.map((item) => (
-          <NewsCard key={item.id} item={item} staggeredEntrance />
-        ))}
-      </AnimatedArticleGrid>
+      {items.length ? (
+        <AnimatedArticleGrid className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {items.map((item) => (
+            <NewsCard key={item.id} item={item} staggeredEntrance />
+          ))}
+        </AnimatedArticleGrid>
+      ) : (
+        <div className="border-2 border-dashed border-ink bg-bone p-8 text-center shadow-[5px_5px_0_#111]">
+          <p className="mx-auto max-w-md text-sm font-black uppercase leading-6 tracking-[0.12em] text-ink/70">
+            No high-signal new items found in the last 72 hours.
+          </p>
+        </div>
+      )}
     </motion.section>
   );
 }

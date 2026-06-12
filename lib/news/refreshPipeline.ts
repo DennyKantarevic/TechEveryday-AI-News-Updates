@@ -1,9 +1,9 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
-import { dedupeCandidates, selectDailyItems } from "@/lib/news/classify";
+import { selectDailyItemsWithDebug } from "@/lib/news/classify";
 import { fetchArxivPapers } from "@/lib/news/fetchArxiv";
+import { fetchNewsApiCandidates } from "@/lib/news/fetchNewsApi";
 import { fetchSourceCandidates } from "@/lib/news/fetchSources";
 import { fetchTrustedXPosts } from "@/lib/news/fetchX";
-import { categoriesWithStarterFallback } from "@/lib/news/starterContent";
 import { fileStorage } from "@/lib/storage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
@@ -43,22 +43,23 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const now = options.now ?? new Date();
   const storage = options.storage ?? fileStorage;
   const previousDailyNews = await storage.readDailyNews();
-  const [sourceItems, arxivItems, xItems] = await Promise.all([
+  const [sourceItems, arxivItems, newsApiItems, xItems] = await Promise.all([
     fetchSourceCandidates({ now }),
     fetchArxivPapers({ now }),
+    fetchNewsApiCandidates({ now }),
     fetchTrustedXPosts({ now })
   ]);
 
-  const candidates = dedupeCandidates([
+  const candidates = [
     ...sourceItems,
     ...arxivItems,
+    ...newsApiItems,
     ...xItems,
     ...previousXItems(previousDailyNews, now)
-  ]);
-  const previousCategories = categoriesWithStarterFallback(previousDailyNews.categories, now);
-  const categories = selectDailyItems({
+  ];
+  const { categories, debug } = selectDailyItemsWithDebug({
     candidates,
-    previousCategories,
+    previousCategories: previousDailyNews.categories,
     now
   });
   const dailyNews: DailyNews = {
@@ -73,9 +74,10 @@ export async function refreshNews(options: RefreshOptions = {}) {
     categoryCounts: categoryCounts(categories),
     status: "success",
     message:
-      candidates.length === 0
-        ? "No fresh trusted candidates were found; previous category content was preserved."
-        : "Refresh completed."
+      Object.values(categories).flat().length === 0
+        ? "No high-signal new items found in the last 72 hours."
+        : "Refresh completed with fresh high-signal items.",
+    debug
   };
 
   await storage.writeDailyNews(dailyNews);
@@ -84,9 +86,11 @@ export async function refreshNews(options: RefreshOptions = {}) {
   return {
     dailyNews,
     candidateCount: candidates.length,
+    debug,
     sourceBreakdown: {
       rss: sourceItems.length,
       arxiv: arxivItems.length,
+      newsApi: newsApiItems.length,
       x: xItems.length
     }
   };

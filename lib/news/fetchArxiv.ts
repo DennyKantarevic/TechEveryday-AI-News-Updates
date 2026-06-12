@@ -1,6 +1,7 @@
 import { XMLParser } from "fast-xml-parser";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { createNewsId } from "@/lib/news/ids";
+import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate, stripMarkup } from "@/lib/news/summarize";
 import type { NewsItem } from "@/types/news";
 
@@ -93,21 +94,33 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
           .slice(0, 3)
           .join(", ");
 
-        return {
-          id: createNewsId(url, title),
-          title,
-          summary: authors ? `${summary} Authors: ${authors}.` : summary,
-          url,
-          sourceName: "arXiv",
-          sourceType: "paper",
-          category: "research-papers",
-          publishedAt: parseDate(entry.published || entry.updated, now),
-          foundAt: now.toISOString(),
-          imageUrl: placeholderImageForCategory("research-papers", title),
-          trustScore: 0.86,
-          saved: false,
-          tags: Array.from(new Set(["arxiv", ...tags])).slice(0, 6)
-        } satisfies NewsItem;
+        return scoreNewsItem(
+          {
+            id: createNewsId(url, title),
+            title,
+            summary: authors ? `${summary} Authors: ${authors}.` : summary,
+            url,
+            canonicalUrl: canonicalizeUrl(url),
+            sourceName: "arXiv",
+            sourceType: "paper",
+            category: "research-papers",
+            publishedAt: parseDate(entry.published || entry.updated, now),
+            foundAt: now.toISOString(),
+            imageUrl: placeholderImageForCategory("research-papers", title),
+            trustScore: 0.86,
+            freshnessScore: 0,
+            technicalDepthScore: 0,
+            educationalScore: 0,
+            practicalUsefulnessScore: 0,
+            noveltyScore: 0,
+            finalScore: 0,
+            saved: false,
+            tags: Array.from(new Set(["arxiv", ...tags])).slice(0, 6),
+            keyClaims: [],
+            whyItMatters: ""
+          } satisfies NewsItem,
+          now
+        );
       })
     );
 

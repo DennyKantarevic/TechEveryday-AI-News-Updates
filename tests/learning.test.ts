@@ -39,7 +39,7 @@ function dailyNews(items: NewsItem[]): DailyNews {
   }
 
   return {
-    refreshedAt: "2026-06-12T07:00:00.000Z",
+    refreshedAt: "2026-06-12T12:00:00.000Z",
     timezone: "America/New_York",
     categories
   };

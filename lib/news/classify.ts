@@ -1,7 +1,7 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
-import { isSameZonedDay } from "@/lib/time";
+import { evaluateFreshness, isFreshNewsItem } from "@/lib/news/freshness";
 import type { CategoryId } from "@/config/categories";
-import type { NewsItem, SourceType } from "@/types/news";
+import type { NewsItem, RefreshDebug, SourceType } from "@/types/news";
 
 type ClassificationInput = {
   title: string;
@@ -288,7 +288,12 @@ function normalizeUrl(url: string) {
   try {
     const parsed = new URL(url);
     parsed.hash = "";
-    parsed.search = "";
+    for (const key of [...parsed.searchParams.keys()]) {
+      if (/^(utm_|fbclid|gclid|mc_|ref$|ref_src$)/i.test(key)) {
+        parsed.searchParams.delete(key);
+      }
+    }
+    parsed.searchParams.sort();
     return parsed.toString().replace(/\/$/, "").toLowerCase();
   } catch {
     return url.trim().toLowerCase();
@@ -317,22 +322,62 @@ export function classifyCategory(input: ClassificationInput): CategoryId {
   );
 }
 
-export function dedupeCandidates(items: NewsItem[]) {
+function sourcePriority(item: NewsItem) {
+  if (item.sourceType === "paper" || item.sourceType === "official") {
+    return 5;
+  }
+  if (item.sourceType === "blog") {
+    return 4;
+  }
+  if (item.sourceType === "news") {
+    return 3;
+  }
+  if (item.sourceType === "x") {
+    return 2;
+  }
+  return 1;
+}
+
+export function dedupeCandidatesWithDebug(items: NewsItem[]) {
   const accepted: NewsItem[] = [];
   const urls = new Set<string>();
+  const sorted = [...items].sort(
+    (left, right) =>
+      sourcePriority(right) - sourcePriority(left) ||
+      right.trustScore - left.trustScore ||
+      right.finalScore - left.finalScore ||
+      itemTime(right) - itemTime(left)
+  );
+  const rejected: RefreshDebug["rejected"] = [];
 
-  for (const item of items) {
-    const urlKey = normalizeUrl(item.url);
+  for (const item of sorted) {
+    const urlKey = normalizeUrl(item.canonicalUrl || item.url);
 
     if (urls.has(urlKey)) {
+      rejected.push({
+        id: item.id,
+        title: item.title,
+        url: item.url,
+        sourceName: item.sourceName,
+        reason: "Rejected as a duplicate canonical URL."
+      });
       continue;
     }
 
-    const similarTitle = accepted.some(
-      (existing) => titleSimilarity(existing.title, item.title) >= 0.82
+    const similarTitle = accepted.find(
+      (existing) =>
+        normalizeUrl(existing.canonicalUrl || existing.url) === urlKey ||
+        titleSimilarity(existing.title, item.title) >= 0.82
     );
 
     if (similarTitle) {
+      rejected.push({
+        id: item.id,
+        title: item.title,
+        url: item.url,
+        sourceName: item.sourceName,
+        reason: `Rejected as a duplicate story cluster of "${similarTitle.title}".`
+      });
       continue;
     }
 
@@ -340,11 +385,45 @@ export function dedupeCandidates(items: NewsItem[]) {
     accepted.push(item);
   }
 
-  return accepted;
+  return { accepted, rejected };
+}
+
+export function dedupeCandidates(items: NewsItem[]) {
+  return dedupeCandidatesWithDebug(items).accepted;
 }
 
 function itemTime(item: NewsItem) {
   return new Date(item.publishedAt || item.foundAt).getTime();
+}
+
+function scoreItemForSelection(item: NewsItem, now: Date): NewsItem {
+  const freshness = evaluateFreshness({ publishedAt: item.publishedAt, now });
+  const quality = scoreContentQuality(item);
+  const sourceTrustScore = Math.max(0, Math.min(5, item.trustScore * 5));
+  const categoryFitScore = Math.min(5, quality.technicalDepthScore + quality.educationalScore);
+  const finalScore =
+    freshness.freshnessScore * 0.18 +
+    sourceTrustScore * 0.18 +
+    quality.technicalDepthScore * 0.22 +
+    quality.educationalScore * 0.18 +
+    quality.practicalUsefulnessScore * 0.16 +
+    categoryFitScore * 0.08 -
+    quality.noveltyScore * 0.22;
+
+  return {
+    ...item,
+    canonicalUrl: item.canonicalUrl || normalizeUrl(item.url),
+    freshnessScore: freshness.freshnessScore,
+    technicalDepthScore: quality.technicalDepthScore,
+    educationalScore: quality.educationalScore,
+    practicalUsefulnessScore: quality.practicalUsefulnessScore,
+    noveltyScore: quality.noveltyScore,
+    finalScore: Number(finalScore.toFixed(3)),
+    keyClaims: item.keyClaims?.length ? item.keyClaims : [item.title],
+    whyItMatters:
+      item.whyItMatters?.trim() ||
+      "It helps readers understand a current technical change from a trusted source."
+  };
 }
 
 export function scoreContentQuality(item: NewsItem): ContentQualityScore {
@@ -418,6 +497,45 @@ function isTrustedRelevant(item: NewsItem) {
   return (categorySignal || globalSignal) && !lowValuePromo && !quality.excludedReason;
 }
 
+function rejectionReason(item: NewsItem, now: Date) {
+  if (item.trustScore < 0.65 || !item.title.trim() || !item.url.trim()) {
+    return "Rejected because the source trust score or required fields were insufficient.";
+  }
+
+  const freshness = evaluateFreshness({ publishedAt: item.publishedAt, now });
+  if (!freshness.accepted) {
+    return freshness.excludedReason ?? "Rejected by the 72-hour freshness gate.";
+  }
+
+  const title = normalizeText(item.title);
+  const lowValuePromo = LOW_VALUE_PROMO_SIGNALS.some((keyword) => title.includes(keyword));
+  if (lowValuePromo) {
+    return "Rejected as promotional shopping or low-signal deal coverage.";
+  }
+
+  const quality = scoreContentQuality(item);
+  if (quality.excludedReason) {
+    return quality.excludedReason;
+  }
+
+  const externalTags = item.tags.filter(
+    (tag) => !CATEGORY_IDS.includes(tag as CategoryId) && tag !== item.category
+  );
+  const haystack = normalizeText(
+    [item.title, item.summary, item.sourceName, externalTags.join(" ")].join(" ")
+  );
+  const categorySignal = KEYWORDS[item.category].some((keyword) =>
+    containsSignal(haystack, keyword)
+  );
+  const globalSignal = GLOBAL_TECH_SIGNALS.some((keyword) => containsSignal(haystack, keyword));
+
+  if (!categorySignal && !globalSignal) {
+    return "Rejected because it lacked a clear technical category fit.";
+  }
+
+  return undefined;
+}
+
 function uniqueById(items: NewsItem[]) {
   const seen = new Set<string>();
   return items.filter((item) => {
@@ -489,52 +607,100 @@ export function selectDailyItems({
   previousCategories: Record<CategoryId, NewsItem[]>;
   now: Date;
 }) {
-  const freshCandidates = dedupeCandidates(candidates)
-    .filter(isTrustedRelevant)
-    .filter((item) => {
-      const foundAt = new Date(item.foundAt);
-      const publishedAt = new Date(item.publishedAt);
-      return isSameZonedDay(foundAt, now) || isSameZonedDay(publishedAt, now);
-    })
-    .sort((left, right) => {
-      const leftQuality = scoreContentQuality(left);
-      const rightQuality = scoreContentQuality(right);
-      const qualityDelta =
-        rightQuality.educationalScore +
-        rightQuality.technicalDepthScore +
-        rightQuality.practicalUsefulnessScore -
-        (leftQuality.educationalScore +
-          leftQuality.technicalDepthScore +
-          leftQuality.practicalUsefulnessScore);
-      if (Math.abs(qualityDelta) >= 2) {
-        return qualityDelta;
-      }
+  return selectDailyItemsWithDebug({ candidates, previousCategories, now }).categories;
+}
 
-      const trustDelta = right.trustScore - left.trustScore;
-      return Math.abs(trustDelta) > 0.04 ? trustDelta : itemTime(right) - itemTime(left);
+export function selectDailyItemsWithDebug({
+  candidates,
+  previousCategories,
+  now
+}: {
+  candidates: NewsItem[];
+  previousCategories: Record<CategoryId, NewsItem[]>;
+  now: Date;
+}) {
+  const rejected: RefreshDebug["rejected"] = [];
+  const scoredCandidates = candidates.map((item) => scoreItemForSelection(item, now));
+  const candidatesAfterQuality = scoredCandidates.filter((item) => {
+    const reason = rejectionReason(item, now);
+
+    if (!reason) {
+      return true;
+    }
+
+    rejected.push({
+      id: item.id,
+      title: item.title,
+      url: item.url,
+      sourceName: item.sourceName,
+      reason
     });
+    return false;
+  });
+  const deduped = dedupeCandidatesWithDebug(candidatesAfterQuality);
+  rejected.push(...deduped.rejected);
 
-  return createCategoryRecord((categoryId) => {
+  const freshCandidates = deduped.accepted.sort((left, right) => {
+    const qualityDelta = right.finalScore - left.finalScore;
+    if (Math.abs(qualityDelta) >= 0.25) {
+      return qualityDelta;
+    }
+
+    const trustDelta = right.trustScore - left.trustScore;
+    return Math.abs(trustDelta) > 0.04 ? trustDelta : itemTime(right) - itemTime(left);
+  });
+
+  const categories = createCategoryRecord((categoryId) => {
     const newItems = selectDiverseCategoryItems(
       freshCandidates.filter((item) => item.category === categoryId),
       5
     );
-    const previousItems = previousCategories[categoryId] ?? [];
-
-    if (newItems.length === 0) {
-      return previousItems.slice(0, 5);
-    }
-
-    const topUp = previousItems.filter(
+    const previousItems = (previousCategories[categoryId] ?? [])
+      .filter((previous) => !previous.id.startsWith("starter-") && !previous.tags.includes("starter"))
+      .filter((previous) => isFreshNewsItem(previous, now))
+      .filter(isTrustedRelevant)
+      .map((previous) => scoreItemForSelection({ ...previous, saved: false }, now));
+    const freshTopUp = previousItems.filter(
       (previous) =>
         !newItems.some(
           (item) =>
             item.id === previous.id ||
-            normalizeUrl(item.url) === normalizeUrl(previous.url) ||
+            normalizeUrl(item.canonicalUrl || item.url) ===
+              normalizeUrl(previous.canonicalUrl || previous.url) ||
             titleSimilarity(item.title, previous.title) >= 0.82
         )
     );
 
-    return uniqueById([...newItems, ...topUp]).slice(0, 5);
+    return uniqueById([...newItems, ...freshTopUp])
+      .sort(
+        (left, right) =>
+          right.finalScore - left.finalScore ||
+          right.trustScore - left.trustScore ||
+          itemTime(right) - itemTime(left)
+      )
+      .slice(0, 5);
   });
+
+  const rejectedByAge = rejected.filter((item) => /older than 72|trustworthy date|future/i.test(item.reason)).length;
+  const rejectedByDuplicate = rejected.filter((item) => /duplicate/i.test(item.reason)).length;
+  const rejectedByLowQuality = rejected.filter((item) =>
+    /low-information|low-value|category fit|promotional/i.test(item.reason)
+  ).length;
+  const rejectedByTrust = rejected.filter((item) => /trust score|required fields/i.test(item.reason)).length;
+  const finalItems = Object.values(categories).flat();
+  const debug: RefreshDebug = {
+    totalCandidatesFound: candidates.length,
+    candidatesAfterFreshness: candidates.length - rejectedByAge,
+    rejectedByAge,
+    rejectedByLowQuality,
+    rejectedByDuplicate,
+    rejectedByTrust,
+    finalSelectedByCategory: createCategoryRecord(
+      (categoryId) => categories[categoryId]?.length ?? 0
+    ),
+    sourcesUsed: Array.from(new Set(finalItems.map((item) => item.sourceName))).sort(),
+    rejected
+  };
+
+  return { categories, debug };
 }

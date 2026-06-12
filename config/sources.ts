@@ -5,12 +5,29 @@ export type TrustedSourceConfig = {
   name: string;
   homepageUrl: string;
   rssUrl?: string;
-  sourceType: Extract<SourceType, "news" | "blog" | "official" | "paper">;
+  apiEndpoint?: string;
+  sourceType: Extract<SourceType, "news" | "blog" | "official" | "paper" | "discovery">;
   trustScore: number;
   categoryHints: CategoryId[];
+  allowedCategories?: CategoryId[];
+  isPrimary?: boolean;
+  isOfficial?: boolean;
   preferArticleImages?: boolean;
   discoveryOnly?: boolean;
 };
+
+function withSourceMetadata(sources: TrustedSourceConfig[]) {
+  return sources.map((source) => ({
+    ...source,
+    allowedCategories: source.allowedCategories ?? source.categoryHints,
+    isOfficial: source.isOfficial ?? (source.sourceType === "official"),
+    isPrimary:
+      source.isPrimary ??
+      (source.sourceType === "official" ||
+        source.sourceType === "paper" ||
+        source.sourceType === "blog")
+  }));
+}
 
 const EDITORIAL_NEWS_SOURCES: TrustedSourceConfig[] = [
   {
@@ -171,7 +188,7 @@ const DISCOVERY_SOURCES: TrustedSourceConfig[] = [
     name: "Hacker News",
     homepageUrl: "https://news.ycombinator.com",
     rssUrl: "https://news.ycombinator.com/rss",
-    sourceType: "news",
+    sourceType: "discovery",
     trustScore: 0.67,
     categoryHints: [
       "developer-tools-open-source",
@@ -184,9 +201,9 @@ const DISCOVERY_SOURCES: TrustedSourceConfig[] = [
 ];
 
 export const TRUSTED_SOURCES: TrustedSourceConfig[] = [
-  ...EDITORIAL_NEWS_SOURCES,
-  ...RESEARCH_INDEX_SOURCES,
-  ...AI_LAB_AND_RESEARCH_SOURCES,
-  ...PLATFORM_AND_INFRASTRUCTURE_SOURCES,
-  ...DISCOVERY_SOURCES
+  ...withSourceMetadata(EDITORIAL_NEWS_SOURCES),
+  ...withSourceMetadata(RESEARCH_INDEX_SOURCES),
+  ...withSourceMetadata(AI_LAB_AND_RESEARCH_SOURCES),
+  ...withSourceMetadata(PLATFORM_AND_INFRASTRUCTURE_SOURCES),
+  ...withSourceMetadata(DISCOVERY_SOURCES)
 ];

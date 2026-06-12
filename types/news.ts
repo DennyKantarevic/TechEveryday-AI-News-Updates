@@ -1,27 +1,57 @@
 import type { CategoryId } from "@/config/categories";
 
-export type SourceType = "news" | "paper" | "x" | "blog" | "official";
+export type SourceType = "official" | "news" | "paper" | "blog" | "discovery" | "x";
 
 export type NewsItem = {
   id: string;
   title: string;
   summary: string;
   url: string;
+  canonicalUrl: string;
   sourceName: string;
   sourceType: SourceType;
   category: CategoryId;
   publishedAt: string;
   foundAt: string;
-  imageUrl: string;
+  imageUrl?: string;
   trustScore: number;
+  freshnessScore: number;
+  technicalDepthScore: number;
+  educationalScore: number;
+  practicalUsefulnessScore: number;
+  noveltyScore: number;
+  finalScore: number;
   saved: boolean;
   tags: string[];
+  keyClaims: string[];
+  whyItMatters: string;
+  excludedReason?: string;
 };
 
 export type DailyNews = {
   refreshedAt: string;
   timezone: "America/New_York";
   categories: Record<CategoryId, NewsItem[]>;
+};
+
+export type RejectedCandidate = {
+  id?: string;
+  title: string;
+  url: string;
+  sourceName: string;
+  reason: string;
+};
+
+export type RefreshDebug = {
+  totalCandidatesFound: number;
+  candidatesAfterFreshness: number;
+  rejectedByAge: number;
+  rejectedByLowQuality: number;
+  rejectedByDuplicate: number;
+  rejectedByTrust: number;
+  finalSelectedByCategory: Record<CategoryId, number>;
+  sourcesUsed: string[];
+  rejected: RejectedCandidate[];
 };
 
 export type LastRefresh = {
@@ -31,4 +61,5 @@ export type LastRefresh = {
   categoryCounts: Record<CategoryId, number>;
   status: "success" | "skipped" | "error";
   message?: string;
+  debug?: RefreshDebug;
 };

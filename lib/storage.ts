@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
-import { createStarterDailyNews } from "@/lib/news/starterContent";
+import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 import type { CategoryId } from "@/config/categories";
 import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
@@ -9,7 +9,11 @@ import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
 const DEFAULT_DATA_DIR = join(process.cwd(), "data");
 
 function emptyDailyNews(): DailyNews {
-  return createStarterDailyNews(new Date(0));
+  return {
+    refreshedAt: new Date(0).toISOString(),
+    timezone: REFRESH_TIME_ZONE,
+    categories: createCategoryRecord(() => [])
+  };
 }
 
 function emptyLastRefresh(): LastRefresh {
@@ -41,6 +45,24 @@ async function writeJson(path: string, value: unknown) {
   await writeFile(path, `${JSON.stringify(value, null, 2)}\n`, "utf-8");
 }
 
+function normalizeNewsItem(item: NewsItem): NewsItem {
+  return scoreNewsItem({
+    ...item,
+    canonicalUrl: item.canonicalUrl ?? canonicalizeUrl(item.url),
+    imageUrl: item.imageUrl,
+    freshnessScore: item.freshnessScore ?? 0,
+    technicalDepthScore: item.technicalDepthScore ?? 0,
+    educationalScore: item.educationalScore ?? 0,
+    practicalUsefulnessScore: item.practicalUsefulnessScore ?? 0,
+    noveltyScore: item.noveltyScore ?? 0,
+    finalScore: item.finalScore ?? 0,
+    saved: Boolean(item.saved),
+    tags: item.tags ?? [],
+    keyClaims: item.keyClaims ?? [],
+    whyItMatters: item.whyItMatters ?? ""
+  });
+}
+
 export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
   const dailyPath = join(baseDir, "daily-news.json");
   const galleryPath = join(baseDir, "gallery.json");
@@ -49,8 +71,8 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
   return {
     async readDailyNews() {
       const daily = await readJson<DailyNews>(dailyPath, emptyDailyNews());
-      const categories = createCategoryRecord(
-        (categoryId) => daily.categories?.[categoryId] ?? []
+      const categories = createCategoryRecord((categoryId) =>
+        (daily.categories?.[categoryId] ?? []).map(normalizeNewsItem)
       );
 
       return {
@@ -65,7 +87,8 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
     },
 
     async readGallery() {
-      return readJson<NewsItem[]>(galleryPath, []);
+      const gallery = await readJson<NewsItem[]>(galleryPath, []);
+      return gallery.map(normalizeNewsItem);
     },
 
     async writeGallery(items: NewsItem[]) {

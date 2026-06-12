@@ -60,6 +60,7 @@ const item: NewsItem = {
   title: "Agentic AI runtimes improve workflow planning",
   summary: "New orchestration features help teams run reliable AI agents.",
   url: "https://example.com/tracked-article",
+  canonicalUrl: "https://example.com/tracked-article",
   sourceName: "Example Source",
   sourceType: "official",
   category: "automation-agentic-systems",
@@ -67,8 +68,16 @@ const item: NewsItem = {
   foundAt: "2026-06-12T09:00:00.000Z",
   imageUrl: "placeholder:automation-agentic-systems",
   trustScore: 0.9,
+  freshnessScore: 4.4,
+  technicalDepthScore: 4,
+  educationalScore: 4,
+  practicalUsefulnessScore: 3,
+  noveltyScore: 0,
+  finalScore: 4.2,
   saved: false,
-  tags: ["agentic AI", "workflow"]
+  tags: ["agentic AI", "workflow"],
+  keyClaims: ["Agent runtimes are adding more reliable workflow planning."],
+  whyItMatters: "It helps teams compare agent orchestration patterns for production work."
 };
 
 beforeEach(() => {
@@ -131,5 +140,13 @@ describe("NewsCard interaction tracking", () => {
     expect(article).toHaveAttribute("data-viewport-once", "false");
     expect(Number(article.getAttribute("data-viewport-amount"))).toBeGreaterThanOrEqual(0.45);
     expect(article).toHaveAttribute("data-viewport-margin", "0px 0px -12% 0px");
+  });
+
+  it("shows freshness and why-it-matters metadata on article cards", () => {
+    render(<NewsCard item={item} now={new Date("2026-06-12T12:00:00.000Z")} />);
+
+    expect(screen.getByText("4h ago")).toBeInTheDocument();
+    expect(screen.getByText(/Why it matters/i)).toBeInTheDocument();
+    expect(screen.getByText(item.whyItMatters)).toBeInTheDocument();
   });
 });

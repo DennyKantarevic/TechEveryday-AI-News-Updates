@@ -1,6 +1,7 @@
 import { CATEGORY_BY_ID, CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
 import { TRUSTED_SOURCES } from "@/config/sources";
 import { placeholderImageForCategory } from "@/lib/placeholders";
+import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import type { CategoryId } from "@/config/categories";
 import type { DailyNews, NewsItem } from "@/types/news";
 
@@ -39,22 +40,36 @@ function starterItemsForCategory(categoryId: CategoryId, now: Date): NewsItem[] 
           trustScore: 0.84
         }));
 
-  return sources.map((source) => ({
-    id: `starter-${categoryId}-${slug(source.name)}`,
-    title: `${source.name} trusted ${category.title} source`,
-    summary:
-      "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
-    url: source.url,
-    sourceName: source.name,
-    sourceType: source.sourceType,
-    category: categoryId,
-    publishedAt: now.toISOString(),
-    foundAt: now.toISOString(),
-    imageUrl: placeholderImageForCategory(categoryId, source.name),
-    trustScore: source.trustScore,
-    saved: false,
-    tags: ["starter", categoryId]
-  }));
+  return sources.map((source) =>
+    scoreNewsItem(
+      {
+        id: `starter-${categoryId}-${slug(source.name)}`,
+        title: `${source.name} trusted ${category.title} source`,
+        summary:
+          "Starter content identifies a trusted source but is not used to fill the current daily feed.",
+        url: source.url,
+        canonicalUrl: canonicalizeUrl(source.url),
+        sourceName: source.name,
+        sourceType: source.sourceType,
+        category: categoryId,
+        publishedAt: now.toISOString(),
+        foundAt: now.toISOString(),
+        imageUrl: placeholderImageForCategory(categoryId, source.name),
+        trustScore: source.trustScore,
+        freshnessScore: 0,
+        technicalDepthScore: 0,
+        educationalScore: 0,
+        practicalUsefulnessScore: 0,
+        noveltyScore: 0,
+        finalScore: 0,
+        saved: false,
+        tags: ["starter", categoryId],
+        keyClaims: [],
+        whyItMatters: ""
+      },
+      now
+    )
+  );
 }
 
 export function createStarterDailyNews(now = new Date(0)): DailyNews {

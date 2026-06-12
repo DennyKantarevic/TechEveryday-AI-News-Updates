@@ -55,7 +55,32 @@ function sourceLabel(type: NewsItem["sourceType"]) {
     return "Official source";
   }
 
+  if (type === "discovery") {
+    return "Discovery source";
+  }
+
   return "Trusted source";
+}
+
+function freshnessLabel(publishedAt: string, now: Date) {
+  const published = new Date(publishedAt);
+
+  if (!Number.isFinite(published.getTime())) {
+    return "Freshness unknown";
+  }
+
+  const minutes = Math.max(0, Math.floor((now.getTime() - published.getTime()) / 60_000));
+
+  if (minutes < 60) {
+    return minutes <= 1 ? "Just now" : `${minutes}m ago`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 72) {
+    return `${hours}h ago`;
+  }
+
+  return `${Math.floor(hours / 24)}d ago`;
 }
 
 function formatTag(tag: string) {
@@ -66,12 +91,14 @@ export default function NewsCard({
   item,
   mode = "newsletter",
   onRemove,
-  staggeredEntrance = false
+  staggeredEntrance = false,
+  now
 }: {
   item: NewsItem;
   mode?: "newsletter" | "gallery";
   onRemove?: (id: string) => Promise<void> | void;
   staggeredEntrance?: boolean;
+  now?: Date;
 }) {
   const shouldReduceMotion = useReducedMotion();
   const [saved, setSaved] = useState(item.saved);
@@ -88,6 +115,14 @@ export default function NewsCard({
   const publishedDate = useMemo(
     () => formatPublishedDate(item.publishedAt),
     [item.publishedAt]
+  );
+  const referenceNow = useMemo(
+    () => now ?? new Date(item.foundAt || item.publishedAt),
+    [item.foundAt, item.publishedAt, now]
+  );
+  const freshness = useMemo(
+    () => freshnessLabel(item.publishedAt, referenceNow),
+    [item.publishedAt, referenceNow]
   );
   const category = CATEGORY_BY_ID[item.category];
   const topicTags = item.tags
@@ -168,10 +203,22 @@ export default function NewsCard({
           <span>{item.sourceName}</span>
           <span>{publishedDate}</span>
         </div>
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.1em] text-clay">
+          <span className="border border-ink/25 bg-bone px-2 py-1">{freshness}</span>
+          <span className="border border-ink/25 bg-white px-2 py-1">
+            Score {item.finalScore.toFixed(1)}
+          </span>
+        </div>
         <h3 className="mt-3 font-display text-2xl font-black leading-tight">
           {item.title}
         </h3>
         <p className="mt-3 flex-1 text-sm leading-6 text-ink/78">{item.summary}</p>
+        <div className="mt-4 border-l-2 border-ink bg-bone px-3 py-2">
+          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brass">
+            Why it matters
+          </p>
+          <p className="mt-1 text-sm leading-6 text-ink/78">{item.whyItMatters}</p>
+        </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1 border border-ink/30 bg-paper px-2 py-1 text-xs font-bold">

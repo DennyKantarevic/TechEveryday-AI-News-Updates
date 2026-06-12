@@ -113,4 +113,19 @@ describe("CategorySection interaction tracking", () => {
       )
     ).toBe(false);
   });
+
+  it("renders a clean empty state when no fresh high-signal items exist", () => {
+    const category = CATEGORIES.find((entry) => entry.id === "research-papers");
+
+    if (!category) {
+      throw new Error("Expected research papers category fixture");
+    }
+
+    render(<CategorySection category={category} items={[]} />);
+
+    expect(
+      screen.getByText("No high-signal new items found in the last 72 hours.")
+    ).toBeInTheDocument();
+    expect(trackCategoryVisited).not.toHaveBeenCalledWith("research-papers");
+  });
 });

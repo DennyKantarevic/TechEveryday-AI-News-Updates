@@ -2,6 +2,7 @@ import { TRUSTED_X_ACCOUNTS } from "@/config/trusted-x-accounts";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { classifyCategory } from "@/lib/news/classify";
 import { createNewsId } from "@/lib/news/ids";
+import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate } from "@/lib/news/summarize";
 import type { NewsItem } from "@/types/news";
 
@@ -80,21 +81,33 @@ export async function fetchTrustedXPosts({ now = new Date() }: { now?: Date } = 
           hints: account.categoryHints
         });
 
-        return {
-          id: createNewsId(sourceUrl, title),
-          title,
-          summary,
-          url: sourceUrl,
-          sourceName: `${account.displayName} on X`,
-          sourceType: "x",
-          category,
-          publishedAt: tweet.created_at ?? now.toISOString(),
-          foundAt: now.toISOString(),
-          imageUrl: placeholderImageForCategory(category, title),
-          trustScore: account.trustScore,
-          saved: false,
-          tags: ["x-post", user.username, category]
-        } satisfies NewsItem;
+        return scoreNewsItem(
+          {
+            id: createNewsId(sourceUrl, title),
+            title,
+            summary,
+            url: sourceUrl,
+            canonicalUrl: canonicalizeUrl(sourceUrl),
+            sourceName: `${account.displayName} on X`,
+            sourceType: "x",
+            category,
+            publishedAt: tweet.created_at ?? now.toISOString(),
+            foundAt: now.toISOString(),
+            imageUrl: placeholderImageForCategory(category, title),
+            trustScore: account.trustScore,
+            freshnessScore: 0,
+            technicalDepthScore: 0,
+            educationalScore: 0,
+            practicalUsefulnessScore: 0,
+            noveltyScore: 0,
+            finalScore: 0,
+            saved: false,
+            tags: ["x-post", user.username, category],
+            keyClaims: [],
+            whyItMatters: ""
+          } satisfies NewsItem,
+          now
+        );
       })
     );
 

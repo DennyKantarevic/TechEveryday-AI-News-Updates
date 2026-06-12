@@ -3,6 +3,7 @@ import { TRUSTED_SOURCES } from "@/config/sources";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { classifyCategory } from "@/lib/news/classify";
 import { createNewsId } from "@/lib/news/ids";
+import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate } from "@/lib/news/summarize";
 import type { TrustedSourceConfig } from "@/config/sources";
 import type { NewsItem } from "@/types/news";
@@ -134,23 +135,39 @@ async function fetchFeed(source: RssTrustedSourceConfig, now: Date): Promise<New
         const imageUrl =
           articleImageUrl(item, source) ?? placeholderImageForCategory(category, title);
 
-        return {
-          id: createNewsId(url, title),
-          title,
-          summary,
-          url,
-          sourceName: source.name,
-          sourceType: source.sourceType,
-          category,
-          publishedAt,
-          foundAt: now.toISOString(),
-          imageUrl,
-          trustScore: source.trustScore,
-          saved: false,
-          tags: Array.from(
-            new Set([category, ...(source.discoveryOnly ? ["discovery"] : []), ...(item.categories ?? [])])
-          ).slice(0, 6)
-        } satisfies NewsItem;
+        return scoreNewsItem(
+          {
+            id: createNewsId(url, title),
+            title,
+            summary,
+            url,
+            canonicalUrl: canonicalizeUrl(url),
+            sourceName: source.name,
+            sourceType: source.sourceType,
+            category,
+            publishedAt,
+            foundAt: now.toISOString(),
+            imageUrl,
+            trustScore: source.trustScore,
+            freshnessScore: 0,
+            technicalDepthScore: 0,
+            educationalScore: 0,
+            practicalUsefulnessScore: 0,
+            noveltyScore: 0,
+            finalScore: 0,
+            saved: false,
+            tags: Array.from(
+              new Set([
+                category,
+                ...(source.discoveryOnly ? ["discovery"] : []),
+                ...(item.categories ?? [])
+              ])
+            ).slice(0, 6),
+            keyClaims: [],
+            whyItMatters: ""
+          } satisfies NewsItem,
+          now
+        );
       })
     );
 
