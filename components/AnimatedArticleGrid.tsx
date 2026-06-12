@@ -29,9 +29,6 @@ export default function AnimatedArticleGrid({
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? false : "hidden"}
-      whileInView={shouldReduceMotion ? undefined : "visible"}
-      viewport={{ once: false, amount: 0.5, margin: "0px 0px -12% 0px" }}
       variants={shouldReduceMotion ? undefined : articleGridVariants}
       {...props}
     >

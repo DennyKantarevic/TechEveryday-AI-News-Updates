@@ -59,7 +59,7 @@ vi.mock("framer-motion", async () => {
 });
 
 describe("scroll animation wrappers", () => {
-  it("slides section headers from alternating sides as they enter the viewport", () => {
+  it("keeps section headers as parent-controlled slide children", () => {
     render(
       <AnimatedSectionHeader direction="left" data-testid="animated-header">
         <h2>Artificial Intelligence / Machine Learning</h2>
@@ -69,13 +69,13 @@ describe("scroll animation wrappers", () => {
     const header = screen.getByTestId("animated-header");
 
     expect(header).toHaveAttribute("data-custom", "-1");
-    expect(Number(header.getAttribute("data-viewport-amount"))).toBeGreaterThanOrEqual(0.55);
-    expect(header).toHaveAttribute("data-viewport-margin", "0px 0px -12% 0px");
-    expect(header).toHaveAttribute("data-viewport-once", "false");
-    expect(header).toHaveAttribute("data-while-in-view", "visible");
+    expect(header).toHaveAttribute("data-viewport-amount", "");
+    expect(header).toHaveAttribute("data-viewport-margin", "");
+    expect(header).toHaveAttribute("data-viewport-once", "");
+    expect(header).toHaveAttribute("data-while-in-view", "");
   });
 
-  it("delays article grid children until the header animation can settle", () => {
+  it("keeps article grid children parent-controlled and delayed until the header settles", () => {
     render(
       <AnimatedArticleGrid data-testid="animated-grid">
         <article>First card</article>
@@ -85,8 +85,10 @@ describe("scroll animation wrappers", () => {
 
     const grid = screen.getByTestId("animated-grid");
 
-    expect(Number(grid.getAttribute("data-viewport-amount"))).toBeGreaterThanOrEqual(0.45);
-    expect(grid).toHaveAttribute("data-viewport-once", "false");
+    expect(grid).toHaveAttribute("data-viewport-amount", "");
+    expect(grid).toHaveAttribute("data-viewport-margin", "");
+    expect(grid).toHaveAttribute("data-viewport-once", "");
+    expect(grid).toHaveAttribute("data-while-in-view", "");
     expect(Number(grid.getAttribute("data-delay-children"))).toBeGreaterThanOrEqual(0.5);
     expect(Number(grid.getAttribute("data-stagger-children"))).toBeGreaterThan(0);
   });

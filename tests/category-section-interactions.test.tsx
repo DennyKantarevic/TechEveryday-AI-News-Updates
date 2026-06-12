@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom/vitest";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import CategorySection from "@/components/CategorySection";
@@ -22,12 +23,19 @@ vi.mock("framer-motion", async () => {
     motion: {
       section: ({
         children,
+        animate,
         initial,
-        whileInView,
-        viewport,
+        variants,
         ...props
       }: React.HTMLAttributes<HTMLElement> & Record<string, unknown>) => (
-        <section {...props}>{children}</section>
+        <section
+          data-animate={String(animate ?? "")}
+          data-has-section-variants={String(Boolean(variants))}
+          data-initial={String(initial ?? "")}
+          {...props}
+        >
+          {children}
+        </section>
       ),
       div: ({
         children,
@@ -38,10 +46,17 @@ vi.mock("framer-motion", async () => {
         custom,
         ...props
       }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => (
-        <div {...props}>{children}</div>
+        <div
+          data-has-child-variants={String(Boolean(variants))}
+          data-while-in-view={String(whileInView ?? "")}
+          {...props}
+        >
+          {children}
+        </div>
       )
     },
-    useReducedMotion: () => true
+    useInView: () => true,
+    useReducedMotion: () => false
   };
 });
 
@@ -72,5 +87,30 @@ describe("CategorySection interaction tracking", () => {
     render(<CategorySection category={category} items={[item]} />);
 
     expect(trackCategoryVisited).toHaveBeenCalledWith("cloud-infrastructure");
+  });
+
+  it("uses one parent animation state so cards cannot miss their viewport trigger", () => {
+    const category = CATEGORIES.find((entry) => entry.id === "cloud-infrastructure");
+
+    if (!category) {
+      throw new Error("Expected cloud category fixture");
+    }
+
+    render(<CategorySection category={category} items={[item]} />);
+
+    const section = screen.getByTestId("category-section-cloud-infrastructure");
+    const animatedChildren = screen.getAllByText(item.title)[0].closest("section")?.querySelectorAll(
+      "[data-has-child-variants='true']"
+    );
+
+    expect(section).toHaveAttribute("data-initial", "hidden");
+    expect(section).toHaveAttribute("data-animate", "visible");
+    expect(section).toHaveAttribute("data-has-section-variants", "true");
+    expect(animatedChildren?.length).toBeGreaterThanOrEqual(2);
+    expect(
+      Array.from(animatedChildren ?? []).some(
+        (child) => child.getAttribute("data-while-in-view") === "visible"
+      )
+    ).toBe(false);
   });
 });

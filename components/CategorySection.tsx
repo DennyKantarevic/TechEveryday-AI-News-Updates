@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 import AnimatedArticleGrid from "@/components/AnimatedArticleGrid";
 import AnimatedSectionHeader from "@/components/AnimatedSectionHeader";
 import NewsCard from "@/components/NewsCard";
@@ -9,6 +10,11 @@ import { trackCategoryVisited } from "@/lib/interactions";
 import type { NewsItem } from "@/types/news";
 
 type Category = (typeof CATEGORIES)[number];
+
+const sectionVariants: Variants = {
+  hidden: {},
+  visible: {}
+};
 
 export default function CategorySection({
   category,
@@ -19,6 +25,13 @@ export default function CategorySection({
 }) {
   const categoryIndex = CATEGORIES.findIndex((current) => current.id === category.id);
   const entranceDirection = categoryIndex % 2 === 0 ? "left" : "right";
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const isInView = useInView(sectionRef, {
+    amount: "some",
+    margin: "0px 0px -12% 0px"
+  });
+  const animationState = shouldReduceMotion || isInView ? "visible" : "hidden";
 
   useEffect(() => {
     if (items.length) {
@@ -31,7 +44,14 @@ export default function CategorySection({
   }
 
   return (
-    <section className="scroll-mt-40 pt-4">
+    <motion.section
+      ref={sectionRef}
+      variants={shouldReduceMotion ? undefined : sectionVariants}
+      initial={shouldReduceMotion ? false : "hidden"}
+      animate={animationState}
+      data-testid={`category-section-${category.id}`}
+      className="scroll-mt-40 pt-4"
+    >
       <AnimatedSectionHeader
         direction={entranceDirection}
         className="mb-8 flex flex-col gap-5 border-b-2 border-ink pb-5 pt-2 md:grid md:grid-cols-[minmax(0,1fr)_minmax(16rem,34rem)] md:items-end md:gap-8"
@@ -53,6 +73,6 @@ export default function CategorySection({
           <NewsCard key={item.id} item={item} staggeredEntrance />
         ))}
       </AnimatedArticleGrid>
-    </section>
+    </motion.section>
   );
 }
