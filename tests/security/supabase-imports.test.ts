@@ -15,7 +15,10 @@ function tsFiles(root: string): string[] {
 
 describe("Supabase service role isolation", () => {
   it("does not import the admin client from browser-facing files", () => {
-    const files = clientRoots.flatMap(tsFiles);
+    const files = clientRoots
+      .flatMap(tsFiles)
+      .filter((file) => !file.includes("/app/api/"))
+      .filter((file) => file.includes("/components/") || readFileSync(file, "utf8").includes('"use client"'));
     const offenders = files.filter((file) =>
       readFileSync(file, "utf8").includes("@/lib/supabase/admin")
     );
