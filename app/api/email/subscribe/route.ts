@@ -11,7 +11,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const subscribeSchema = z.object({
-  subscribed: z.boolean()
+  email: z.string().trim().email().optional(),
+  subscribed: z.boolean().default(true)
 });
 
 function confirmationEmailHtml(confirmUrl: string) {
@@ -29,18 +30,30 @@ function confirmationEmailHtml(confirmUrl: string) {
 
 export async function POST(request: NextRequest) {
   const { supabase, user } = await getCurrentUser();
-
-  if (!supabase || !user?.email) {
-    return NextResponse.json({ error: "Authentication required." }, { status: 401 });
-  }
-
   const parsed = subscribeSchema.safeParse(await request.json().catch(() => ({})));
 
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid subscription request." }, { status: 400 });
+    return NextResponse.json(
+      { message: "Enter a valid email address." },
+      { status: 400 }
+    );
+  }
+
+  const subscriptionEmail = parsed.data.email ?? user?.email ?? "";
+  const userId = user?.id ?? null;
+
+  if (!subscriptionEmail) {
+    return NextResponse.json(
+      { message: "Enter a valid email address." },
+      { status: 400 }
+    );
   }
 
   if (!parsed.data.subscribed) {
+    if (!supabase || !user) {
+      return NextResponse.json({ message: "Sign in to update account email settings." }, { status: 401 });
+    }
+
     await supabase
       .from("newsletter_subscriptions")
       .update({ subscribed: false, unsubscribed_at: new Date().toISOString() })
@@ -50,7 +63,11 @@ export async function POST(request: NextRequest) {
       .update({ email_subscribed: false })
       .eq("user_id", user.id);
 
-    return NextResponse.json({ ok: true, subscribed: false });
+    return NextResponse.json({
+      ok: true,
+      subscribed: false,
+      message: "Daily email updates are turned off."
+    });
   }
 
   const confirmationToken = createSecureToken();
@@ -58,34 +75,61 @@ export async function POST(request: NextRequest) {
   const confirmationUrl = appUrl(`/api/email/confirm?token=${encodeURIComponent(
     confirmationToken
   )}`);
-  const admin = createAdminSupabaseClient();
 
-  const { error } = await admin.from("newsletter_subscriptions").upsert(
-    {
-      user_id: user.id,
-      email: user.email,
-      subscribed: false,
-      confirmed_at: null,
-      unsubscribed_at: null,
-      confirmation_token_hash: hashToken(confirmationToken),
-      unsubscribe_token_hash: hashToken(unsubscribeToken)
-    },
-    { onConflict: "email" }
-  );
+  try {
+    const admin = createAdminSupabaseClient();
+    const { error } = await admin.from("newsletter_subscriptions").upsert(
+      {
+        ...(userId ? { user_id: userId } : {}),
+        email: subscriptionEmail,
+        subscribed: false,
+        confirmed_at: null,
+        unsubscribed_at: null,
+        confirmation_token_hash: hashToken(confirmationToken),
+        unsubscribe_token_hash: hashToken(unsubscribeToken)
+      },
+      { onConflict: "email" }
+    );
 
-  if (error) {
-    return NextResponse.json({ error: "Could not create subscription." }, { status: 500 });
+    if (error) {
+      return NextResponse.json(
+        { message: "Could not start email confirmation." },
+        { status: 500 }
+      );
+    }
+
+    if (supabase && user) {
+      await supabase
+        .from("user_preferences")
+        .update({ email_subscribed: false })
+        .eq("user_id", user.id);
+    }
+
+    const resend = createResendClient();
+    const result = await resend.emails.send({
+      from: emailFromAddress(),
+      to: subscriptionEmail,
+      subject: "Confirm TechEveryday daily updates",
+      html: confirmationEmailHtml(confirmationUrl),
+      text: `Confirm TechEveryday daily updates: ${confirmationUrl}`
+    });
+
+    if (result.error) {
+      return NextResponse.json(
+        { message: "Email provider rejected the confirmation email." },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({
+      ok: true,
+      confirmationRequired: true,
+      message: "Check your email to confirm your TechEveryday subscription."
+    });
+  } catch {
+    return NextResponse.json(
+      { message: "Email confirmation is not configured yet." },
+      { status: 503 }
+    );
   }
-
-  const resend = createResendClient();
-
-  await resend.emails.send({
-    from: emailFromAddress(),
-    to: user.email,
-    subject: "Confirm TechEveryday daily updates",
-    html: confirmationEmailHtml(confirmationUrl),
-    text: `Confirm TechEveryday daily updates: ${confirmationUrl}`
-  });
-
-  return NextResponse.json({ ok: true, confirmationRequired: true });
 }

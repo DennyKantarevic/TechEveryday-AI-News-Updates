@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import BrandWordmark from "@/components/BrandWordmark";
+import NewsletterSignupForm from "@/components/newsletter/NewsletterSignupForm";
 import StickyHeader from "@/components/StickyHeader";
 import { signUpWithMagicLink } from "@/lib/auth/actions";
 
@@ -25,6 +26,7 @@ export default function SignupPage() {
               We store your email for login/subscriptions, saved articles, preferences, and
               optional reading signals used for For You recommendations.
             </p>
+            <NewsletterSignupForm />
           </div>
 
           <form action={signUpWithMagicLink} className="border-2 border-ink bg-bone p-5">

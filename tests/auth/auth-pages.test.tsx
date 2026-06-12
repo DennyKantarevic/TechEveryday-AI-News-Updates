@@ -35,6 +35,8 @@ describe("auth pages", () => {
 
     expect(screen.getByRole("heading", { name: /Create account/i })).toBeInTheDocument();
     expect(screen.getByText(/Supabase Auth/i)).toBeInTheDocument();
+    expect(screen.getByText(/Get the daily research brief after confirming/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Confirm email/i })).toBeInTheDocument();
   });
 
   it("shows sign in when no user is loaded", async () => {

@@ -18,16 +18,14 @@ export default function EmailSubscriptionToggle({ subscribed }: { subscribed: bo
         body: JSON.stringify({ subscribed: nextValue })
       });
 
+      const body = (await response.json().catch(() => ({}))) as { message?: string };
+
       if (!response.ok) {
-        throw new Error("Subscription update failed.");
+        throw new Error(body.message || "Subscription update failed.");
       }
 
       setIsSubscribed(nextValue);
-      setMessage(
-        nextValue
-          ? "Check your email to confirm daily updates before we send anything."
-          : "Daily email updates are turned off."
-      );
+      setMessage(body.message || "Daily email settings were updated.");
     } catch {
       setMessage("We could not update email settings right now.");
     } finally {
