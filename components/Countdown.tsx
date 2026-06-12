@@ -1,32 +1,38 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { formatCountdown, getNextRefreshAt } from "@/lib/time";
 
+const COUNTDOWN_PLACEHOLDER = "--h --m --s";
+const LAST_REFRESH_PLACEHOLDER = "loading";
+
 export default function Countdown({
-  initialNextRefreshAt,
   lastRefreshAt
 }: {
-  initialNextRefreshAt: string;
   lastRefreshAt?: string | null;
 }) {
-  const [nextRefreshAt, setNextRefreshAt] = useState(() => new Date(initialNextRefreshAt));
-  const [now, setNow] = useState(() => new Date());
+  const [countdownText, setCountdownText] = useState(COUNTDOWN_PLACEHOLDER);
+  const [lastRefreshText, setLastRefreshText] = useState(LAST_REFRESH_PLACEHOLDER);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
+    function updateCountdown() {
       const current = new Date();
       const next = getNextRefreshAt(current);
-      setNow(current);
-      setNextRefreshAt(next);
-    }, 1000);
+      setCountdownText(formatCountdown(next.getTime() - current.getTime()));
+    }
+
+    setLastRefreshText(
+      lastRefreshAt ? new Date(lastRefreshAt).toLocaleString() : "not yet run"
+    );
+    updateCountdown();
+
+    const id = window.setInterval(updateCountdown, 1000);
 
     return () => window.clearInterval(id);
-  }, []);
-
-  const remaining = nextRefreshAt.getTime() - now.getTime();
+  }, [lastRefreshAt]);
 
   return (
     <motion.aside
@@ -43,13 +49,12 @@ export default function Countdown({
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em]">Next refresh</p>
           <p className="mt-1 font-mono text-2xl font-black tabular-nums">
-            {formatCountdown(remaining)}
+            {countdownText}
           </p>
         </div>
       </div>
       <p className="mt-4 border-t border-ink/20 pt-3 text-xs leading-5 text-ink/70">
-        Runs at 7:00 AM America/New_York. Last refresh:{" "}
-        {lastRefreshAt ? new Date(lastRefreshAt).toLocaleString() : "not yet run"}.
+        {`Runs at 7:00 AM America/New_York. Last refresh: ${lastRefreshText}.`}
       </p>
     </motion.aside>
   );

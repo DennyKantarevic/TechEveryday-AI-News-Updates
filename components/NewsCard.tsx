@@ -1,11 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Bookmark, Check, ExternalLink, ShieldCheck, Trash2 } from "lucide-react";
-import { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { CATEGORY_BY_ID } from "@/config/categories";
+import {
+  trackArticleOpened,
+  trackArticleSaved,
+  trackArticleViewed,
+  trackGallerySaved
+} from "@/lib/interactions";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import type { NewsItem } from "@/types/news";
+
+const cardEntranceVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 26
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+function formatPublishedDate(value: string) {
+  const publishedAt = new Date(value);
+
+  if (Number.isNaN(publishedAt.getTime())) {
+    return "Invalid Date";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/New_York"
+  }).format(publishedAt);
+}
 
 function sourceLabel(type: NewsItem["sourceType"]) {
   if (type === "x") {
@@ -26,12 +59,15 @@ function sourceLabel(type: NewsItem["sourceType"]) {
 export default function NewsCard({
   item,
   mode = "newsletter",
-  onRemove
+  onRemove,
+  staggeredEntrance = false
 }: {
   item: NewsItem;
   mode?: "newsletter" | "gallery";
   onRemove?: (id: string) => Promise<void> | void;
+  staggeredEntrance?: boolean;
 }) {
+  const shouldReduceMotion = useReducedMotion();
   const [saved, setSaved] = useState(item.saved);
   const [busy, setBusy] = useState(false);
   const fallbackImage = useMemo(
@@ -43,7 +79,15 @@ export default function NewsCard({
       ? item.imageUrl
       : fallbackImage
   );
+  const publishedDate = useMemo(
+    () => formatPublishedDate(item.publishedAt),
+    [item.publishedAt]
+  );
   const category = CATEGORY_BY_ID[item.category];
+
+  useEffect(() => {
+    trackArticleViewed(item);
+  }, [item]);
 
   async function saveItem() {
     setBusy(true);
@@ -56,6 +100,8 @@ export default function NewsCard({
 
       if (response.ok) {
         setSaved(true);
+        trackArticleSaved(item);
+        trackGallerySaved(item);
       }
     } finally {
       setBusy(false);
@@ -77,11 +123,11 @@ export default function NewsCard({
 
   return (
     <motion.article
-      layout
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.35 }}
+      layout={!shouldReduceMotion}
+      variants={cardEntranceVariants}
+      initial={staggeredEntrance ? undefined : shouldReduceMotion ? false : "hidden"}
+      whileInView={staggeredEntrance || shouldReduceMotion ? undefined : "visible"}
+      viewport={staggeredEntrance || shouldReduceMotion ? undefined : { once: true, margin: "-80px" }}
       className="card-frame flex h-full flex-col overflow-hidden rounded-sm"
     >
       <div className="image-crosshatch relative aspect-[16/9] overflow-hidden border-b-2 border-ink">
@@ -106,7 +152,7 @@ export default function NewsCard({
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-3 text-xs font-bold uppercase tracking-[0.12em] text-ink/70">
           <span>{item.sourceName}</span>
-          <span>{new Date(item.publishedAt).toLocaleDateString()}</span>
+          <span>{publishedDate}</span>
         </div>
         <h3 className="mt-3 font-display text-2xl font-black leading-tight">
           {item.title}
@@ -130,6 +176,7 @@ export default function NewsCard({
             href={item.url}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackArticleOpened(item)}
             className="inline-flex min-h-11 items-center justify-center gap-2 border-2 border-ink bg-ink px-3 py-2 text-sm font-black text-white transition hover:bg-white hover:text-ink"
           >
             Original <ExternalLink size={16} strokeWidth={2.6} />

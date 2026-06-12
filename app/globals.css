@@ -21,10 +21,16 @@ body {
   margin: 0;
   color: #111111;
   background:
-    linear-gradient(rgba(17, 17, 17, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.02) 1px, transparent 1px),
+    repeating-linear-gradient(
+      180deg,
+      rgba(17, 17, 17, 0.045) 0,
+      rgba(17, 17, 17, 0.045) 1px,
+      transparent 1px,
+      transparent 34px
+    ),
+    linear-gradient(90deg, rgba(255, 250, 240, 0.68), rgba(243, 234, 219, 0.94)),
     #f3eadb;
-  background-size: 42px 42px;
+  background-attachment: fixed;
   font-family: var(--font-sans);
   letter-spacing: 0;
 }
@@ -105,4 +111,19 @@ select {
     linear-gradient(135deg, rgba(17, 17, 17, 0.08) 25%, transparent 25%) -8px 0 / 16px 16px,
     linear-gradient(225deg, rgba(17, 17, 17, 0.08) 25%, transparent 25%) -8px 0 / 16px 16px,
     #fffaf0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

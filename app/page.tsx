@@ -5,7 +5,6 @@ import HeroTitle from "@/components/HeroTitle";
 import StickyHeader from "@/components/StickyHeader";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
 import { fileStorage } from "@/lib/storage";
-import { getNextRefreshAt } from "@/lib/time";
 
 export const dynamic = "force-dynamic";
 
@@ -15,8 +14,6 @@ export default async function HomePage() {
     fileStorage.readGallery(),
     fileStorage.readLastRefresh()
   ]);
-  const nextRefreshAt = getNextRefreshAt().toISOString();
-
   return (
     <>
       <StickyHeader />
@@ -36,10 +33,7 @@ export default async function HomePage() {
                 refreshed for the 7:00 AM America/New_York reading window.
               </p>
             </div>
-            <Countdown
-              initialNextRefreshAt={nextRefreshAt}
-              lastRefreshAt={lastRefresh.refreshedAt}
-            />
+            <Countdown lastRefreshAt={lastRefresh.refreshedAt} />
           </div>
         </section>
 
