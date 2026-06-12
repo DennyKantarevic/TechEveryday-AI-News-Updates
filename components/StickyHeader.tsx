@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bookmark, BookOpen, Newspaper, Sparkles } from "lucide-react";
+import AuthButton from "@/components/AuthButton";
 import BrandWordmark from "@/components/BrandWordmark";
 
 export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
@@ -60,16 +61,19 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
         >
           <BrandWordmark />
         </div>
-        <Link
-          href="/gallery"
-          className="inline-flex h-10 items-center justify-center gap-2 border-2 border-ink bg-white px-2 transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#111] md:px-3"
-          aria-label="Gallery"
-        >
-          <Bookmark size={18} strokeWidth={2.5} />
-          <span className="hidden text-xs font-black uppercase tracking-[0.12em] lg:inline">
-            Gallery
-          </span>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/gallery"
+            className="inline-flex h-10 items-center justify-center gap-2 border-2 border-ink bg-white px-2 transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#111] md:px-3"
+            aria-label="Gallery"
+          >
+            <Bookmark size={18} strokeWidth={2.5} />
+            <span className="hidden text-xs font-black uppercase tracking-[0.12em] lg:inline">
+              Gallery
+            </span>
+          </Link>
+          <AuthButton />
+        </div>
       </div>
     </motion.header>
   );
