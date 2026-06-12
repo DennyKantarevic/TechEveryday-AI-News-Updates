@@ -1,0 +1,795 @@
+{
+  "refreshedAt": "2026-06-12T00:09:11.536Z",
+  "timezone": "America/New_York",
+  "categories": {
+    "ai-ml": [
+      {
+        "id": "77acfaa80127542b472c5220fbae4f789d12333f",
+        "title": "Supporting Europe’s work in ensuring a trustworthy AI ecosystem",
+        "summary": "OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.",
+        "url": "https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-11T00:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ESupporting%20Europe%E2%80%99s%20work%20in%20ensuring%20a%20trustworthy%20AI%20ecosystem%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Global Affairs"
+        ]
+      },
+      {
+        "id": "7ff09c61ac5284b61c37838681aca37dbf1469af",
+        "title": "How an astrophysicist uses Codex to help simulate black holes",
+        "summary": "Discover how astrophysicist Chi-kwan Chan uses Codex to build black hole simulations, helping scientists study extreme physics and test Einstein’s theory of general relativity.",
+        "url": "https://openai.com/index/using-codex-to-simulate-black-holes",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-11T00:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20an%20astrophysicist%20uses%20Codex%20to%20help%20simulate%20black%20holes%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Applied AI"
+        ]
+      },
+      {
+        "id": "4685ec3a87c9113811b3a539125bcc96439b6ddd",
+        "title": "BBVA puts AI at the core of banking with OpenAI",
+        "summary": "Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.",
+        "url": "https://openai.com/index/bbva",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-11T00:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EBBVA%20puts%20AI%20at%20the%20core%20of%20banking%20with%20OpenAI%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "ai-ml"
+        ]
+      },
+      {
+        "id": "9704de9ef52fe1224405dfd4167578825d9551fd",
+        "title": "Access OpenAI models and Codex through your Oracle cloud commitment",
+        "summary": "Access OpenAI models and Codex through Oracle Cloud, using existing commitments to build and deploy AI with enterprise security and governance.",
+        "url": "https://openai.com/index/openai-on-oracle-cloud",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-10T20:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b98237%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b98237%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAI%20%2F%20ML%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAccess%20OpenAI%20models%20and%20Codex%20through%20your%20Oracle%20cloud%20commitment%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Company"
+        ]
+      },
+      {
+        "id": "06c83bfd5652a88b329528406d64d88305343470",
+        "title": "New framework for auditing machine unlearning",
+        "summary": "Algorithms & Theory",
+        "url": "https://research.google/blog/new-framework-for-auditing-machine-unlearning/",
+        "sourceName": "Google Research Blog",
+        "sourceType": "official",
+        "category": "ai-ml",
+        "publishedAt": "2026-06-10T17:34:55.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/f-Divergence-hero.png",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "ai-ml",
+          "Algorithms & Theory",
+          "Responsible AI",
+          "Security, Privacy and Abuse Prevention"
+        ]
+      }
+    ],
+    "automation-agentic-systems": [
+      {
+        "id": "a52f16f2d3cdf27c03902239cafa47f021bf31a5",
+        "title": "OpenAI to acquire Ona",
+        "summary": "OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.",
+        "url": "https://openai.com/index/openai-to-acquire-ona",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-06-11T00:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%2360715f%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EOpenAI%20to%20acquire%20Ona%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems",
+          "Company"
+        ]
+      },
+      {
+        "id": "f3276a36346b1d5de07dba37a884692781bb2fec",
+        "title": "Unlocking dependable responses with Gemini Enterprise Agent Platform’s Agentic RAG",
+        "summary": "Data Management",
+        "url": "https://research.google/blog/unlocking-dependable-responses-with-gemini-enterprise-agent-platforms-agentic-rag/",
+        "sourceName": "Google Research Blog",
+        "sourceType": "official",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-06-05T11:26:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/AgenticRAG_Cover.png",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems",
+          "Data Management",
+          "Machine Intelligence",
+          "Natural Language Processing",
+          "Product"
+        ]
+      },
+      {
+        "id": "69b95669d5308461673e34e13a68b9bef423936f",
+        "title": "How Endava is redesigning software delivery around AI agents",
+        "summary": "Learn how Endava is using AI agents, ChatGPT Enterprise, and Codex to accelerate software delivery, automate workflows, and build an AI-native culture across the enterprise.",
+        "url": "https://openai.com/index/endava-frontiers",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-06-04T12:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%2360715f%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%2360715f%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EAutomation%20%2F%20Agentic%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20Endava%20is%20redesigning%20software%20delivery%20around%20AI%20agents%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems"
+        ]
+      },
+      {
+        "id": "81ace5465c8a6564f8b3f278183664bc9f77227f",
+        "title": "Defining Autonomy for Wellness Robots in Senior Care",
+        "summary": "An examination of how socially assistive wellness robots could support the seven dimensions of senior wellness, and how a framework can measure their autonomy. What Attendees will Learn Why the senior care crisis exceeds incremental automation. Demographic pressure, workforce shortages, and a daily wellness-programming gap all strain traditional care models.",
+        "url": "https://content.knowledgehub.wiley.com/wellness-robots-and-the-path-to-full-autonomy-a-new-paradigm-in-ai-powered-senior-care/",
+        "sourceName": "IEEE Spectrum",
+        "sourceType": "news",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-06-11T10:00:01.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://assets.rbl.ms/66892687/origin.png",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems",
+          "Type-whitepaper",
+          "Wellness-robots",
+          "Autonomous-robots",
+          "Robotics"
+        ]
+      },
+      {
+        "id": "feba50bbddeab7ac42724ca5d858a16f038cadba",
+        "title": "Data Formulator 0.7: AI-powered data analytics for enterprise data",
+        "summary": "Data Formulator introduces AI-powered analytics for enterprise data workflows. Data teams can easily bring enterprise data into an AI-ready workspace where users can explore, analyze, and visualize data with AI agents to turn raw data into actionable insights. 7: AI-powered data analytics for enterprise data appeared first on Microsoft Research.",
+        "url": "https://www.microsoft.com/en-us/research/blog/data-formulator-0-7-ai-powered-data-analytics-for-enterprise-data/",
+        "sourceName": "Microsoft Research Blog",
+        "sourceType": "official",
+        "category": "automation-agentic-systems",
+        "publishedAt": "2026-05-28T16:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/05/DataFormulator-BlogHeroFeature-1400x788-1-scaled.jpg",
+        "trustScore": 0.91,
+        "saved": false,
+        "tags": [
+          "automation-agentic-systems",
+          "Research Blog"
+        ]
+      }
+    ],
+    "research-papers": [
+      {
+        "id": "93d5c395ebfbf44714eadcc895b77c2ab6d13b92",
+        "title": "Introducing the OpenAI Economic Research Exchange",
+        "summary": "OpenAI launches the Economic Research Exchange to study AI’s impact on jobs, productivity, and the economy. Applications are now open for selected research projects.",
+        "url": "https://openai.com/index/economic-research-exchange",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "research-papers",
+        "publishedAt": "2026-06-08T00:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23111111%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EIntroducing%20the%20OpenAI%20Economic%20Research%20Exchange%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "research-papers",
+          "Company"
+        ]
+      },
+      {
+        "id": "c30516a5936d208c1718960e1eb4e5426bcea289",
+        "title": "Towards passive heart health monitoring via smartphone camera",
+        "summary": "Health & Bioscience",
+        "url": "https://research.google/blog/towards-passive-heart-health-monitoring-via-smartphone-camera/",
+        "sourceName": "Google Research Blog",
+        "sourceType": "official",
+        "category": "research-papers",
+        "publishedAt": "2026-06-04T19:47:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/rPPG-2-final.png",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "research-papers",
+          "Health & Bioscience",
+          "Human-Computer Interaction and Visualization",
+          "Machine Intelligence"
+        ]
+      },
+      {
+        "id": "a2a207ec6736941f29302a3dc89b5c5a4fb14266",
+        "title": "Dreaming: Better memory for a more helpful ChatGPT",
+        "summary": "ChatGPT introduces a new memory system to better remember preferences, keeping context fresh and relevant across conversations.",
+        "url": "https://openai.com/index/chatgpt-memory-dreaming",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "research-papers",
+        "publishedAt": "2026-06-04T09:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23111111%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EResearch%20Papers%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EDreaming%3A%20Better%20memory%20for%20a%20more%20helpful%20ChatGPT%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "research-papers",
+          "Research"
+        ]
+      },
+      {
+        "id": "071aa97b898984c0d3c7db138ca92b8bac695b4e",
+        "title": "Why Orbital Data Centers Are Harder Than Silicon Valley Thinks",
+        "summary": "“Space computing, the final frontier, has arrived,” Nvidia CEO Jensen Huang declared at the Nvidia GTC conference in March. Indeed, the idea of data centers in orbit has gone from science fiction to a serious spending category. Elon Musk’s SpaceX has acquired xAI (also Musk’s) and is planning a constellation of space-based data centers.",
+        "url": "https://spectrum.ieee.org/orbital-data-centers-heat",
+        "sourceName": "IEEE Spectrum",
+        "sourceType": "news",
+        "category": "research-papers",
+        "publishedAt": "2026-06-11T13:00:02.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://spectrum.ieee.org/media-library/globe-surrounded-by-zeroes-and-ones-on-a-blue-background.png?id=66895710&width=980",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "research-papers",
+          "Orbital-data-centers",
+          "Radiative-cooling",
+          "Thermal-management",
+          "Solar-energy"
+        ]
+      },
+      {
+        "id": "0f11615a1aac29de480c69b31e727cd59fed2377",
+        "title": "Private analytics via zero-trust aggregation",
+        "summary": "Security, Privacy and Abuse Prevention",
+        "url": "https://research.google/blog/private-analytics-via-zero-trust-aggregation/",
+        "sourceName": "Google Research Blog",
+        "sourceType": "official",
+        "category": "research-papers",
+        "publishedAt": "2026-05-27T16:56:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://storage.googleapis.com/gweb-research2023-media/original_images/Private_analytics_via_zero-trust_aggregation_hero_1.png",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "research-papers",
+          "Security, Privacy and Abuse Prevention"
+        ]
+      }
+    ],
+    "embedded-systems": [
+      {
+        "id": "044d508205afbcbb1b983e3c0ab99220bb33349e",
+        "title": "NVIDIA Jetson Brings Agentic AI to the Physical World",
+        "summary": "Agentic AI is getting physical. 2 and NVIDIA NemoClaw support on NVIDIA Jetson.",
+        "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
+        "sourceName": "NVIDIA Blog",
+        "sourceType": "official",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-02T02:00:40.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://blogs.nvidia.com/wp-content/uploads/2026/06/robotics-press-jetson-agentic-ready-cptx26-1920x1080-5180550.jpg",
+        "trustScore": 0.89,
+        "saved": false,
+        "tags": [
+          "embedded-systems",
+          "AI",
+          "Hardware",
+          "Robotics",
+          "Agentic AI",
+          "Jetson"
+        ]
+      },
+      {
+        "id": "b8e08eae9c2c04a31c8a9648109fc66855f2cd0b",
+        "title": "Direct-to-Cell Technology: Enabling Satellite Connectivity for Legacy Devices",
+        "summary": "Direct-to-cell technology uses LEO satellites as spaceborne cell towers. It delivers LTE services to existing smartphones without hardware changes, bridging global coverage gaps. What Attendees will Learn How DTC works as a spaceborne cell tower — LEO satellites carry LTE eNodeB payloads in regenerative mode.",
+        "url": "https://content.knowledgehub.wiley.com/direct-to-cell-technology-enabling-satellite-connectivity-for-legacy-devices/",
+        "sourceName": "IEEE Spectrum",
+        "sourceType": "news",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-02T10:00:02.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://assets.rbl.ms/66784674/origin.png",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "embedded-systems",
+          "Type-whitepaper",
+          "Direct-to-cell",
+          "Doppler-shift",
+          "Satellites"
+        ]
+      },
+      {
+        "id": "starter-embedded-systems-mit-technology-review",
+        "title": "MIT Technology Review trusted Embedded Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://www.technologyreview.com",
+        "sourceName": "MIT Technology Review",
+        "sourceType": "news",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b35b43%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EEmbedded%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EMIT%20Technology%20Review%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "starter",
+          "embedded-systems"
+        ]
+      },
+      {
+        "id": "starter-embedded-systems-ieee-spectrum",
+        "title": "IEEE Spectrum trusted Embedded Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://spectrum.ieee.org",
+        "sourceName": "IEEE Spectrum",
+        "sourceType": "news",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b35b43%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EEmbedded%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EIEEE%20Spectrum%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "starter",
+          "embedded-systems"
+        ]
+      },
+      {
+        "id": "starter-embedded-systems-nvidia-blog",
+        "title": "NVIDIA Blog trusted Embedded Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://blogs.nvidia.com",
+        "sourceName": "NVIDIA Blog",
+        "sourceType": "official",
+        "category": "embedded-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23b35b43%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23b35b43%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EEmbedded%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ENVIDIA%20Blog%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.89,
+        "saved": false,
+        "tags": [
+          "starter",
+          "embedded-systems"
+        ]
+      }
+    ],
+    "computer-systems": [
+      {
+        "id": "5160b22f467f12fcc21ca8e00b7acc111de0480d",
+        "title": "Our billing pipeline was suddenly slow. The culprit was a hidden bottleneck in ClickHouse",
+        "summary": "When a partitioning change to our petabyte-scale ClickHouse cluster caused critical billing jobs to stall, standard metrics showed no obvious errors. This post explores how we identified severe lock contention in ClickHouse's query planner and built upstream patches to fix it.",
+        "url": "https://blog.cloudflare.com/clickhouse-query-plan-contention/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "computer-systems",
+        "publishedAt": "2026-05-14T13:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6d3ywoUP3OE2DCRAJtAgF7/5aa62c5702a923e30889ebf787925ae8/BLOG-3299_image4.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "computer-systems",
+          "ClickHouse",
+          "Engineering",
+          "Performance",
+          "Database",
+          "Open Source"
+        ]
+      },
+      {
+        "id": "starter-computer-systems-ars-technica",
+        "title": "Ars Technica trusted Computer Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://arstechnica.com",
+        "sourceName": "Ars Technica",
+        "sourceType": "news",
+        "category": "computer-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%236f5d45%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EComputer%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EArs%20Technica%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.82,
+        "saved": false,
+        "tags": [
+          "starter",
+          "computer-systems"
+        ]
+      },
+      {
+        "id": "starter-computer-systems-ieee-spectrum",
+        "title": "IEEE Spectrum trusted Computer Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://spectrum.ieee.org",
+        "sourceName": "IEEE Spectrum",
+        "sourceType": "news",
+        "category": "computer-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%236f5d45%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EComputer%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EIEEE%20Spectrum%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "starter",
+          "computer-systems"
+        ]
+      },
+      {
+        "id": "starter-computer-systems-communications-of-the-acm",
+        "title": "Communications of the ACM trusted Computer Systems source",
+        "summary": "Starter content keeps this category populated until the daily refresh finds fresh trusted items. Run the refresh job to replace it with source-specific updates.",
+        "url": "https://cacm.acm.org",
+        "sourceName": "Communications of the ACM",
+        "sourceType": "news",
+        "category": "computer-systems",
+        "publishedAt": "2026-06-12T00:09:10.942Z",
+        "foundAt": "2026-06-12T00:09:10.942Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%236f5d45%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%236f5d45%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EComputer%20Systems%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3ECommunications%20of%20the%20ACM%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.86,
+        "saved": false,
+        "tags": [
+          "starter",
+          "computer-systems"
+        ]
+      }
+    ],
+    "developer-tools-open-source": [
+      {
+        "id": "e46fbb2694eb95576ac4cd36966dbb8fd50a028c",
+        "title": "GitHub availability report: May 2026",
+        "summary": "In May, we experienced nine incidents that resulted in degraded performance across GitHub services. The post GitHub availability report: May 2026 appeared first on The GitHub Blog.",
+        "url": "https://github.blog/news-insights/company-news/github-availability-report-may-2026/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "developer-tools-open-source",
+        "publishedAt": "2026-06-11T21:30:15.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20availability%20report%3A%20May%202026%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "developer-tools-open-source",
+          "Company news",
+          "News & insights",
+          "GitHub Availability Report"
+        ]
+      },
+      {
+        "id": "3588239c63a9829db994ab7dad991ed1c7ee877e",
+        "title": "AWS Weekly Roundup: BYOM for Amazon RDS for SQL Server, AWS IoT Device SDK for Swift, and more (June 8, 2026)",
+        "summary": "This week, the AWS IoT Device SDK for Swift reached general availability. As a member of the Swift Server Workgroup (SSWG), this one caught my attention. The SDK brings production-ready MQTT 5 connectivity, Device Shadow, Jobs, and fleet provisioning to Swift developers on macOS, iOS, tvOS, and Linux.",
+        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-byom-for-amazon-rds-for-sql-server-aws-iot-device-sdk-for-swift-and-more-june-8-2026/",
+        "sourceName": "AWS Blog",
+        "sourceType": "official",
+        "category": "developer-tools-open-source",
+        "publishedAt": "2026-06-08T21:27:12.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/05/Gemini_Generated_Image_sdi7hqsdi7hqsdi7-1024x559.jpg",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "developer-tools-open-source",
+          "Amazon Bedrock",
+          "Amazon Bedrock AgentCore",
+          "Amazon Cognito",
+          "Amazon EKS Distro",
+          "Amazon Elastic Container Service"
+        ]
+      },
+      {
+        "id": "72a75300e522607334f681109ba3b7ce72b38e3b",
+        "title": "Give GitHub Copilot CLI real code intelligence with language servers",
+        "summary": "Install and configure LSP servers for GitHub Copilot CLI, replacing brute-force grep/decompile with real code intelligence. The post Give GitHub Copilot CLI real code intelligence with language servers appeared first on The GitHub Blog.",
+        "url": "https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "developer-tools-open-source",
+        "publishedAt": "2026-06-10T16:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGive%20GitHub%20Copilot%20CLI%20real%20code%20intelligence%20with%20language%20servers%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "developer-tools-open-source",
+          "AI & ML",
+          "GitHub Copilot",
+          "GitHub Copilot CLI"
+        ]
+      },
+      {
+        "id": "174262aa0a28f45ed9df74284f3013ccbdb38737",
+        "title": "GitHub for Beginners: Answers to some common questions",
+        "summary": "Find the answers to some of the most common GitHub-related questions. The post GitHub for Beginners: Answers to some common questions appeared first on The GitHub Blog.",
+        "url": "https://github.blog/developer-skills/github/github-for-beginners-answers-to-some-common-questions/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "developer-tools-open-source",
+        "publishedAt": "2026-06-08T16:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%23356b73%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%23356b73%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3EDeveloper%20Tools%20%2F%20Open%20Source%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EGitHub%20for%20Beginners%3A%20Answers%20to%20some%20common%20questions%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "developer-tools-open-source",
+          "Developer skills",
+          "GitHub",
+          "GitHub for beginners"
+        ]
+      },
+      {
+        "id": "8442c65fd797d6a7c97f50baa8e2a18068615d5e",
+        "title": "GitHub Copilot app: The agent-native desktop experience",
+        "summary": "At Microsoft Build 2026, GitHub introduced new tools, updates, and surfaces so agents can work the way you already work. The post GitHub Copilot app: The agent-native desktop experience appeared first on The GitHub Blog.",
+        "url": "https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/",
+        "sourceName": "GitHub Blog",
+        "sourceType": "official",
+        "category": "developer-tools-open-source",
+        "publishedAt": "2026-06-02T17:30:03.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://github.blog/wp-content/uploads/2026/06/CCRPlatform_BlogImage_01.jpg?resize=1024%2C637",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "developer-tools-open-source",
+          "Company news",
+          "News & insights",
+          "Product",
+          "GitHub Copilot",
+          "GitHub Copilot app"
+        ]
+      }
+    ],
+    "cybersecurity": [
+      {
+        "id": "5279f8c2c5d67c26b4bdb465de0c23a68da56d70",
+        "title": "Defend against frontier cyber models: Cloudflare's architecture as customer zero",
+        "summary": "In our post about Project Glasswing, we made the argument that the architecture around a vulnerability matters more than the speed of the patch. Here we walk through what that architecture looks like, the threats it defends against, and how we run it ourselves as Cloudflare's customer zero.",
+        "url": "https://blog.cloudflare.com/frontier-model-defense/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cybersecurity",
+        "publishedAt": "2026-06-09T06:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/5KSSyocxKzsJsOfG4pxOM7/059a597af1b67a3d5a5ccdeda5ab7ca1/image2.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "Security",
+          "AI",
+          "Threat Intelligence",
+          "Risk Management",
+          "Customer Zero"
+        ]
+      },
+      {
+        "id": "921b8e65dc51110fb2831a469270886e6313b164",
+        "title": "Turning Cloudflare’s threat indicators into real-time WAF rules",
+        "summary": "Cloudflare customers can now use Cloudforce One threat intelligence directly within the WAF to block high-risk traffic. intel fields, security teams can automate protection against specific threat actors and targeted industries in real time.",
+        "url": "https://blog.cloudflare.com/realtime-threat-intel-waf-rules/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cybersecurity",
+        "publishedAt": "2026-06-08T13:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1YQOp7XzNrFIHE1HSNhz6b/06d1565243b2902df5a5b294e3e80709/BLOG-3272_image3.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "Security",
+          "WAF",
+          "Threat Intelligence",
+          "Cloudforce One",
+          "Product News"
+        ]
+      },
+      {
+        "id": "5655430d425e80abea0a8511e5f50ac12839ed3e",
+        "title": "Improve your application resilience with Amazon Cognito multi-Region replication",
+        "summary": "Amazon Cognito now offers multi-Region replication that automatically synchronizes user data, credentials, and pool configurations to a secondary AWS Region, enabling uninterrupted authentication during regional failovers without forced password resets—plus new support for customer managed KMS keys for encryption control.",
+        "url": "https://aws.amazon.com/blogs/aws/improve-your-application-resilience-with-amazon-cognito-multi-region-replication/",
+        "sourceName": "AWS Blog",
+        "sourceType": "official",
+        "category": "cybersecurity",
+        "publishedAt": "2026-06-03T22:37:29.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/04/22/Screenshot-2026-04-21-at-1.27.34 PM-1024x538.png",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "Amazon Cognito",
+          "Announcements",
+          "Launch",
+          "News",
+          "Security, Identity, & Compliance"
+        ]
+      },
+      {
+        "id": "8241b2ec6a180e10ed106e7413445f8023d14a77",
+        "title": "Enforcing the First AS in BGP AS_PATHs",
+        "summary": "BGP is vulnerable to routing hijacks and path leaks that negatively impact traffic on the Internet. RPKI helps solve some of these problems, but for some forged paths, we need to rely on a simpler mechanism: First AS enforcement in BGP.",
+        "url": "https://blog.cloudflare.com/enforce-first-as-bgp/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cybersecurity",
+        "publishedAt": "2026-06-03T17:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/GRO488rbjQjXDht7DyzL0/dc61e2e2cc4029ba4b15c235d1104ac1/BLOG-3306_image5.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "BGP",
+          "Routing",
+          "Routing Security",
+          "RPKI",
+          "Radar"
+        ]
+      },
+      {
+        "id": "763b9e33e7a2d59a04027ce1a08f1f3e1bb5a632",
+        "title": "Announcing Claude Compliance API support with Cloudflare CASB",
+        "summary": "Cloudflare now integrates with the Claude Compliance API, so that security teams can monitor Claude Enterprise activity directly in the Cloudflare Dashboard.",
+        "url": "https://blog.cloudflare.com/casb-anthropic-integration/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cybersecurity",
+        "publishedAt": "2026-05-21T17:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%238f3f38%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%238f3f38%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%238f3f38%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECybersecurity%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EAnnouncing%20Claude%20Compliance%20API%20support%20with%20Cloudflare%20CASB%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cybersecurity",
+          "Developer Platform",
+          "Developers",
+          "CASB",
+          "Cloudflare One",
+          "SASE"
+        ]
+      }
+    ],
+    "cloud-infrastructure": [
+      {
+        "id": "1aa8e31ab451ccb84541aa7736dba3e3c7925711",
+        "title": "How engineers at Nextdoor use Codex to build without limits",
+        "summary": "5 to investigate hard-to-reproduce issues, build across platforms, and focus on product outcomes.",
+        "url": "https://openai.com/index/nextdoor",
+        "sourceName": "OpenAI Blog",
+        "sourceType": "official",
+        "category": "cloud-infrastructure",
+        "publishedAt": "2026-06-09T12:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "data:image/svg+xml;charset=utf-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22720%22%20viewBox%3D%220%200%201200%20720%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22720%22%20fill%3D%22%23f3eadb%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2238%22%20width%3D%221124%22%20height%3D%22644%22%20rx%3D%2234%22%20fill%3D%22%23fffaf0%22%20stroke%3D%22%23111111%22%20stroke-width%3D%227%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M90%20146h1020M90%20574h1020%22%20stroke%3D%22%23111111%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22224%22%20r%3D%2252%22%20fill%3D%22%234f6380%22%20stroke%3D%22%23111111%22%20stroke-width%3D%226%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221044%22%20cy%3D%22496%22%20r%3D%2270%22%20fill%3D%22none%22%20stroke%3D%22%234f6380%22%20stroke-width%3D%2216%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M242%20224h486M242%20286h672M242%20348h554%22%20stroke%3D%22%23111111%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M160%20484c92-94%20180-94%20262%200s168%2094%20258%200%20184-94%20280%200%22%20fill%3D%22none%22%20stroke%3D%22%234f6380%22%20stroke-width%3D%2220%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22652%22%20fill%3D%22%23111111%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2236%22%3ECloud%20%2F%20Infrastructure%3C%2Ftext%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22118%22%20fill%3D%22%23111111%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%3EHow%20engineers%20at%20Nextdoor%20use%20Codex%20to%20build%20without%20limits%3C%2Ftext%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20",
+        "trustScore": 0.94,
+        "saved": false,
+        "tags": [
+          "cloud-infrastructure"
+        ]
+      },
+      {
+        "id": "69a782fc7d6b7f366c67e52fc45ff3fbfa0ff0b0",
+        "title": "Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors",
+        "summary": "AWS launches Amazon EC2 M9g and M9gd instances, powered by AWS Graviton5 processors. AWS Graviton5 is most powerful, and most energy eﬃcient processor AWS has ever built, and oﬀers up to 25% better compute performance compared to Graviton4-based instances.",
+        "url": "https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/",
+        "sourceName": "AWS Blog",
+        "sourceType": "official",
+        "category": "cloud-infrastructure",
+        "publishedAt": "2026-06-10T15:04:30.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/10/1213311671976503-0-G5_Angled.jpg",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "cloud-infrastructure",
+          "Amazon EC2",
+          "Announcements",
+          "Compute",
+          "Graviton",
+          "Launch"
+        ]
+      },
+      {
+        "id": "f601ee5de07580b6672d4fb7529f958dc232ff48",
+        "title": "Route public traffic to private applications with Cloudflare",
+        "summary": "Application Services for Private Origins is available now in closed beta. Route public hostnames to private IP origins over your existing IPsec, GRE, CNI, or Cloudflare Mesh paths. No public IPs or extra connector software required.",
+        "url": "https://blog.cloudflare.com/private-origins-dns-routing/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cloud-infrastructure",
+        "publishedAt": "2026-06-10T13:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3dPNpYW2ByViLaO237MJf/c535f739bb0949b908d529bf62e9ad54/1-connectivity-models_2x__4_.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cloud-infrastructure",
+          "Application Services",
+          "Private Network",
+          "DNS",
+          "Pingora",
+          "Cloudflare One"
+        ]
+      },
+      {
+        "id": "8f2f0887c4cfdc666894274da28d5b178193a5c0",
+        "title": "Anthropic Claude Fable 5 on AWS: Mythos-class capabilities with built-in safeguards now available",
+        "summary": "AWS announces the availability of Claude Fable 5 on Amazon Bedrock and Claude Platform on AWS. Claude Fable 5 delivers Mythos-level capabilities available to all customers, with strong safeguards designed to make it safe for broader use.",
+        "url": "https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/",
+        "sourceName": "AWS Blog",
+        "sourceType": "official",
+        "category": "cloud-infrastructure",
+        "publishedAt": "2026-06-09T17:40:31.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/06/10/2026-claude-fable-5-in-bedrock-console.jpg",
+        "trustScore": 0.88,
+        "saved": false,
+        "tags": [
+          "cloud-infrastructure",
+          "Amazon Bedrock",
+          "Amazon Machine Learning",
+          "Artificial Intelligence",
+          "Launch",
+          "News"
+        ]
+      },
+      {
+        "id": "3530eb1b2d4c2bcaeb27c05a20bd0c6fc6da66f7",
+        "title": "Your AI bill is out of control. Cloudflare can fix it now.",
+        "summary": "AI Gateway now features real-time spend limits to prevent runaway token bills across multiple AI providers. By integrating with Cloudflare Access, companies can use identity-driven budgets and policies.",
+        "url": "https://blog.cloudflare.com/ai-gateway-spend-limits/",
+        "sourceName": "Cloudflare Blog",
+        "sourceType": "official",
+        "category": "cloud-infrastructure",
+        "publishedAt": "2026-06-05T13:00:00.000Z",
+        "foundAt": "2026-06-12T00:09:11.536Z",
+        "imageUrl": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/6sH9TwbSEn2Ct9UFuC0SAq/1a1330737879497b0e2511ac28baaed5/BLOG-3331_image1.png",
+        "trustScore": 0.9,
+        "saved": false,
+        "tags": [
+          "cloud-infrastructure",
+          "AI",
+          "AI Gateway",
+          "Cloudflare Access",
+          "Developers",
+          "Developer Platform"
+        ]
+      }
+    ]
+  }
+}

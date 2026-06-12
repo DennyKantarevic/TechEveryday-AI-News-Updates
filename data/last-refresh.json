@@ -1,0 +1,17 @@
+{
+  "refreshedAt": "2026-06-12T00:09:11.536Z",
+  "nextRefreshAt": "2026-06-12T11:00:00.000Z",
+  "candidateCount": 202,
+  "categoryCounts": {
+    "ai-ml": 5,
+    "automation-agentic-systems": 5,
+    "research-papers": 5,
+    "embedded-systems": 5,
+    "computer-systems": 4,
+    "developer-tools-open-source": 5,
+    "cybersecurity": 5,
+    "cloud-infrastructure": 5
+  },
+  "status": "success",
+  "message": "Refresh completed."
+}

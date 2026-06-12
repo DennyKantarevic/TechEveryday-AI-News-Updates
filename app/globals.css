@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #f3eadb;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #111111;
+  background:
+    linear-gradient(rgba(17, 17, 17, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.02) 1px, transparent 1px),
+    #f3eadb;
+  background-size: 42px 42px;
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+::selection {
+  color: #fffaf0;
+  background: #111111;
+}
+
+.editorial-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+
+.hairline {
+  position: relative;
+}
+
+.hairline::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: #111111;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.hairline:hover::after {
+  transform: scaleX(1);
+}
+
+.card-frame {
+  position: relative;
+  border: 2px solid #111111;
+  background: #ffffff;
+  box-shadow: 5px 5px 0 #111111;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card-frame::before {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.card-frame:hover {
+  box-shadow: 9px 9px 0 #111111;
+  transform: translate(-3px, -3px);
+}
+
+.card-frame:hover::before {
+  opacity: 1;
+}
+
+.image-crosshatch {
+  background:
+    linear-gradient(135deg, rgba(17, 17, 17, 0.08) 25%, transparent 25%) -8px 0 / 16px 16px,
+    linear-gradient(225deg, rgba(17, 17, 17, 0.08) 25%, transparent 25%) -8px 0 / 16px 16px,
+    #fffaf0;
+}
