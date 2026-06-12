@@ -90,4 +90,21 @@ describe("NewsCard interaction tracking", () => {
       expect(trackGallerySaved).toHaveBeenCalledWith(item);
     });
   });
+
+  it("formats internal category tags for display", () => {
+    render(
+      <NewsCard
+        item={{
+          ...item,
+          category: "ai-ml",
+          tags: ["ai-ml", "transformers"]
+        }}
+      />
+    );
+
+    expect(
+      screen.getAllByText("Artificial Intelligence / Machine Learning").length
+    ).toBeGreaterThan(0);
+    expect(screen.queryByText("ai-ml")).toBeNull();
+  });
 });

@@ -46,13 +46,14 @@ function dailyNews(items: NewsItem[]): DailyNews {
 }
 
 describe("learning foundations", () => {
-  it("contains the required concise sections in order", () => {
+  it("contains the required concise sections in order with stable resources", () => {
     expect(LEARNING_FOUNDATIONS.map((section) => section.title)).toEqual([
-      "AI / ML basics",
+      "Artificial Intelligence / Machine Learning basics",
       "Agents and automation basics",
       "Research paper reading basics",
-      "Computer systems basics",
       "Embedded systems basics",
+      "Computer systems basics",
+      "Developer Tools / Open Source basics",
       "Cybersecurity basics",
       "Cloud/infrastructure basics"
     ]);
@@ -62,7 +63,34 @@ describe("learning foundations", () => {
       expect(section.points.length).toBeLessThanOrEqual(3);
       expect(section.bridge).toMatch(/\S/);
       expect(section.categoryIds.length).toBeGreaterThan(0);
+      expect(section.resources.length).toBeGreaterThan(0);
+      expect(section.resources.length).toBeLessThanOrEqual(3);
+
+      for (const resource of section.resources) {
+        expect(resource.title).toMatch(/\S/);
+        expect(resource.author).toMatch(/\S/);
+        expect(resource.whyItMatters).toMatch(/\S/);
+        expect(resource.tag).toMatch(/\S/);
+      }
     }
+  });
+
+  it("includes canonical resources for the requested foundations", () => {
+    const resourceTitles = LEARNING_FOUNDATIONS.flatMap((section) =>
+      section.resources.map((resource) => resource.title)
+    );
+
+    expect(resourceTitles).toContain("Computing Machinery and Intelligence");
+    expect(resourceTitles).toContain("Attention Is All You Need");
+    expect(resourceTitles).toContain(
+      "Cyber-Physical Systems: Design Challenges"
+    );
+    expect(resourceTitles).toContain("The Google File System");
+    expect(resourceTitles).toContain("The Cathedral and the Bazaar");
+    expect(resourceTitles).toContain(
+      "The Protection of Information in Computer Systems"
+    );
+    expect(resourceTitles).toContain("Dynamo: Amazon's Highly Available Key-value Store");
   });
 });
 
@@ -76,8 +104,8 @@ describe("getLearningCurrentContext", () => {
     ]);
 
     expect(getLearningCurrentContext(feed, 2).map((item) => item.id)).toEqual([
-      "new-security",
-      "new-cloud"
+      "tooling",
+      "new-security"
     ]);
   });
 

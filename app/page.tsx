@@ -37,7 +37,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <div className="editorial-shell mt-14 space-y-16">
+        <div className="editorial-shell mt-20 space-y-16">
           {CATEGORIES.map((category) => (
             <CategorySection
               key={category.id}

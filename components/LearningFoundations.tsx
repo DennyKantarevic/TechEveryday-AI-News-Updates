@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpenCheck } from "lucide-react";
+import { ArrowUpRight, BookOpenCheck } from "lucide-react";
 import type { LearningFoundation } from "@/lib/learning";
 
 export default function LearningFoundations({
@@ -43,6 +43,55 @@ export default function LearningFoundations({
                 </li>
               ))}
             </ul>
+
+            <div className="mt-6 border-t-2 border-ink pt-4">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brass">
+                Foundational resources
+              </p>
+              <div className="mt-3 space-y-3">
+                {foundation.resources.map((resource) => {
+                  const body = (
+                    <>
+                      <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-ink/62">
+                        <span>{resource.author}</span>
+                        {resource.year ? <span>{resource.year}</span> : null}
+                        <span className="border border-ink/25 bg-paper px-2 py-0.5 text-ink">
+                          {resource.tag}
+                        </span>
+                      </div>
+                      <h4 className="mt-2 font-display text-xl font-black leading-tight">
+                        {resource.title}
+                      </h4>
+                      <p className="mt-2 text-sm leading-6 text-ink/76">
+                        {resource.whyItMatters}
+                      </p>
+                    </>
+                  );
+
+                  return resource.url ? (
+                    <a
+                      key={resource.title}
+                      href={resource.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block border border-ink/25 bg-bone p-3 transition hover:-translate-y-0.5 hover:border-ink hover:shadow-[3px_3px_0_#111]"
+                    >
+                      {body}
+                      <span className="mt-3 inline-flex items-center gap-1 text-xs font-black uppercase tracking-[0.12em]">
+                        Open resource <ArrowUpRight size={14} strokeWidth={2.7} />
+                      </span>
+                    </a>
+                  ) : (
+                    <div
+                      key={resource.title}
+                      className="border border-ink/25 bg-bone p-3"
+                    >
+                      {body}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </article>
         ))}
       </div>

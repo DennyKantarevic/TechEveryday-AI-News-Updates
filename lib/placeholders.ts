@@ -53,10 +53,51 @@ const MOTIFS: Record<CategoryId, string> = {
   `
 };
 
+function escapeSvgText(value: string) {
+  return value.replace(/[<>&"]/g, "");
+}
+
+function wrapLabel(label: string) {
+  if (label.length <= 32) {
+    return [label];
+  }
+
+  if (label.includes(" / ")) {
+    const [first, ...rest] = label.split(" / ");
+    return [`${first} /`, rest.join(" / ")].filter(Boolean);
+  }
+
+  const lines: string[] = [];
+  let current = "";
+
+  for (const word of label.split(/\s+/)) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > 30 && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = next;
+    }
+  }
+
+  if (current) {
+    lines.push(current);
+  }
+
+  return lines.slice(0, 2);
+}
+
 export function placeholderImageForCategory(categoryId: CategoryId, title = "TechEveryday") {
   const category = CATEGORY_BY_ID[categoryId];
   const label = category?.title ?? "TechEveryday";
-  const safeTitle = title.replace(/[<>&"]/g, "").slice(0, 72);
+  const safeTitle = escapeSvgText(title).slice(0, 72);
+  const labelLines = wrapLabel(escapeSvgText(label));
+  const labelMarkup = labelLines
+    .map(
+      (line, index) =>
+        `<text x="96" y="${labelLines.length > 1 ? 624 + index * 36 : 650}" fill="#111111" font-family="Georgia,serif" font-size="${labelLines.length > 1 ? 30 : 36}">${line}</text>`
+    )
+    .join("");
   const motif = MOTIFS[categoryId];
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
@@ -68,7 +109,7 @@ export function placeholderImageForCategory(categoryId: CategoryId, title = "Tec
       <path d="M874 226h190M874 288h148M874 350h190M874 412h112" stroke="#111111" stroke-width="14" stroke-linecap="round"/>
       <path d="M874 488h154" stroke="#6f6a61" stroke-width="10" stroke-linecap="round"/>
       ${motif}
-      <text x="96" y="650" fill="#111111" font-family="Georgia,serif" font-size="36">${label}</text>
+      ${labelMarkup}
       <text x="96" y="118" fill="#111111" font-family="Arial,sans-serif" font-size="24" font-weight="700">${safeTitle}</text>
     </svg>
   `;

@@ -31,10 +31,19 @@ describe("LearningFoundations", () => {
     render(<LearningFoundations foundations={LEARNING_FOUNDATIONS} />);
 
     expect(screen.getByRole("heading", { name: "Foundations" })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "AI / ML basics" })).toBeTruthy();
+    expect(
+      screen.getByRole("heading", {
+        name: "Artificial Intelligence / Machine Learning basics"
+      })
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: "Developer Tools / Open Source basics" })
+    ).toBeTruthy();
     expect(
       screen.getByRole("heading", { name: "Cloud/infrastructure basics" })
     ).toBeTruthy();
+    expect(screen.getByText("Attention Is All You Need")).toBeTruthy();
+    expect(screen.getByText("The Cathedral and the Bazaar")).toBeTruthy();
   });
 });
 

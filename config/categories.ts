@@ -1,7 +1,7 @@
 export const CATEGORIES = [
   {
     id: "ai-ml",
-    title: "AI / ML",
+    title: "Artificial Intelligence / Machine Learning",
     deck: "Models, applied machine learning, product releases, and safety updates."
   },
   {

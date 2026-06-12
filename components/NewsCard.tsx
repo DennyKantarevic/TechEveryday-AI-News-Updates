@@ -56,6 +56,10 @@ function sourceLabel(type: NewsItem["sourceType"]) {
   return "Trusted source";
 }
 
+function formatTag(tag: string) {
+  return CATEGORY_BY_ID[tag as keyof typeof CATEGORY_BY_ID]?.title ?? tag;
+}
+
 export default function NewsCard({
   item,
   mode = "newsletter",
@@ -84,6 +88,10 @@ export default function NewsCard({
     [item.publishedAt]
   );
   const category = CATEGORY_BY_ID[item.category];
+  const topicTags = item.tags
+    .filter((tag) => tag !== item.category)
+    .map(formatTag)
+    .slice(0, 2);
 
   useEffect(() => {
     trackArticleViewed(item);
@@ -137,8 +145,8 @@ export default function NewsCard({
           className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
           onError={() => setImageUrl(fallbackImage)}
         />
-        <div className="absolute left-3 top-3 flex flex-wrap gap-2">
-          <span className="border-2 border-ink bg-bone px-2 py-1 text-[11px] font-black uppercase">
+        <div className="absolute left-3 right-3 top-3 flex flex-wrap gap-2">
+          <span className="max-w-full border-2 border-ink bg-bone px-2 py-1 text-[11px] font-black uppercase leading-4">
             {category.title}
           </span>
           {item.sourceType === "x" ? (
@@ -164,7 +172,7 @@ export default function NewsCard({
             <ShieldCheck size={14} strokeWidth={2.4} />
             {sourceLabel(item.sourceType)} - {Math.round(item.trustScore * 100)}%
           </span>
-          {item.tags.slice(0, 2).map((tag) => (
+          {topicTags.map((tag) => (
             <span key={tag} className="border border-ink/20 px-2 py-1 text-xs">
               {tag}
             </span>

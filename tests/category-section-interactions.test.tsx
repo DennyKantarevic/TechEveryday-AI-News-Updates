@@ -31,6 +31,9 @@ vi.mock("framer-motion", async () => {
       ),
       div: ({
         children,
+        initial,
+        whileInView,
+        viewport,
         variants,
         custom,
         ...props
