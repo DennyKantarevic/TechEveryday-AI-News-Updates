@@ -53,13 +53,13 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
             </span>
           </Link>
         </nav>
-        <Link
-          href="/"
-          onClick={resetNewsletterIntro}
-          className="absolute left-1/2 -translate-x-1/2 font-display text-lg font-black leading-none md:text-2xl"
+        <div
+          data-testid="sticky-brand-wordmark"
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 -translate-x-1/2 font-display text-lg font-black leading-none md:text-2xl"
         >
           <BrandWordmark />
-        </Link>
+        </div>
         <Link
           href="/gallery"
           className="inline-flex h-10 items-center justify-center gap-2 border-2 border-ink bg-white px-2 transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#111] md:px-3"
