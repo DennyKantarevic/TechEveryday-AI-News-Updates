@@ -40,11 +40,6 @@ const MOTIFS: Record<CategoryId, string> = {
     <circle cx="376" cy="249" r="12" fill="#d8ccba"/>
     <path d="M326 352l-52 44 52 44M624 352l52 44-52 44M430 454l82-122" fill="none" stroke="#111111" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
   `,
-  cybersecurity: `
-    <path d="M462 188l178 72v118c0 98-68 154-178 194-110-40-178-96-178-194V260l178-72z" fill="#fffdf8" stroke="#111111" stroke-width="8" stroke-linejoin="round"/>
-    <rect x="396" y="328" width="132" height="102" rx="8" fill="#eee5d6" stroke="#111111" stroke-width="7"/>
-    <path d="M422 328v-42c0-58 80-58 80 0v42" fill="none" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
-  `,
   "cloud-infrastructure": `
     <rect x="250" y="244" width="150" height="104" rx="8" fill="#fffdf8" stroke="#111111" stroke-width="7"/>
     <rect x="506" y="244" width="150" height="104" rx="8" fill="#fffdf8" stroke="#111111" stroke-width="7"/>

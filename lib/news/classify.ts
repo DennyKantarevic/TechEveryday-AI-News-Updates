@@ -80,18 +80,6 @@ const KEYWORDS: Record<CategoryId, string[]> = {
     "tooling",
     "cli"
   ],
-  cybersecurity: [
-    "security",
-    "cyber",
-    "vulnerability",
-    "cve",
-    "threat",
-    "malware",
-    "phishing",
-    "ransomware",
-    "zero trust",
-    "identity"
-  ],
   "cloud-infrastructure": [
     "cloud",
     "infrastructure",
@@ -137,6 +125,100 @@ const LOW_VALUE_PROMO_SIGNALS = [
   "gaming sale"
 ];
 
+const LOW_VALUE_CONTENT_SIGNALS = [
+  "celebrity",
+  "prank",
+  "viral",
+  "fake podcast",
+  "drama",
+  "rumor",
+  "outrage",
+  "meme",
+  "entertainment-only",
+  "gossip",
+  "creator outrage",
+  "light-interest"
+];
+
+const EDUCATIONAL_SIGNALS = [
+  "analysis",
+  "architecture",
+  "benchmark",
+  "case study",
+  "concept",
+  "deep dive",
+  "detail",
+  "educational",
+  "engineering",
+  "evaluation",
+  "explain",
+  "explainer",
+  "guide",
+  "implementation",
+  "paper",
+  "research",
+  "technical",
+  "tutorial",
+  "whitepaper",
+  "why"
+];
+
+const TECHNICAL_DEPTH_SIGNALS = [
+  "algorithm",
+  "api",
+  "architecture",
+  "benchmark",
+  "compiler",
+  "database",
+  "dataset",
+  "distributed",
+  "firmware",
+  "inference",
+  "infrastructure",
+  "kernel",
+  "kubernetes",
+  "latency",
+  "memory",
+  "model",
+  "observability",
+  "performance",
+  "protocol",
+  "reliability",
+  "runtime",
+  "sdk",
+  "storage",
+  "system",
+  "training",
+  "workflow"
+];
+
+const PRACTICAL_USEFULNESS_SIGNALS = [
+  "api",
+  "best practice",
+  "cli",
+  "developer",
+  "framework",
+  "guide",
+  "how to",
+  "implementation",
+  "migration",
+  "open source",
+  "operations",
+  "platform",
+  "production",
+  "release",
+  "tool",
+  "upgrade"
+];
+
+export type ContentQualityScore = {
+  educationalScore: number;
+  technicalDepthScore: number;
+  noveltyScore: number;
+  practicalUsefulnessScore: number;
+  excludedReason?: string;
+};
+
 function normalizeText(input: string) {
   return input
     .toLowerCase()
@@ -163,6 +245,17 @@ function containsSignal(haystack: string, keyword: string) {
   }
 
   return haystack.includes(normalizedKeyword);
+}
+
+function signalScore(haystack: string, signals: string[], weight = 1) {
+  return signals.reduce(
+    (score, signal) => score + (containsSignal(haystack, signal) ? weight : 0),
+    0
+  );
+}
+
+function clampScore(value: number, max = 5) {
+  return Math.min(max, value);
 }
 
 function titleTokens(title: string) {
@@ -254,12 +347,62 @@ function itemTime(item: NewsItem) {
   return new Date(item.publishedAt || item.foundAt).getTime();
 }
 
+export function scoreContentQuality(item: NewsItem): ContentQualityScore {
+  const title = normalizeText(item.title);
+  const haystack = normalizeText(
+    [item.title, item.summary, item.sourceName, item.tags.join(" ")].join(" ")
+  );
+  const lowValueSignals = signalScore(haystack, LOW_VALUE_CONTENT_SIGNALS, 1);
+  const categoryDepthSignals = KEYWORDS[item.category].filter((keyword) =>
+    containsSignal(haystack, keyword)
+  ).length;
+  const summaryTokenCount = normalizeText(item.summary).split(" ").filter(Boolean).length;
+  const trustedTechnicalSource =
+    item.sourceType === "official" || item.sourceType === "blog" || item.sourceType === "paper";
+  const educationalScore = clampScore(
+    signalScore(haystack, EDUCATIONAL_SIGNALS, 1) +
+      (item.sourceType === "paper" ? 2 : 0) +
+      (summaryTokenCount >= 18 ? 1 : 0)
+  );
+  const technicalDepthScore = clampScore(
+    signalScore(haystack, TECHNICAL_DEPTH_SIGNALS, 1) +
+      Math.min(2, categoryDepthSignals) +
+      (trustedTechnicalSource ? 1 : 0)
+  );
+  const practicalUsefulnessScore = clampScore(
+    signalScore(haystack, PRACTICAL_USEFULNESS_SIGNALS, 1) +
+      (trustedTechnicalSource ? 1 : 0)
+  );
+  const noveltyScore = clampScore(
+    lowValueSignals * 2 +
+      (LOW_VALUE_PROMO_SIGNALS.some((signal) => title.includes(signal)) ? 2 : 0)
+  );
+  const hasUsefulSubstance =
+    educationalScore + technicalDepthScore + practicalUsefulnessScore >= 4 &&
+    technicalDepthScore >= 2;
+  const excludedReason =
+    noveltyScore >= 2 && !hasUsefulSubstance
+      ? "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      : educationalScore < 1 && technicalDepthScore < 2
+        ? "Excluded as low-information coverage without enough educational or technical depth."
+        : undefined;
+
+  return {
+    educationalScore,
+    technicalDepthScore,
+    noveltyScore,
+    practicalUsefulnessScore,
+    excludedReason
+  };
+}
+
 function isTrustedRelevant(item: NewsItem) {
   if (item.trustScore < 0.65 || !item.title.trim() || !item.url.trim()) {
     return false;
   }
 
   const title = normalizeText(item.title);
+  const quality = scoreContentQuality(item);
   const externalTags = item.tags.filter(
     (tag) => !CATEGORY_IDS.includes(tag as CategoryId) && tag !== item.category
   );
@@ -272,7 +415,7 @@ function isTrustedRelevant(item: NewsItem) {
   const globalSignal = GLOBAL_TECH_SIGNALS.some((keyword) => containsSignal(haystack, keyword));
   const lowValuePromo = LOW_VALUE_PROMO_SIGNALS.some((keyword) => title.includes(keyword));
 
-  return (categorySignal || globalSignal) && !lowValuePromo;
+  return (categorySignal || globalSignal) && !lowValuePromo && !quality.excludedReason;
 }
 
 function uniqueById(items: NewsItem[]) {
@@ -354,6 +497,19 @@ export function selectDailyItems({
       return isSameZonedDay(foundAt, now) || isSameZonedDay(publishedAt, now);
     })
     .sort((left, right) => {
+      const leftQuality = scoreContentQuality(left);
+      const rightQuality = scoreContentQuality(right);
+      const qualityDelta =
+        rightQuality.educationalScore +
+        rightQuality.technicalDepthScore +
+        rightQuality.practicalUsefulnessScore -
+        (leftQuality.educationalScore +
+          leftQuality.technicalDepthScore +
+          leftQuality.practicalUsefulnessScore);
+      if (Math.abs(qualityDelta) >= 2) {
+        return qualityDelta;
+      }
+
       const trustDelta = right.trustScore - left.trustScore;
       return Math.abs(trustDelta) > 0.04 ? trustDelta : itemTime(right) - itemTime(left);
     });

@@ -42,6 +42,6 @@ export const TRUSTED_X_ACCOUNTS: TrustedXAccount[] = [
     handle: "Cloudflare",
     displayName: "Cloudflare",
     trustScore: 0.88,
-    categoryHints: ["cloud-infrastructure", "cybersecurity"]
+    categoryHints: ["cloud-infrastructure"]
   }
 ];

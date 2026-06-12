@@ -3,6 +3,7 @@ import { createCategoryRecord } from "@/config/categories";
 import {
   classifyCategory,
   dedupeCandidates,
+  scoreContentQuality,
   selectDailyItems
 } from "@/lib/news/classify";
 import type { NewsItem } from "@/types/news";
@@ -64,11 +65,11 @@ describe("dedupeCandidates", () => {
 describe("selectDailyItems", () => {
   it("preserves previous category content when no trusted new content exists today", () => {
     const previous = emptyPreviousCategories();
-    previous["cybersecurity"] = [
+    previous["cloud-infrastructure"] = [
       baseItem({
-        id: "old-sec",
-        category: "cybersecurity",
-        title: "Previous security story",
+        id: "old-cloud",
+        category: "cloud-infrastructure",
+        title: "Previous cloud story",
         foundAt: "2026-06-10T12:00:00.000Z"
       })
     ];
@@ -79,7 +80,7 @@ describe("selectDailyItems", () => {
       now: new Date("2026-06-11T13:00:00.000Z")
     });
 
-    expect(selected["cybersecurity"].map((item) => item.id)).toEqual(["old-sec"]);
+    expect(selected["cloud-infrastructure"].map((item) => item.id)).toEqual(["old-cloud"]);
     expect(selected["ai-ml"].map((item) => item.id)).toEqual(["new-ai"]);
   });
 
@@ -111,6 +112,70 @@ describe("selectDailyItems", () => {
     });
 
     expect(selected["computer-systems"].map((item) => item.id)).toEqual(["old-systems"]);
+  });
+
+  it("filters entertainment, drama, and fake-podcast style low-signal stories", () => {
+    const previous = emptyPreviousCategories();
+    previous["developer-tools-open-source"] = [
+      baseItem({
+        id: "old-devtools",
+        category: "developer-tools-open-source",
+        title: "Previous developer tools story",
+        foundAt: "2026-06-10T12:00:00.000Z"
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [
+        baseItem({
+          id: "fake-podcast",
+          category: "developer-tools-open-source",
+          title: "Drug sites hijacked Spotify's search ranking through fake podcasts",
+          summary:
+            "A viral entertainment story about fake podcasts and online drama with little practical technical detail.",
+          sourceName: "Wired",
+          trustScore: 0.82,
+          tags: ["viral", "fake podcast", "drama"]
+        })
+      ],
+      previousCategories: previous,
+      now: new Date("2026-06-11T13:00:00.000Z")
+    });
+
+    expect(selected["developer-tools-open-source"].map((item) => item.id)).toEqual([
+      "old-devtools"
+    ]);
+  });
+
+  it("does not let low-value AI culture drama through just because it has tech keywords", () => {
+    const previous = emptyPreviousCategories();
+    previous["ai-ml"] = [
+      baseItem({
+        id: "old-ai",
+        category: "ai-ml",
+        title: "Previous AI engineering story",
+        foundAt: "2026-06-10T12:00:00.000Z"
+      })
+    ];
+
+    const selected = selectDailyItems({
+      candidates: [
+        baseItem({
+          id: "viral-ai-drama",
+          category: "ai-ml",
+          title: "Viral AI app drama sparks creator outrage",
+          summary:
+            "A celebrity creator rumor and meme cycle around a viral AI app with no technical implementation detail.",
+          sourceName: "The Verge",
+          trustScore: 0.78,
+          tags: ["ai", "viral", "drama", "rumor"]
+        })
+      ],
+      previousCategories: previous,
+      now: new Date("2026-06-11T13:00:00.000Z")
+    });
+
+    expect(selected["ai-ml"].map((item) => item.id)).toEqual(["old-ai"]);
   });
 
   it("does not treat short technical terms as substrings inside unrelated words", () => {
@@ -202,5 +267,41 @@ describe("selectDailyItems", () => {
     expect(selected["ai-ml"]).toHaveLength(5);
     expect(openAiCount).toBeLessThanOrEqual(3);
     expect(new Set(aiSources).size).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe("scoreContentQuality", () => {
+  it("explains why low-information novelty stories are excluded", () => {
+    const score = scoreContentQuality(
+      baseItem({
+        title: "Celebrity prank app goes viral after fake podcast drama",
+        summary: "A light entertainment-only story about a viral meme and creator outrage.",
+        category: "developer-tools-open-source",
+        tags: ["celebrity", "prank", "viral", "drama"]
+      })
+    );
+
+    expect(score.educationalScore).toBeLessThan(2);
+    expect(score.technicalDepthScore).toBeLessThan(2);
+    expect(score.excludedReason).toMatch(/low-information|low-value/i);
+  });
+
+  it("keeps practical technical explainers and engineering writeups", () => {
+    const score = scoreContentQuality(
+      baseItem({
+        title: "Cloudflare explains new Workers observability architecture",
+        summary:
+          "The engineering writeup details tracing, metrics, runtime architecture, reliability tradeoffs, and implementation guidance for production teams.",
+        category: "cloud-infrastructure",
+        sourceName: "Cloudflare Blog",
+        sourceType: "official",
+        tags: ["observability", "runtime", "architecture", "engineering"]
+      })
+    );
+
+    expect(score.educationalScore).toBeGreaterThanOrEqual(2);
+    expect(score.technicalDepthScore).toBeGreaterThanOrEqual(2);
+    expect(score.practicalUsefulnessScore).toBeGreaterThanOrEqual(1);
+    expect(score.excludedReason).toBeUndefined();
   });
 });

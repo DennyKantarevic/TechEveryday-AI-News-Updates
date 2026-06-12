@@ -1,9 +1,11 @@
-import { CATEGORY_BY_ID } from "@/config/categories";
+import { CATEGORY_BY_ID, CATEGORY_IDS } from "@/config/categories";
 import type { CategoryId } from "@/config/categories";
 import type { InteractionEvent, InteractionType } from "@/lib/interactions";
 import type { NewsItem, SourceType } from "@/types/news";
 
 const DEFAULT_LIMIT = 12;
+const ACTIVE_CATEGORY_IDS = new Set<string>(CATEGORY_IDS);
+const REMOVED_TOPIC_SIGNALS = new Set(["cybersecurity", "cyber security"]);
 
 const EVENT_WEIGHTS: Record<InteractionType, number> = {
   article_saved: 6,
@@ -127,6 +129,14 @@ function normalizedTag(tag: string) {
   return normalizeToken(tag);
 }
 
+function isActiveCategory(value: unknown): value is CategoryId {
+  return typeof value === "string" && ACTIVE_CATEGORY_IDS.has(value);
+}
+
+function isActiveTopicSignal(value: string) {
+  return !REMOVED_TOPIC_SIGNALS.has(normalizedTag(value));
+}
+
 function addSignal<K>(
   map: Map<K, WeightedSignal>,
   key: K | undefined,
@@ -179,7 +189,13 @@ function buildInterestProfile(events: InteractionEvent[]): InterestProfile {
       profile.savedArticleIds.add(event.articleId);
     }
 
-    const category = event.category ?? event.article?.category;
+    const rawCategory = event.category ?? event.article?.category;
+    const category = isActiveCategory(rawCategory) ? rawCategory : undefined;
+
+    if (!category && rawCategory) {
+      continue;
+    }
+
     addSignal(profile.categories, category, category ? CATEGORY_BY_ID[category]?.title : undefined, weight, saved);
 
     const sourceType = event.sourceType ?? event.article?.sourceType;
@@ -189,7 +205,7 @@ function buildInterestProfile(events: InteractionEvent[]): InterestProfile {
       continue;
     }
 
-    for (const tag of event.article.tags) {
+    for (const tag of event.article.tags.filter(isActiveTopicSignal)) {
       addSignal(profile.tags, normalizedTag(tag), tag, weight, saved);
     }
 
@@ -353,7 +369,10 @@ function scoreArticle(item: NewsItem, profile: InterestProfile, now: Date): Reco
 }
 
 export function hasEnoughInteractionData(events: InteractionEvent[]) {
-  const meaningfulEvents = events.filter((event) => eventWeight(event.type) > 0);
+  const meaningfulEvents = events.filter((event) => {
+    const rawCategory = event.category ?? event.article?.category;
+    return eventWeight(event.type) > 0 && (!rawCategory || isActiveCategory(rawCategory));
+  });
   return meaningfulEvents.some(isSaveEvent) || meaningfulEvents.length >= 2;
 }
 

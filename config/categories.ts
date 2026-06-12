@@ -30,11 +30,6 @@ export const CATEGORIES = [
     deck: "Tooling, frameworks, runtimes, GitHub projects, and maintainable developer workflows."
   },
   {
-    id: "cybersecurity",
-    title: "Cybersecurity",
-    deck: "Vulnerabilities, defensive engineering, identity, secure infrastructure, and threat research."
-  },
-  {
     id: "cloud-infrastructure",
     title: "Cloud / Infrastructure",
     deck: "Cloud platforms, edge networks, observability, reliability, and production operations."

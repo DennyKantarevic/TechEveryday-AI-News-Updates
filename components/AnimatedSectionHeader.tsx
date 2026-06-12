@@ -41,7 +41,7 @@ export default function AnimatedSectionHeader({
       custom={directionValue}
       initial={shouldReduceMotion ? false : "hidden"}
       whileInView={shouldReduceMotion ? undefined : "visible"}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: false, amount: 0.55, margin: "0px 0px -12% 0px" }}
       variants={shouldReduceMotion ? undefined : headerVariants}
       {...props}
     >

@@ -111,38 +111,6 @@ export const LEARNING_FOUNDATIONS = [
     categoryIds: ["automation-agentic-systems"]
   },
   {
-    id: "research-paper-reading-basics",
-    title: "Research paper reading basics",
-    deck: "A compact way to separate signal from hype in technical papers.",
-    points: [
-      "Start with the problem, method, evidence, and stated limits.",
-      "Treat benchmarks as clues, not proof of real-world usefulness.",
-      "Read figures and ablations before accepting the conclusion."
-    ],
-    resources: [
-      {
-        title: "How to Read a Paper",
-        author: "S. Keshav",
-        year: 2007,
-        whyItMatters:
-          "A practical three-pass method for reading abstracts, methods, results, limitations, citations, and reproducibility clues.",
-        url: "https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf",
-        tag: "Reading papers"
-      },
-      {
-        title: "The Scientific Method",
-        author: "Stanford Encyclopedia of Philosophy",
-        whyItMatters:
-          "Useful background for separating hypotheses, evidence, replication, and uncertainty in technical claims.",
-        url: "https://plato.stanford.edu/entries/scientific-method/",
-        tag: "Scientific method"
-      }
-    ],
-    bridge:
-      "Research news becomes clearer when you identify the claim, the baseline it beats, and the assumptions that may not survive outside the paper.",
-    categoryIds: ["research-papers"]
-  },
-  {
     id: "embedded-systems-basics",
     title: "Embedded systems basics",
     deck: "Software that runs close to sensors, chips, robots, and devices.",
@@ -247,38 +215,6 @@ export const LEARNING_FOUNDATIONS = [
     bridge:
       "Tooling and open source stories are easier to judge when you can see who maintains the project, how changes land, and whether the workflow improves developer feedback.",
     categoryIds: ["developer-tools-open-source"]
-  },
-  {
-    id: "cybersecurity-basics",
-    title: "Cybersecurity basics",
-    deck: "How defenders reason about identity, vulnerabilities, and risk.",
-    points: [
-      "Security starts with assets, trust boundaries, and likely threats.",
-      "Most incidents combine a technical weakness with access or process gaps.",
-      "Good defenses reduce blast radius and improve detection."
-    ],
-    resources: [
-      {
-        title: "The Protection of Information in Computer Systems",
-        author: "Saltzer and Schroeder",
-        year: 1975,
-        whyItMatters:
-          "Introduces design principles behind least privilege, fail-safe defaults, and defense in depth.",
-        url: "https://web.mit.edu/Saltzer/www/publications/protection/",
-        tag: "Security principles"
-      },
-      {
-        title: "Threat Modeling",
-        author: "OWASP Foundation",
-        whyItMatters:
-          "A practical guide to assets, attackers, trust boundaries, authentication, and secure defaults.",
-        url: "https://owasp.org/www-community/Threat_Modeling",
-        tag: "Threat models"
-      }
-    ],
-    bridge:
-      "Security news is more useful when you can spot the affected asset, the path attackers used, and the controls that would have limited damage.",
-    categoryIds: ["cybersecurity"]
   },
   {
     id: "cloud-infrastructure-basics",

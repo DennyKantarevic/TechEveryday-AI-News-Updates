@@ -19,7 +19,7 @@ const EDITORIAL_NEWS_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://www.theverge.com/rss/index.xml",
     sourceType: "news",
     trustScore: 0.78,
-    categoryHints: ["ai-ml", "developer-tools-open-source", "cloud-infrastructure", "cybersecurity"]
+    categoryHints: ["ai-ml", "developer-tools-open-source", "cloud-infrastructure"]
   },
   {
     name: "Ars Technica",
@@ -27,7 +27,7 @@ const EDITORIAL_NEWS_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://feeds.arstechnica.com/arstechnica/index",
     sourceType: "news",
     trustScore: 0.82,
-    categoryHints: ["computer-systems", "cybersecurity", "cloud-infrastructure", "embedded-systems"]
+    categoryHints: ["computer-systems", "cloud-infrastructure", "embedded-systems"]
   },
   {
     name: "Wired",
@@ -35,7 +35,7 @@ const EDITORIAL_NEWS_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://www.wired.com/feed/rss",
     sourceType: "news",
     trustScore: 0.75,
-    categoryHints: ["ai-ml", "cybersecurity", "automation-agentic-systems"]
+    categoryHints: ["ai-ml", "automation-agentic-systems"]
   },
   {
     name: "MIT Technology Review",
@@ -68,7 +68,7 @@ const RESEARCH_INDEX_SOURCES: TrustedSourceConfig[] = [
     homepageUrl: "https://arxiv.org/list/cs/recent",
     sourceType: "paper",
     trustScore: 0.86,
-    categoryHints: ["research-papers", "ai-ml", "computer-systems", "cybersecurity"]
+    categoryHints: ["research-papers", "ai-ml", "computer-systems"]
   },
   {
     name: "Papers with Code",
@@ -146,7 +146,7 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://aws.amazon.com/blogs/aws/feed/",
     sourceType: "official",
     trustScore: 0.88,
-    categoryHints: ["cloud-infrastructure", "developer-tools-open-source", "cybersecurity"]
+    categoryHints: ["cloud-infrastructure", "developer-tools-open-source"]
   },
   {
     name: "Cloudflare Blog",
@@ -154,7 +154,7 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://blog.cloudflare.com/rss/",
     sourceType: "official",
     trustScore: 0.9,
-    categoryHints: ["cloud-infrastructure", "cybersecurity", "computer-systems"]
+    categoryHints: ["cloud-infrastructure", "computer-systems"]
   },
   {
     name: "GitHub Blog",
@@ -162,7 +162,7 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://github.blog/feed/",
     sourceType: "official",
     trustScore: 0.88,
-    categoryHints: ["developer-tools-open-source", "automation-agentic-systems", "cybersecurity"]
+    categoryHints: ["developer-tools-open-source", "automation-agentic-systems"]
   }
 ];
 
@@ -177,8 +177,7 @@ const DISCOVERY_SOURCES: TrustedSourceConfig[] = [
       "developer-tools-open-source",
       "computer-systems",
       "ai-ml",
-      "cloud-infrastructure",
-      "cybersecurity"
+      "cloud-infrastructure"
     ],
     discoveryOnly: true
   }

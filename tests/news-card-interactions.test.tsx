@@ -34,10 +34,24 @@ vi.mock("framer-motion", async () => {
         transition,
         ...props
       }: React.HTMLAttributes<HTMLElement> & Record<string, unknown>) => (
-        <article {...props}>{children}</article>
+        <article
+          data-viewport-amount={String(
+            (viewport as { amount?: number } | undefined)?.amount ?? ""
+          )}
+          data-viewport-margin={String(
+            (viewport as { margin?: string } | undefined)?.margin ?? ""
+          )}
+          data-viewport-once={String(
+            (viewport as { once?: boolean } | undefined)?.once ?? ""
+          )}
+          data-while-in-view={String(whileInView ?? "")}
+          {...props}
+        >
+          {children}
+        </article>
       )
     },
-    useReducedMotion: () => true
+    useReducedMotion: () => false
   };
 });
 
@@ -106,5 +120,16 @@ describe("NewsCard interaction tracking", () => {
       screen.getAllByText("Artificial Intelligence / Machine Learning").length
     ).toBeGreaterThan(0);
     expect(screen.queryByText("ai-ml")).toBeNull();
+  });
+
+  it("replays standalone card entrance animations with later viewport timing", () => {
+    render(<NewsCard item={item} />);
+
+    const article = screen.getByRole("article");
+
+    expect(article).toHaveAttribute("data-while-in-view", "visible");
+    expect(article).toHaveAttribute("data-viewport-once", "false");
+    expect(Number(article.getAttribute("data-viewport-amount"))).toBeGreaterThanOrEqual(0.45);
+    expect(article).toHaveAttribute("data-viewport-margin", "0px 0px -12% 0px");
   });
 });

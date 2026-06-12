@@ -135,7 +135,11 @@ export default function NewsCard({
       variants={cardEntranceVariants}
       initial={staggeredEntrance ? undefined : shouldReduceMotion ? false : "hidden"}
       whileInView={staggeredEntrance || shouldReduceMotion ? undefined : "visible"}
-      viewport={staggeredEntrance || shouldReduceMotion ? undefined : { once: true, margin: "-80px" }}
+      viewport={
+        staggeredEntrance || shouldReduceMotion
+          ? undefined
+          : { once: false, amount: 0.5, margin: "0px 0px -12% 0px" }
+      }
       className="card-frame flex h-full flex-col overflow-hidden rounded-sm"
     >
       <div className="image-crosshatch relative aspect-[16/9] overflow-hidden border-b-2 border-ink">

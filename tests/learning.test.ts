@@ -50,11 +50,9 @@ describe("learning foundations", () => {
     expect(LEARNING_FOUNDATIONS.map((section) => section.title)).toEqual([
       "Artificial Intelligence / Machine Learning basics",
       "Agents and automation basics",
-      "Research paper reading basics",
       "Embedded systems basics",
       "Computer systems basics",
       "Developer Tools / Open Source basics",
-      "Cybersecurity basics",
       "Cloud/infrastructure basics"
     ]);
 
@@ -87,9 +85,6 @@ describe("learning foundations", () => {
     );
     expect(resourceTitles).toContain("The Google File System");
     expect(resourceTitles).toContain("The Cathedral and the Bazaar");
-    expect(resourceTitles).toContain(
-      "The Protection of Information in Computer Systems"
-    );
     expect(resourceTitles).toContain("Dynamo: Amazon's Highly Available Key-value Store");
   });
 });
@@ -98,14 +93,14 @@ describe("getLearningCurrentContext", () => {
   it("returns recent relevant feed items capped by limit", () => {
     const feed = dailyNews([
       article("old-ai", "ai-ml", "2026-06-09T08:00:00.000Z"),
-      article("new-security", "cybersecurity", "2026-06-12T08:00:00.000Z"),
+      article("paper", "research-papers", "2026-06-12T10:00:00.000Z"),
       article("tooling", "developer-tools-open-source", "2026-06-12T09:00:00.000Z"),
       article("new-cloud", "cloud-infrastructure", "2026-06-11T08:00:00.000Z")
     ]);
 
     expect(getLearningCurrentContext(feed, 2).map((item) => item.id)).toEqual([
       "tooling",
-      "new-security"
+      "new-cloud"
     ]);
   });
 

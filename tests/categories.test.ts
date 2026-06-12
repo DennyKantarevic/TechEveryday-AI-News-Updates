@@ -8,4 +8,17 @@ describe("category labels", () => {
     expect(aiCategory?.title).toBe("Artificial Intelligence / Machine Learning");
     expect(CATEGORIES.map((category) => category.title)).not.toContain("AI / ML");
   });
+
+  it("does not expose Cybersecurity as a site category", () => {
+    expect(CATEGORIES.map((category) => category.id)).toEqual([
+      "ai-ml",
+      "automation-agentic-systems",
+      "research-papers",
+      "embedded-systems",
+      "computer-systems",
+      "developer-tools-open-source",
+      "cloud-infrastructure"
+    ]);
+    expect(CATEGORIES.map((category) => category.title)).not.toContain("Cybersecurity");
+  });
 });

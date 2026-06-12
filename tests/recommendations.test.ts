@@ -36,12 +36,12 @@ describe("getRecommendations", () => {
       saved: true,
       tags: ["agentic AI", "workflow automation"]
     });
-    const viewedSecurity = newsItem({
-      id: "viewed-security",
-      title: "Vulnerability response automation",
-      summary: "Security teams automate triage and patch workflows.",
-      category: "cybersecurity",
-      tags: ["vulnerability", "automation"]
+    const viewedSystems = newsItem({
+      id: "viewed-systems",
+      title: "Runtime response automation",
+      summary: "Systems teams automate triage and patch workflows.",
+      category: "computer-systems",
+      tags: ["runtime", "automation"]
     });
     const agenticCandidate = newsItem({
       id: "agentic-new",
@@ -51,22 +51,22 @@ describe("getRecommendations", () => {
       sourceType: "official",
       tags: ["agentic AI", "orchestration"]
     });
-    const securityCandidate = newsItem({
-      id: "security-new",
+    const systemsCandidate = newsItem({
+      id: "systems-new",
       title: "Patch management systems add triage automation",
-      summary: "Security operations teams prioritize vulnerability response.",
-      category: "cybersecurity",
-      tags: ["vulnerability", "patching"]
+      summary: "Systems operations teams prioritize runtime maintenance.",
+      category: "computer-systems",
+      tags: ["runtime", "patching"]
     });
 
     const recommendations = getRecommendations({
-      articles: [savedAgentic, securityCandidate, agenticCandidate],
+      articles: [savedAgentic, systemsCandidate, agenticCandidate],
       events: [
         {
           type: "article_viewed",
-          articleId: viewedSecurity.id,
-          article: viewedSecurity,
-          category: viewedSecurity.category,
+          articleId: viewedSystems.id,
+          article: viewedSystems,
+          category: viewedSystems.category,
           createdAt: "2026-06-12T09:00:00.000Z"
         },
         {
@@ -83,7 +83,7 @@ describe("getRecommendations", () => {
 
     expect(recommendations.map((recommendation) => recommendation.item.id)).toEqual([
       "agentic-new",
-      "security-new"
+      "systems-new"
     ]);
     expect(recommendations[0].score).toBeGreaterThan(recommendations[1].score);
     expect(recommendations[0].reason).toBe(
@@ -182,6 +182,44 @@ describe("getRecommendations", () => {
       "starter-cloud-infrastructure-example"
     ]);
   });
+
+  it("ignores old interaction history for categories that are no longer active", () => {
+    const oldRemovedCategoryArticle = newsItem({
+      id: "old-security",
+      title: "Security incident analysis",
+      summary: "An old saved security story from a removed site section.",
+      category: "cybersecurity" as never,
+      saved: true,
+      tags: ["cybersecurity", "incident response"]
+    });
+    const cloudCandidate = newsItem({
+      id: "cloud-candidate",
+      title: "Incident response automation improves cloud operations",
+      summary: "Cloud teams automate production response workflows.",
+      category: "cloud-infrastructure",
+      sourceType: "official",
+      tags: ["incident response", "automation"]
+    });
+
+    const oldRemovedCategoryEvents = [
+      {
+        type: "article_saved" as const,
+        articleId: oldRemovedCategoryArticle.id,
+        article: oldRemovedCategoryArticle,
+        category: "cybersecurity" as never,
+        createdAt: "2026-06-12T09:00:00.000Z"
+      }
+    ];
+
+    expect(hasEnoughInteractionData(oldRemovedCategoryEvents)).toBe(false);
+    expect(
+      getRecommendations({
+        articles: [cloudCandidate],
+        events: oldRemovedCategoryEvents,
+        now
+      })
+    ).toEqual([]);
+  });
 });
 
 describe("getFoundationalLearningRecommendations", () => {
@@ -205,11 +243,11 @@ describe("getFoundationalLearningRecommendations", () => {
           tags: ["agentic AI"]
         },
         {
-          id: "cybersecurity-basics",
-          title: "Cybersecurity basics",
-          deck: "How defenders reason about identity, vulnerabilities, and risk.",
-          categoryIds: ["cybersecurity"],
-          tags: ["vulnerability"]
+          id: "cloud-infrastructure-basics",
+          title: "Cloud/infrastructure basics",
+          deck: "The operational foundation for running software at scale.",
+          categoryIds: ["cloud-infrastructure"],
+          tags: ["observability"]
         }
       ],
       events: [
