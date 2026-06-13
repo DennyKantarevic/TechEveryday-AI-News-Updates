@@ -19,5 +19,7 @@ describe("daily email cron route", () => {
     expect(source).toContain("createSecureToken()");
     expect(source).toContain("hashToken(unsubscribeToken)");
     expect(source).toContain("email_delivery_logs");
+    expect(source).toContain("process.env.APP_BASE_URL!");
+    expect(source).toContain("from: process.env.EMAIL_FROM!");
   });
 });

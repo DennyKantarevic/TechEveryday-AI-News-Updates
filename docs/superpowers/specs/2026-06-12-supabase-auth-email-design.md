@@ -59,7 +59,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 EMAIL_FROM=TechEveryday <updates@techeveryday.org>
-APP_BASE_URL=
+APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
 CRON_SECRET=
 ```
 

@@ -69,18 +69,6 @@ CRON_SECRET=
 
 `APP_BASE_URL` should be the deployed site origin, currently `https://tech-everyday-ai-news-updates.vercel.app`, so auth callbacks and email links are correct.
 
-For production email delivery, verify `techeveryday.org` in Resend before testing real subscribers. Add the DNS records Resend provides for `techeveryday.org`, set the Vercel production env vars below, redeploy, then check both Resend logs and Vercel function logs when testing:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-RESEND_API_KEY=
-EMAIL_FROM=TechEveryday <updates@techeveryday.org>
-APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
-CRON_SECRET=
-```
-
 ## Supabase Setup
 
 1. Create a Supabase project.
@@ -109,6 +97,31 @@ The migrations create:
 - `email_delivery_logs`
 
 RLS is enabled on every account data table. Authenticated users can only access rows where `auth.uid() = user_id`. Anonymous users cannot read private account data. Service-role operations happen only in server route handlers.
+
+## Production Email Setup
+
+Production email uses Resend and the official sender identity `TechEveryday <updates@techeveryday.org>`. Email delivery will not work until:
+
+1. `techeveryday.org` is added to Resend as a sending domain.
+2. Resend DNS records are added wherever `techeveryday.org` DNS is managed.
+3. Resend shows the domain status as verified.
+4. Vercel Production has these environment variables:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+EMAIL_FROM=TechEveryday <updates@techeveryday.org>
+APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
+CRON_SECRET=
+```
+
+5. Vercel is redeployed after env changes.
+
+`updates@techeveryday.org` does not need to be a normal inbox to send through Resend, but `techeveryday.org` must be verified in Resend. If we want to receive replies, configure a mailbox or set a Reply-To address later.
+
+Use `/api/email/debug-config` to check non-secret email setup. The endpoint is open outside production and requires `CRON_SECRET` in production.
 
 ## Account Privacy
 

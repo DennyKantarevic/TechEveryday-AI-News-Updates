@@ -16,13 +16,14 @@ describe("email subscription route security", () => {
     expect(source).toContain("confirmation_token_hash");
     expect(source).toContain("unsubscribe_token_hash");
     expect(source).toContain("readEmailConfig(process.env)");
-    expect(source).toContain("emailRouteUrl");
     expect(source).toContain("safeEmailConfigDiagnostics(process.env)");
-    expect(source).toContain("from: emailConfig.config.emailFrom");
+    expect(source).toContain("process.env.APP_BASE_URL!");
+    expect(source).toContain("from: process.env.EMAIL_FROM!");
     expect(source).toContain("result.error");
     expect(source).toContain("Email provider rejected the confirmation email.");
     expect(source).toContain("Confirm your TechEveryday subscription");
-    expect(source).toContain("If you did not request this, ignore this email.");
+    expect(source).toContain("Confirm your subscription to daily TechEveryday updates.");
+    expect(source).toContain("If you did not request this, you can ignore this email.");
     expect(source).toContain("Check your email to confirm your TechEveryday subscription.");
   });
 
@@ -37,6 +38,7 @@ describe("email subscription route security", () => {
     const source = routeSource("app/api/email/debug-config/route.ts");
 
     expect(source).toContain("safeEmailConfigDiagnostics(process.env)");
+    expect(source).toContain("process.env.NODE_ENV !== \"production\"");
     expect(source).toContain("CRON_SECRET");
     expect(source).toContain("Unauthorized.");
   });

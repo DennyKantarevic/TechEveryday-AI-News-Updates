@@ -13,7 +13,7 @@ describe("email environment configuration", () => {
 
     expect(result).toEqual({
       ok: false,
-      error: "Email service is not configured: missing RESEND_API_KEY."
+      error: "Missing RESEND_API_KEY. Add it to Vercel Production environment variables."
     });
   });
 
@@ -25,7 +25,7 @@ describe("email environment configuration", () => {
 
     expect(result).toEqual({
       ok: false,
-      error: "Email sender is not configured: missing EMAIL_FROM."
+      error: "Missing EMAIL_FROM. Set EMAIL_FROM to TechEveryday <updates@techeveryday.org>."
     });
   });
 
@@ -37,7 +37,8 @@ describe("email environment configuration", () => {
 
     expect(result).toEqual({
       ok: false,
-      error: "App base URL is not configured: missing APP_BASE_URL."
+      error:
+        "Missing APP_BASE_URL. Set APP_BASE_URL to https://tech-everyday-ai-news-updates.vercel.app."
     });
   });
 

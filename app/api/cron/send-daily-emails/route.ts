@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CATEGORY_BY_ID, CATEGORY_IDS } from "@/config/categories";
 import {
-  emailRouteUrl,
   readEmailConfig,
   safeEmailConfigDiagnostics
 } from "@/lib/email/config";
@@ -106,12 +105,12 @@ export async function GET(request: NextRequest) {
 
   const admin = createAdminSupabaseClient();
   const resend = createResendClient(emailConfig.config.resendApiKey);
-  const baseUrl = emailConfig.config.appBaseUrl;
+  const baseUrl = process.env.APP_BASE_URL!.replace(/\/$/, "");
   const dailyNews = await fileStorage.readDailyNews();
   const items = topNewsletterItems(dailyNews.categories);
   const preview = renderDailyNewsletterEmail({
     baseUrl,
-    unsubscribeUrl: emailRouteUrl(emailConfig.config, "/api/email/unsubscribe"),
+    unsubscribeUrl: `${baseUrl}/api/email/unsubscribe`,
     items
   });
   const subject = preview.subject;
@@ -146,10 +145,9 @@ export async function GET(request: NextRequest) {
     }
 
     const unsubscribeToken = createSecureToken();
-    const unsubscribeUrl = emailRouteUrl(
-      emailConfig.config,
-      `/api/email/unsubscribe?token=${encodeURIComponent(unsubscribeToken)}`
-    );
+    const unsubscribeUrl = `${baseUrl}/api/email/unsubscribe?token=${encodeURIComponent(
+      unsubscribeToken
+    )}`;
     const email = renderDailyNewsletterEmail({
       baseUrl,
       unsubscribeUrl,
@@ -163,7 +161,7 @@ export async function GET(request: NextRequest) {
 
     try {
       const result = await resend.emails.send({
-        from: emailConfig.config.emailFrom,
+        from: process.env.EMAIL_FROM!,
         to: subscription.email,
         subject: email.subject,
         html: email.html,

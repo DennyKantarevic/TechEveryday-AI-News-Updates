@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import {
-  emailRouteUrl,
   readEmailConfig,
   safeEmailConfigDiagnostics
 } from "@/lib/email/config";
@@ -19,15 +18,16 @@ const subscribeSchema = z.object({
   subscribed: z.boolean().default(true)
 });
 
-function confirmationEmailHtml(confirmUrl: string) {
+function confirmationEmailHtml(confirmUrl: string, appBaseUrl: string) {
   return `
     <div style="background:#f3eadb;padding:28px 16px;font-family:Arial,sans-serif;color:#111111;">
       <main style="max-width:620px;margin:0 auto;border:2px solid #111111;background:#fffdf8;padding:24px;">
         <p style="margin:0 0 8px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:800;color:#8a5d3b;">Confirm subscription</p>
         <h1 style="margin:0;font-family:Georgia,serif;font-size:32px;line-height:1;">TechEveryday</h1>
-        <p style="margin:14px 0;font-size:15px;line-height:1.6;">You requested daily TechEveryday updates. Confirm this subscription before we send newsletter emails to this address.</p>
+        <p style="margin:14px 0;font-size:15px;line-height:1.6;">Confirm your subscription to daily TechEveryday updates.</p>
         <a href="${confirmUrl}" style="display:inline-block;border:2px solid #111111;background:#111111;color:#ffffff;text-decoration:none;padding:11px 15px;font-size:13px;font-weight:800;">Confirm daily updates</a>
-        <p style="margin:16px 0 0;font-size:13px;line-height:1.5;color:#4b463e;">If you did not request this, ignore this email.</p>
+        <p style="margin:16px 0 0;font-size:13px;line-height:1.5;color:#4b463e;">If you did not request this, you can ignore this email.</p>
+        <p style="margin:14px 0 0;font-size:12px;line-height:1.4;color:#6b6257;">${appBaseUrl}</p>
       </main>
     </div>
   `;
@@ -87,10 +87,10 @@ export async function POST(request: NextRequest) {
 
   const confirmationToken = createSecureToken();
   const unsubscribeToken = createSecureToken();
-  const confirmationUrl = emailRouteUrl(
-    emailConfig.config,
-    `/api/email/confirm?token=${encodeURIComponent(confirmationToken)}`
-  );
+  const appBaseUrl = process.env.APP_BASE_URL!.replace(/\/$/, "");
+  const confirmationUrl = `${appBaseUrl}/api/email/confirm?token=${encodeURIComponent(
+    confirmationToken
+  )}`;
 
   try {
     const admin = createAdminSupabaseClient();
@@ -124,17 +124,19 @@ export async function POST(request: NextRequest) {
     logEmailConfig("[email:subscribe] send_attempt");
     const resend = createResendClient(emailConfig.config.resendApiKey);
     const result = await resend.emails.send({
-      from: emailConfig.config.emailFrom,
+      from: process.env.EMAIL_FROM!,
       to: subscriptionEmail,
       subject: "Confirm your TechEveryday subscription",
-      html: confirmationEmailHtml(confirmationUrl),
+      html: confirmationEmailHtml(confirmationUrl, appBaseUrl),
       text: [
         "Confirm your TechEveryday subscription",
         "",
-        "You requested daily TechEveryday updates.",
+        "Confirm your subscription to daily TechEveryday updates.",
         `Confirm here: ${confirmationUrl}`,
         "",
-        "If you did not request this, ignore this email."
+        "If you did not request this, you can ignore this email.",
+        "",
+        appBaseUrl
       ].join("\n")
     });
 
