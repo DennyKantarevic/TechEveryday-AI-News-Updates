@@ -62,16 +62,19 @@ describe("email environment configuration", () => {
   it("exposes only safe diagnostics", () => {
     const result = safeEmailConfigDiagnostics({
       RESEND_API_KEY: "test_resend_key",
+      SUPABASE_SERVICE_ROLE_KEY: "test_service_role_key",
       EMAIL_FROM: sender,
       APP_BASE_URL: productionUrl
     });
 
     expect(result).toEqual({
       hasResendApiKey: true,
+      hasSupabaseServiceRoleKey: true,
       emailFrom: sender,
       hasAppBaseUrl: true,
       appBaseUrl: productionUrl
     });
     expect(JSON.stringify(result)).not.toContain("test_resend_key");
+    expect(JSON.stringify(result)).not.toContain("test_service_role_key");
   });
 });

@@ -102,10 +102,11 @@ RLS is enabled on every account data table. Authenticated users can only access 
 
 Production email uses Resend and the official sender identity `TechEveryday <updates@techeveryday.org>`. Email delivery will not work until:
 
-1. `techeveryday.org` is added to Resend as a sending domain.
-2. Resend DNS records are added wherever `techeveryday.org` DNS is managed.
-3. Resend shows the domain status as verified.
-4. Vercel Production has these environment variables:
+Real email delivery cannot be confirmed until these Vercel environment variables are added and `techeveryday.org` is verified in Resend DNS.
+
+`updates@techeveryday.org` does not need to be a mailbox for sending through Resend, but the domain must be verified.
+
+Required Vercel Production env vars:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
@@ -117,9 +118,14 @@ APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
 CRON_SECRET=
 ```
 
-5. Vercel is redeployed after env changes.
+Manual Resend/DNS steps:
 
-`updates@techeveryday.org` does not need to be a normal inbox to send through Resend, but `techeveryday.org` must be verified in Resend. If we want to receive replies, configure a mailbox or set a Reply-To address later.
+1. Add `techeveryday.org` as a sending domain in Resend.
+2. Copy the DNS records Resend provides.
+3. Add those records wherever `techeveryday.org` DNS is managed.
+4. Wait until Resend marks the domain as verified.
+5. Redeploy Vercel after env changes.
+6. Test signup again.
 
 Use `/api/email/debug-config` to check non-secret email setup. The endpoint is open outside production and requires `CRON_SECRET` in production.
 

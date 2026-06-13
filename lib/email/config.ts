@@ -3,6 +3,7 @@ type EmailEnv = {
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;
   APP_BASE_URL?: string;
+  SUPABASE_SERVICE_ROLE_KEY?: string;
 };
 
 export type EmailConfig = {
@@ -64,11 +65,13 @@ export function emailRouteUrl(config: EmailConfig, path: string) {
 
 export function safeEmailConfigDiagnostics(env: EmailEnv = process.env) {
   const resendApiKey = env.RESEND_API_KEY?.trim();
+  const supabaseServiceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY?.trim();
   const emailFrom = env.EMAIL_FROM?.trim() ?? null;
   const appBaseUrl = env.APP_BASE_URL?.trim().replace(/\/$/, "") ?? null;
 
   return {
     hasResendApiKey: Boolean(resendApiKey),
+    hasSupabaseServiceRoleKey: Boolean(supabaseServiceRoleKey),
     emailFrom,
     hasAppBaseUrl: Boolean(appBaseUrl),
     appBaseUrl
