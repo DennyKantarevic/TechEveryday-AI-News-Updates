@@ -157,7 +157,7 @@ The refresh pipeline:
 8. Assigns each item to one category.
 9. Selects up to five items per category.
 10. Rejects stale content older than 72 hours instead of filling categories with old items.
-11. Writes `data/daily-news.json`, `data/gallery.json`, and `data/last-refresh.json`.
+11. Writes the current public daily snapshot and refresh status.
 
 If a category has no high-signal new items in the last 72 hours, the UI shows a clean empty state instead of stale filler.
 
@@ -176,25 +176,30 @@ curl -X POST "http://localhost:3000/api/refresh-news"
 With a secret:
 
 ```bash
-curl -X POST \
+curl \
   -H "Authorization: Bearer $CRON_SECRET" \
-  "https://your-domain.com/api/refresh-news"
+  "https://your-domain.com/api/cron/refresh-news?force=true"
 ```
+
+The production refresh status endpoint is available at `/api/news/refresh-status`. It returns safe metadata such as started/completed timestamps, the New York refresh date, selected item counts, storage backend, and configured cron schedules.
 
 ## Vercel Cron
 
-`vercel.json` includes two UTC cron entries:
+Vercel Cron calls configured paths with HTTP `GET`, and schedules are evaluated in UTC. `vercel.json` includes two UTC refresh entries so 7:00 AM America/New_York works across daylight saving time:
 
 - `0 11 * * *`
 - `0 12 * * *`
+
+Both call `/api/cron/refresh-news`. The route checks the current time in `America/New_York`, runs only during the 7 AM hour, and skips if the New York calendar day has already refreshed.
+
+`vercel.json` also includes two daily email entries:
+
 - `15 11 * * *`
 - `15 12 * * *`
 
 The first two entries refresh the public daily feed. The `:15` entries send confirmed daily emails shortly after the refresh window. Duplicate email delivery is suppressed by checking `email_delivery_logs` for a successful send to the same email and subject on the current America/New_York day.
 
-The refresh entries cover 7:00 AM America/New_York across daylight saving and standard time. The route receives `?scheduled=1` and only runs during the 7 AM New York hour if the day has not already refreshed, so the extra UTC call is skipped.
-
-Set `CRON_SECRET` in Vercel. The daily email route requires `Authorization: Bearer $CRON_SECRET` or `?secret=$CRON_SECRET`.
+Set `CRON_SECRET` in Vercel. Manual refresh testing with `/api/cron/refresh-news?force=true` requires `Authorization: Bearer $CRON_SECRET`. Scheduled Vercel Cron calls are accepted by the cron route and remain idempotent.
 
 ## Email Subscriptions
 
@@ -217,18 +222,19 @@ Every daily email includes an unsubscribe link. The unsubscribe route works with
 
 ## Storage
 
-The public newsletter snapshot stores data in local JSON files:
+The public newsletter snapshot uses Supabase in production and local JSON files for development fallback. Apply the `daily_news_snapshots` migration and set `NEXT_PUBLIC_SUPABASE_URL` plus `SUPABASE_SERVICE_ROLE_KEY` before relying on production cron refreshes.
 
 - `data/daily-news.json`
 - `data/gallery.json`
 - `data/last-refresh.json`
 
-The public storage API is centralized in `lib/storage.ts`. Account-owned data is stored in Supabase:
+Daily newsletter snapshot reads are centralized in `lib/news/snapshotStorage.ts`. Local gallery fallback storage remains in `lib/storage.ts`. Account-owned data is stored in Supabase:
 
 - `saved_articles`
 - `reading_events`
 - `user_preferences`
 - `newsletter_subscriptions`
+- `daily_news_snapshots`
 
 ## Tests
 

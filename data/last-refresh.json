@@ -1,6 +1,13 @@
 {
-  "refreshedAt": "2026-06-12T20:44:59.398Z",
-  "nextRefreshAt": "2026-06-13T11:00:00.000Z",
+  "refreshedAt": "2026-06-13T14:25:13.877Z",
+  "nextRefreshAt": "2026-06-14T11:00:00.000Z",
+  "lastRefreshStartedAt": "2026-06-13T14:25:13.877Z",
+  "lastRefreshCompletedAt": "2026-06-13T14:25:13.877Z",
+  "lastRefreshDateAmericaNewYork": "2026-06-13",
+  "itemsFound": 277,
+  "itemsSelected": 34,
+  "errors": [],
+  "trigger": "manual",
   "candidateCount": 277,
   "categoryCounts": {
     "ai-ml": 5,
@@ -15,10 +22,10 @@
   "message": "Refresh completed with fresh high-signal items.",
   "debug": {
     "totalCandidatesFound": 277,
-    "candidatesAfterFreshness": 152,
-    "rejectedByAge": 125,
-    "rejectedByLowQuality": 76,
-    "rejectedByDuplicate": 0,
+    "candidatesAfterFreshness": 145,
+    "rejectedByAge": 132,
+    "rejectedByLowQuality": 64,
+    "rejectedByDuplicate": 1,
     "rejectedByTrust": 0,
     "finalSelectedByCategory": {
       "ai-ml": 5,
@@ -31,6 +38,7 @@
     },
     "sourcesUsed": [
       "AWS Blog",
+      "Ars Technica",
       "CNCF Blog",
       "Cloudflare Blog",
       "GitHub Blog",
@@ -39,13 +47,49 @@
       "Hacker News",
       "IEEE Spectrum",
       "LWN.net",
-      "MIT Technology Review",
       "Microsoft Research Blog",
       "NVIDIA Blog",
       "OpenAI Blog",
+      "The Verge",
+      "Wired",
       "arXiv"
     ],
     "rejected": [
+      {
+        "id": "2d3f274840461783b1d7c7fbb46f0cee72969998",
+        "title": "Never Post's Mike Rugnetta on the creative process and the value of reliable power",
+        "url": "https://www.theverge.com/report/949073/mike-rugnetta-youtube-never-post-podcast-questionnaire",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "4affbeb4d8c4e9cc7f045f8696ce5f222238fba6",
+        "title": "My yard is dying, so I made an app for that",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/942119/vibecoding-backyard-app-gardening-organizing",
+        "sourceName": "The Verge",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "6948ca4f16809f23f4d19f307bda8333247b4dc2",
+        "title": "Echo Isle is a pint-sized adventure inspired by classic Zelda",
+        "url": "https://www.theverge.com/games/947136/echo-isle-review-pc",
+        "sourceName": "The Verge",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "6a484e5ef664ee79975a1c2d9fd715ac011c1b60",
+        "title": "A better way to manage all your screenshots",
+        "url": "https://www.theverge.com/tech/949465/pool-screenshots-app-disclosure-day-installer",
+        "sourceName": "The Verge",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "f8f87c22edc01efac3ebeba23cb57cbe8d37ed8a",
+        "title": "Valve just imported 13 tons of VR headsets in one day",
+        "url": "https://www.theverge.com/news/949517/valve-vr-headset-import-records-steam-frame-steam-machine-game-console",
+        "sourceName": "The Verge",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
       {
         "id": "d5f0a1efd4e68796f29ec863d18cd4cafb9d1e50",
         "title": "Nothing CEO says phone prices are going to keep going up",
@@ -61,60 +105,11 @@
         "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
-        "id": "b6380986fba429c8efe38f63dbe0e53abd2c3b33",
-        "title": "Siri is good now?",
-        "url": "https://www.theverge.com/podcast/949079/siri-ai-good-vergecast",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "e7ce496ea947eb469d5c25b903ad40d8002421b8",
-        "title": "A trillion dollars is a stupid amount of money",
-        "url": "https://www.theverge.com/tech/948917/elon-musk-trillionaire-how-much-visualization",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "bd4f70039b15ebe03a2b384ef4ab2e9862ff8ea2",
-        "title": "Elon Musk is the world's first trillionaire",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/948409/elon-musk-trillionaire-spacex-ipo",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "af5fdabad558ef01bf0757d61313bbae41725a05",
-        "title": "I held the Trump phone",
-        "url": "https://www.theverge.com/tech/948464/trump-phone-t1-hands-on",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "cb07d76b4ccc91a37fc33744e0253f783b6a052e",
-        "title": "Govee's rechargeable smart table lamp is down to $60",
-        "url": "https://www.theverge.com/gadgets/948806/govee-table-lamp-classic-jbl-charge-6-deal-sale",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "b5e58cd677f69059e520fca297bfc46d639e5dd0",
-        "title": "SpaceX's massive IPO: all the latest news",
-        "url": "https://www.theverge.com/business/948996/spacex-ipo-elon-musk",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "7979802fbe14f21479364e0b50b120f38b8c1dc2",
-        "title": "Jeff Bezos' AI startup aims to build an 'artificial general engineer'",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/949005/jeff-bezos-prometheus-artificial-general-engineer",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "82d9c5b685f896173d4c8e1e6487eeae1b849e86",
-        "title": "SpaceX is now public",
-        "url": "https://www.theverge.com/science/947926/spacex-ipo-stock-shares-trading-elon-musk",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "3097a9c8275052546ab7b953e2209cdfa3ca1039",
+        "title": "SpaceX is now a public company valued for its AI potential, so what comes next?",
+        "url": "https://arstechnica.com/space/2026/06/spacex-is-now-a-public-company-valued-for-its-ai-potential-so-what-comes-next/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
         "id": "bfff2a9589f42deea4f32e2ca2c8b71d92745f3a",
@@ -201,24 +196,31 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "223baf7356fb30f2428fded1c5c76b1c93b2105e",
-        "title": "Pokémon Go players unwittingly contributed to tech with military drone uses",
-        "url": "https://arstechnica.com/ai/2026/06/pokemon-go-players-unwittingly-contributed-to-tech-with-military-drone-uses/",
-        "sourceName": "Ars Technica",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "bebd24ef9a915910aebdf7551dcd4167e51acfe7",
-        "title": "Verizon sent man a refurbished phone with MDM, then deleted his data remotely",
-        "url": "https://arstechnica.com/tech-policy/2026/06/verizon-sent-man-a-refurbished-phone-with-mdm-then-deleted-his-data-remotely/",
-        "sourceName": "Ars Technica",
+        "id": "8a2e8bfa78fb6b411ab5ecc9eba711cc83642afd",
+        "title": "Meet the New Dyson Vacuums: V16 Piston Animal, V10 Konical, V8 Cyclone (2026)",
+        "url": "https://www.wired.com/story/meet-dysons-new-cordless-vacuum-lineup/",
+        "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "4e8bbb5dcf5756eb7038f63dafa64c189d54d4c6",
-        "title": "Rocket Report: Nova moving through test campaign; SpaceX IPO launches Friday",
-        "url": "https://arstechnica.com/space/2026/06/rocket-report-nova-moving-through-test-campaign-spacex-ipo-launches-friday/",
-        "sourceName": "Ars Technica",
+        "id": "11d0f1e126b82627824e3efc505a28ca4925eb4b",
+        "title": "How Can Soccer Players Bend Their Shots in Midair?",
+        "url": "https://www.wired.com/story/how-can-soccer-players-bend-their-shots-in-midair/",
+        "sourceName": "Wired",
+        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+      },
+      {
+        "id": "ca3bf971e231e58cd005dc33ba3ba93364936a67",
+        "title": "EcoFlow PowerOcean Battery Review: Cutting My Bill in Half",
+        "url": "https://www.wired.com/review/ecoflow-powerocean-home-battery/",
+        "sourceName": "Wired",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "1652b4a9a350c2ceb8b4dfba6d6a9e614c77d651",
+        "title": "Rivian's CEO on Tesla's Cybertruck, Ferrari's Luce, and What Happens If the R2 Fails",
+        "url": "https://www.wired.com/story/interview-with-rivian-ceo-rj-scaringe/",
+        "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
@@ -253,69 +255,6 @@
         "id": "5bed6817b9c46791d1bde1d1c5c67a818c89a45c",
         "title": "A White Supremacist Youth Group Helped Orchestrate the Belfast Riots",
         "url": "https://www.wired.com/story/a-white-supremacist-youth-group-helped-orchestrate-the-belfast-riots/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "c34d38fcdc86bdd6f4eff731b801fa7e5e92dfe4",
-        "title": "6 Best Digital Notebooks (2026): ReMarkable, Kobo, Kindle",
-        "url": "https://www.wired.com/gallery/best-smart-notebooks-and-smart-pens/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "e6738d398b43e6fa1ec1ff050f6c4b7087effbd5",
-        "title": "4 Best Floodlight Security Cameras (2026) After Thorough Testing",
-        "url": "https://www.wired.com/gallery/best-floodlight-security-cameras/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "a786ddf29aed022b4f81340ea7f87fc02706781c",
-        "title": "Pedal Electric H/T Review: A Fast, Powerful, Stylish Ebike",
-        "url": "https://www.wired.com/review/pedal-electric-h-t/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "6145fecc664e7d9ffff09612cdac1474f27bf73a",
-        "title": "Real-Life Disclosure Day Will Look Nothing Like Steven Spielberg's New Movie",
-        "url": "https://www.wired.com/story/real-life-disclosure-day-wont-look-like-steven-spielberg-movie/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "fb78f5d9e0bd0e6e8ebdc9262f3c4b3f348d19bf",
-        "title": "Sheeran Loopers Looper X Review: Create Your One-Person Tour",
-        "url": "https://www.wired.com/review/ed-sheeran-looper-x/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "10611504ec664ec583394e9989dd38695b72c581",
-        "title": "Matchmakers Are Being Paid $25K to Find Trad Wives for Rich Men",
-        "url": "https://www.wired.com/story/matchmakers-are-being-paid-dollar25k-to-find-trad-wives-for-rich-men/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "5dd6bde3245e45c0e4dcf1002798fe14f8a0fb73",
-        "title": "The US Is Requiring Foreign Influencers to Get Work Visas for the 2026 World Cup",
-        "url": "https://www.wired.com/story/2026-world-cup-us-influencers-visa/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "d89297104b42b51e559f835fcc463f614e84f9b9",
-        "title": "SpaceX IPO Puts Elon Musk's 'Extreme' Ownership to the Test",
-        "url": "https://www.wired.com/story/spacex-is-now-a-public-company/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "7d06a912c2b541710a964cdbe0609721a67e441e",
-        "title": "Paramount+ Coupon Codes and Deals for June 2026",
-        "url": "https://www.wired.com/story/paramount-plus-coupon-code/",
         "sourceName": "Wired",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
@@ -380,7 +319,14 @@
         "title": "The Download: the \"steroid olympics\" and a safer Mythos",
         "url": "https://www.technologyreview.com/2026/06/10/1138739/the-download-steroid-olympics-enhanced-games-anthropic-mythos/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a97f0b16d1747adcd9d0a79e243e7ae7011217a0",
+        "title": "We Are Crowdsourcing the Panopticon",
+        "url": "https://spectrum.ieee.org/unintended-consequences-video-surveillance",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "c6ec756c2581d37701db0d3ef257b0d3000f8044",
@@ -551,6 +497,20 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
+        "id": "6803da6a923f41fb3534ab8ab0e5bc7b448bdc3a",
+        "title": "PRC-linked influence operations are targeting AI debates in the US",
+        "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates",
+        "sourceName": "OpenAI Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6b7f95229c7562d2dbd8ebea49af6a7dca96d01c",
+        "title": "From data to decisions: how LSEG is scaling trusted AI",
+        "url": "https://openai.com/index/lseg",
+        "sourceName": "OpenAI Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
         "id": "1aa8e31ab451ccb84541aa7736dba3e3c7925711",
         "title": "How engineers at Nextdoor use Codex to build without limits",
         "url": "https://openai.com/index/nextdoor",
@@ -670,6 +630,13 @@
         "reason": "Rejected as promotional shopping or low-signal deal coverage."
       },
       {
+        "id": "f2ff37e8d77822dfd52e7f7eb1e33e73989180ce",
+        "title": "NVIDIA Confidential Computing to Help Expand Apple's Private Cloud Compute",
+        "url": "https://blogs.nvidia.com/blog/nvidia-confidential-computing-apple-private-cloud-compute/",
+        "sourceName": "NVIDIA Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
         "id": "9bb1ec0c7cc1eed202703faa7fe529fa3dc20971",
         "title": "How the UK Is Turning Sovereign AI Ambition Into Action With NVIDIA Technologies",
         "url": "https://blogs.nvidia.com/blog/uk-sovereign-ai-advancements/",
@@ -743,13 +710,6 @@
         "id": "7d0e1dbb57730aa89259e06632c50fd08ac3cd7a",
         "title": "Why Financial Institutions Are Converging on Transaction Foundation Models to Build Their Own Intelligence",
         "url": "https://blogs.nvidia.com/blog/financial-institutions-transaction-foundation-models/",
-        "sourceName": "NVIDIA Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "044d508205afbcbb1b983e3c0ab99220bb33349e",
-        "title": "NVIDIA Jetson Brings Agentic AI to the Physical World",
-        "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
         "sourceName": "NVIDIA Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
@@ -856,6 +816,13 @@
         "title": "The AWS MCP Server is now generally available",
         "url": "https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/",
         "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f601ee5de07580b6672d4fb7529f958dc232ff48",
+        "title": "Route public traffic to private applications with Cloudflare",
+        "url": "https://blog.cloudflare.com/private-origins-dns-routing/",
+        "sourceName": "Cloudflare Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -995,13 +962,6 @@
         "id": "1ea80c69020fa40332b395110c5538c951d12220",
         "title": "GitHub for Beginners: Getting started with Git and GitHub in VS Code",
         "url": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/",
-        "sourceName": "GitHub Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "b4e286774e2a7b1799cffe1c6a8dfa3f36adaed6",
-        "title": "GitHub recognized as a Leader in the Gartner® Magic Quadrant™ for Enterprise AI Coding Agents for the third year in a row",
-        "url": "https://github.blog/ai-and-ml/github-copilot/github-recognized-as-a-leader-in-the-gartner-magic-quadrant-for-enterprise-ai-coding-agents-for-the-third-year-in-a-row/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
@@ -1174,6 +1134,41 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
+        "id": "ebb819a18ca4eacfec0acbaa3c6d1dbf4e019914",
+        "title": "Behold a 60 Hz Refresh Rate E-ink Monitor",
+        "url": "https://hackaday.com/2026/06/13/behold-a-60-hz-refresh-rate-e-ink-monitor/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "19679febe152231344d5f8b27b0dc391687ba486",
+        "title": "GentleOS, A Simple OS For Your Old PC",
+        "url": "https://hackaday.com/2026/06/13/gentleos-a-simple-os-for-your-old-pc/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "ea1dfcf1aa74b60b48996d888ca3d6da32264452",
+        "title": "Deeply optimized MSX emulation on ESP32-S3 with VGA output",
+        "url": "https://hackaday.com/2026/06/12/deeply-optimized-msx-emulation-on-esp32-s3-with-vga-output/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "93ac9d642a6e3cef21202d7fb9da6f329e28d681",
+        "title": "Homebrew Macropad Looks Good",
+        "url": "https://hackaday.com/2026/06/12/homebrew-macropad-looks-good/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "00da11cfdd6f4bf9d961351a810714d8f023be18",
+        "title": "The Air Position Indicator for the B-29",
+        "url": "https://hackaday.com/2026/06/12/the-air-position-indicator-for-the-b-29/",
+        "sourceName": "Hackaday",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
         "id": "f4eb0e489e52630cfc3a479e10ebcdd20b4ab466",
         "title": "Building a 1:150 scale Toyota ProBox Micro Remote Control Car",
         "url": "https://hackaday.com/2026/06/12/building-a-1150-scale-toyota-probox-micro-remote-control-car/",
@@ -1188,24 +1183,10 @@
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "5f27b3e97607bae296fb6011979fe7270530acea",
-        "title": "Hackaday Podcast Ep 373: GPS, Danger In Space, and Robby the Robot",
-        "url": "https://hackaday.com/2026/06/12/hackaday-podcast-episode-373-gps-danger-in-space-and-robby-the-robot/",
-        "sourceName": "Hackaday",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "51a7b88df5e628cf1528b0a92e1b926ea3ad2e75",
-        "title": "A Peek inside the Secret Lagercrantz Suitcase Radio",
-        "url": "https://hackaday.com/2026/06/12/a-peek-inside-the-secret-lagercrantz-suitcase-radio/",
-        "sourceName": "Hackaday",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "59118b5b175a5fffcaf4798299302801fdc7f53e",
-        "title": "Glue-in Hinge Design Tries Something Different",
-        "url": "https://hackaday.com/2026/06/12/glue-in-hinge-design-tries-something-different/",
-        "sourceName": "Hackaday",
+        "id": "6c6151c8c5b25a5fcd7897e3da9bab40cc830b64",
+        "title": "Saving family football footage with a Raspberry Pi and a 1928 projector",
+        "url": "https://www.raspberrypi.com/news/saving-family-football-footage-with-a-raspberry-pi-and-a-1928-projector/",
+        "sourceName": "Raspberry Pi News",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
@@ -1213,7 +1194,7 @@
         "title": "Small device, big business: can a Raspberry Pi replace your desktop PC?",
         "url": "https://www.raspberrypi.com/news/small-device-big-business-can-a-raspberry-pi-replace-your-desktop-pc/",
         "sourceName": "Raspberry Pi News",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "e3ebf1bb6c6b45356d1535527fc34c8336f88ac9",
@@ -1272,13 +1253,6 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6fcb3142540c8c7dd1d84859b7e90175bc59234b",
-        "title": "Powering coexistence: how Raspberry Pi technology is helping WWF protect wildlife and communities in Pakistan",
-        "url": "https://www.raspberrypi.com/news/powering-coexistence-how-raspberry-pi-technology-is-helping-wwf-protect-wildlife-and-communities-in-pakistan/",
-        "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
         "id": "41310f7120b77e5e63cff987951edafc725c0a78",
         "title": "Hundreds of AUR packages compromised",
         "url": "https://lwn.net/Articles/1077718/",
@@ -1307,11 +1281,18 @@
         "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
       },
       {
+        "id": "9cda8b2bb03ce363bfe9b2043a7137154a98a4a5",
+        "title": "Buildroot 2026.05 released",
+        "url": "https://lwn.net/Articles/1077379/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
         "id": "fffda5da16145393224e73eb655c3b26d1c222ce",
         "title": "Security updates for Wednesday",
         "url": "https://lwn.net/Articles/1077362/",
         "sourceName": "LWN.net",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "d562e9b123756f201e06e92faa93e00c85469588",
@@ -1342,6 +1323,41 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
+        "id": "74f11c73b93a11ec5c2e359880ab27e9b833dd8a",
+        "title": "AI OSS tool repo goes archived over night after raising $7.3M Seed",
+        "url": "https://github.com/tensorzero/tensorzero",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "a65de5d240289cc5a08b729cccaa1e061cc9e8a3",
+        "title": "An Interview with Intel's Kira Boyko: Xeon 6's Product Director",
+        "url": "https://chipsandcheese.com/p/an-interview-with-intels-kira-boyko",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "f361bba0d2469fcb44fbd1917fdebf945ff0b720",
+        "title": "The state of building user interfaces in Rust",
+        "url": "https://areweguiyet.com/#ecosystem",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "3422765b7a05015730c63c68501b7c10161faee0",
+        "title": "Leaving Mozilla",
+        "url": "https://blog.unitedheroes.net/5751",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "c5710da25a4d91cacba82761be484c6d93b8fb5d",
+        "title": "Electric motors with no rare earths",
+        "url": "https://www.renaultgroup.com/en/magazine/energy-and-powertrains/all-about-electric-motors-with-no-rare-earths/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
         "id": "782bc2383ac2f4b65432cfa44db912e3512663ed",
         "title": "CRISPR tech selectively shreds cancer cells, including \"undruggable\" cancers",
         "url": "https://innovativegenomics.org/news/crispr-technique-selectively-shreds-cancer-cells/",
@@ -1349,9 +1365,37 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "441463115b68ec2ced1dc2d61ef8881051fb6fc2",
-        "title": "I Am Not a Reverse Centaur",
-        "url": "https://blog.miguelgrinberg.com/post/i-am-not-a-reverse-centaur",
+        "id": "eac2863782662d8fd4d16cce0664a86b9d0a5ad7",
+        "title": "Arch Linux Now Believes Malware Incident Under Control: More Than 1,500 Packages",
+        "url": "https://www.phoronix.com/news/Arch-Linux-AUR-More-Than-1500",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "6f33d51a3d8221421a9531d5869b73af481eb014",
+        "title": "Statement on US government directive to suspend access to Fable 5 and Mythos 5",
+        "url": "https://www.anthropic.com/news/fable-mythos-access",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "958dda31af6c035c8aaaea5bbdbb7e9d5ae5567d",
+        "title": "Show HN: 2 Weeks of Hallucinate – The Photo Gallery",
+        "url": "https://hallucinate.site/gallery",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "a340eeb887b89617c95fc6ff9b405a938f9ccc01",
+        "title": "Show HN: Paca – Lightweight Jira alternative for human-AI collaboration",
+        "url": "https://github.com/Paca-AI/paca",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+      },
+      {
+        "id": "bf6dbf339db95f09f110e271f90d4420bd947e80",
+        "title": "Open source AI must win",
+        "url": "https://opensourceaimustwin.com/?share=v2",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
@@ -1363,95 +1407,32 @@
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "cd3169c0a105d2bf29db5327e98cff1647ee4b62",
-        "title": "Malware developers added nuclear and biological weapons text to to their spyware",
-        "url": "https://twitter.com/jsrailton/status/2064661778978533571",
+        "id": "cda2fc73cabe40b6fb07a3152eca488ca74f9e34",
+        "title": "The computer science degree isn't dead",
+        "url": "https://spectrum.ieee.org/computer-science-degree-isnt-dead",
+        "sourceName": "Hacker News",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4167a1b89abe1296a25dbba16ee2828143eb523c",
+        "title": "There is a shadow hanging over this Fable thing",
+        "url": "https://12gramsofcarbon.com/p/tech-things-there-is-a-massive-shadow",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "a96643afcdafadaca09a9bcfc69dac186c8a6cfe",
-        "title": "Pirates, a naval warfare game inspired by Sid Meier's Pirates",
-        "url": "https://piwodlaiwo.github.io/pirates/",
+        "id": "076766a531dd33c9d62771c3b824618737e2ed22",
+        "title": "Show HN: Putt.day a daily mini golf game",
+        "url": "https://putt.day/",
         "sourceName": "Hacker News",
         "reason": "Excluded as low-information coverage without enough educational or technical depth."
       },
       {
-        "id": "eb0c6e5d0ee7de25c0ef43f5c803fbc84d86873b",
-        "title": "Where Did Earth Get Its Oceans? Maybe It Made Them Itself",
-        "url": "https://www.quantamagazine.org/where-did-earth-get-its-oceans-maybe-it-made-them-itself-20260612/",
+        "id": "5b5b309f4c65b2c8fa1f03ce16a0708190fee940",
+        "title": "A low-carbon computing platform from your retired phones",
+        "url": "https://research.google/blog/a-low-carbon-computing-platform-from-your-retired-phones/",
         "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "a6418f84118bd178ce31641e8409359af2515f8a",
-        "title": "Slightly reducing the sloppiness of AI generated front end",
-        "url": "https://envs.net/~volpe/blog/posts/reduce-slop.html",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "fd7659b9ed3e40811235f945c20642860aee2cf3",
-        "title": "Launch HN: BitBoard (YC P25) – Analytics Workspace for Agents",
-        "url": "https://bitboard.work/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "51223fea85d1141aee7e2c43fcbf95cd58a3520c",
-        "title": "A PDF that changes based on how its read",
-        "url": "https://sgaud.com/texts/pdf",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "debd24841c36104b62f5b40a6f353b19844e682f",
-        "title": "Law Enforcement's \"Warrior\" Problem (2015)",
-        "url": "https://harvardlawreview.org/forum/vol-128/law-enforcements-warrior-problem/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "e2011957bf31b736d6328241f10a495244437f52",
-        "title": "A dumpster arrived behind my university's library",
-        "url": "https://yalereview.org/article/sheila-liming-the-end-of-books",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "f1a8c762a6a909a70dd8f45bb303cd3a4c46b1eb",
-        "title": "AI agent bankrupted their operator while trying to scan DN42",
-        "url": "https://lantian.pub/en/article/fun/ai-agent-bankrupted-their-operator-scan-dn42lantian.lantian/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "33923b81a5afdd0f9ef12c415c7fba056e7e2958",
-        "title": "Introduction to UEFI HTTP(s) Boot with QEMU/OVMF",
-        "url": "https://blog.yadutaf.fr/2026/06/12/introduction-to-uefi-https-boot-qemu-ovmf/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "cfa74f6e168071410ae43716d88d32eee27a51c4",
-        "title": "There Is Life Before Main in Rust",
-        "url": "https://grack.com/blog/2026/06/11/life-before-main/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "bcdca97feb748d673ce64725cd06c7f970f9c66c",
-        "title": "\"Don't You Just Upload It to ChatGPT?\"",
-        "url": "https://correresmidestino.com/dont-you-just-upload-it-to-chatgpt/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "84e9fe9c46816f1ceca58e6334c71bb24293ba79",
-        "title": "Maxproof",
-        "url": "https://arxiv.org/abs/2606.13473",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Rejected as a duplicate canonical URL."
       }
     ],
     "fallbackCandidateCount": 0,

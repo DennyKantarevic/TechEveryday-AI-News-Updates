@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight, Newspaper } from "lucide-react";
+import { RelativeTime } from "@/components/RelativeTime";
 import { CATEGORY_BY_ID } from "@/config/categories";
 import type { NewsItem } from "@/types/news";
 
@@ -44,6 +45,7 @@ export default function LearningCurrentContext({ items }: { items: NewsItem[] })
               <div className="mt-4 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-ink/62">
                 <span>{item.sourceName}</span>
                 <span>{formatDate(item.publishedAt)}</span>
+                <RelativeTime date={item.publishedAt} />
               </div>
               <h3 className="mt-3 font-display text-2xl font-black leading-tight">
                 {item.title}

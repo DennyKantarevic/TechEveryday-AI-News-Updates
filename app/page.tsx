@@ -6,15 +6,16 @@ import HeroTitle from "@/components/HeroTitle";
 import StickyHeader from "@/components/StickyHeader";
 import { filterFreshNewsItems } from "@/lib/news/freshness";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
+import { newsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { fileStorage } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [dailyNews, gallery, lastRefresh] = await Promise.all([
-    fileStorage.readDailyNews(),
+    newsSnapshotStorage.readDailyNews(),
     fileStorage.readGallery(),
-    fileStorage.readLastRefresh()
+    newsSnapshotStorage.readLastRefresh()
   ]);
   const now = new Date();
   return (

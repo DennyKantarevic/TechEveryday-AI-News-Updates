@@ -7,14 +7,16 @@ import {
   fetchSourceCandidates
 } from "@/lib/news/fetchSources";
 import { fetchTrustedXPosts } from "@/lib/news/fetchX";
-import { fileStorage } from "@/lib/storage";
+import { newsSnapshotStorage, type NewsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
-import type { FileStorage } from "@/lib/storage";
 
 type RefreshOptions = {
   now?: Date;
-  storage?: FileStorage;
+  storage?: NewsSnapshotStorage;
+  startedAt?: string;
+  trigger?: LastRefresh["trigger"];
+  lastRefreshDateAmericaNewYork?: string;
 };
 
 const TARGET_ITEMS_PER_CATEGORY = 3;
@@ -75,7 +77,8 @@ function underfilledDebug(
 
 export async function refreshNews(options: RefreshOptions = {}) {
   const now = options.now ?? new Date();
-  const storage = options.storage ?? fileStorage;
+  const storage = options.storage ?? newsSnapshotStorage;
+  const startedAt = options.startedAt ?? now.toISOString();
   const previousDailyNews = await storage.readDailyNews();
   const [sourceItems, arxivItems, newsApiItems, xItems] = await Promise.all([
     fetchSourceCandidates({ now }),
@@ -130,6 +133,13 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const refreshStatus: LastRefresh = {
     refreshedAt: now.toISOString(),
     nextRefreshAt: getNextRefreshAt(now).toISOString(),
+    lastRefreshStartedAt: startedAt,
+    lastRefreshCompletedAt: now.toISOString(),
+    lastRefreshDateAmericaNewYork: options.lastRefreshDateAmericaNewYork,
+    itemsFound: candidates.length,
+    itemsSelected: Object.values(categories).flat().length,
+    errors: [],
+    trigger: options.trigger ?? "api",
     candidateCount: candidates.length,
     categoryCounts: categoryCounts(categories),
     status: "success",

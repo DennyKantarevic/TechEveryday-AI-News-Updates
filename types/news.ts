@@ -69,9 +69,16 @@ export type RefreshDebug = {
 export type LastRefresh = {
   refreshedAt: string | null;
   nextRefreshAt: string;
+  lastRefreshStartedAt?: string | null;
+  lastRefreshCompletedAt?: string | null;
+  lastRefreshDateAmericaNewYork?: string | null;
+  itemsFound?: number;
+  itemsSelected?: number;
+  errors?: string[];
+  trigger?: "scheduled" | "manual" | "api";
   candidateCount: number;
   categoryCounts: Record<CategoryId, number>;
-  status: "success" | "skipped" | "error";
+  status: "success" | "skipped" | "error" | "running";
   message?: string;
   debug?: RefreshDebug;
 };

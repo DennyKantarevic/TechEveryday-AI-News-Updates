@@ -14,13 +14,14 @@ import type { InteractionEvent } from "@/lib/interactions";
 import { LEARNING_FOUNDATIONS } from "@/lib/learning";
 import { filterFreshNewsItems } from "@/lib/news/freshness";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
+import { newsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { fileStorage } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
 
 export default async function ForYouPage() {
   const [dailyNews, fileGallery, { supabase, user }] = await Promise.all([
-    fileStorage.readDailyNews(),
+    newsSnapshotStorage.readDailyNews(),
     fileStorage.readGallery(),
     getCurrentUser()
   ]);

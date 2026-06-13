@@ -12,7 +12,7 @@ import {
 import { hashToken } from "@/lib/security/hash";
 import { createSecureToken } from "@/lib/security/tokens";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
-import { fileStorage } from "@/lib/storage";
+import { newsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { getZonedParts, REFRESH_TIME_ZONE, zonedTimeToUtc } from "@/lib/time";
 import type { NewsItem } from "@/types/news";
 
@@ -106,7 +106,7 @@ export async function GET(request: NextRequest) {
   const admin = createAdminSupabaseClient();
   const resend = createResendClient(emailConfig.config.resendApiKey);
   const baseUrl = process.env.APP_BASE_URL!.replace(/\/$/, "");
-  const dailyNews = await fileStorage.readDailyNews();
+  const dailyNews = await newsSnapshotStorage.readDailyNews();
   const items = topNewsletterItems(dailyNews.categories);
   const preview = renderDailyNewsletterEmail({
     baseUrl,
