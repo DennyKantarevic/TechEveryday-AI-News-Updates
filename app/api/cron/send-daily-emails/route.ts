@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CATEGORY_BY_ID, CATEGORY_IDS } from "@/config/categories";
-import { createResendClient, emailFromAddress } from "@/lib/email/resend";
+import {
+  emailRouteUrl,
+  readEmailConfig,
+  safeEmailConfigDiagnostics
+} from "@/lib/email/config";
+import { createResendClient } from "@/lib/email/resend";
 import {
   renderDailyNewsletterEmail,
   type DailyNewsletterEmailItem
@@ -10,7 +15,6 @@ import { createSecureToken } from "@/lib/security/tokens";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { fileStorage } from "@/lib/storage";
 import { getZonedParts, REFRESH_TIME_ZONE, zonedTimeToUtc } from "@/lib/time";
-import { appBaseUrl } from "@/lib/url/appBaseUrl";
 import type { NewsItem } from "@/types/news";
 
 export const runtime = "nodejs";
@@ -92,14 +96,22 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  const emailConfig = readEmailConfig(process.env);
+
+  if (!emailConfig.ok) {
+    return NextResponse.json({ error: emailConfig.error }, { status: 500 });
+  }
+
+  console.info("[email:daily-cron] config", safeEmailConfigDiagnostics(process.env));
+
   const admin = createAdminSupabaseClient();
-  const resend = createResendClient();
-  const baseUrl = appBaseUrl();
+  const resend = createResendClient(emailConfig.config.resendApiKey);
+  const baseUrl = emailConfig.config.appBaseUrl;
   const dailyNews = await fileStorage.readDailyNews();
   const items = topNewsletterItems(dailyNews.categories);
   const preview = renderDailyNewsletterEmail({
     baseUrl,
-    unsubscribeUrl: `${baseUrl}/api/email/unsubscribe`,
+    unsubscribeUrl: emailRouteUrl(emailConfig.config, "/api/email/unsubscribe"),
     items
   });
   const subject = preview.subject;
@@ -134,9 +146,10 @@ export async function GET(request: NextRequest) {
     }
 
     const unsubscribeToken = createSecureToken();
-    const unsubscribeUrl = `${baseUrl}/api/email/unsubscribe?token=${encodeURIComponent(
-      unsubscribeToken
-    )}`;
+    const unsubscribeUrl = emailRouteUrl(
+      emailConfig.config,
+      `/api/email/unsubscribe?token=${encodeURIComponent(unsubscribeToken)}`
+    );
     const email = renderDailyNewsletterEmail({
       baseUrl,
       unsubscribeUrl,
@@ -150,7 +163,7 @@ export async function GET(request: NextRequest) {
 
     try {
       const result = await resend.emails.send({
-        from: emailFromAddress(),
+        from: emailConfig.config.emailFrom,
         to: subscription.email,
         subject: email.subject,
         html: email.html,
@@ -158,8 +171,15 @@ export async function GET(request: NextRequest) {
       });
 
       if (result.error) {
+        console.error("[email:daily-cron] resend_error", {
+          message: result.error.message
+        });
         throw new Error(result.error.message);
       }
+
+      console.info("[email:daily-cron] resend_accepted", {
+        messageId: result.data?.id ?? null
+      });
 
       await logDelivery({
         subscriptionId: subscription.id,

@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/get-user";
-import { createResendClient, emailFromAddress } from "@/lib/email/resend";
+import {
+  emailRouteUrl,
+  readEmailConfig,
+  safeEmailConfigDiagnostics
+} from "@/lib/email/config";
+import { createResendClient } from "@/lib/email/resend";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { hashToken } from "@/lib/security/hash";
 import { createSecureToken } from "@/lib/security/tokens";
-import { appUrl } from "@/lib/url/appBaseUrl";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,11 +25,16 @@ function confirmationEmailHtml(confirmUrl: string) {
       <main style="max-width:620px;margin:0 auto;border:2px solid #111111;background:#fffdf8;padding:24px;">
         <p style="margin:0 0 8px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:800;color:#8a5d3b;">Confirm subscription</p>
         <h1 style="margin:0;font-family:Georgia,serif;font-size:32px;line-height:1;">TechEveryday</h1>
-        <p style="margin:14px 0;font-size:15px;line-height:1.6;">Confirm daily email updates before we send newsletter emails to this address.</p>
+        <p style="margin:14px 0;font-size:15px;line-height:1.6;">You requested daily TechEveryday updates. Confirm this subscription before we send newsletter emails to this address.</p>
         <a href="${confirmUrl}" style="display:inline-block;border:2px solid #111111;background:#111111;color:#ffffff;text-decoration:none;padding:11px 15px;font-size:13px;font-weight:800;">Confirm daily updates</a>
+        <p style="margin:16px 0 0;font-size:13px;line-height:1.5;color:#4b463e;">If you did not request this, ignore this email.</p>
       </main>
     </div>
   `;
+}
+
+function logEmailConfig(label: string) {
+  console.info(label, safeEmailConfigDiagnostics(process.env));
 }
 
 export async function POST(request: NextRequest) {
@@ -70,11 +79,18 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  const emailConfig = readEmailConfig(process.env);
+
+  if (!emailConfig.ok) {
+    return NextResponse.json({ error: emailConfig.error }, { status: 500 });
+  }
+
   const confirmationToken = createSecureToken();
   const unsubscribeToken = createSecureToken();
-  const confirmationUrl = appUrl(`/api/email/confirm?token=${encodeURIComponent(
-    confirmationToken
-  )}`);
+  const confirmationUrl = emailRouteUrl(
+    emailConfig.config,
+    `/api/email/confirm?token=${encodeURIComponent(confirmationToken)}`
+  );
 
   try {
     const admin = createAdminSupabaseClient();
@@ -105,28 +121,51 @@ export async function POST(request: NextRequest) {
         .eq("user_id", user.id);
     }
 
-    const resend = createResendClient();
+    logEmailConfig("[email:subscribe] send_attempt");
+    const resend = createResendClient(emailConfig.config.resendApiKey);
     const result = await resend.emails.send({
-      from: emailFromAddress(),
+      from: emailConfig.config.emailFrom,
       to: subscriptionEmail,
-      subject: "Confirm TechEveryday daily updates",
+      subject: "Confirm your TechEveryday subscription",
       html: confirmationEmailHtml(confirmationUrl),
-      text: `Confirm TechEveryday daily updates: ${confirmationUrl}`
+      text: [
+        "Confirm your TechEveryday subscription",
+        "",
+        "You requested daily TechEveryday updates.",
+        `Confirm here: ${confirmationUrl}`,
+        "",
+        "If you did not request this, ignore this email."
+      ].join("\n")
     });
 
     if (result.error) {
+      console.error("[email:subscribe] resend_error", {
+        message: result.error.message
+      });
+
       return NextResponse.json(
-        { message: "Email provider rejected the confirmation email." },
+        {
+          error: "Email provider rejected the confirmation email.",
+          message: "Email provider rejected the confirmation email."
+        },
         { status: 502 }
       );
     }
+
+    console.info("[email:subscribe] resend_accepted", {
+      messageId: result.data?.id ?? null
+    });
 
     return NextResponse.json({
       ok: true,
       confirmationRequired: true,
       message: "Check your email to confirm your TechEveryday subscription."
     });
-  } catch {
+  } catch (error) {
+    console.error("[email:subscribe] send_failed", {
+      message: error instanceof Error ? error.message : "Unknown email error."
+    });
+
     return NextResponse.json(
       { message: "Email confirmation is not configured yet." },
       { status: 503 }

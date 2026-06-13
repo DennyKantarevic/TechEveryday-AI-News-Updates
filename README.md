@@ -49,7 +49,7 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
-EMAIL_FROM=
+EMAIL_FROM=TechEveryday <updates@techeveryday.org>
 APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
 X_BEARER_TOKEN=
 NEWS_API_KEY=
@@ -65,9 +65,21 @@ CRON_SECRET=
 
 `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are browser-safe Supabase values. `SUPABASE_SERVICE_ROLE_KEY` is used only by server routes for email confirmation, unsubscribe, and cron delivery operations.
 
-`RESEND_API_KEY` and `EMAIL_FROM` enable confirmation emails and daily newsletter delivery. Configure a verified Resend sender before enabling subscriptions in production.
+`RESEND_API_KEY` and `EMAIL_FROM` enable confirmation emails and daily newsletter delivery. Production uses `TechEveryday <updates@techeveryday.org>`.
 
 `APP_BASE_URL` should be the deployed site origin, currently `https://tech-everyday-ai-news-updates.vercel.app`, so auth callbacks and email links are correct.
+
+For production email delivery, verify `techeveryday.org` in Resend before testing real subscribers. Add the DNS records Resend provides for `techeveryday.org`, set the Vercel production env vars below, redeploy, then check both Resend logs and Vercel function logs when testing:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+EMAIL_FROM=TechEveryday <updates@techeveryday.org>
+APP_BASE_URL=https://tech-everyday-ai-news-updates.vercel.app
+CRON_SECRET=
+```
 
 ## Supabase Setup
 
