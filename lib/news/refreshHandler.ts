@@ -93,17 +93,6 @@ export async function handleRefreshRequest(
     return NextResponse.json({ error: "Unauthorized refresh request." }, { status: 401 });
   }
 
-  if (process.env.NODE_ENV === "production" && !storageStatus.persistentStorageConfigured) {
-    return NextResponse.json(
-      {
-        status: "error",
-        message:
-          "Persistent news storage is not configured. Add Supabase env vars and apply the daily_news_snapshots migration before running production refresh."
-      },
-      { status: 500 }
-    );
-  }
-
   const lastRefresh = await newsSnapshotStorage.readLastRefresh();
   const dateKey = getAmericaNewYorkDateKey(now);
 
@@ -113,6 +102,17 @@ export async function handleRefreshRequest(
     if (!decision.shouldRun) {
       return skippedResponse(decision);
     }
+  }
+
+  if (process.env.NODE_ENV === "production" && !storageStatus.persistentStorageConfigured) {
+    return NextResponse.json(
+      {
+        status: "error",
+        message:
+          "Persistent news storage is not configured. Add Supabase env vars and apply the daily_news_snapshots migration before running production refresh."
+      },
+      { status: 500 }
+    );
   }
 
   const startedAt = now.toISOString();
