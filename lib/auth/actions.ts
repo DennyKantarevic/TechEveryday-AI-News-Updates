@@ -14,8 +14,12 @@ export async function signInWithMagicLink(formData: FormData) {
   const email = cleanEmail(formData);
   const supabase = await createServerSupabaseClient();
 
-  if (!supabase || !email) {
+  if (!email) {
     redirect("/login?message=missing-email");
+  }
+
+  if (!supabase) {
+    redirect("/login?message=auth-unconfigured");
   }
 
   const { error } = await supabase.auth.signInWithOtp({
@@ -36,8 +40,12 @@ export async function signUpWithMagicLink(formData: FormData) {
   const email = cleanEmail(formData);
   const supabase = await createServerSupabaseClient();
 
-  if (!supabase || !email) {
+  if (!email) {
     redirect("/signup?message=missing-email");
+  }
+
+  if (!supabase) {
+    redirect("/signup?message=auth-unconfigured");
   }
 
   const { error } = await supabase.auth.signInWithOtp({

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
+import AuthFormMessage from "@/components/AuthFormMessage";
 import BrandWordmark from "@/components/BrandWordmark";
 import NewsletterSignupForm from "@/components/newsletter/NewsletterSignupForm";
 import StickyHeader from "@/components/StickyHeader";
@@ -46,6 +47,9 @@ export default function SignupPage() {
             <button className="mt-5 h-12 w-full border-2 border-ink bg-ink px-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-ink">
               Send signup link
             </button>
+            <Suspense fallback={null}>
+              <AuthFormMessage />
+            </Suspense>
             <p className="mt-4 text-xs leading-5 text-ink/65">
               Authentication is handled by Supabase Auth. TechEveryday does not store
               passwords in app tables.

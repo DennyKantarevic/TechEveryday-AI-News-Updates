@@ -16,9 +16,9 @@ Repository name: `TechEveryday-AI-News-Updates`
 - Supabase Auth account system with magic-link sign-in, private saved articles, and account privacy controls.
 - Optional For You personalization using minimal reading events that users can disable or clear.
 - Double opt-in daily email subscriptions through Resend with clear unsubscribe links.
-- Refresh API at `/api/refresh-news`, protected by `CRON_SECRET` outside local development.
+- Refresh API at `/api/cron/refresh-news` with `/api/refresh-news` as a compatibility route, protected by `CRON_SECRET` outside local development.
 - Optional official X API integration when `X_BEARER_TOKEN` is present. No X scraping.
-- Public daily feed storage remains isolated in `lib/storage.ts`; account data lives in Supabase Postgres with Row Level Security.
+- Public daily feed snapshots use Supabase in production and local JSON only for development fallback. Account data lives in Supabase Postgres with Row Level Security.
 
 ## Tech Stack
 
@@ -26,7 +26,7 @@ Repository name: `TechEveryday-AI-News-Updates`
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Local JSON file storage for the public daily snapshot
+- Supabase-backed public daily snapshot storage with local JSON development fallback
 - Supabase Auth, Supabase Postgres, and Row Level Security for account data
 - Resend for confirmed daily email delivery
 - Vitest for data-layer tests
@@ -61,7 +61,7 @@ CRON_SECRET=
 
 `OPENAI_API_KEY` is reserved for a future LLM summarizer. The first version uses deterministic source excerpts and does not hallucinate article details.
 
-`CRON_SECRET` protects `/api/refresh-news` for external cron calls. Local development is allowed without a secret when `NODE_ENV=development`.
+`CRON_SECRET` protects `/api/cron/refresh-news` and manual refresh calls. Local development is allowed without a secret when `NODE_ENV=development`.
 
 `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are browser-safe Supabase values. `SUPABASE_SERVICE_ROLE_KEY` is used only by server routes for email confirmation, unsubscribe, and cron delivery operations.
 
@@ -74,13 +74,19 @@ CRON_SECRET=
 1. Create a Supabase project.
 2. Apply the SQL files in `supabase/migrations/`.
 3. Enable email magic-link auth in Supabase Auth settings.
-4. Add the deployed callback URL:
+4. Set the Supabase Auth Site URL:
+
+```text
+https://tech-everyday-ai-news-updates.vercel.app
+```
+
+5. Add the deployed callback Redirect URL:
 
 ```text
 https://tech-everyday-ai-news-updates.vercel.app/auth/callback
 ```
 
-5. Add local callback URLs for development:
+6. Add local callback Redirect URLs for development:
 
 ```text
 http://localhost:3000/auth/callback
@@ -95,8 +101,31 @@ The migrations create:
 - `reading_events`
 - `newsletter_subscriptions`
 - `email_delivery_logs`
+- `newsletter_snapshots`
+- `refresh_runs`
 
 RLS is enabled on every account data table. Authenticated users can only access rows where `auth.uid() = user_id`. Anonymous users cannot read private account data. Service-role operations happen only in server route handlers.
+
+Production login and refresh will not work until these Vercel Production env vars are present:
+
+```bash
+vercel env add NEXT_PUBLIC_SUPABASE_URL production
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
+vercel env add APP_BASE_URL production
+vercel env add CRON_SECRET production
+```
+
+Use `https://tech-everyday-ai-news-updates.vercel.app` for `APP_BASE_URL`. Redeploy after adding or changing env vars.
+
+Verify auth after deployment:
+
+1. Open `/login` and request a magic link.
+2. Confirm the email link lands on `/auth/callback` and redirects to `/account`.
+3. Confirm `/account` shows the signed-in email and sign-out controls.
+4. Save an article while signed in and confirm it appears in `/gallery` from the same account.
+
+Verify RLS by signing in as two separate users and confirming each user only sees their own saved articles, preferences, and reading history.
 
 ## Production Email Setup
 
@@ -222,7 +251,7 @@ Every daily email includes an unsubscribe link. The unsubscribe route works with
 
 ## Storage
 
-The public newsletter snapshot uses Supabase in production and local JSON files for development fallback. Apply the `daily_news_snapshots` migration and set `NEXT_PUBLIC_SUPABASE_URL` plus `SUPABASE_SERVICE_ROLE_KEY` before relying on production cron refreshes.
+The public newsletter snapshot uses Supabase in production and local JSON files only for development fallback. Apply the `newsletter_snapshots` and `refresh_runs` migrations and set `NEXT_PUBLIC_SUPABASE_URL` plus `SUPABASE_SERVICE_ROLE_KEY` before relying on production cron refreshes.
 
 - `data/daily-news.json`
 - `data/gallery.json`
@@ -234,7 +263,8 @@ Daily newsletter snapshot reads are centralized in `lib/news/snapshotStorage.ts`
 - `reading_events`
 - `user_preferences`
 - `newsletter_subscriptions`
-- `daily_news_snapshots`
+- `newsletter_snapshots`
+- `refresh_runs`
 
 ## Tests
 
