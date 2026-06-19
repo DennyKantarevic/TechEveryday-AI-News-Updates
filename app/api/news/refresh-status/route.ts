@@ -44,7 +44,11 @@ export async function GET() {
       configuredCronSchedules.includes("0 12 * * *"),
     persistentStorageConfigured: storage.persistentStorageConfigured,
     storageBackend: storage.storageBackend,
+    missingStorageEnvVars: storage.missingEnvVars,
     latestSnapshotExists: metadata.latestSnapshotExists,
-    latestSnapshotUpdatedAt: metadata.latestSnapshotUpdatedAt
+    latestSnapshotUpdatedAt: metadata.latestSnapshotUpdatedAt,
+    requiredStorageTables: metadata.requiredTables,
+    storageSchemaReady: metadata.schemaReady,
+    storageSchemaError: metadata.schemaError
   });
 }

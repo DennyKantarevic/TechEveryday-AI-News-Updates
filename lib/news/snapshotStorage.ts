@@ -23,6 +23,9 @@ type SnapshotRow = {
 type SnapshotMetadata = {
   latestSnapshotExists: boolean;
   latestSnapshotUpdatedAt: string | null;
+  requiredTables: Record<string, boolean | null>;
+  schemaReady: boolean | null;
+  schemaError: string | null;
 };
 
 function productionWithoutPersistentStorage() {
@@ -61,6 +64,12 @@ function hasSupabaseSnapshotEnv() {
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() &&
       process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  );
+}
+
+function missingSupabaseSnapshotEnvVars() {
+  return ["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"].filter(
+    (name) => !process.env[name]?.trim()
   );
 }
 
@@ -116,33 +125,56 @@ async function readSnapshotMetadata(): Promise<SnapshotMetadata> {
   if (!hasSupabaseSnapshotEnv()) {
     return {
       latestSnapshotExists: false,
-      latestSnapshotUpdatedAt: null
+      latestSnapshotUpdatedAt: null,
+      requiredTables: {
+        newsletter_snapshots: null,
+        refresh_runs: null
+      },
+      schemaReady: false,
+      schemaError: `Missing Supabase env vars: ${missingSupabaseSnapshotEnvVars().join(", ")}`
     };
   }
 
   try {
     const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
     const admin = createAdminSupabaseClient();
-    const { data, error } = await admin
+    const snapshotCheck = await admin
       .from(SNAPSHOT_TABLE)
       .select("updated_at")
       .eq("id", SNAPSHOT_ID)
       .maybeSingle();
+    const refreshRunsCheck = await admin.from("refresh_runs").select("id").limit(1);
 
-    if (error) {
-      console.error("[news:snapshot] metadata_failed", { message: error.message });
+    const requiredTables = {
+      newsletter_snapshots: !snapshotCheck.error,
+      refresh_runs: !refreshRunsCheck.error
+    };
+    const schemaReady = Object.values(requiredTables).every(Boolean);
+
+    if (!schemaReady) {
+      console.error("[news:snapshot] metadata_failed", {
+        message: "Required Supabase refresh tables are missing or inaccessible."
+      });
       return {
         latestSnapshotExists: false,
-        latestSnapshotUpdatedAt: null
+        latestSnapshotUpdatedAt: null,
+        requiredTables,
+        schemaReady: false,
+        schemaError: "Required Supabase refresh tables are missing or inaccessible."
       };
     }
 
     return {
-      latestSnapshotExists: Boolean(data),
+      latestSnapshotExists: Boolean(snapshotCheck.data),
       latestSnapshotUpdatedAt:
-        data && typeof data === "object" && "updated_at" in data
-          ? String(data.updated_at)
-          : null
+        snapshotCheck.data &&
+        typeof snapshotCheck.data === "object" &&
+        "updated_at" in snapshotCheck.data
+          ? String(snapshotCheck.data.updated_at)
+          : null,
+      requiredTables,
+      schemaReady,
+      schemaError: null
     };
   } catch (error) {
     console.error("[news:snapshot] metadata_failed", {
@@ -150,7 +182,13 @@ async function readSnapshotMetadata(): Promise<SnapshotMetadata> {
     });
     return {
       latestSnapshotExists: false,
-      latestSnapshotUpdatedAt: null
+      latestSnapshotUpdatedAt: null,
+      requiredTables: {
+        newsletter_snapshots: false,
+        refresh_runs: false
+      },
+      schemaReady: false,
+      schemaError: "Could not verify Supabase refresh tables."
     };
   }
 }
@@ -291,7 +329,8 @@ export function snapshotStorageStatus() {
   return {
     persistentStorageConfigured: configured,
     storageBackend:
-      configured ? "supabase" : process.env.NODE_ENV === "production" ? "unconfigured" : "local-json"
+      configured ? "supabase" : process.env.NODE_ENV === "production" ? "unconfigured" : "local-json",
+    missingEnvVars: missingSupabaseSnapshotEnvVars()
   };
 }
 
