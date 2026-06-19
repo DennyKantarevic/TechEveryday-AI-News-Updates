@@ -18,9 +18,13 @@ export default function DeleteDataPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ target })
       });
+      const body = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+      };
 
       if (!response.ok) {
-        throw new Error("Clear request failed.");
+        throw new Error(body.message || body.error || "Clear request failed.");
       }
 
       setMessage(
@@ -28,8 +32,10 @@ export default function DeleteDataPanel() {
           ? "Reading history was cleared."
           : "Saved articles were cleared."
       );
-    } catch {
-      setMessage("We could not clear that data right now.");
+    } catch (error) {
+      setMessage(
+        error instanceof Error ? error.message : "We could not clear that data right now."
+      );
     } finally {
       setPendingTarget(null);
     }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { accountStorageErrorResponse } from "@/lib/account/storage";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import {
   readEmailConfig,
@@ -63,14 +64,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Sign in to update account email settings." }, { status: 401 });
     }
 
-    await supabase
+    const { error: subscriptionError } = await supabase
       .from("newsletter_subscriptions")
       .update({ subscribed: false, unsubscribed_at: new Date().toISOString() })
       .eq("user_id", user.id);
-    await supabase
-      .from("user_preferences")
-      .update({ email_subscribed: false })
-      .eq("user_id", user.id);
+
+    if (subscriptionError) {
+      return accountStorageErrorResponse(subscriptionError, "email.unsubscribe.subscription");
+    }
+
+    const { error: preferenceError } = await supabase.from("user_preferences").upsert(
+      {
+        user_id: user.id,
+        email_subscribed: false
+      },
+      { onConflict: "user_id" }
+    );
+
+    if (preferenceError) {
+      return accountStorageErrorResponse(preferenceError, "email.unsubscribe.preferences");
+    }
 
     return NextResponse.json({
       ok: true,
@@ -108,17 +121,21 @@ export async function POST(request: NextRequest) {
     );
 
     if (error) {
-      return NextResponse.json(
-        { message: "Could not start email confirmation." },
-        { status: 500 }
-      );
+      return accountStorageErrorResponse(error, "email.subscribe.subscription");
     }
 
     if (supabase && user) {
-      await supabase
-        .from("user_preferences")
-        .update({ email_subscribed: false })
-        .eq("user_id", user.id);
+      const { error: preferenceError } = await supabase.from("user_preferences").upsert(
+        {
+          user_id: user.id,
+          email_subscribed: false
+        },
+        { onConflict: "user_id" }
+      );
+
+      if (preferenceError) {
+        return accountStorageErrorResponse(preferenceError, "email.subscribe.preferences");
+      }
     }
 
     logEmailConfig("[email:subscribe] send_attempt");

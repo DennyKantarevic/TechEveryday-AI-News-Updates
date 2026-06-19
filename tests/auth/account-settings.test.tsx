@@ -48,6 +48,27 @@ describe("AccountSettings", () => {
     );
   });
 
+  it("shows safe account API errors returned by the server", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () =>
+        new Response(JSON.stringify({ message: "Permission/RLS blocked this action." }), {
+          status: 500
+        })
+      )
+    );
+    render(
+      <AccountSettings
+        profile={{ displayName: "", email: "denny@example.com" }}
+        preferences={{ emailSubscribed: false, personalizationEnabled: true }}
+      />
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /Save account settings/i }));
+
+    expect(await screen.findByText("Permission/RLS blocked this action.")).toBeInTheDocument();
+  });
+
   it("can sign out from account settings", async () => {
     const assign = vi.fn();
     Object.defineProperty(window, "location", {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { accountStorageErrorResponse } from "@/lib/account/storage";
 import { getCurrentUser } from "@/lib/auth/get-user";
 
 export const runtime = "nodejs";
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
   const { error } = await supabase.from(table).delete().eq("user_id", user.id);
 
   if (error) {
-    return NextResponse.json({ error: "Could not clear account data." }, { status: 500 });
+    return accountStorageErrorResponse(error, `clear.${table}`);
   }
 
   return NextResponse.json({ ok: true });

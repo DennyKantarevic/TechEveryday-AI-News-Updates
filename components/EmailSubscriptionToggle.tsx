@@ -18,16 +18,23 @@ export default function EmailSubscriptionToggle({ subscribed }: { subscribed: bo
         body: JSON.stringify({ subscribed: nextValue })
       });
 
-      const body = (await response.json().catch(() => ({}))) as { message?: string };
+      const body = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+      };
 
       if (!response.ok) {
-        throw new Error(body.message || "Subscription update failed.");
+        throw new Error(body.message || body.error || "Subscription update failed.");
       }
 
       setIsSubscribed(nextValue);
       setMessage(body.message || "Daily email settings were updated.");
-    } catch {
-      setMessage("We could not update email settings right now.");
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not update email settings right now."
+      );
     } finally {
       setPending(false);
     }

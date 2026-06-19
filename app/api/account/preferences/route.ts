@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { accountStorageErrorResponse } from "@/lib/account/storage";
 import { getCurrentUser } from "@/lib/auth/get-user";
 
 export const runtime = "nodejs";
@@ -27,13 +28,17 @@ async function updatePreferences(request: NextRequest) {
   const { displayName, personalizationEnabled, preferredCategories } = parsed.data;
 
   if (displayName !== undefined) {
-    const { error } = await supabase
-      .from("profiles")
-      .update({ display_name: displayName })
-      .eq("user_id", user.id);
+    const { error } = await supabase.from("profiles").upsert(
+      {
+        user_id: user.id,
+        email: user.email ?? "",
+        display_name: displayName
+      },
+      { onConflict: "user_id" }
+    );
 
     if (error) {
-      return NextResponse.json({ error: "Could not update profile." }, { status: 500 });
+      return accountStorageErrorResponse(error, "preferences.profile");
     }
   }
 
@@ -48,13 +53,16 @@ async function updatePreferences(request: NextRequest) {
   }
 
   if (Object.keys(preferenceUpdate).length) {
-    const { error } = await supabase
-      .from("user_preferences")
-      .update(preferenceUpdate)
-      .eq("user_id", user.id);
+    const { error } = await supabase.from("user_preferences").upsert(
+      {
+        user_id: user.id,
+        ...preferenceUpdate
+      },
+      { onConflict: "user_id" }
+    );
 
     if (error) {
-      return NextResponse.json({ error: "Could not update preferences." }, { status: 500 });
+      return accountStorageErrorResponse(error, "preferences.settings");
     }
   }
 

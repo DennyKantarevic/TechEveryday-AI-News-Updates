@@ -14,6 +14,15 @@ type AccountPreferences = {
   personalizationEnabled: boolean;
 };
 
+async function responseMessage(response: Response) {
+  const body = (await response.json().catch(() => ({}))) as {
+    error?: string;
+    message?: string;
+  };
+
+  return body.message || body.error;
+}
+
 export default function AccountSettings({
   profile,
   preferences
@@ -40,14 +49,19 @@ export default function AccountSettings({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ displayName, personalizationEnabled })
       });
+      const safeMessage = await responseMessage(response);
 
       if (!response.ok) {
-        throw new Error("Preferences update failed.");
+        throw new Error(safeMessage || "Preferences update failed.");
       }
 
-      setMessage("Account settings were saved.");
-    } catch {
-      setMessage("We could not save account settings right now.");
+      setMessage(safeMessage || "Account settings were saved.");
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not save account settings right now."
+      );
     } finally {
       setPending(false);
     }
