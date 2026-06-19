@@ -18,9 +18,9 @@ describe("email subscription route security", () => {
     expect(source).toContain("readEmailConfig(process.env)");
     expect(source).toContain("safeEmailConfigDiagnostics(process.env)");
     expect(source).toContain("process.env.APP_BASE_URL!");
-    expect(source).toContain("from: process.env.EMAIL_FROM!");
+    expect(source).toContain("from: emailConfig.config.emailFrom");
     expect(source).toContain("result.error");
-    expect(source).toContain("Email provider rejected the confirmation email.");
+    expect(source).toContain("safeEmailProviderErrorMessage");
     expect(source).toContain("Confirm your TechEveryday subscription");
     expect(source).toContain("Confirm your subscription to daily TechEveryday updates.");
     expect(source).toContain("If you did not request this, you can ignore this email.");

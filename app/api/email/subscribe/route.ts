@@ -4,7 +4,8 @@ import { accountStorageErrorResponse } from "@/lib/account/storage";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import {
   readEmailConfig,
-  safeEmailConfigDiagnostics
+  safeEmailConfigDiagnostics,
+  safeEmailProviderErrorMessage
 } from "@/lib/email/config";
 import { createResendClient } from "@/lib/email/resend";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
@@ -141,7 +142,7 @@ export async function POST(request: NextRequest) {
     logEmailConfig("[email:subscribe] send_attempt");
     const resend = createResendClient(emailConfig.config.resendApiKey);
     const result = await resend.emails.send({
-      from: process.env.EMAIL_FROM!,
+      from: emailConfig.config.emailFrom,
       to: subscriptionEmail,
       subject: "Confirm your TechEveryday subscription",
       html: confirmationEmailHtml(confirmationUrl, appBaseUrl),
@@ -158,14 +159,16 @@ export async function POST(request: NextRequest) {
     });
 
     if (result.error) {
+      const safeMessage = safeEmailProviderErrorMessage(result.error);
+
       console.error("[email:subscribe] resend_error", {
-        message: result.error.message
+        message: safeMessage
       });
 
       return NextResponse.json(
         {
-          error: "Email provider rejected the confirmation email.",
-          message: "Email provider rejected the confirmation email."
+          error: safeMessage,
+          message: safeMessage
         },
         { status: 502 }
       );

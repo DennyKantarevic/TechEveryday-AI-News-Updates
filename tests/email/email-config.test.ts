@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { readEmailConfig, safeEmailConfigDiagnostics } from "@/lib/email/config";
+import {
+  readEmailConfig,
+  safeEmailConfigDiagnostics,
+  safeEmailProviderErrorMessage
+} from "@/lib/email/config";
 
 const productionUrl = "https://tech-everyday-ai-news-updates.vercel.app";
 const sender = "TechEveryday <updates@techeveryday.org>";
@@ -76,5 +80,13 @@ describe("email environment configuration", () => {
     });
     expect(JSON.stringify(result)).not.toContain("test_resend_key");
     expect(JSON.stringify(result)).not.toContain("test_service_role_key");
+  });
+
+  it("surfaces unverified Resend domains clearly", () => {
+    expect(
+      safeEmailProviderErrorMessage({
+        message: "The techeveryday.org domain is not verified. Please verify your domain."
+      })
+    ).toBe("Email domain is not verified in Resend.");
   });
 });

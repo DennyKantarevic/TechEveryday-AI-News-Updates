@@ -63,6 +63,34 @@ export function emailRouteUrl(config: EmailConfig, path: string) {
   return new URL(path, `${config.appBaseUrl}/`).toString();
 }
 
+function safeProviderText(value: unknown) {
+  return String(value ?? "")
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[email]")
+    .replace(/re_[A-Za-z0-9_-]+/g, "[resend_key]")
+    .slice(0, 300);
+}
+
+export function safeEmailProviderErrorMessage(error: unknown) {
+  const message =
+    error && typeof error === "object" && "message" in error
+      ? safeProviderText(error.message)
+      : safeProviderText(error);
+
+  if (/domain.*not.*verif|verify.*domain|domain.*verify|not verified/i.test(message)) {
+    return "Email domain is not verified in Resend.";
+  }
+
+  if (/rate.?limit|too many/i.test(message)) {
+    return "Email provider rate limited this request.";
+  }
+
+  if (/api key|unauthorized|authentication|permission/i.test(message)) {
+    return "Email provider authentication failed.";
+  }
+
+  return "Email provider rejected the email.";
+}
+
 export function safeEmailConfigDiagnostics(env: EmailEnv = process.env) {
   const resendApiKey = env.RESEND_API_KEY?.trim();
   const supabaseServiceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY?.trim();

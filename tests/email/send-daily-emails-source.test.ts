@@ -13,6 +13,7 @@ describe("daily email cron route", () => {
     expect(source).toContain("subscribed");
     expect(source).toContain("confirmed_at");
     expect(source).toContain("Authorization");
+    expect(source).not.toContain("querySecret");
   });
 
   it("generates unsubscribe tokens per send and logs delivery", () => {
@@ -20,6 +21,12 @@ describe("daily email cron route", () => {
     expect(source).toContain("hashToken(unsubscribeToken)");
     expect(source).toContain("email_delivery_logs");
     expect(source).toContain("process.env.APP_BASE_URL!");
-    expect(source).toContain("from: process.env.EMAIL_FROM!");
+    expect(source).toContain("from: emailConfig.config.emailFrom");
+  });
+
+  it("runs scheduled sends only during the New York 7 AM window", () => {
+    expect(source).toContain("isDailyEmailWindow");
+    expect(source).toContain("force=true");
+    expect(source).toContain("Not 7AM America/New_York");
   });
 });

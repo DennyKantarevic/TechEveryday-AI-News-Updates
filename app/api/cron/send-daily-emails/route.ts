@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { CATEGORY_BY_ID, CATEGORY_IDS } from "@/config/categories";
 import {
   readEmailConfig,
-  safeEmailConfigDiagnostics
+  safeEmailConfigDiagnostics,
+  safeEmailProviderErrorMessage
 } from "@/lib/email/config";
 import { createResendClient } from "@/lib/email/resend";
 import {
@@ -28,9 +29,12 @@ type SubscriptionRow = {
 function isAuthorized(request: NextRequest) {
   const cronSecret = process.env.CRON_SECRET;
   const bearer = request.headers.get("Authorization")?.replace(/^Bearer\s+/i, "");
-  const querySecret = request.nextUrl.searchParams.get("secret");
 
-  return Boolean(cronSecret && (bearer === cronSecret || querySecret === cronSecret));
+  return Boolean(cronSecret && bearer === cronSecret);
+}
+
+function isDailyEmailWindow(now = new Date()) {
+  return getZonedParts(now, REFRESH_TIME_ZONE).hour === 7;
 }
 
 function startOfTodayInNewYork(now = new Date()) {
@@ -95,6 +99,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  // Manual verification can use ?force=true with the same bearer token.
+  const force = request.nextUrl.searchParams.get("force") === "true";
+
+  if (!force && !isDailyEmailWindow()) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "Not 7AM America/New_York"
+    });
+  }
+
   const emailConfig = readEmailConfig(process.env);
 
   if (!emailConfig.ok) {
@@ -108,6 +123,15 @@ export async function GET(request: NextRequest) {
   const baseUrl = process.env.APP_BASE_URL!.replace(/\/$/, "");
   const dailyNews = await newsSnapshotStorage.readDailyNews();
   const items = topNewsletterItems(dailyNews.categories);
+
+  if (!items.length) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "No newsletter snapshot items available."
+    });
+  }
+
   const preview = renderDailyNewsletterEmail({
     baseUrl,
     unsubscribeUrl: `${baseUrl}/api/email/unsubscribe`,
@@ -128,6 +152,7 @@ export async function GET(request: NextRequest) {
   let sent = 0;
   let skipped = 0;
   let failed = 0;
+  const failedReasons = new Set<string>();
 
   for (const subscription of (subscriptions ?? []) as SubscriptionRow[]) {
     const { data: existingLogs } = await admin
@@ -161,7 +186,7 @@ export async function GET(request: NextRequest) {
 
     try {
       const result = await resend.emails.send({
-        from: process.env.EMAIL_FROM!,
+        from: emailConfig.config.emailFrom,
         to: subscription.email,
         subject: email.subject,
         html: email.html,
@@ -169,10 +194,12 @@ export async function GET(request: NextRequest) {
       });
 
       if (result.error) {
+        const safeMessage = safeEmailProviderErrorMessage(result.error);
+
         console.error("[email:daily-cron] resend_error", {
-          message: result.error.message
+          message: safeMessage
         });
-        throw new Error(result.error.message);
+        throw new Error(safeMessage);
       }
 
       console.info("[email:daily-cron] resend_accepted", {
@@ -189,17 +216,20 @@ export async function GET(request: NextRequest) {
       });
       sent += 1;
     } catch (error) {
+      const safeMessage =
+        error instanceof Error ? error.message : safeEmailProviderErrorMessage(error);
+      failedReasons.add(safeMessage);
       await logDelivery({
         subscriptionId: subscription.id,
         userId: subscription.user_id,
         email: subscription.email,
         subject: email.subject,
         status: "failed",
-        errorMessage: error instanceof Error ? error.message : "Unknown email error."
+        errorMessage: safeMessage
       });
       failed += 1;
     }
   }
 
-  return NextResponse.json({ sent, skipped, failed });
+  return NextResponse.json({ sent, skipped, failed, failedReasons: [...failedReasons] });
 }
