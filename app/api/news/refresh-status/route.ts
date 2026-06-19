@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   newsSnapshotStorage,
+  snapshotStorageMetadata,
   snapshotStorageStatus
 } from "@/lib/news/snapshotStorage";
 import { safeRefreshErrorMessage } from "@/lib/news/refreshErrors";
@@ -14,6 +15,7 @@ const configuredCronSchedules = ["0 11 * * *", "0 12 * * *"];
 export async function GET() {
   const lastRefresh = await newsSnapshotStorage.readLastRefresh();
   const storage = snapshotStorageStatus();
+  const metadata = await snapshotStorageMetadata();
   const errors = lastRefresh.errors ?? [];
   const failedSources = lastRefresh.failedSources ?? lastRefresh.debug?.failedSources ?? [];
 
@@ -41,6 +43,8 @@ export async function GET() {
       configuredCronSchedules.includes("0 11 * * *") &&
       configuredCronSchedules.includes("0 12 * * *"),
     persistentStorageConfigured: storage.persistentStorageConfigured,
-    storageBackend: storage.storageBackend
+    storageBackend: storage.storageBackend,
+    latestSnapshotExists: metadata.latestSnapshotExists,
+    latestSnapshotUpdatedAt: metadata.latestSnapshotUpdatedAt
   });
 }

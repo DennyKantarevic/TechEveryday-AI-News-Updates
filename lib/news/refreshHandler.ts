@@ -120,7 +120,7 @@ export async function handleRefreshRequest(
         ok: false,
         status: "error",
         message:
-          "Persistent news storage is not configured. Add Supabase env vars and apply the daily_news_snapshots migration before running production refresh."
+          "Persistent news storage is not configured. Add Supabase env vars and apply the newsletter_snapshots and refresh_runs migrations before running production refresh."
       },
       { status: 500 }
     );

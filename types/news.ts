@@ -45,6 +45,16 @@ export type RejectedCandidate = {
 export type RefreshDebug = {
   totalCandidatesFound: number;
   fallbackCandidateCount?: number;
+  sourceDiagnostics?: Record<
+    string,
+    {
+      requestUrl?: string;
+      rawCount: number;
+      afterFreshnessCount: number;
+      afterQualityCount: number;
+      selectedCount: number;
+    }
+  >;
   candidatesAfterFreshness: number;
   rejectedByAge: number;
   rejectedByLowQuality: number;

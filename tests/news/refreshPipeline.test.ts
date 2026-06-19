@@ -14,7 +14,19 @@ vi.mock("@/lib/news/fetchSources", () => ({
 }));
 
 vi.mock("@/lib/news/fetchArxiv", () => ({
-  fetchArxivPapers: fetchArxivPapersMock
+  arxivRequestUrl: () => "https://export.arxiv.org/api/query?search_query=test",
+  fetchArxivPapers: fetchArxivPapersMock,
+  fetchArxivPapersWithDiagnostics: async (options: unknown) => {
+    const items = await fetchArxivPapersMock(options);
+    return {
+      items,
+      diagnostics: {
+        requestUrl: "https://export.arxiv.org/api/query?search_query=test",
+        rawCount: items.length,
+        parsedCount: items.length
+      }
+    };
+  }
 }));
 
 vi.mock("@/lib/news/fetchX", () => ({

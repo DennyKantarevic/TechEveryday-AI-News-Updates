@@ -1,6 +1,7 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
-import { selectDailyItemsWithDebug } from "@/lib/news/classify";
-import { fetchArxivPapers } from "@/lib/news/fetchArxiv";
+import { scoreContentQuality, selectDailyItemsWithDebug } from "@/lib/news/classify";
+import { evaluateFreshness } from "@/lib/news/freshness";
+import { arxivRequestUrl, fetchArxivPapersWithDiagnostics } from "@/lib/news/fetchArxiv";
 import { fetchNewsApiCandidates } from "@/lib/news/fetchNewsApi";
 import {
   fetchCategoryFallbackCandidates,
@@ -113,11 +114,30 @@ export async function refreshNews(options: RefreshOptions = {}) {
       at: startedAt,
       fetcher: () => fetchSourceCandidates({ now })
     }),
-    collectCandidates({
-      sourceName: "arXiv",
-      at: startedAt,
-      fetcher: () => fetchArxivPapers({ now })
-    }),
+    (async () => {
+      try {
+        const result = await fetchArxivPapersWithDiagnostics({ now });
+        return {
+          items: result.items,
+          failedSource: null,
+          diagnostics: result.diagnostics
+        };
+      } catch (error) {
+        return {
+          items: [],
+          failedSource: {
+            sourceName: "arXiv",
+            reason: safeRefreshErrorMessage(error),
+            at: startedAt
+          } satisfies RefreshSourceFailure,
+          diagnostics: {
+            requestUrl: arxivRequestUrl(),
+            rawCount: 0,
+            parsedCount: 0
+          }
+        };
+      }
+    })(),
     collectCandidates({
       sourceName: "NewsAPI",
       at: startedAt,
@@ -190,9 +210,28 @@ export async function refreshNews(options: RefreshOptions = {}) {
       })
     : firstSelection;
   const categories = finalSelection.categories;
+  const selectedItems = Object.values(categories).flat();
+  const arxivSelectedCount = selectedItems.filter((item) => item.sourceName === "arXiv").length;
+  const arxivAfterFreshnessCount = arxivItems.filter((item) =>
+    evaluateFreshness({ publishedAt: item.publishedAt, now }).accepted
+  ).length;
+  const arxivAfterQualityCount = arxivItems.filter((item) => {
+    const freshness = evaluateFreshness({ publishedAt: item.publishedAt, now });
+    const quality = scoreContentQuality(item);
+    return freshness.accepted && !quality.excludedReason;
+  }).length;
   const debug = {
     ...finalSelection.debug,
     fallbackCandidateCount: fallbackItems.length,
+    sourceDiagnostics: {
+      arXiv: {
+        requestUrl: arxivRequestUrl(),
+        rawCount: arxivResult.diagnostics.rawCount,
+        afterFreshnessCount: arxivAfterFreshnessCount,
+        afterQualityCount: arxivAfterQualityCount,
+        selectedCount: arxivSelectedCount
+      }
+    },
     failedSources,
     underfilledCategories: underfilledDebug(categories, attemptedFallback)
   };
@@ -208,7 +247,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     lastRefreshCompletedAt: now.toISOString(),
     lastRefreshDateAmericaNewYork: options.lastRefreshDateAmericaNewYork,
     itemsFound: candidates.length,
-    itemsSelected: Object.values(categories).flat().length,
+    itemsSelected: selectedItems.length,
     errors: [],
     failedSources,
     trigger: options.trigger ?? "api",
@@ -216,11 +255,11 @@ export async function refreshNews(options: RefreshOptions = {}) {
     categoryCounts: categoryCounts(categories),
     status: "success",
     message:
-      Object.values(categories).flat().length === 0
+      selectedItems.length === 0
         ? "No high-signal new items found in the last 72 hours."
         : "Refresh completed with fresh high-signal items.",
-      debug
-    };
+    debug
+  };
 
   await storage.writeDailyNews(dailyNews);
   await storage.writeLastRefresh(refreshStatus);

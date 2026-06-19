@@ -7,17 +7,23 @@ import { summarizeCandidate } from "@/lib/news/summarize";
 import type { CategoryId } from "@/config/categories";
 import type { NewsItem } from "@/types/news";
 
-const ARXIV_QUERY = [
+export const ARXIV_CATEGORIES = [
   "cat:cs.AI",
   "cat:cs.LG",
   "cat:cs.CL",
+  "cat:cs.CV",
+  "cat:cs.RO",
   "cat:cs.DC",
   "cat:cs.OS",
   "cat:cs.CR",
   "cat:cs.SE",
   "cat:cs.HC",
-  "cat:cs.RO"
-].join("+OR+");
+  "cat:cs.SY",
+  "cat:stat.ML"
+];
+
+const ARXIV_QUERY = ARXIV_CATEGORIES.join("+OR+");
+const MAX_RESULTS = 75;
 
 type ArxivEntry = {
   id?: string;
@@ -69,7 +75,7 @@ function categoryForArxivTags(tags: string[], title: string, summary: string): C
     return "computer-systems";
   }
 
-  if (normalized.has("cs.ro") || normalized.has("eess.sy")) {
+  if (normalized.has("cs.ro") || normalized.has("cs.sy") || normalized.has("eess.sy")) {
     return "embedded-systems";
   }
 
@@ -88,8 +94,31 @@ function categoryForArxivTags(tags: string[], title: string, summary: string): C
   return "research-papers";
 }
 
-export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}) {
-  const url = `https://export.arxiv.org/api/query?search_query=${ARXIV_QUERY}&start=0&max_results=35&sortBy=submittedDate&sortOrder=descending`;
+export type ArxivFetchDiagnostics = {
+  requestUrl: string;
+  rawCount: number;
+  parsedCount: number;
+};
+
+export type ArxivFetchResult = {
+  items: NewsItem[];
+  diagnostics: ArxivFetchDiagnostics;
+};
+
+export function arxivRequestUrl() {
+  return `https://export.arxiv.org/api/query?search_query=${ARXIV_QUERY}&start=0&max_results=${MAX_RESULTS}&sortBy=submittedDate&sortOrder=descending`;
+}
+
+export async function fetchArxivPapersWithDiagnostics({
+  now = new Date()
+}: { now?: Date } = {}): Promise<ArxivFetchResult> {
+  const url = arxivRequestUrl();
+
+  const emptyDiagnostics = {
+    requestUrl: url,
+    rawCount: 0,
+    parsedCount: 0
+  };
 
   try {
     const response = await fetch(url, {
@@ -100,7 +129,10 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
     });
 
     if (!response.ok) {
-      return [];
+      return {
+        items: [],
+        diagnostics: emptyDiagnostics
+      };
     }
 
     const xml = await response.text();
@@ -128,6 +160,7 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
           .filter(Boolean)
           .slice(0, 3)
           .join(", ");
+        const publishedAt = parseDate(entry.published || entry.updated, now);
 
         return scoreNewsItem(
           {
@@ -139,7 +172,7 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
             sourceName: "arXiv",
             sourceType: "paper",
             category,
-            publishedAt: parseDate(entry.published || entry.updated, now),
+            publishedAt,
             foundAt: now.toISOString(),
             imageUrl: placeholderImageForCategory(category, title),
             trustScore: 0.86,
@@ -158,9 +191,25 @@ export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}
         );
       })
     );
+    const items = papers.filter(Boolean) as NewsItem[];
 
-    return papers.filter(Boolean) as NewsItem[];
+    return {
+      items,
+      diagnostics: {
+        requestUrl: url,
+        rawCount: entries.length,
+        parsedCount: items.length
+      }
+    };
   } catch {
-    return [];
+    return {
+      items: [],
+      diagnostics: emptyDiagnostics
+    };
   }
+}
+
+export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}) {
+  const result = await fetchArxivPapersWithDiagnostics({ now });
+  return result.items;
 }
