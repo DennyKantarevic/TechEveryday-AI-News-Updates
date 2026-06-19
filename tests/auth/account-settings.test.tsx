@@ -24,8 +24,10 @@ describe("AccountSettings", () => {
     expect(
       screen.getByText(/We store your email for login\/subscriptions/i)
     ).toBeInTheDocument();
+    expect(screen.getByText("denny@example.com")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Clear reading history/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Clear saved articles/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Sign out/i })).toBeInTheDocument();
   });
 
   it("can request clearing reading history", async () => {
@@ -44,5 +46,29 @@ describe("AccountSettings", () => {
         expect.objectContaining({ method: "POST" })
       )
     );
+  });
+
+  it("can sign out from account settings", async () => {
+    const assign = vi.fn();
+    Object.defineProperty(window, "location", {
+      value: { assign },
+      writable: true
+    });
+    render(
+      <AccountSettings
+        profile={{ displayName: "", email: "denny@example.com" }}
+        preferences={{ emailSubscribed: false, personalizationEnabled: true }}
+      />
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /Sign out/i }));
+
+    await waitFor(() =>
+      expect(fetch).toHaveBeenCalledWith(
+        "/api/auth/signout",
+        expect.objectContaining({ method: "POST" })
+      )
+    );
+    expect(assign).toHaveBeenCalledWith("/login");
   });
 });

@@ -27,6 +27,7 @@ export default function AccountSettings({
   );
   const [message, setMessage] = useState("");
   const [pending, setPending] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
   async function savePreferences(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,6 +50,22 @@ export default function AccountSettings({
       setMessage("We could not save account settings right now.");
     } finally {
       setPending(false);
+    }
+  }
+
+  async function signOut() {
+    setSigningOut(true);
+    setMessage("");
+
+    try {
+      await fetch("/api/auth/signout", {
+        method: "POST",
+        credentials: "same-origin"
+      });
+      window.location.assign("/login");
+    } catch {
+      setMessage("We could not sign out right now.");
+      setSigningOut(false);
     }
   }
 
@@ -75,6 +92,12 @@ export default function AccountSettings({
         onSubmit={savePreferences}
         className="border-2 border-ink bg-bone p-5 shadow-[4px_4px_0_#111]"
       >
+        <div className="mb-4 border-2 border-ink bg-white p-3">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-clay">
+            Email
+          </p>
+          <p className="mt-1 break-words text-sm font-black">{profile.email}</p>
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           <label className="block text-xs font-black uppercase tracking-[0.16em]">
             Display name
@@ -101,6 +124,14 @@ export default function AccountSettings({
           className="mt-5 min-h-11 border-2 border-ink bg-ink px-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-ink disabled:cursor-wait disabled:opacity-60"
         >
           Save account settings
+        </button>
+        <button
+          type="button"
+          disabled={signingOut}
+          onClick={signOut}
+          className="ml-0 mt-3 min-h-11 border-2 border-ink bg-white px-4 text-sm font-black uppercase tracking-[0.12em] text-ink transition hover:bg-ink hover:text-white disabled:cursor-wait disabled:opacity-60 md:ml-3"
+        >
+          Sign out
         </button>
         {message ? <p className="mt-3 text-sm font-bold text-clay">{message}</p> : null}
       </form>
