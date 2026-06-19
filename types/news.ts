@@ -63,7 +63,14 @@ export type RefreshDebug = {
     >
   >;
   sourcesUsed: string[];
+  failedSources?: RefreshSourceFailure[];
   rejected: RejectedCandidate[];
+};
+
+export type RefreshSourceFailure = {
+  sourceName: string;
+  reason: string;
+  at: string;
 };
 
 export type LastRefresh = {
@@ -75,6 +82,7 @@ export type LastRefresh = {
   itemsFound?: number;
   itemsSelected?: number;
   errors?: string[];
+  failedSources?: RefreshSourceFailure[];
   trigger?: "scheduled" | "manual" | "api";
   candidateCount: number;
   categoryCounts: Record<CategoryId, number>;

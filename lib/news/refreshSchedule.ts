@@ -28,12 +28,17 @@ export function getAmericaNewYorkDateKey(date: Date) {
 }
 
 function lastRefreshIsToday(lastRefresh: LastRefresh, now: Date, dateKey: string) {
-  if (lastRefresh.lastRefreshDateAmericaNewYork === dateKey) {
+  if (
+    lastRefresh.lastRefreshDateAmericaNewYork === dateKey &&
+    lastRefresh.status !== "error"
+  ) {
     return true;
   }
 
   return Boolean(
-    lastRefresh.refreshedAt && isSameZonedDay(new Date(lastRefresh.refreshedAt), now)
+    lastRefresh.status === "success" &&
+      lastRefresh.refreshedAt &&
+      isSameZonedDay(new Date(lastRefresh.refreshedAt), now)
   );
 }
 

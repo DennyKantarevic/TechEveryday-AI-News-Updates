@@ -10,6 +10,8 @@ import { newsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { fileStorage } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const revalidate = 0;
 
 export default async function HomePage() {
   const [dailyNews, gallery, lastRefresh] = await Promise.all([

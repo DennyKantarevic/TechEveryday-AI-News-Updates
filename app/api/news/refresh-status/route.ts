@@ -3,6 +3,7 @@ import {
   newsSnapshotStorage,
   snapshotStorageStatus
 } from "@/lib/news/snapshotStorage";
+import { safeRefreshErrorMessage } from "@/lib/news/refreshErrors";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 
 export const runtime = "nodejs";
@@ -13,6 +14,8 @@ const configuredCronSchedules = ["0 11 * * *", "0 12 * * *"];
 export async function GET() {
   const lastRefresh = await newsSnapshotStorage.readLastRefresh();
   const storage = snapshotStorageStatus();
+  const errors = lastRefresh.errors ?? [];
+  const failedSources = lastRefresh.failedSources ?? lastRefresh.debug?.failedSources ?? [];
 
   return NextResponse.json({
     lastRefreshStartedAt: lastRefresh.lastRefreshStartedAt ?? null,
@@ -26,7 +29,11 @@ export async function GET() {
     finalSelectedItems:
       lastRefresh.itemsSelected ??
       Object.values(lastRefresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
-    errors: lastRefresh.errors ?? [],
+    failedSources,
+    lastSafeErrorMessage: errors.length
+      ? safeRefreshErrorMessage(errors[errors.length - 1])
+      : null,
+    errors,
     nextRefreshAt: getNextRefreshAt().toISOString(),
     timeZone: REFRESH_TIME_ZONE,
     configuredCronSchedules,

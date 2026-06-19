@@ -7,9 +7,10 @@ import {
   fetchSourceCandidates
 } from "@/lib/news/fetchSources";
 import { fetchTrustedXPosts } from "@/lib/news/fetchX";
+import { safeRefreshErrorMessage } from "@/lib/news/refreshErrors";
 import { newsSnapshotStorage, type NewsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
-import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
+import type { DailyNews, LastRefresh, NewsItem, RefreshSourceFailure } from "@/types/news";
 
 type RefreshOptions = {
   now?: Date;
@@ -75,17 +76,69 @@ function underfilledDebug(
   ) as NonNullable<LastRefresh["debug"]>["underfilledCategories"];
 }
 
+async function collectCandidates({
+  sourceName,
+  at,
+  fetcher
+}: {
+  sourceName: string;
+  at: string;
+  fetcher: () => Promise<NewsItem[]>;
+}) {
+  try {
+    return {
+      items: await fetcher(),
+      failedSource: null
+    };
+  } catch (error) {
+    return {
+      items: [],
+      failedSource: {
+        sourceName,
+        reason: safeRefreshErrorMessage(error),
+        at
+      } satisfies RefreshSourceFailure
+    };
+  }
+}
+
 export async function refreshNews(options: RefreshOptions = {}) {
   const now = options.now ?? new Date();
   const storage = options.storage ?? newsSnapshotStorage;
   const startedAt = options.startedAt ?? now.toISOString();
   const previousDailyNews = await storage.readDailyNews();
-  const [sourceItems, arxivItems, newsApiItems, xItems] = await Promise.all([
-    fetchSourceCandidates({ now }),
-    fetchArxivPapers({ now }),
-    fetchNewsApiCandidates({ now }),
-    fetchTrustedXPosts({ now })
+  const [sourceResult, arxivResult, newsApiResult, xResult] = await Promise.all([
+    collectCandidates({
+      sourceName: "RSS trusted sources",
+      at: startedAt,
+      fetcher: () => fetchSourceCandidates({ now })
+    }),
+    collectCandidates({
+      sourceName: "arXiv",
+      at: startedAt,
+      fetcher: () => fetchArxivPapers({ now })
+    }),
+    collectCandidates({
+      sourceName: "NewsAPI",
+      at: startedAt,
+      fetcher: () => fetchNewsApiCandidates({ now })
+    }),
+    collectCandidates({
+      sourceName: "Trusted X posts",
+      at: startedAt,
+      fetcher: () => fetchTrustedXPosts({ now })
+    })
   ]);
+  const failedSources = [
+    sourceResult.failedSource,
+    arxivResult.failedSource,
+    newsApiResult.failedSource,
+    xResult.failedSource
+  ].filter((failure): failure is RefreshSourceFailure => Boolean(failure));
+  const sourceItems = sourceResult.items;
+  const arxivItems = arxivResult.items;
+  const newsApiItems = newsApiResult.items;
+  const xItems = xResult.items;
 
   const candidates = [
     ...sourceItems,
@@ -94,6 +147,11 @@ export async function refreshNews(options: RefreshOptions = {}) {
     ...xItems,
     ...previousXItems(previousDailyNews, now)
   ];
+
+  if (!candidates.length && failedSources.length === 4) {
+    throw new Error("All candidate sources failed.");
+  }
+
   const firstSelection = selectDailyItemsWithDebug({
     candidates,
     previousCategories: previousDailyNews.categories,
@@ -109,6 +167,18 @@ export async function refreshNews(options: RefreshOptions = {}) {
       })
     )
   );
+  const fallbackFailures = fallbackResults.flatMap((result, index) =>
+    result.status === "rejected"
+      ? [
+          {
+            sourceName: `Fallback discovery: ${fallbackCategoryIds[index]}`,
+            reason: safeRefreshErrorMessage(result.reason),
+            at: startedAt
+          } satisfies RefreshSourceFailure
+        ]
+      : []
+  );
+  failedSources.push(...fallbackFailures);
   const fallbackItems = fallbackResults.flatMap((result) =>
     result.status === "fulfilled" ? result.value : []
   );
@@ -123,6 +193,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const debug = {
     ...finalSelection.debug,
     fallbackCandidateCount: fallbackItems.length,
+    failedSources,
     underfilledCategories: underfilledDebug(categories, attemptedFallback)
   };
   const dailyNews: DailyNews = {
@@ -139,6 +210,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     itemsFound: candidates.length,
     itemsSelected: Object.values(categories).flat().length,
     errors: [],
+    failedSources,
     trigger: options.trigger ?? "api",
     candidateCount: candidates.length,
     categoryCounts: categoryCounts(categories),
@@ -147,8 +219,8 @@ export async function refreshNews(options: RefreshOptions = {}) {
       Object.values(categories).flat().length === 0
         ? "No high-signal new items found in the last 72 hours."
         : "Refresh completed with fresh high-signal items.",
-    debug
-  };
+      debug
+    };
 
   await storage.writeDailyNews(dailyNews);
   await storage.writeLastRefresh(refreshStatus);
@@ -157,6 +229,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     dailyNews,
     candidateCount: candidates.length,
     debug,
+    failedSources,
     sourceBreakdown: {
       rss: sourceItems.length,
       arxiv: arxivItems.length,

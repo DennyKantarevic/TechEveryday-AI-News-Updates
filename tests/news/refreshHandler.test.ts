@@ -35,10 +35,12 @@ describe("refresh request handler", () => {
   });
 
   it("skips off-hour Vercel cron requests before requiring persistent storage", async () => {
+    vi.stubEnv("CRON_SECRET", "test-cron-secret");
     const request = new NextRequest(
       "https://tech-everyday-ai-news-updates.vercel.app/api/cron/refresh-news",
       {
         headers: {
+          authorization: "Bearer test-cron-secret",
           "user-agent": "vercel-cron/1.0"
         }
       }
@@ -56,5 +58,68 @@ describe("refresh request handler", () => {
       skipped: true,
       reason: "Not 7AM America/New_York"
     });
+  });
+
+  it("does not trust Vercel cron user-agent without the bearer cron secret", async () => {
+    vi.stubEnv("CRON_SECRET", "test-cron-secret");
+    const request = new NextRequest(
+      "https://tech-everyday-ai-news-updates.vercel.app/api/cron/refresh-news",
+      {
+        headers: {
+          "user-agent": "vercel-cron/1.0"
+        }
+      }
+    );
+
+    const response = await handleRefreshRequest(request, {
+      scheduled: true,
+      allowVercelCron: true,
+      revalidate: vi.fn()
+    });
+    const body = await response.json();
+
+    expect(response.status).toBe(401);
+    expect(body).toMatchObject({
+      error: "Unauthorized refresh request."
+    });
+  });
+
+  it("returns a clear production config error when CRON_SECRET is missing", async () => {
+    const request = new NextRequest(
+      "https://tech-everyday-ai-news-updates.vercel.app/api/cron/refresh-news",
+      {
+        headers: {
+          "user-agent": "vercel-cron/1.0"
+        }
+      }
+    );
+
+    const response = await handleRefreshRequest(request, {
+      scheduled: true,
+      allowVercelCron: true,
+      revalidate: vi.fn()
+    });
+    const body = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(body).toMatchObject({
+      status: "error",
+      message: "Missing CRON_SECRET. Add it to Vercel Production environment variables."
+    });
+  });
+
+  it("requires bearer auth for manual force refresh and ignores query secrets", async () => {
+    vi.stubEnv("CRON_SECRET", "test-cron-secret");
+    const request = new NextRequest(
+      "https://tech-everyday-ai-news-updates.vercel.app/api/cron/refresh-news?force=true&secret=test-cron-secret"
+    );
+
+    const response = await handleRefreshRequest(request, {
+      scheduled: false,
+      allowVercelCron: true,
+      revalidate: vi.fn()
+    });
+
+    expect(response.status).toBe(401);
   });
 });

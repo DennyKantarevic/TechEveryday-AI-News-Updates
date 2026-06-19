@@ -10,6 +10,7 @@ import {
   newsSnapshotStorage,
   snapshotStorageStatus
 } from "@/lib/news/snapshotStorage";
+import { safeRefreshErrorMessage } from "@/lib/news/refreshErrors";
 import type { LastRefresh } from "@/types/news";
 
 type RefreshHandlerOptions = {
@@ -24,11 +25,7 @@ function requestSecret(request: NextRequest) {
     return auth.slice("bearer ".length).trim();
   }
 
-  return (
-    request.headers.get("x-cron-secret") ??
-    request.nextUrl.searchParams.get("secret") ??
-    ""
-  ).trim();
+  return "";
 }
 
 function hasValidSecret(request: NextRequest) {
@@ -36,8 +33,8 @@ function hasValidSecret(request: NextRequest) {
   return Boolean(expected && requestSecret(request) === expected);
 }
 
-function isVercelCronRequest(request: NextRequest) {
-  return request.headers.get("user-agent")?.includes("vercel-cron/1.0") ?? false;
+function missingCronSecretInProduction() {
+  return Boolean(process.env.NODE_ENV === "production" && !process.env.CRON_SECRET?.trim());
 }
 
 function isAuthorized(request: NextRequest, options: RefreshHandlerOptions) {
@@ -51,9 +48,7 @@ function isAuthorized(request: NextRequest, options: RefreshHandlerOptions) {
     return true;
   }
 
-  if (options.allowVercelCron && isVercelCronRequest(request)) {
-    return true;
-  }
+  void options.allowVercelCron;
 
   return Boolean(!process.env.CRON_SECRET && process.env.NODE_ENV === "development");
 }
@@ -74,6 +69,7 @@ async function safeWriteLastRefresh(lastRefresh: LastRefresh) {
 
 function skippedResponse(decision: Extract<RefreshCronDecision, { shouldRun: false }>) {
   return NextResponse.json({
+    ok: true,
     skipped: true,
     reason: decision.reason,
     lastRefreshDateAmericaNewYork: decision.dateKey,
@@ -89,8 +85,22 @@ export async function handleRefreshRequest(
   const now = new Date();
   const storageStatus = snapshotStorageStatus();
 
+  if (missingCronSecretInProduction()) {
+    return NextResponse.json(
+      {
+        ok: false,
+        status: "error",
+        message: "Missing CRON_SECRET. Add it to Vercel Production environment variables."
+      },
+      { status: 500 }
+    );
+  }
+
   if (!isAuthorized(request, options)) {
-    return NextResponse.json({ error: "Unauthorized refresh request." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Unauthorized refresh request." },
+      { status: 401 }
+    );
   }
 
   const lastRefresh = await newsSnapshotStorage.readLastRefresh();
@@ -107,6 +117,7 @@ export async function handleRefreshRequest(
   if (process.env.NODE_ENV === "production" && !storageStatus.persistentStorageConfigured) {
     return NextResponse.json(
       {
+        ok: false,
         status: "error",
         message:
           "Persistent news storage is not configured. Add Supabase env vars and apply the daily_news_snapshots migration before running production refresh."
@@ -150,6 +161,7 @@ export async function handleRefreshRequest(
     options.revalidate("/for-you");
 
     return NextResponse.json({
+      ok: true,
       status: "success",
       skipped: false,
       trigger,
@@ -160,6 +172,7 @@ export async function handleRefreshRequest(
       candidateCount: result.candidateCount,
       itemsFound: result.candidateCount,
       itemsSelected,
+      failedSources: result.failedSources,
       sourceBreakdown: result.sourceBreakdown,
       debug: result.debug,
       categoryCounts: Object.fromEntries(
@@ -170,7 +183,7 @@ export async function handleRefreshRequest(
       )
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown refresh error.";
+    const message = safeRefreshErrorMessage(error);
     await safeWriteLastRefresh({
       refreshedAt: lastRefresh.refreshedAt,
       nextRefreshAt: getNextRefreshAt(now).toISOString(),
@@ -181,12 +194,13 @@ export async function handleRefreshRequest(
       itemsFound: 0,
       itemsSelected: 0,
       errors: [message],
+      failedSources: [],
       trigger,
       categoryCounts: lastRefresh.categoryCounts ?? emptyCategoryCounts(),
       status: "error",
       message
     });
 
-    return NextResponse.json({ status: "error", message }, { status: 500 });
+    return NextResponse.json({ ok: false, status: "error", message }, { status: 500 });
   }
 }

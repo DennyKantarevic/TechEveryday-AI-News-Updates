@@ -74,4 +74,20 @@ describe("refresh cron scheduling", () => {
       dateKey: "2026-06-13"
     });
   });
+
+  it("does not treat a failed same-day attempt as an already refreshed day", () => {
+    expect(
+      getRefreshCronDecision({
+        now: new Date("2026-06-13T11:00:00.000Z"),
+        lastRefresh: lastRefresh({
+          status: "error",
+          refreshedAt: null,
+          lastRefreshDateAmericaNewYork: "2026-06-13"
+        })
+      })
+    ).toEqual({
+      shouldRun: true,
+      dateKey: "2026-06-13"
+    });
+  });
 });

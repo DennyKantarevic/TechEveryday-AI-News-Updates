@@ -26,6 +26,7 @@ function emptyLastRefresh(): LastRefresh {
     itemsFound: 0,
     itemsSelected: 0,
     errors: [],
+    failedSources: [],
     candidateCount: 0,
     categoryCounts: createCategoryRecord(() => 0),
     status: "skipped",
@@ -133,6 +134,7 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
           refresh.itemsSelected ??
           Object.values(refresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
         errors: refresh.errors ?? [],
+        failedSources: refresh.failedSources ?? refresh.debug?.failedSources ?? [],
         categoryCounts: CATEGORY_IDS.reduce(
           (counts, categoryId) => ({
             ...counts,
