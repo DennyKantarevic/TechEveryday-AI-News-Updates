@@ -6,6 +6,8 @@ import LoginPage from "@/app/login/page";
 import SignupPage from "@/app/signup/page";
 import AuthButton from "@/components/AuthButton";
 
+let searchParams = new URLSearchParams();
+
 vi.mock("@/lib/supabase/client", () => ({
   createClient: () => ({
     auth: {
@@ -19,7 +21,7 @@ vi.mock("@/lib/supabase/client", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
-  useSearchParams: () => new URLSearchParams()
+  useSearchParams: () => searchParams
 }));
 
 vi.mock("@/components/StickyHeader", () => ({
@@ -27,6 +29,10 @@ vi.mock("@/components/StickyHeader", () => ({
 }));
 
 describe("auth pages", () => {
+  beforeEach(() => {
+    searchParams = new URLSearchParams();
+  });
+
   it("renders login with privacy-first account copy", () => {
     render(<LoginPage />);
 
@@ -41,6 +47,15 @@ describe("auth pages", () => {
     expect(screen.getByText(/Supabase Auth/i)).toBeInTheDocument();
     expect(screen.getByText(/Get the daily research brief after confirming/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Confirm email/i })).toBeInTheDocument();
+  });
+
+  it("shows a spam folder note after auth emails are sent", () => {
+    searchParams = new URLSearchParams("message=check-email");
+
+    render(<LoginPage />);
+
+    expect(screen.getByText(/check spam or junk/i)).toBeInTheDocument();
+    expect(screen.getByText(/mark TechEveryday as not spam/i)).toBeInTheDocument();
   });
 
   it("shows sign in when no user is loaded", async () => {

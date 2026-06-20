@@ -25,6 +25,8 @@ describe("email subscription route security", () => {
     expect(source).toContain("Confirm your subscription to daily TechEveryday updates.");
     expect(source).toContain("If you did not request this, you can ignore this email.");
     expect(source).toContain("Check your email to confirm your TechEveryday subscription.");
+    expect(source).toContain("check spam or junk");
+    expect(source).toContain("mark TechEveryday as not spam");
   });
 
   it("allows unsubscribe without requiring login", () => {

@@ -48,6 +48,20 @@ describe("AccountSettings", () => {
     );
   });
 
+  it("shows a spam folder note after requesting daily email updates", async () => {
+    render(
+      <AccountSettings
+        profile={{ displayName: "", email: "denny@example.com" }}
+        preferences={{ emailSubscribed: false, personalizationEnabled: true }}
+      />
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /^Subscribe$/i }));
+
+    expect(await screen.findByText(/check spam or junk/i)).toBeInTheDocument();
+    expect(screen.getByText(/mark TechEveryday as not spam/i)).toBeInTheDocument();
+  });
+
   it("shows safe account API errors returned by the server", async () => {
     vi.stubGlobal(
       "fetch",

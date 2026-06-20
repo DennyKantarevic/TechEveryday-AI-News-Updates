@@ -15,6 +15,9 @@ import { createSecureToken } from "@/lib/security/tokens";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const confirmationSuccessMessage =
+  "Check your email to confirm your TechEveryday subscription. If you do not see it within a minute, check spam or junk and mark TechEveryday as not spam.";
+
 const subscribeSchema = z.object({
   email: z.string().trim().email().optional(),
   subscribed: z.boolean().default(true)
@@ -181,7 +184,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       ok: true,
       confirmationRequired: true,
-      message: "Check your email to confirm your TechEveryday subscription."
+      message: confirmationSuccessMessage
     });
   } catch (error) {
     console.error("[email:subscribe] send_failed", {

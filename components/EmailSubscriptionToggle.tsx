@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 
+const subscribeSuccessMessage =
+  "Check your inbox for the email. If you do not see it within a minute, check spam or junk and mark TechEveryday as not spam.";
+
 export default function EmailSubscriptionToggle({ subscribed }: { subscribed: boolean }) {
   const [isSubscribed, setIsSubscribed] = useState(subscribed);
   const [message, setMessage] = useState("");
@@ -28,7 +31,10 @@ export default function EmailSubscriptionToggle({ subscribed }: { subscribed: bo
       }
 
       setIsSubscribed(nextValue);
-      setMessage(body.message || "Daily email settings were updated.");
+      setMessage(
+        body.message ||
+          (nextValue ? subscribeSuccessMessage : "Daily email updates are turned off.")
+      );
     } catch (error) {
       setMessage(
         error instanceof Error

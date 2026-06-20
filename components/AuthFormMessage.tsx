@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useSearchParams } from "next/navigation";
 
 const messages: Record<string, string> = {
@@ -7,7 +8,8 @@ const messages: Record<string, string> = {
     "Account login is not configured in this deployment. Add the Supabase Vercel environment variables and redeploy.",
   "auth-callback-error": "The sign-in link could not be verified. Request a new link.",
   "auth-callback-missing": "This sign-in link is incomplete. Request a new link.",
-  "check-email": "Check your email for the secure sign-in link.",
+  "check-email":
+    "Check your inbox for the secure sign-in link. If you do not see it within a minute, check spam or junk and mark TechEveryday as not spam.",
   "missing-email": "Enter a valid email address.",
   "signin-rate-limited": "Too many sign-in link requests. Wait a few minutes and try again.",
   "signin-invalid-redirect":

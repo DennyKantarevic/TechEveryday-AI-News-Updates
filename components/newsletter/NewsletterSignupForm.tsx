@@ -2,6 +2,9 @@
 
 import React, { FormEvent, useState } from "react";
 
+const confirmationSuccessMessage =
+  "Check your inbox for the email. If you do not see it within a minute, check spam or junk and mark TechEveryday as not spam.";
+
 export default function NewsletterSignupForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -25,7 +28,7 @@ export default function NewsletterSignupForm() {
       }
 
       setEmail("");
-      setMessage(body.message || "Check your email to confirm your TechEveryday subscription.");
+      setMessage(body.message || confirmationSuccessMessage);
     } catch (error) {
       setMessage(
         error instanceof Error
