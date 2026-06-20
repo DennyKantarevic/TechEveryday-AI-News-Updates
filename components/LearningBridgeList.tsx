@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight, Link2 } from "lucide-react";
+import { RelativeTime } from "@/components/RelativeTime";
 import type { LearningBridge } from "@/lib/learning";
 
 function formatDate(value: string) {
@@ -44,6 +45,7 @@ export default function LearningBridgeList({ bridges }: { bridges: LearningBridg
                 <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-ink/62">
                   <span>{story.sourceName}</span>
                   <span>{formatDate(story.publishedAt)}</span>
+                  <RelativeTime date={story.publishedAt} />
                 </div>
                 <h3 className="mt-2 font-display text-2xl font-black leading-tight">
                   {story.title}

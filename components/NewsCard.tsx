@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Bookmark, Check, ExternalLink, ShieldCheck, Trash2 } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
+import { RelativeTime } from "@/components/RelativeTime";
 import { CATEGORY_BY_ID } from "@/config/categories";
 import {
   trackArticleOpened,
@@ -62,27 +63,6 @@ function sourceLabel(type: NewsItem["sourceType"]) {
   return "Trusted source";
 }
 
-function freshnessLabel(publishedAt: string, now: Date) {
-  const published = new Date(publishedAt);
-
-  if (!Number.isFinite(published.getTime())) {
-    return "Freshness unknown";
-  }
-
-  const minutes = Math.max(0, Math.floor((now.getTime() - published.getTime()) / 60_000));
-
-  if (minutes < 60) {
-    return minutes <= 1 ? "Just now" : `${minutes}m ago`;
-  }
-
-  const hours = Math.floor(minutes / 60);
-  if (hours < 72) {
-    return `${hours}h ago`;
-  }
-
-  return `${Math.floor(hours / 24)}d ago`;
-}
-
 function formatTag(tag: string) {
   return CATEGORY_BY_ID[tag as keyof typeof CATEGORY_BY_ID]?.title ?? tag;
 }
@@ -110,6 +90,7 @@ export default function NewsCard({
   mode?: "newsletter" | "gallery";
   onRemove?: (id: string) => Promise<void> | void;
   staggeredEntrance?: boolean;
+  /** @deprecated Relative time updates live from the browser clock. */
   now?: Date;
 }) {
   const shouldReduceMotion = useReducedMotion();
@@ -127,14 +108,6 @@ export default function NewsCard({
   const publishedDate = useMemo(
     () => formatPublishedDate(item.publishedAt),
     [item.publishedAt]
-  );
-  const referenceNow = useMemo(
-    () => now ?? new Date(item.foundAt || item.publishedAt),
-    [item.foundAt, item.publishedAt, now]
-  );
-  const freshness = useMemo(
-    () => freshnessLabel(item.publishedAt, referenceNow),
-    [item.publishedAt, referenceNow]
   );
   const category = CATEGORY_BY_ID[item.category];
   const topicTags = item.tags
@@ -216,7 +189,9 @@ export default function NewsCard({
           <span>{publishedDate}</span>
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.1em] text-clay">
-          <span className="border border-ink/25 bg-bone px-2 py-1">{freshness}</span>
+          <span className="border border-ink/25 bg-bone px-2 py-1">
+            <RelativeTime date={item.publishedAt} />
+          </span>
         </div>
         <h3 className="mt-3 font-display text-2xl font-black leading-tight">
           {item.title}

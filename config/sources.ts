@@ -107,6 +107,15 @@ const AI_LAB_AND_RESEARCH_SOURCES: TrustedSourceConfig[] = [
     preferArticleImages: true
   },
   {
+    name: "Google DeepMind Blog",
+    homepageUrl: "https://deepmind.google/blog/",
+    rssUrl: "https://deepmind.google/blog/rss.xml",
+    sourceType: "official",
+    trustScore: 0.94,
+    categoryHints: ["ai-ml", "research-papers", "automation-agentic-systems"],
+    preferArticleImages: true
+  },
+  {
     name: "OpenAI Blog",
     homepageUrl: "https://openai.com/news/",
     rssUrl: "https://openai.com/news/rss.xml",
@@ -120,6 +129,22 @@ const AI_LAB_AND_RESEARCH_SOURCES: TrustedSourceConfig[] = [
     sourceType: "official",
     trustScore: 0.93,
     categoryHints: ["ai-ml", "automation-agentic-systems", "research-papers"]
+  },
+  {
+    name: "Hugging Face Blog",
+    homepageUrl: "https://huggingface.co/blog",
+    rssUrl: "https://huggingface.co/blog/feed.xml",
+    sourceType: "blog",
+    trustScore: 0.88,
+    categoryHints: ["ai-ml", "research-papers", "developer-tools-open-source"]
+  },
+  {
+    name: "Berkeley AI Research Blog",
+    homepageUrl: "https://bair.berkeley.edu/blog/",
+    rssUrl: "https://bair.berkeley.edu/blog/feed.xml",
+    sourceType: "blog",
+    trustScore: 0.88,
+    categoryHints: ["ai-ml", "research-papers", "automation-agentic-systems"]
   },
   {
     name: "Microsoft Research Blog",
@@ -150,9 +175,9 @@ const AI_LAB_AND_RESEARCH_SOURCES: TrustedSourceConfig[] = [
 
 const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
   {
-    name: "NVIDIA Blog",
-    homepageUrl: "https://blogs.nvidia.com",
-    rssUrl: "https://blogs.nvidia.com/feed/",
+    name: "NVIDIA Technical Blog",
+    homepageUrl: "https://developer.nvidia.com/blog/",
+    rssUrl: "https://developer.nvidia.com/blog/feed/",
     sourceType: "official",
     trustScore: 0.89,
     categoryHints: ["ai-ml", "embedded-systems", "cloud-infrastructure"]
@@ -164,6 +189,29 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     sourceType: "official",
     trustScore: 0.88,
     categoryHints: ["cloud-infrastructure", "developer-tools-open-source"]
+  },
+  {
+    name: "AWS Architecture Blog",
+    homepageUrl: "https://aws.amazon.com/blogs/architecture/",
+    rssUrl: "https://aws.amazon.com/blogs/architecture/feed/",
+    sourceType: "official",
+    trustScore: 0.88,
+    categoryHints: ["cloud-infrastructure", "computer-systems", "developer-tools-open-source"]
+  },
+  {
+    name: "Google Cloud Blog",
+    homepageUrl: "https://cloud.google.com/blog",
+    sourceType: "official",
+    trustScore: 0.87,
+    categoryHints: ["cloud-infrastructure", "developer-tools-open-source", "computer-systems"]
+  },
+  {
+    name: "Microsoft Azure Blog",
+    homepageUrl: "https://azure.microsoft.com/en-us/blog/",
+    rssUrl: "https://azure.microsoft.com/en-us/blog/feed/",
+    sourceType: "official",
+    trustScore: 0.87,
+    categoryHints: ["cloud-infrastructure", "developer-tools-open-source", "computer-systems"]
   },
   {
     name: "Cloudflare Blog",
@@ -182,6 +230,22 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     categoryHints: ["developer-tools-open-source", "automation-agentic-systems"]
   },
   {
+    name: "Vercel Blog",
+    homepageUrl: "https://vercel.com/blog",
+    rssUrl: "https://vercel.com/blog/rss.xml",
+    sourceType: "official",
+    trustScore: 0.86,
+    categoryHints: ["developer-tools-open-source", "cloud-infrastructure"]
+  },
+  {
+    name: "Docker Blog",
+    homepageUrl: "https://www.docker.com/blog/",
+    rssUrl: "https://www.docker.com/blog/feed/",
+    sourceType: "official",
+    trustScore: 0.85,
+    categoryHints: ["developer-tools-open-source", "cloud-infrastructure", "computer-systems"]
+  },
+  {
     name: "Kubernetes Blog",
     homepageUrl: "https://kubernetes.io/blog/",
     rssUrl: "https://kubernetes.io/feed.xml",
@@ -198,11 +262,34 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     categoryHints: ["cloud-infrastructure", "developer-tools-open-source", "computer-systems"]
   },
   {
+    name: "ACM Queue",
+    homepageUrl: "https://queue.acm.org/",
+    rssUrl: "https://queue.acm.org/rss/feeds/queuecontent.xml",
+    sourceType: "news",
+    trustScore: 0.88,
+    categoryHints: ["computer-systems", "cloud-infrastructure", "developer-tools-open-source"]
+  },
+  {
     name: "Hackaday",
     homepageUrl: "https://hackaday.com",
     rssUrl: "https://hackaday.com/blog/feed/",
     sourceType: "blog",
     trustScore: 0.74,
+    categoryHints: ["embedded-systems", "computer-systems", "developer-tools-open-source"]
+  },
+  {
+    name: "Hackster.io",
+    homepageUrl: "https://www.hackster.io/news",
+    rssUrl: "https://www.hackster.io/news.rss",
+    sourceType: "blog",
+    trustScore: 0.72,
+    categoryHints: ["embedded-systems", "developer-tools-open-source"]
+  },
+  {
+    name: "ARM Community Blog",
+    homepageUrl: "https://community.arm.com/arm-community-blogs/",
+    sourceType: "official",
+    trustScore: 0.84,
     categoryHints: ["embedded-systems", "computer-systems", "developer-tools-open-source"]
   },
   {

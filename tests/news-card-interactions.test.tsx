@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import React from "react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import NewsCard from "@/components/NewsCard";
 import {
   trackArticleOpened,
@@ -88,6 +88,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  vi.useRealTimers();
+});
+
 describe("NewsCard interaction tracking", () => {
   it("records article views on render", () => {
     render(<NewsCard item={item} />);
@@ -157,7 +161,10 @@ describe("NewsCard interaction tracking", () => {
   });
 
   it("shows freshness and why-it-matters metadata on article cards", () => {
-    render(<NewsCard item={item} now={new Date("2026-06-12T12:00:00.000Z")} />);
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-06-12T12:00:00.000Z"));
+
+    render(<NewsCard item={item} />);
 
     expect(screen.getByText("4h ago")).toBeInTheDocument();
     expect(screen.getByText(/Why it matters/i)).toBeInTheDocument();

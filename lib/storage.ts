@@ -20,6 +20,13 @@ function emptyLastRefresh(): LastRefresh {
   return {
     refreshedAt: null,
     nextRefreshAt: getNextRefreshAt().toISOString(),
+    lastRefreshStartedAt: null,
+    lastRefreshCompletedAt: null,
+    lastRefreshDateAmericaNewYork: null,
+    itemsFound: 0,
+    itemsSelected: 0,
+    errors: [],
+    failedSources: [],
     candidateCount: 0,
     categoryCounts: createCategoryRecord(() => 0),
     status: "skipped",
@@ -119,6 +126,15 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
       const refresh = await readJson<LastRefresh>(lastRefreshPath, emptyLastRefresh());
       return {
         ...refresh,
+        lastRefreshStartedAt: refresh.lastRefreshStartedAt ?? null,
+        lastRefreshCompletedAt: refresh.lastRefreshCompletedAt ?? refresh.refreshedAt,
+        lastRefreshDateAmericaNewYork: refresh.lastRefreshDateAmericaNewYork ?? null,
+        itemsFound: refresh.itemsFound ?? refresh.candidateCount ?? 0,
+        itemsSelected:
+          refresh.itemsSelected ??
+          Object.values(refresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
+        errors: refresh.errors ?? [],
+        failedSources: refresh.failedSources ?? refresh.debug?.failedSources ?? [],
         categoryCounts: CATEGORY_IDS.reduce(
           (counts, categoryId) => ({
             ...counts,

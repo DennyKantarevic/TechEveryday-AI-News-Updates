@@ -1,11 +1,27 @@
 import GalleryGrid from "@/components/GalleryGrid";
 import StickyHeader from "@/components/StickyHeader";
+import { getCurrentUser } from "@/lib/auth/get-user";
+import {
+  savedArticleRowToNewsItem,
+  type SavedArticleRow
+} from "@/lib/gallery/savedArticles";
 import { fileStorage } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
 
 export default async function GalleryPage() {
-  const gallery = await fileStorage.readGallery();
+  const { supabase, user } = await getCurrentUser();
+  let gallery = await fileStorage.readGallery();
+
+  if (supabase && user) {
+    const { data } = await supabase
+      .from("saved_articles")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("saved_at", { ascending: false });
+
+    gallery = (data ?? []).map((row) => savedArticleRowToNewsItem(row as SavedArticleRow));
+  }
 
   return (
     <>

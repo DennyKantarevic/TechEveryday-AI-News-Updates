@@ -14,7 +14,19 @@ vi.mock("@/lib/news/fetchSources", () => ({
 }));
 
 vi.mock("@/lib/news/fetchArxiv", () => ({
-  fetchArxivPapers: fetchArxivPapersMock
+  arxivRequestUrl: () => "https://export.arxiv.org/api/query?search_query=test",
+  fetchArxivPapers: fetchArxivPapersMock,
+  fetchArxivPapersWithDiagnostics: async (options: unknown) => {
+    const items = await fetchArxivPapersMock(options);
+    return {
+      items,
+      diagnostics: {
+        requestUrl: "https://export.arxiv.org/api/query?search_query=test",
+        rawCount: items.length,
+        parsedCount: items.length
+      }
+    };
+  }
 }));
 
 vi.mock("@/lib/news/fetchX", () => ({
@@ -200,5 +212,41 @@ describe("refreshNews diagnostics", () => {
       message:
         "Only 1 high-signal fresh item found after fallback discovery; showing the best available fresh items."
     });
+  });
+
+  it("continues with healthy sources and records failed source diagnostics", async () => {
+    fetchSourceCandidatesMock.mockResolvedValue([
+      item({
+        id: "cloud-healthy",
+        title: "Cloudflare runtime architecture benchmark"
+      })
+    ]);
+    fetchArxivPapersMock.mockRejectedValue(new Error("arXiv timed out"));
+    fetchTrustedXPostsMock.mockResolvedValue([]);
+    fetchCategoryFallbackCandidatesMock.mockResolvedValue([]);
+
+    let writtenLastRefresh: LastRefresh | undefined;
+    const storage = {
+      readDailyNews: vi.fn(async () => emptyDailyNews()),
+      writeDailyNews: vi.fn(),
+      writeLastRefresh: vi.fn(async (lastRefresh: LastRefresh) => {
+        writtenLastRefresh = lastRefresh;
+      })
+    };
+
+    const result = await refreshNews({ now, storage: storage as never });
+
+    expect(result.dailyNews.categories["cloud-infrastructure"].map((news) => news.id)).toContain(
+      "cloud-healthy"
+    );
+    expect(result.failedSources).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          sourceName: "arXiv",
+          reason: "arXiv timed out"
+        })
+      ])
+    );
+    expect(writtenLastRefresh?.failedSources).toEqual(result.failedSources);
   });
 });

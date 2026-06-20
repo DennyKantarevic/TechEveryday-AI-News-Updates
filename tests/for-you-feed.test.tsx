@@ -51,4 +51,18 @@ describe("ForYouFeed", () => {
       screen.getByText("Start reading and saving articles to personalize this page.")
     ).toBeInTheDocument();
   });
+
+  it("renders a privacy-respecting state when account personalization is disabled", () => {
+    render(
+      <ForYouFeed
+        articles={[]}
+        learningFoundations={[]}
+        initialEvents={[]}
+        personalizationEnabled={false}
+      />
+    );
+
+    expect(screen.getByText("Personalization is off")).toBeInTheDocument();
+    expect(screen.getByText(/Turn personalization back on in Account settings/i)).toBeInTheDocument();
+  });
 });

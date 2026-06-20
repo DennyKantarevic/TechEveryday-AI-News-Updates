@@ -1,12 +1,20 @@
 {
   "crons": [
     {
-      "path": "/api/refresh-news?scheduled=1",
+      "path": "/api/cron/refresh-news",
       "schedule": "0 11 * * *"
     },
     {
-      "path": "/api/refresh-news?scheduled=1",
+      "path": "/api/cron/refresh-news",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/send-daily-emails",
+      "schedule": "15 11 * * *"
+    },
+    {
+      "path": "/api/cron/send-daily-emails",
+      "schedule": "15 12 * * *"
     }
   ]
 }

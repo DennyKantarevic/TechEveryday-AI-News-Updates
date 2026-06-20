@@ -40,4 +40,10 @@ describe("StickyHeader", () => {
 
     expect(window.scrollTo).toHaveBeenCalledWith({ left: 0, top: 0 });
   });
+
+  it("keeps the centered brand wordmark from intercepting navigation tab clicks", () => {
+    render(<StickyHeader alwaysVisible />);
+
+    expect(screen.getByTestId("sticky-brand-wordmark")).toHaveClass("pointer-events-none");
+  });
 });

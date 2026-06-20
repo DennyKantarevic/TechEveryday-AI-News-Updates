@@ -58,24 +58,32 @@ beforeEach(() => {
 describe("PageTransition", () => {
   it("infers route-aware transition directions", () => {
     expect(routeTransitionDirection("/learning")).toBe(-1);
-    expect(routeTransitionDirection("/for-you")).toBe(1);
+    expect(routeTransitionDirection("/for-you")).toBe(routeTransitionDirection("/learning"));
     expect(routeTransitionDirection("/")).toBe(-1);
   });
 
-  it("wraps page content in a motion transition keyed by route", () => {
+  it("clips full-screen route slides so they cannot create horizontal scrolling", () => {
     render(
       <PageTransition>
         <main>Learning page</main>
       </PageTransition>
     );
 
+    const frame = screen.getByTestId("page-transition-frame");
     const wrapper = screen.getByTestId("page-transition");
 
+    expect(frame).toHaveClass("relative");
+    expect(frame).toHaveClass("w-full");
+    expect(frame).toHaveClass("max-w-full");
+    expect(frame.className).toMatch(/overflow-x-(clip|hidden)/);
     expect(wrapper).toHaveAttribute("data-custom", "-1");
     expect(wrapper).toHaveAttribute("data-initial", "initial");
     expect(wrapper).toHaveAttribute("data-animate", "animate");
     expect(wrapper).toHaveAttribute("data-exit", "exit");
     expect(wrapper).toHaveAttribute("data-initial-x", "-100vw");
+    expect(wrapper).toHaveClass("w-full");
+    expect(wrapper).toHaveClass("max-w-full");
+    expect(wrapper).toHaveClass("min-h-screen");
     expect(Number(wrapper.getAttribute("data-transition-duration"))).toBe(
       PAGE_TRANSITION_SECONDS
     );

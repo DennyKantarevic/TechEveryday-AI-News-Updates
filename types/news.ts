@@ -45,6 +45,16 @@ export type RejectedCandidate = {
 export type RefreshDebug = {
   totalCandidatesFound: number;
   fallbackCandidateCount?: number;
+  sourceDiagnostics?: Record<
+    string,
+    {
+      requestUrl?: string;
+      rawCount: number;
+      afterFreshnessCount: number;
+      afterQualityCount: number;
+      selectedCount: number;
+    }
+  >;
   candidatesAfterFreshness: number;
   rejectedByAge: number;
   rejectedByLowQuality: number;
@@ -63,15 +73,30 @@ export type RefreshDebug = {
     >
   >;
   sourcesUsed: string[];
+  failedSources?: RefreshSourceFailure[];
   rejected: RejectedCandidate[];
+};
+
+export type RefreshSourceFailure = {
+  sourceName: string;
+  reason: string;
+  at: string;
 };
 
 export type LastRefresh = {
   refreshedAt: string | null;
   nextRefreshAt: string;
+  lastRefreshStartedAt?: string | null;
+  lastRefreshCompletedAt?: string | null;
+  lastRefreshDateAmericaNewYork?: string | null;
+  itemsFound?: number;
+  itemsSelected?: number;
+  errors?: string[];
+  failedSources?: RefreshSourceFailure[];
+  trigger?: "scheduled" | "manual" | "api";
   candidateCount: number;
   categoryCounts: Record<CategoryId, number>;
-  status: "success" | "skipped" | "error";
+  status: "success" | "skipped" | "error" | "running";
   message?: string;
   debug?: RefreshDebug;
 };

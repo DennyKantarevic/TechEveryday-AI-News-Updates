@@ -8,7 +8,7 @@ import {
   getLearningBridges,
   getLearningCurrentContext
 } from "@/lib/learning";
-import { fileStorage } from "@/lib/storage";
+import { newsSnapshotStorage } from "@/lib/news/snapshotStorage";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function LearningPage() {
-  const dailyNews = await fileStorage.readDailyNews();
+  const dailyNews = await newsSnapshotStorage.readDailyNews();
   const bridges = getLearningBridges(dailyNews);
   const currentContext = getLearningCurrentContext(dailyNews, 6);
 

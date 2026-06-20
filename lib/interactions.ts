@@ -16,6 +16,7 @@ export type InteractionArticle = Pick<
   | "id"
   | "title"
   | "summary"
+  | "url"
   | "sourceName"
   | "sourceType"
   | "category"
@@ -68,6 +69,7 @@ function normalizeArticle(item: NewsItem): InteractionArticle {
     id: item.id,
     title: item.title,
     summary: item.summary,
+    url: item.url,
     sourceName: item.sourceName,
     sourceType: item.sourceType,
     category: item.category,
@@ -87,6 +89,7 @@ function coerceEvent(value: unknown): InteractionEvent | null {
         id: String(value.article.id ?? ""),
         title: String(value.article.title ?? ""),
         summary: String(value.article.summary ?? ""),
+        url: String(value.article.url ?? ""),
         sourceName: String(value.article.sourceName ?? ""),
         sourceType: value.article.sourceType,
         category: value.article.category,
@@ -161,12 +164,39 @@ export function writeInteractionEvents(
   return normalized;
 }
 
+function recordServerInteraction(event: InteractionEvent) {
+  if (typeof window === "undefined" || typeof fetch !== "function") {
+    return;
+  }
+
+  const payload = {
+    type: event.type,
+    createdAt: event.createdAt,
+    articleId: event.articleId,
+    article: event.article,
+    category: event.category,
+    sourceType: event.sourceType
+  };
+
+  try {
+    void fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(() => undefined);
+  } catch {
+    // Local personalization should never break article interactions.
+  }
+}
+
 export function recordInteractionEvent(
   event: WritableInteractionEvent,
   storage = clientStorage()
 ): InteractionEvent {
   const normalized = normalizeEvent(event);
   writeInteractionEvents([normalized, ...readInteractionEvents(storage)], storage);
+  recordServerInteraction(normalized);
   return normalized;
 }
 

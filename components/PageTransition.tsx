@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -12,7 +12,7 @@ export function routeTransitionDirection(pathname: string) {
   }
 
   if (pathname.startsWith("/for-you")) {
-    return 1;
+    return -1;
   }
 
   if (pathname.startsWith("/gallery")) {
@@ -59,7 +59,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
   }
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <div
+      data-testid="page-transition-frame"
+      className="relative w-full max-w-full overflow-x-clip"
+    >
       <motion.div
         key={pathname}
         custom={direction}
@@ -68,10 +71,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
         initial="initial"
         animate="animate"
         exit="exit"
-        className="min-h-screen"
+        className="min-h-screen w-full max-w-full overflow-x-clip"
       >
         {children}
       </motion.div>
-    </AnimatePresence>
+    </div>
   );
 }
