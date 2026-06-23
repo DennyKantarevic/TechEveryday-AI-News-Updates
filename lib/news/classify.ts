@@ -99,6 +99,13 @@ const KEYWORDS: Record<CategoryId, string[]> = {
 const GLOBAL_TECH_SIGNALS = Array.from(
   new Set([
     ...Object.values(KEYWORDS).flat(),
+    "benchmark results",
+    "case study",
+    "codebase",
+    "open source repository",
+    "readme",
+    "repository",
+    "reproducible",
     "openai",
     "anthropic",
     "deepmind",
@@ -117,6 +124,12 @@ const GLOBAL_TECH_SIGNALS = Array.from(
 );
 
 const LOW_VALUE_PROMO_SIGNALS = [
+  "affiliate",
+  "best deals",
+  "deal",
+  "deals",
+  "discount",
+  "sponsored",
   "summer sale",
   "sale brings",
   "save big",
@@ -127,16 +140,29 @@ const LOW_VALUE_PROMO_SIGNALS = [
 ];
 
 const LOW_VALUE_CONTENT_SIGNALS = [
+  "affiliate",
+  "business drama",
   "celebrity",
+  "clash",
+  "consumer gadget",
+  "culture",
+  "daily dose",
+  "deal",
   "prank",
   "viral",
   "fake podcast",
   "drama",
+  "funding",
   "rumor",
+  "rumors",
   "outrage",
   "meme",
   "entertainment-only",
+  "entertainment",
   "gossip",
+  "gadget",
+  "gadget hype",
+  "government clash",
   "creator outrage",
   "creator program",
   "episode",
@@ -147,6 +173,11 @@ const LOW_VALUE_CONTENT_SIGNALS = [
   "founder",
   "gaming",
   "influencer",
+  "launch speculation",
+  "leak",
+  "leaks",
+  "listicle",
+  "newsletter",
   "hobby",
   "lawsuit",
   "litigation",
@@ -155,13 +186,23 @@ const LOW_VALUE_CONTENT_SIGNALS = [
   "net worth",
   "personal finances",
   "phone prices",
+  "phone camera",
   "prices may rise",
   "product pricing",
+  "product rumor",
   "podcast",
   "pokemon go",
   "pokémon go",
+  "press release",
+  "pledge to practice",
   "remote control car",
   "scale model",
+  "shopping",
+  "smart ring",
+  "social media discourse",
+  "startup",
+  "accessibility goals",
+  "inclusive open source ecosystem",
   "security updates for",
   "sports event",
   "suicidal",
@@ -175,7 +216,9 @@ const EDUCATIONAL_SIGNALS = [
   "analysis",
   "architecture",
   "benchmark",
+  "benchmark results",
   "case study",
+  "codebase",
   "concept",
   "deep dive",
   "detail",
@@ -186,7 +229,10 @@ const EDUCATIONAL_SIGNALS = [
   "explainer",
   "guide",
   "implementation",
+  "implementation detail",
   "paper",
+  "readme",
+  "reproducible",
   "research",
   "technical",
   "tutorial",
@@ -199,13 +245,16 @@ const TECHNICAL_DEPTH_SIGNALS = [
   "api",
   "architecture",
   "benchmark",
+  "benchmark setup",
   "compiler",
+  "constraint",
   "database",
   "dataset",
   "distributed",
   "firmware",
   "inference",
   "infrastructure",
+  "instrumentation",
   "kernel",
   "kubernetes",
   "latency",
@@ -217,6 +266,8 @@ const TECHNICAL_DEPTH_SIGNALS = [
   "reliability",
   "runtime",
   "sdk",
+  "scheduler",
+  "source code",
   "storage",
   "system",
   "training",
@@ -227,6 +278,7 @@ const PRACTICAL_USEFULNESS_SIGNALS = [
   "api",
   "best practice",
   "cli",
+  "codebase",
   "developer",
   "framework",
   "guide",
@@ -237,7 +289,10 @@ const PRACTICAL_USEFULNESS_SIGNALS = [
   "operations",
   "platform",
   "production",
+  "readme",
   "release",
+  "repository",
+  "reproducible",
   "tool",
   "upgrade"
 ];
@@ -354,7 +409,7 @@ export function classifyCategory(input: ClassificationInput): CategoryId {
 }
 
 function sourcePriority(item: NewsItem) {
-  if (item.sourceType === "paper" || item.sourceType === "official") {
+  if (item.sourceType === "paper" || item.sourceType === "repo" || item.sourceType === "official") {
     return 5;
   }
   if (item.sourceType === "blog") {
@@ -433,13 +488,13 @@ function scoreItemForSelection(item: NewsItem, now: Date): NewsItem {
   const sourceTrustScore = Math.max(0, Math.min(5, item.trustScore * 5));
   const categoryFitScore = Math.min(5, quality.technicalDepthScore + quality.educationalScore);
   const finalScore =
-    freshness.freshnessScore * 0.18 +
-    sourceTrustScore * 0.18 +
-    quality.technicalDepthScore * 0.22 +
-    quality.educationalScore * 0.18 +
+    freshness.freshnessScore * 0.14 +
+    sourceTrustScore * 0.12 +
+    quality.technicalDepthScore * 0.26 +
+    quality.educationalScore * 0.22 +
     quality.practicalUsefulnessScore * 0.16 +
-    categoryFitScore * 0.08 -
-    quality.noveltyScore * 0.22;
+    categoryFitScore * 0.1 -
+    quality.noveltyScore * 0.3;
 
   return {
     ...item,
@@ -463,41 +518,67 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
     [item.title, item.summary, item.sourceName, item.tags.join(" ")].join(" ")
   );
   const lowValueSignals = signalScore(haystack, LOW_VALUE_CONTENT_SIGNALS, 1);
+  const lowValuePromoSignals = signalScore(haystack, LOW_VALUE_PROMO_SIGNALS, 1);
   const categoryDepthSignals = KEYWORDS[item.category].filter((keyword) =>
     containsSignal(haystack, keyword)
   ).length;
   const summaryTokenCount = normalizeText(item.summary).split(" ").filter(Boolean).length;
   const trustedTechnicalSource =
-    item.sourceType === "official" || item.sourceType === "blog" || item.sourceType === "paper";
+    item.sourceType === "official" ||
+    item.sourceType === "blog" ||
+    item.sourceType === "paper" ||
+    item.sourceType === "repo";
+  const primaryLearningSource = item.sourceType === "paper" || item.sourceType === "repo";
   const educationalScore = clampScore(
     signalScore(haystack, EDUCATIONAL_SIGNALS, 1) +
       (item.sourceType === "paper" ? 2 : 0) +
+      (item.sourceType === "repo" ? 2 : 0) +
       (summaryTokenCount >= 18 ? 1 : 0)
   );
   const technicalDepthScore = clampScore(
     signalScore(haystack, TECHNICAL_DEPTH_SIGNALS, 1) +
       Math.min(2, categoryDepthSignals) +
-      (trustedTechnicalSource ? 1 : 0)
+      (trustedTechnicalSource ? 1 : 0) +
+      (primaryLearningSource ? 1 : 0)
   );
   const practicalUsefulnessScore = clampScore(
     signalScore(haystack, PRACTICAL_USEFULNESS_SIGNALS, 1) +
-      (trustedTechnicalSource ? 1 : 0)
+      (trustedTechnicalSource ? 1 : 0) +
+      (item.sourceType === "repo" ? 2 : 0)
   );
   const noveltyScore = clampScore(
     lowValueSignals * 2 +
+      lowValuePromoSignals * 2 +
       (LOW_VALUE_PROMO_SIGNALS.some((signal) => title.includes(signal)) ? 2 : 0)
   );
   const negatesTechnicalDepth =
-    /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no focused (?:architecture|benchmark|implementation|engineering|technical)|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
+    /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no (?:model architecture|benchmark result|implementation detail|developer workflow|focused (?:architecture|benchmark|implementation|engineering|technical))|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
       haystack
     );
   const hasHighSignalSubstance =
     educationalScore >= 2 && technicalDepthScore >= 3 && practicalUsefulnessScore >= 1;
+  const hasStrongTechnicalDepth =
+    technicalDepthScore >= 3 &&
+    (educationalScore >= 2 || practicalUsefulnessScore >= 2) &&
+    !negatesTechnicalDepth;
+  const isWired = /^wired$/i.test(item.sourceName.trim());
+  const isConsumerFiller =
+    lowValueSignals >= 1 ||
+    lowValuePromoSignals >= 1 ||
+    /best .*(?:gadgets?|phones?|laptops?|deals)|(?:gadget|phone|camera|launch) (?:rumou?r|leak|deal)|startup raises|social media|culture story|founder quotes/i.test(
+      `${item.title} ${item.summary}`
+    );
   const excludedReason =
-    noveltyScore >= 2 && (negatesTechnicalDepth || !hasHighSignalSubstance)
-      ? "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      : educationalScore < 1 && technicalDepthScore < 2
-        ? "Excluded as low-information coverage without enough educational or technical depth."
+    isWired && !hasStrongTechnicalDepth
+      ? "Excluded as WIRED-style consumer/filler low-value coverage without rare technical explainer depth."
+      : isConsumerFiller && !hasHighSignalSubstance
+        ? "Excluded as consumer/filler low-value coverage without enough educational technical value."
+        : noveltyScore >= 2 && (negatesTechnicalDepth || !hasHighSignalSubstance)
+          ? "Excluded as consumer/filler low-value novelty, drama, or entertainment-only coverage."
+          : negatesTechnicalDepth && !primaryLearningSource
+            ? "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+          : educationalScore < 1 || (technicalDepthScore < 3 && !primaryLearningSource)
+            ? "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
         : undefined;
 
   return {
@@ -587,6 +668,28 @@ function uniqueById(items: NewsItem[]) {
     seen.add(item.id);
     return true;
   });
+}
+
+function sourceTypeBucket(item: Pick<NewsItem, "sourceType">) {
+  if (item.sourceType === "paper") {
+    return "paper";
+  }
+
+  if (item.sourceType === "repo") {
+    return "repo";
+  }
+
+  return "article";
+}
+
+function sourceTypeCounts(items: NewsItem[]): RefreshDebug["sourceTypeCounts"] {
+  return items.reduce(
+    (counts, item) => {
+      counts[sourceTypeBucket(item)] += 1;
+      return counts;
+    },
+    { article: 0, paper: 0, repo: 0 }
+  );
 }
 
 function selectDiverseCategoryItems(items: NewsItem[], limit: number) {
@@ -731,8 +834,18 @@ export function selectDailyItemsWithDebug({
 
   const rejectedByAge = rejected.filter((item) => /older than 72|trustworthy date|future/i.test(item.reason)).length;
   const rejectedByDuplicate = rejected.filter((item) => /duplicate/i.test(item.reason)).length;
+  const rejectedAsConsumerFiller = rejected.filter((item) =>
+    /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
+      item.reason
+    )
+  ).length;
+  const rejectedByLowTechnicalDepth = rejected.filter((item) =>
+    /low technical depth|low-information|category fit|implementation detail/i.test(item.reason)
+  ).length;
   const rejectedByLowQuality = rejected.filter((item) =>
-    /low-information|low-value|category fit|promotional/i.test(item.reason)
+    /low-information|low-value|low technical depth|consumer|filler|category fit|promotional/i.test(
+      item.reason
+    )
   ).length;
   const rejectedByTrust = rejected.filter((item) => /trust score|required fields/i.test(item.reason)).length;
   const finalItems = Object.values(categories).flat();
@@ -740,9 +853,12 @@ export function selectDailyItemsWithDebug({
     totalCandidatesFound: candidates.length,
     candidatesAfterFreshness: candidates.length - rejectedByAge,
     rejectedByAge,
+    rejectedAsConsumerFiller,
+    rejectedByLowTechnicalDepth,
     rejectedByLowQuality,
     rejectedByDuplicate,
     rejectedByTrust,
+    sourceTypeCounts: sourceTypeCounts(candidates),
     finalSelectedByCategory: createCategoryRecord(
       (categoryId) => categories[categoryId]?.length ?? 0
     ),

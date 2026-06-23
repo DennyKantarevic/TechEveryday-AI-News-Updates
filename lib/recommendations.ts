@@ -160,6 +160,9 @@ function sourceTypeLabel(type: SourceType) {
   if (type === "paper") {
     return "primary research";
   }
+  if (type === "repo") {
+    return "open source repository";
+  }
   if (type === "official") {
     return "official source";
   }

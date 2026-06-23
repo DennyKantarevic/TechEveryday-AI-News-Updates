@@ -1,6 +1,7 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
 import { selectDailyItemsWithDebug } from "@/lib/news/classify";
 import { fetchArxivPapers } from "@/lib/news/fetchArxiv";
+import { fetchGithubRepositories } from "@/lib/news/fetchGithubRepos";
 import { fetchNewsApiCandidates } from "@/lib/news/fetchNewsApi";
 import {
   fetchCategoryFallbackCandidates,
@@ -77,9 +78,10 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const now = options.now ?? new Date();
   const storage = options.storage ?? fileStorage;
   const previousDailyNews = await storage.readDailyNews();
-  const [sourceItems, arxivItems, newsApiItems, xItems] = await Promise.all([
+  const [sourceItems, arxivItems, repoItems, newsApiItems, xItems] = await Promise.all([
     fetchSourceCandidates({ now }),
     fetchArxivPapers({ now }),
+    fetchGithubRepositories({ now }),
     fetchNewsApiCandidates({ now }),
     fetchTrustedXPosts({ now })
   ]);
@@ -87,6 +89,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const candidates = [
     ...sourceItems,
     ...arxivItems,
+    ...repoItems,
     ...newsApiItems,
     ...xItems,
     ...previousXItems(previousDailyNews, now)
@@ -150,6 +153,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     sourceBreakdown: {
       rss: sourceItems.length,
       arxiv: arxivItems.length,
+      repos: repoItems.length,
       newsApi: newsApiItems.length,
       x: xItems.length
     }
