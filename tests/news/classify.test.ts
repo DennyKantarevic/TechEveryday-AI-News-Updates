@@ -4,16 +4,19 @@ import {
   classifyCategory,
   dedupeCandidates,
   scoreContentQuality,
-  selectDailyItems
+  selectDailyItems,
+  selectDailyItemsWithDebug
 } from "@/lib/news/classify";
 import type { NewsItem } from "@/types/news";
 
 const baseItem = (overrides: Partial<NewsItem>): NewsItem => ({
   id: overrides.id ?? "item-1",
   title: overrides.title ?? "AI agents learn to automate developer workflows",
-  summary: overrides.summary ?? "A concise summary.",
-  url: overrides.url ?? "https://example.com/item-1",
-  canonicalUrl: overrides.canonicalUrl ?? overrides.url ?? "https://example.com/item-1",
+  summary:
+    overrides.summary ??
+    "A technical engineering summary with model architecture, workflow implementation details, benchmark evidence, and developer lessons.",
+  url: overrides.url ?? `https://example.com/${overrides.id ?? "item-1"}`,
+  canonicalUrl: overrides.canonicalUrl ?? overrides.url ?? `https://example.com/${overrides.id ?? "item-1"}`,
   sourceName: overrides.sourceName ?? "Example Source",
   sourceType: overrides.sourceType ?? "news",
   category: overrides.category ?? "ai-ml",
@@ -446,9 +449,172 @@ describe("selectDailyItems", () => {
     expect(openAiCount).toBeLessThanOrEqual(3);
     expect(new Set(aiSources).size).toBeGreaterThanOrEqual(3);
   });
+
+  it("reports source-type and educational-quality rejection diagnostics", () => {
+    const selected = selectDailyItemsWithDebug({
+      candidates: [
+        baseItem({
+          id: "consumer-gadget",
+          title: "The best phone camera rumors before launch day",
+          summary:
+            "A consumer gadget rumor roundup about phone pricing, camera bump leaks, and launch speculation without architecture, benchmarks, or implementation detail.",
+          category: "embedded-systems",
+          sourceName: "The Verge",
+          sourceType: "news",
+          tags: ["gadget", "rumor", "phone prices"]
+        }),
+        baseItem({
+          id: "low-depth-ai",
+          title: "AI will change everything for every business",
+          summary:
+            "A broad opinion column says artificial intelligence will be important, but it gives no model architecture, benchmark result, implementation detail, or developer workflow.",
+          category: "ai-ml",
+          sourceName: "Example News",
+          sourceType: "news",
+          tags: ["ai", "opinion"]
+        }),
+        baseItem({
+          id: "arxiv-robotics",
+          title: "Robotic manipulation benchmark improves long-horizon planning",
+          summary:
+            "An arXiv paper introduces a robotics benchmark, reports manipulation success-rate results, and explains the policy architecture and evaluation method.",
+          sourceName: "arXiv",
+          sourceType: "paper",
+          category: "embedded-systems",
+          tags: ["arxiv", "cs.RO", "benchmark", "robotics"]
+        }),
+        baseItem({
+          id: "repo-runtime",
+          title: "systems-lab/runtime-tracer",
+          summary:
+            "Repository: runtime-tracer. Description: an open source Rust tracing runtime with scheduler instrumentation, p99 latency examples, and a meaningful README. Language: Rust. Stars: 2840. Last updated: 2026-06-12.",
+          sourceName: "GitHub",
+          sourceType: "repo" as never,
+          category: "developer-tools-open-source",
+          tags: ["github", "repository", "rust", "runtime", "tracing"]
+        })
+      ],
+      previousCategories: emptyPreviousCategories(),
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected.categories["embedded-systems"].map((item) => item.id)).toEqual([
+      "arxiv-robotics"
+    ]);
+    expect(selected.categories["developer-tools-open-source"].map((item) => item.id)).toEqual([
+      "repo-runtime"
+    ]);
+    expect(selected.debug.rejectedAsConsumerFiller).toBe(1);
+    expect(selected.debug.rejectedByLowTechnicalDepth).toBe(1);
+    expect(selected.debug.sourceTypeCounts).toEqual({
+      article: 2,
+      paper: 1,
+      repo: 1
+    });
+  });
 });
 
 describe("scoreContentQuality", () => {
+  it("rejects consumer, culture, funding-only, vague hype, listicle, and sponsored filler", () => {
+    const cases = [
+      baseItem({
+        title: "The best smart ring deals to buy this weekend",
+        summary: "A sponsored affiliate shopping listicle about consumer gadget discounts.",
+        category: "embedded-systems",
+        sourceName: "Example Deals",
+        sourceType: "news",
+        tags: ["sponsored", "deal", "listicle", "shopping"]
+      }),
+      baseItem({
+        title: "How a viral AI chatbot became the internet's favorite drama",
+        summary:
+          "A culture story about memes, entertainment, celebrity reactions, and social media discourse without implementation detail.",
+        category: "ai-ml",
+        sourceName: "Wired",
+        sourceType: "news",
+        tags: ["culture", "viral", "drama", "celebrity"]
+      }),
+      baseItem({
+        title: "Startup raises $80M to reinvent enterprise AI",
+        summary:
+          "A funding announcement describes investors, valuation, and founder quotes but no model architecture, benchmarks, dataset, or engineering constraints.",
+        category: "ai-ml",
+        sourceName: "Example News",
+        sourceType: "news",
+        tags: ["funding round", "startup", "founder"]
+      }),
+      baseItem({
+        title: "AI will change everything about software forever",
+        summary:
+          "A vague opinion piece argues artificial intelligence is progressing quickly without explaining a method, implementation, benchmark, or reproducible system.",
+        category: "ai-ml",
+        sourceName: "Example News",
+        sourceType: "news",
+        tags: ["ai", "opinion"]
+      })
+    ];
+
+    for (const item of cases) {
+      expect(scoreContentQuality(item).excludedReason).toMatch(
+        /consumer|filler|low-information|low-value|technical depth/i
+      );
+    }
+  });
+
+  it("accepts educational papers, official engineering posts, systems writeups, repos, and embedded builds", () => {
+    const cases = [
+      baseItem({
+        title: "arXiv paper introduces a new distributed training benchmark",
+        summary:
+          "The paper defines a benchmark, reports scaling results, compares methods, and describes the training system architecture.",
+        sourceName: "arXiv",
+        sourceType: "paper",
+        category: "research-papers",
+        tags: ["arxiv", "benchmark", "distributed", "training"]
+      }),
+      baseItem({
+        title: "Cloudflare explains Durable Objects storage architecture",
+        summary:
+          "The official engineering post explains storage layout, replication, reliability tradeoffs, observability, and production migration details.",
+        sourceName: "Cloudflare Blog",
+        sourceType: "official",
+        category: "cloud-infrastructure",
+        tags: ["storage", "architecture", "reliability", "production"]
+      }),
+      baseItem({
+        title: "Linux scheduler patch reduces p99 latency under memory pressure",
+        summary:
+          "The systems writeup covers kernel scheduling, memory behavior, benchmark results, and implementation tradeoffs.",
+        sourceName: "LWN.net",
+        sourceType: "news",
+        category: "computer-systems",
+        tags: ["kernel", "scheduler", "memory", "benchmark"]
+      }),
+      baseItem({
+        title: "robotics-lab/visual-servo-controller",
+        summary:
+          "Repository: visual-servo-controller. Description: open source robotics controller with firmware, sensor calibration, ROS integration, benchmarks, and a meaningful README. Language: C++. Stars: 1820. Last updated: 2026-06-12.",
+        sourceName: "GitHub",
+        sourceType: "repo" as never,
+        category: "embedded-systems",
+        tags: ["github", "repository", "robotics", "firmware", "ros"]
+      }),
+      baseItem({
+        title: "Building a deterministic sensor-fusion module for a microcontroller rover",
+        summary:
+          "The build writeup details firmware timing, sensor calibration, power constraints, memory layout, and reproducible benchmark measurements.",
+        sourceName: "Hackster",
+        sourceType: "blog",
+        category: "embedded-systems",
+        tags: ["firmware", "sensor", "microcontroller", "benchmark"]
+      })
+    ];
+
+    for (const item of cases) {
+      expect(scoreContentQuality(item).excludedReason).toBeUndefined();
+    }
+  });
+
   it("explains why low-information novelty stories are excluded", () => {
     const score = scoreContentQuality(
       baseItem({

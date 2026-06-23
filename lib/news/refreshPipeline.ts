@@ -2,6 +2,7 @@ import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
 import { scoreContentQuality, selectDailyItemsWithDebug } from "@/lib/news/classify";
 import { evaluateFreshness } from "@/lib/news/freshness";
 import { arxivRequestUrl, fetchArxivPapersWithDiagnostics } from "@/lib/news/fetchArxiv";
+import { fetchGithubRepositories } from "@/lib/news/fetchGithubRepos";
 import { fetchNewsApiCandidates } from "@/lib/news/fetchNewsApi";
 import {
   fetchCategoryFallbackCandidates,
@@ -108,7 +109,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const storage = options.storage ?? newsSnapshotStorage;
   const startedAt = options.startedAt ?? now.toISOString();
   const previousDailyNews = await storage.readDailyNews();
-  const [sourceResult, arxivResult, newsApiResult, xResult] = await Promise.all([
+  const [sourceResult, arxivResult, repoResult, newsApiResult, xResult] = await Promise.all([
     collectCandidates({
       sourceName: "RSS trusted sources",
       at: startedAt,
@@ -139,6 +140,11 @@ export async function refreshNews(options: RefreshOptions = {}) {
       }
     })(),
     collectCandidates({
+      sourceName: "GitHub repositories",
+      at: startedAt,
+      fetcher: () => fetchGithubRepositories({ now })
+    }),
+    collectCandidates({
       sourceName: "NewsAPI",
       at: startedAt,
       fetcher: () => fetchNewsApiCandidates({ now })
@@ -152,23 +158,26 @@ export async function refreshNews(options: RefreshOptions = {}) {
   const failedSources = [
     sourceResult.failedSource,
     arxivResult.failedSource,
+    repoResult.failedSource,
     newsApiResult.failedSource,
     xResult.failedSource
   ].filter((failure): failure is RefreshSourceFailure => Boolean(failure));
   const sourceItems = sourceResult.items;
   const arxivItems = arxivResult.items;
+  const repoItems = repoResult.items;
   const newsApiItems = newsApiResult.items;
   const xItems = xResult.items;
 
   const candidates = [
     ...sourceItems,
     ...arxivItems,
+    ...repoItems,
     ...newsApiItems,
     ...xItems,
     ...previousXItems(previousDailyNews, now)
   ];
 
-  if (!candidates.length && failedSources.length === 4) {
+  if (!candidates.length && failedSources.length === 5) {
     throw new Error("All candidate sources failed.");
   }
 
@@ -272,6 +281,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     sourceBreakdown: {
       rss: sourceItems.length,
       arxiv: arxivItems.length,
+      repos: repoItems.length,
       newsApi: newsApiItems.length,
       x: xItems.length
     }

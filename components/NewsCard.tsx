@@ -52,6 +52,10 @@ function sourceLabel(type: NewsItem["sourceType"]) {
     return "Primary paper";
   }
 
+  if (type === "repo") {
+    return "Open source repo";
+  }
+
   if (type === "official") {
     return "Official source";
   }

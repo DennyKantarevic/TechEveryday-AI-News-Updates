@@ -6,6 +6,7 @@ import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
 const fetchSourceCandidatesMock = vi.hoisted(() => vi.fn());
 const fetchCategoryFallbackCandidatesMock = vi.hoisted(() => vi.fn());
 const fetchArxivPapersMock = vi.hoisted(() => vi.fn());
+const fetchGithubRepositoriesMock = vi.hoisted(() => vi.fn());
 const fetchTrustedXPostsMock = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/news/fetchSources", () => ({
@@ -27,6 +28,10 @@ vi.mock("@/lib/news/fetchArxiv", () => ({
       }
     };
   }
+}));
+
+vi.mock("@/lib/news/fetchGithubRepos", () => ({
+  fetchGithubRepositories: fetchGithubRepositoriesMock
 }));
 
 vi.mock("@/lib/news/fetchX", () => ({
@@ -75,8 +80,10 @@ describe("refreshNews diagnostics", () => {
     fetchSourceCandidatesMock.mockReset();
     fetchCategoryFallbackCandidatesMock.mockReset();
     fetchArxivPapersMock.mockReset();
+    fetchGithubRepositoriesMock.mockReset();
     fetchTrustedXPostsMock.mockReset();
     fetchCategoryFallbackCandidatesMock.mockResolvedValue([]);
+    fetchGithubRepositoriesMock.mockResolvedValue([]);
   });
 
   it("writes debug counts for age, quality, duplicate, and final category selection", async () => {
@@ -129,6 +136,8 @@ describe("refreshNews diagnostics", () => {
     expect(result.debug.rejectedByAge).toBe(1);
     expect(result.debug.rejectedByLowQuality).toBe(1);
     expect(result.debug.rejectedByDuplicate).toBe(1);
+    expect(result.debug.rejectedAsConsumerFiller).toBe(1);
+    expect(result.debug.sourceTypeCounts).toEqual({ article: 4, paper: 0, repo: 0 });
     expect(result.debug.finalSelectedByCategory["cloud-infrastructure"]).toBe(1);
     expect(result.debug.sourcesUsed).toContain("Example Engineering");
     expect(writtenLastRefresh?.debug?.rejectedByAge).toBe(1);
@@ -182,6 +191,38 @@ describe("refreshNews diagnostics", () => {
     expect(result.debug.fallbackCandidateCount).toBe(1);
     expect(result.debug.underfilledCategories["cloud-infrastructure"]).toBeUndefined();
     expect(writtenLastRefresh?.debug?.fallbackCandidateCount).toBe(1);
+  });
+
+  it("includes repository candidates in selection diagnostics and source breakdown", async () => {
+    fetchSourceCandidatesMock.mockResolvedValue([]);
+    fetchArxivPapersMock.mockResolvedValue([]);
+    fetchTrustedXPostsMock.mockResolvedValue([]);
+    fetchGithubRepositoriesMock.mockResolvedValue([
+      item({
+        id: "repo-runtime",
+        title: "systems-lab/runtime-tracer",
+        sourceName: "GitHub",
+        sourceType: "repo",
+        category: "developer-tools-open-source",
+        summary:
+          "Repository: systems-lab/runtime-tracer. Description: open source runtime tracing with scheduler instrumentation. Language: Rust. Stars: 2840. Last updated: 2026-06-12. README: benchmark setup, p99 latency analysis, architecture diagrams, and production debugging workflows.",
+        tags: ["github", "repository", "rust", "runtime", "tracing"]
+      })
+    ]);
+
+    const storage = {
+      readDailyNews: vi.fn(async () => emptyDailyNews()),
+      writeDailyNews: vi.fn(),
+      writeLastRefresh: vi.fn()
+    };
+
+    const result = await refreshNews({ now, storage: storage as never });
+
+    expect(result.dailyNews.categories["developer-tools-open-source"].map((news) => news.id)).toEqual([
+      "repo-runtime"
+    ]);
+    expect(result.sourceBreakdown.repos).toBe(1);
+    expect(result.debug.sourceTypeCounts).toEqual({ article: 0, paper: 0, repo: 1 });
   });
 
   it("logs sections that remain underfilled after fallback discovery", async () => {

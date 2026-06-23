@@ -1,6 +1,13 @@
 import type { CategoryId } from "@/config/categories";
 
-export type SourceType = "official" | "news" | "paper" | "blog" | "discovery" | "x";
+export type SourceType =
+  | "official"
+  | "news"
+  | "paper"
+  | "blog"
+  | "discovery"
+  | "repo"
+  | "x";
 
 export type NewsItem = {
   id: string;
@@ -57,9 +64,16 @@ export type RefreshDebug = {
   >;
   candidatesAfterFreshness: number;
   rejectedByAge: number;
+  rejectedAsConsumerFiller: number;
+  rejectedByLowTechnicalDepth: number;
   rejectedByLowQuality: number;
   rejectedByDuplicate: number;
   rejectedByTrust: number;
+  sourceTypeCounts: {
+    article: number;
+    paper: number;
+    repo: number;
+  };
   finalSelectedByCategory: Record<CategoryId, number>;
   underfilledCategories?: Partial<
     Record<

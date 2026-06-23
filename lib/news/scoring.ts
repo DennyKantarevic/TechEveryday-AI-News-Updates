@@ -56,6 +56,10 @@ function whyPrefix(sourceType: NewsItem["sourceType"]) {
     return "Read this for the paper's specific claim";
   }
 
+  if (sourceType === "repo") {
+    return "Study this repository for the implementation details";
+  }
+
   if (sourceType === "official") {
     return "Read this for the official technical update";
   }
@@ -125,13 +129,13 @@ export function scoreNewsItem(
   const sourceTrustScore = Math.max(0, Math.min(5, normalizedItem.trustScore * 5));
   const categoryFitScore = Math.min(5, quality.technicalDepthScore + quality.educationalScore);
   const finalScore =
-    freshness.freshnessScore * 0.18 +
-    sourceTrustScore * 0.18 +
-    quality.technicalDepthScore * 0.22 +
-    quality.educationalScore * 0.18 +
+    freshness.freshnessScore * 0.14 +
+    sourceTrustScore * 0.12 +
+    quality.technicalDepthScore * 0.26 +
+    quality.educationalScore * 0.22 +
     quality.practicalUsefulnessScore * 0.16 +
-    categoryFitScore * 0.08 -
-    quality.noveltyScore * 0.22;
+    categoryFitScore * 0.1 -
+    quality.noveltyScore * 0.3;
 
   return {
     ...normalizedItem,

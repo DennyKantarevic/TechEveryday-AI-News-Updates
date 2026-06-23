@@ -1,408 +1,376 @@
 {
-  "refreshedAt": "2026-06-13T14:25:13.877Z",
-  "nextRefreshAt": "2026-06-14T11:00:00.000Z",
-  "lastRefreshStartedAt": "2026-06-13T14:25:13.877Z",
-  "lastRefreshCompletedAt": "2026-06-13T14:25:13.877Z",
-  "lastRefreshDateAmericaNewYork": "2026-06-13",
-  "itemsFound": 277,
-  "itemsSelected": 34,
+  "refreshedAt": "2026-06-23T14:09:43.021Z",
+  "nextRefreshAt": "2026-06-24T11:00:00.000Z",
+  "lastRefreshStartedAt": "2026-06-23T14:09:43.021Z",
+  "lastRefreshCompletedAt": "2026-06-23T14:09:43.021Z",
+  "itemsFound": 497,
+  "itemsSelected": 32,
   "errors": [],
-  "trigger": "manual",
-  "candidateCount": 277,
+  "failedSources": [],
+  "trigger": "api",
+  "candidateCount": 497,
   "categoryCounts": {
-    "ai-ml": 5,
-    "automation-agentic-systems": 5,
+    "ai-ml": 4,
+    "automation-agentic-systems": 3,
     "research-papers": 5,
     "embedded-systems": 5,
     "computer-systems": 5,
     "developer-tools-open-source": 5,
-    "cloud-infrastructure": 4
+    "cloud-infrastructure": 5
   },
   "status": "success",
   "message": "Refresh completed with fresh high-signal items.",
   "debug": {
-    "totalCandidatesFound": 277,
-    "candidatesAfterFreshness": 145,
-    "rejectedByAge": 132,
-    "rejectedByLowQuality": 64,
-    "rejectedByDuplicate": 1,
+    "totalCandidatesFound": 497,
+    "candidatesAfterFreshness": 171,
+    "rejectedByAge": 326,
+    "rejectedAsConsumerFiller": 18,
+    "rejectedByLowTechnicalDepth": 54,
+    "rejectedByLowQuality": 72,
+    "rejectedByDuplicate": 0,
     "rejectedByTrust": 0,
+    "sourceTypeCounts": {
+      "article": 422,
+      "paper": 75,
+      "repo": 0
+    },
     "finalSelectedByCategory": {
-      "ai-ml": 5,
-      "automation-agentic-systems": 5,
+      "ai-ml": 4,
+      "automation-agentic-systems": 3,
       "research-papers": 5,
       "embedded-systems": 5,
       "computer-systems": 5,
       "developer-tools-open-source": 5,
-      "cloud-infrastructure": 4
+      "cloud-infrastructure": 5
     },
     "sourcesUsed": [
+      "AWS Architecture Blog",
       "AWS Blog",
-      "Ars Technica",
+      "AWS Compute Blog",
       "CNCF Blog",
       "Cloudflare Blog",
-      "GitHub Blog",
-      "Google Research Blog",
       "Hackaday",
-      "Hacker News",
+      "Hackster.io",
       "IEEE Spectrum",
-      "LWN.net",
-      "Microsoft Research Blog",
-      "NVIDIA Blog",
-      "OpenAI Blog",
-      "The Verge",
-      "Wired",
+      "NVIDIA Technical Blog",
+      "Netflix Tech Blog",
+      "Vercel Blog",
       "arXiv"
     ],
     "rejected": [
       {
-        "id": "2d3f274840461783b1d7c7fbb46f0cee72969998",
-        "title": "Never Post's Mike Rugnetta on the creative process and the value of reliable power",
-        "url": "https://www.theverge.com/report/949073/mike-rugnetta-youtube-never-post-podcast-questionnaire",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "4affbeb4d8c4e9cc7f045f8696ce5f222238fba6",
-        "title": "My yard is dying, so I made an app for that",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/942119/vibecoding-backyard-app-gardening-organizing",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "6948ca4f16809f23f4d19f307bda8333247b4dc2",
-        "title": "Echo Isle is a pint-sized adventure inspired by classic Zelda",
-        "url": "https://www.theverge.com/games/947136/echo-isle-review-pc",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "6a484e5ef664ee79975a1c2d9fd715ac011c1b60",
-        "title": "A better way to manage all your screenshots",
-        "url": "https://www.theverge.com/tech/949465/pool-screenshots-app-disclosure-day-installer",
-        "sourceName": "The Verge",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "f8f87c22edc01efac3ebeba23cb57cbe8d37ed8a",
-        "title": "Valve just imported 13 tons of VR headsets in one day",
-        "url": "https://www.theverge.com/news/949517/valve-vr-headset-import-records-steam-frame-steam-machine-game-console",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "d5f0a1efd4e68796f29ec863d18cd4cafb9d1e50",
-        "title": "Nothing CEO says phone prices are going to keep going up",
-        "url": "https://www.theverge.com/gadgets/949403/nothing-carl-pei-ram-phone-prices",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "3ed1500ddb24049737b94f586c9a66180b4c6b34",
-        "title": "The world's first trillionaire is a killer",
-        "url": "https://www.theverge.com/tech/949259/the-worlds-first-trillionaire-is-a-killer",
-        "sourceName": "The Verge",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "3097a9c8275052546ab7b953e2209cdfa3ca1039",
-        "title": "SpaceX is now a public company valued for its AI potential, so what comes next?",
-        "url": "https://arstechnica.com/space/2026/06/spacex-is-now-a-public-company-valued-for-its-ai-potential-so-what-comes-next/",
+        "id": "ebf8cd85a5325b48ae1bc3d41b4254fcf670f80c",
+        "title": "How to burst the AI bubble: Strike at its roots",
+        "url": "https://arstechnica.com/gadgets/2026/06/how-to-burst-the-ai-bubble-strike-at-its-roots/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "bfff2a9589f42deea4f32e2ca2c8b71d92745f3a",
-        "title": "PeopleSoft 0-day affecting hundreds of organizations steals gigabytes of data",
-        "url": "https://arstechnica.com/security/2026/06/peoplesoft-0-day-affecting-hundreds-of-organizations-steals-gigabytes-of-data/",
+        "id": "d557448eaf6678de82ae71acbfa8787a30dcea70",
+        "title": "With Starfall, SpaceX eyes an edge in global cargo delivery from orbit",
+        "url": "https://arstechnica.com/space/2026/06/with-starfall-spacex-eyes-an-edge-in-global-cargo-delivery-from-orbit/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "60275110656e78d065e0f81fcd64802506082507",
-        "title": "Controversial FISA spying law expires tonight. The spying will continue.",
-        "url": "https://arstechnica.com/tech-policy/2026/06/controversial-fisa-spying-law-expires-tonight-the-spying-will-continue/",
+        "id": "6559f819dd5e5fb82a1dd188a081203e064d2a6e",
+        "title": "GM installs robots at flagship EV factory after laying off 1,300 workers",
+        "url": "https://arstechnica.com/ai/2026/06/gm-installs-robots-at-flagship-ev-factory-after-laying-off-1300-workers/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "c9a721615ddcc2b175d8bb9f498a959a39761dcf",
-        "title": "Here's what Jeff Bezos' new startup Prometheus will do",
-        "url": "https://arstechnica.com/ai/2026/06/heres-what-jeff-bezos-new-startup-prometheus-will-do/",
+        "id": "9d703afb98f989e797c34a8d9f0ee61cbfd42255",
+        "title": "Report: Kennedy Space Center not ready for era of super heavy rockets",
+        "url": "https://arstechnica.com/space/2026/06/report-kennedy-space-center-not-ready-for-era-of-super-heavy-rockets/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "3dee0c31f4f8f93d52a8bbbc1fe8b36e5f34201a",
-        "title": "Have politics finally come for the National Academies of Science?",
-        "url": "https://arstechnica.com/science/2026/06/have-politics-finally-come-for-the-national-academies-of-science/",
+        "id": "27c98dd2e8bc79e0a551b32c383819c368e56177",
+        "title": "Man used massage gun on his tired eyeballs. It went as well as you'd expect.",
+        "url": "https://arstechnica.com/health/2026/06/man-used-massage-gun-on-his-tired-eyeballs-it-went-as-well-as-youd-expect/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "0f49b3771e77c8ebd089c4e1d07ba90fd7c57303",
-        "title": "$130 billion in data center projects blocked by protests so far this year",
-        "url": "https://arstechnica.com/tech-policy/2026/06/130-billion-in-data-center-projects-blocked-by-protests-so-far-this-year/",
+        "id": "85d61155f82e9d681fe64c9aca5b290367168321",
+        "title": "Polymarket's viral videos showed people winning big, but the bets were fake",
+        "url": "https://arstechnica.com/tech-policy/2026/06/polymarkets-viral-videos-showed-people-winning-big-but-the-bets-were-fake/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "0f4f7d02b9c2488157ea4345aeded186144b9bb5",
-        "title": "When it comes to total water use, AI data centers are a drop in the bucket",
-        "url": "https://arstechnica.com/ai/2026/06/when-it-comes-to-total-water-use-ai-data-centers-are-a-drop-in-the-bucket/",
+        "id": "3dfec3cf278ee6316a2c6da61868a39551f25ccb",
+        "title": "Following user outcry, AMD reinstates memory encryption in consumer CPUs",
+        "url": "https://arstechnica.com/security/2026/06/following-user-outcry-amd-reinstates-memory-encryption-in-consumer-cpus/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "6e99cb662666e02ce8119ead4dddb66223aff56b",
-        "title": "Google sues Chinese cybercrime network that used Gemini to automate scams",
-        "url": "https://arstechnica.com/google/2026/06/google-sues-chinese-cybercrime-network-that-used-gemini-to-automate-scams/",
+        "id": "14a91762adff72d152e137c5d2f83026714267c0",
+        "title": "Valve's Steam Machine ships June 29 for $1,049, but you probably won't be able to buy one yet",
+        "url": "https://arstechnica.com/gaming/2026/06/valves-steam-machine-ships-june-29-for-1049-but-you-probably-wont-be-able-to-buy-one-yet/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "f78a1ac8e470246bba914deeaa282d096b3cab31",
-        "title": "RFK Jr. melts down over NYT report, admits he blacklists reporters",
-        "url": "https://arstechnica.com/health/2026/06/rfk-jr-melts-down-over-nyt-report-admits-he-blacklists-reporters/",
+        "id": "e2ce4608dfdd3c536e278096b4acc97e654058f6",
+        "title": "NHTSA investigating alleged Tesla Autopilot crash that killed woman in her home",
+        "url": "https://arstechnica.com/tech-policy/2026/06/woman-killed-when-tesla-driver-using-autopilot-crashed-into-her-home/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "36427b613b1cb03e2074c7753f9dda8e996e65bb",
-        "title": "The biggest race in the world? The 24 Hours of Le Mans is this weekend.",
-        "url": "https://arstechnica.com/cars/2026/06/the-biggest-race-in-the-world-the-24-hours-of-le-mans-is-this-weekend/",
+        "id": "9627f5f33e94f170136c04d870cd81ae5ad4588b",
+        "title": "Lucid lays off 1,500 workers in second big cut of the year",
+        "url": "https://arstechnica.com/cars/2026/06/lucid-lays-off-1500-workers-in-second-big-cut-of-the-year/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "1d33cc4b96e62d364c9d928a16ec1d42a7cd7b8e",
-        "title": "Lawsuit: ChatGPT validated suicidal woman's distrust of crisis lines",
-        "url": "https://arstechnica.com/tech-policy/2026/06/lawsuit-chatgpt-validated-suicidal-womans-distrust-of-crisis-lines/",
+        "id": "efcdf11656c08f3f8c17008b33b7555e412dc5c8",
+        "title": "A US military exercise in space got underway with barely anyone noticing",
+        "url": "https://arstechnica.com/space/2026/06/a-us-military-exercise-in-space-got-underway-with-barely-anyone-noticing/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "710c319bc4b8339c9b6f502a85636e9e46a66ce0",
-        "title": "Cameras, sensors, and 3D body scans: All the tech helping eliminate blown calls",
-        "url": "https://arstechnica.com/gadgets/2026/06/cameras-sensors-and-3d-body-scans-all-the-tech-helping-eliminate-blown-calls/",
+        "id": "d4977aa77a2b82d07ac005b36dd89df9e8d87152",
+        "title": "1,250 hp hybrid Corvette shatters the Pikes Peak production record",
+        "url": "https://arstechnica.com/cars/2026/06/pikes-peak-2026-was-a-battle-of-propulsion-with-an-ev-and-a-hybrid-winning-out/",
         "sourceName": "Ars Technica",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "2a2c6a9a7be497d0d65f5f68907e770f1805c6f7",
-        "title": "Ebola cases in DRC rise to 676 as Kenya protests erupt over US plans",
-        "url": "https://arstechnica.com/health/2026/06/ebola-cases-in-drc-rise-to-676-as-kenya-protests-erupt-over-us-plans/",
+        "id": "5fa771cb666bb650185945b05c9301526c4df787",
+        "title": "This former hacker saw the light—and now wants to collect all of it",
+        "url": "https://arstechnica.com/features/2026/06/this-former-hacker-saw-the-light-and-now-wants-to-collect-all-of-it/",
         "sourceName": "Ars Technica",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "8a2e8bfa78fb6b411ab5ecc9eba711cc83642afd",
-        "title": "Meet the New Dyson Vacuums: V16 Piston Animal, V10 Konical, V8 Cyclone (2026)",
-        "url": "https://www.wired.com/story/meet-dysons-new-cordless-vacuum-lineup/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "06ff1936c2e126ec8158ce75a4209d0d66593305",
+        "title": "How Anthropic may have talked itself into an AI export ban",
+        "url": "https://arstechnica.com/ai/2026/06/how-anthropic-may-have-talked-itself-into-an-ai-export-ban/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "11d0f1e126b82627824e3efc505a28ca4925eb4b",
-        "title": "How Can Soccer Players Bend Their Shots in Midair?",
-        "url": "https://www.wired.com/story/how-can-soccer-players-bend-their-shots-in-midair/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "id": "a0e18cda0a9b5357fdf1a7b7297c2a698e32450e",
+        "title": "Trump admin's coal investments assist plants with repeated violations",
+        "url": "https://arstechnica.com/science/2026/06/trump-admins-coal-investments-assist-plants-with-repeated-violations/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "ca3bf971e231e58cd005dc33ba3ba93364936a67",
-        "title": "EcoFlow PowerOcean Battery Review: Cutting My Bill in Half",
-        "url": "https://www.wired.com/review/ecoflow-powerocean-home-battery/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "efd7809a3588c8168e729a856fde89346e495e85",
+        "title": "Review: Widow's Bay is a boldly original take on comedic horror",
+        "url": "https://arstechnica.com/culture/2026/06/review-widows-bay-is-a-boldly-original-take-on-comedic-horror/",
+        "sourceName": "Ars Technica",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "1652b4a9a350c2ceb8b4dfba6d6a9e614c77d651",
-        "title": "Rivian's CEO on Tesla's Cybertruck, Ferrari's Luce, and What Happens If the R2 Fails",
-        "url": "https://www.wired.com/story/interview-with-rivian-ceo-rj-scaringe/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "9c04e6eb4f771be6a075fed3330d70bc7faeb9ca",
-        "title": "Donald Trump's White House UFC Event Would Be Embarrassing Anywhere",
-        "url": "https://www.wired.com/story/donald-trumps-white-house-ufc-event-would-be-embarrassing-anywhere/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "252efb1d25cc7e45bac11c45ea0720025017a14b",
-        "title": "Chinese Drivers Are Using Tiny Plastic Heads to Fool Tesla's Autopilot Safeguards",
-        "url": "https://www.wired.com/story/chinese-drivers-are-using-tiny-plastic-heads-to-fool-teslas-autopilot-safeguards/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "ce2b81f4df384418d6ad8eaca82961e9ffeaa41a",
-        "title": "Elon Musk Is the World's First Trillionaire",
-        "url": "https://www.wired.com/story/elon-musk-is-the-worlds-first-trillionaire-wow/",
-        "sourceName": "Wired",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "73a21a0c6a7ee8bd2cceef5ec2dac3e48b40c53d",
-        "title": "Crypto Guys Bought the Answer to the CIA's Mysterious Kryptos Sculpture",
-        "url": "https://www.wired.com/story/crypto-guys-bought-the-answer-to-the-cias-mysterious-kryptos-sculpture/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "5bed6817b9c46791d1bde1d1c5c67a818c89a45c",
-        "title": "A White Supremacist Youth Group Helped Orchestrate the Belfast Riots",
-        "url": "https://www.wired.com/story/a-white-supremacist-youth-group-helped-orchestrate-the-belfast-riots/",
-        "sourceName": "Wired",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "ae54d339b142460d52e490a2d8a8af987f4554fa",
-        "title": "The Download: \"reprogramming\" aging, and the hidden sense of interoception",
-        "url": "https://www.technologyreview.com/2026/06/12/1138899/the-download-reprogramming-reverse-aging-interoception/",
+        "id": "d75b6b94b17f10a83ae6a188b7dd2bc94c7fb345",
+        "title": "The Download: the future of chipmaking and Anthropic's government clash",
+        "url": "https://www.technologyreview.com/2026/06/23/1139483/the-download-chipmaking-future-asml-ai-anthropic-government-clash/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "044f7b85f3ffb2f3111bec42796bcd0c2563364e",
-        "title": "You do your own time",
-        "url": "https://www.technologyreview.com/2026/06/12/1138518/you-do-your-own-time-fiction/",
+        "id": "0188cf7a3542e284810b37282f9db9c72b94fd31",
+        "title": "Elephant alert! AI warning systems aim to avoid deadly clashes",
+        "url": "https://www.technologyreview.com/2026/06/23/1138562/elephant-alert-ai-warning-systems-avoid-deadly-clashes-india/",
         "sourceName": "MIT Technology Review",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "1c0cc57d28c4e5b3efcb45f51958b4d7c75ffa79",
-        "title": "Why \"reprogramming\" is the buzziest approach to reversing aging right now",
-        "url": "https://www.technologyreview.com/2026/06/12/1138829/reprogramming-buzziest-approach-reversing-aging-right-now/",
+        "id": "233779cdd418e2e378305135af256b35b6ba85b4",
+        "title": "The $400 million machine powering the future of chipmaking",
+        "url": "https://www.technologyreview.com/2026/06/23/1138837/asml-400-million-dollar-machine-powering-future-of-chipmaking/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "89ed2714d37edf7fda5397de2e1a334457b81da2",
-        "title": "Inside interoception: The hidden sense of how you feel inside",
-        "url": "https://www.technologyreview.com/2026/06/12/1138833/inside-interoception-brain-body/",
+        "id": "9287483b7120e2910370191be0d92d57328c7e37",
+        "title": "Three things to watch amid Anthropic's latest feud with the government",
+        "url": "https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "8ce06b3db7705dec4e99542a677f831fc970c1d9",
-        "title": "The Download: soccer's data renaissance and China's big nuclear plans",
-        "url": "https://www.technologyreview.com/2026/06/11/1138809/the-download-soccer-football-data-analytics-china-nuclear-power/",
+        "id": "71a16cdf09cd2b2d8628b9cba2aef69bcc17f5ae",
+        "title": "The Download: record-breaking subsea tunnels and flexible data centers",
+        "url": "https://www.technologyreview.com/2026/06/22/1139385/the-download-rogfast-subsea-tunnel-flexible-data-centers/",
         "sourceName": "MIT Technology Review",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "b292b7ce4ac94fee7261b6c2c41c3a5c0db3acbd",
-        "title": "Job titles of the future: Nature's drug designer",
-        "url": "https://www.technologyreview.com/2026/06/11/1138502/job-titles-natures-drug-designer-tim-cernak/",
+        "id": "41c1bbda69b0603c710dffc41c6a1ce786095446",
+        "title": "Inside the world's deepest and longest subsea road tunnel",
+        "url": "https://www.technologyreview.com/2026/06/22/1138821/inside-worlds-deepest-longest-subsea-road-tunnel/",
         "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "7b7c7e70ad34b98f7f7ca922aea1d7aa26398f2b",
-        "title": "Inside soccer's data renaissance",
-        "url": "https://www.technologyreview.com/2026/06/11/1138506/inside-soccer-data-renaissance-jesse-davis/",
-        "sourceName": "MIT Technology Review",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "748cbf680ad19edbc32404fda24e15347736b3cc",
-        "title": "Why China is betting on big nuclear reactors",
-        "url": "https://www.technologyreview.com/2026/06/11/1138789/china-big-nuclear-reactors/",
-        "sourceName": "MIT Technology Review",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "35678c6eb4f102766c6564c1dfe83d8138bac1a1",
-        "title": "The Download: the \"steroid olympics\" and a safer Mythos",
-        "url": "https://www.technologyreview.com/2026/06/10/1138739/the-download-steroid-olympics-enhanced-games-anthropic-mythos/",
+        "id": "b9a5d8501327b46652a21ae746b9494cd88e8f32",
+        "title": "The Download: AI bottleneck debates, and BCI trials take off",
+        "url": "https://www.technologyreview.com/2026/06/19/1139327/the-download-llms-bottleneck-breakthrough-bci-trials-take-off/",
         "sourceName": "MIT Technology Review",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "a97f0b16d1747adcd9d0a79e243e7ae7011217a0",
-        "title": "We Are Crowdsourcing the Panopticon",
-        "url": "https://spectrum.ieee.org/unintended-consequences-video-surveillance",
+        "id": "756429fc19854b981afcde2e5ffa2f2fbff6d086",
+        "title": "A startup claims it broke through a bottleneck that's holding back LLMs",
+        "url": "https://www.technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms/",
+        "sourceName": "MIT Technology Review",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "330530d5bde4d92df3fb4259e66aec2276c589ce",
+        "title": "The inevitable weakness of metrics",
+        "url": "https://www.technologyreview.com/2026/06/19/1138778/inevitable-weakness-metrics-quantified-life-book-review/",
+        "sourceName": "MIT Technology Review",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5fa8e1b2c3f419556b32ae40eb3a10bd2a3a6997",
+        "title": "Brain-computer interface trials are taking off",
+        "url": "https://www.technologyreview.com/2026/06/19/1139270/brain-computer-interface-trials-are-taking-off/",
+        "sourceName": "MIT Technology Review",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "360af817aa89d6325ff311614ac090f260f52287",
+        "title": "Why the U.S. Uses Only Half of Its Grid Capacity",
+        "url": "https://spectrum.ieee.org/united-states-power-grid-capacity",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "338a8da004b33ddec4584ee228f013360c05f1b3",
+        "title": "Commemorating 70 Years of Artificial Intelligence",
+        "url": "https://spectrum.ieee.org/70-years-of-artificial-intelligence",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "6840d05cc3286264bd1b95ad3cd82d8aa2b918b2",
+        "title": "War Taught this Ukrainian Entrepreneur the Value of Resilience",
+        "url": "https://spectrum.ieee.org/mikadze-struk-resilience-in-entrepreneurship",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "c6ec756c2581d37701db0d3ef257b0d3000f8044",
-        "title": "What Size Company Is Right for You?",
-        "url": "https://spectrum.ieee.org/fortune-500-companies-vs-startups",
+        "id": "9b158e53b3c801d6ea7105a585a511890bfbe5b1",
+        "title": "IEEE Rolls Out Large Language Models Virtual Training Course",
+        "url": "https://spectrum.ieee.org/large-language-models-ieee-course",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "d488345453870507f62fbcbbea3081a9d4ec478b",
-        "title": "The Pros and Cons of Job Hopping as an Engineer",
-        "url": "https://spectrum.ieee.org/strategic-job-hopping",
+        "id": "afac02de7e7d9ac5453d24ff58ae229b3e8885ef",
+        "title": "What Amazon's Astro Taught Me About Giving Robots a Soul",
+        "url": "https://spectrum.ieee.org/amazon-astro-robot-sound",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "3a9cfa6883db27296e9ddb8bd6afd2ffafa35469",
-        "title": "The Computer Science Degree Isn't Dead",
-        "url": "https://spectrum.ieee.org/computer-science-degree-isnt-dead",
+        "id": "02c84ff9ff791f6d900609b0dc2642164be12df2",
+        "title": "IEEE's 2026 Education Week Events Emphasized Lifelong Learning",
+        "url": "https://spectrum.ieee.org/ieee-education-week",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "83413e99e95cf68bcbcd0bae2e77605bd2ce1b80",
-        "title": "Beyond Dexterity: Why Contact May Define the Next Era of Robotics",
-        "url": "https://spectrum.ieee.org/agilink-contact-intelligence-robot-manipulation",
+        "id": "8f236a8af612b91932086fae7dd8fda76065590e",
+        "title": "Behind the Scenes of a Technical Interview",
+        "url": "https://spectrum.ieee.org/tech-interview-prep",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "a14df6e07cc6ea4a89f96b0d9529b94ed2f168aa",
-        "title": "IEEE Celebrates Technology's Brightest Minds at Annual Event",
-        "url": "https://spectrum.ieee.org/ieee-celebrates-honors-ceremony-2026",
+        "id": "1cff99f3eaad6f22072de3cdda51913d4e88e93a",
+        "title": "How Musicians Can Get Paid for Training AI",
+        "url": "https://spectrum.ieee.org/ai-music-attribution",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "edcb556081d27e433cd1c7bdf6cb7b2820dcc549",
-        "title": "50 Years of The Institute",
-        "url": "https://spectrum.ieee.org/50-years-ieee-the-institute",
+        "id": "311ba7658e738078708bc201b1c9b81bf2e57f59",
+        "title": "The Secret to Marathon-Winning Humanoid Robots",
+        "url": "https://spectrum.ieee.org/china-humanoid-robot-marathon",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "5e8ad6dc718ead817ccd3028e416b652ce6aab6c",
-        "title": "7 Ways New Engineers Can Flourish in the Age of AI",
-        "url": "https://spectrum.ieee.org/7-ways-engineers-flourish-ai",
+        "id": "11a41bfb074e49c40619003ab6b07a885319140d",
+        "title": "Engineering Is Critical to Boosting Food Security",
+        "url": "https://spectrum.ieee.org/engineering-critical-food-security",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "f79e182981c4f499d54b3614d88d16e2ee81b76e",
-        "title": "What It Takes for Future-Ready Power Distribution",
-        "url": "https://spectrum.ieee.org/distribution-grid-modernization",
+        "id": "7db08df6c81e4de7fe92156b89d34ca351351d39",
+        "title": "This 1976 University Experiment Spun Up the U.S. Wind Industry",
+        "url": "https://spectrum.ieee.org/william-heronemus-wind-energy",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "b8e08eae9c2c04a31c8a9648109fc66855f2cd0b",
-        "title": "Direct-to-Cell Technology: Enabling Satellite Connectivity for Legacy Devices",
-        "url": "https://content.knowledgehub.wiley.com/direct-to-cell-technology-enabling-satellite-connectivity-for-legacy-devices/",
+        "id": "1d7b8e8971912b35dc41f52d78c63bf6e40602ba",
+        "title": "Award-Winning Researcher Trains Robots to Make Educated Guesses",
+        "url": "https://spectrum.ieee.org/researcher-trains-robots-to-guess",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "a4d4e602b349503359bbbcf278b5d4b96a338a57",
-        "title": "IEEE President's Note: Designing a Safer Digital World for Kids",
-        "url": "https://spectrum.ieee.org/ieee-presidents-note-june-2026",
+        "id": "071aa97b898984c0d3c7db138ca92b8bac695b4e",
+        "title": "Why Orbital Data Centers Are Harder Than Silicon Valley Thinks",
+        "url": "https://spectrum.ieee.org/orbital-data-centers-heat",
         "sourceName": "IEEE Spectrum",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "429a0d2e8e2589b9017a39b1e78fe7472bc897f6",
-        "title": "Why Sardinians Are Fighting the Renewable Energy Transition",
-        "url": "https://spectrum.ieee.org/renewable-energy-resistance",
+        "id": "81ace5465c8a6564f8b3f278183664bc9f77227f",
+        "title": "Defining Autonomy for Wellness Robots in Senior Care",
+        "url": "https://content.knowledgehub.wiley.com/wellness-robots-and-the-path-to-full-autonomy-a-new-paradigm-in-ai-powered-senior-care/",
         "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d962ee3c0b25b7e33726e49d51b719faa9d2228e",
+        "title": "EPICS in IEEE's Awards Honor Outstanding Students and Faculty",
+        "url": "https://spectrum.ieee.org/epics-in-ieee",
+        "sourceName": "IEEE Spectrum",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "559809f481020f2af89f0ac1669c9627b7a9b68f",
+        "title": "From pixels to planning: Earth AI for nature restoration",
+        "url": "https://research.google/blog/from-pixels-to-planning-earth-ai-for-nature-restoration/",
+        "sourceName": "Google Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ef214c66a52527611c640f5a4d56c14c86dcfe21",
+        "title": "Research into how AI can help users understand skin conditions",
+        "url": "https://research.google/blog/research-into-how-ai-can-help-users-understand-skin-conditions/",
+        "sourceName": "Google Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5b5b309f4c65b2c8fa1f03ce16a0708190fee940",
+        "title": "A low-carbon computing platform from your retired phones",
+        "url": "https://research.google/blog/a-low-carbon-computing-platform-from-your-retired-phones/",
+        "sourceName": "Google Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "06c83bfd5652a88b329528406d64d88305343470",
+        "title": "New framework for auditing machine unlearning",
+        "url": "https://research.google/blog/new-framework-for-auditing-machine-unlearning/",
+        "sourceName": "Google Research Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -490,73 +458,234 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "7ee177366e28c7c1000e49e4535896ba0f47eb81",
-        "title": "Towards developing future-ready skills with generative AI",
-        "url": "https://research.google/blog/towards-developing-future-ready-skills-with-generative-ai/",
-        "sourceName": "Google Research Blog",
+        "id": "ee4c3ece1a151e1e2a0e5e371c5a837b991012b6",
+        "title": "Unlocking UK house-building with AI-accelerated planning",
+        "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+        "sourceName": "Google DeepMind Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6803da6a923f41fb3534ab8ab0e5bc7b448bdc3a",
-        "title": "PRC-linked influence operations are targeting AI debates in the US",
-        "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates",
+        "id": "49a262773125dede16efe95b3cae5001a2f80682",
+        "title": "Securing the future of AI agents",
+        "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e9497289f10540ead0ac178cbc0344e1a95f0abd",
+        "title": "DiffusionGemma: 4x faster text generation",
+        "url": "https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "337f0a179ada308055ee926e335d92074c180582",
+        "title": "Investing in multi-agent AI safety research",
+        "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b53509fd06df2552f1fa933c1fb79a8be863054f",
+        "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+        "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ae4b91e21e7c63a5222bf1fb1fd56f39ca1f47de",
+        "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+        "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3103f69a23dabf5fd3e662e8ee2d17de7b79a267",
+        "title": "Powering the future of robotics in Europe",
+        "url": "https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "71f27171f45dfe7ca96a1da9bbcbfbf878abc351",
+        "title": "Measuring the impact of learning with AI in Sierra Leone and beyond",
+        "url": "https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2494d26278c4c06cbbab12d7743655118692269e",
+        "title": "We're launching the Google DeepMind Accelerator program in Asia Pacific to tackle environmental risks",
+        "url": "https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b5611a955d09f1ee97d38fdb4ccdf4b026bc4fd8",
+        "title": "Fast-tracking genetic leads to reverse cellular aging",
+        "url": "https://deepmind.google/blog/fast-tracking-genetic-leads-to-reverse-cellular-aging/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6ffa42f3c98793d3cb464ee10b6ccdc18bc00d0b",
+        "title": "Simulate real-world places with Project Genie and Street View",
+        "url": "https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4980b7fc145d7837db40b05c24bd9c24ad538410",
+        "title": "Introducing Gemini Omni",
+        "url": "https://deepmind.google/blog/introducing-gemini-omni/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3f8cce749347d59e24f932613714128f3fb2e0a3",
+        "title": "Introducing Google Antigravity 2.0",
+        "url": "https://deepmind.google/blog/introducing-google-antigravity-2-0/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7ea08538886a286a4c4f0f82b8fe6bfbbfc46c9e",
+        "title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+        "url": "https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5e4e98c6115a9072e3ec73018c0e136edca50988",
+        "title": "Making it easier to understand how content was created and edited",
+        "url": "https://deepmind.google/blog/making-it-easier-to-understand-how-content-was-created-and-edited/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2d699d2a23c603d0855e2ef6a11f031a61a5e65a",
+        "title": "Strengthening Singapore's AI Future: A New National Partnership",
+        "url": "https://deepmind.google/blog/strengthening-singapores-ai-future-a-new-national-partnership/",
+        "sourceName": "Google DeepMind Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d1e8c1c9ab2382bb34b04a8759e56a29f8187e3b",
+        "title": "How Omio is building the future of conversational travel",
+        "url": "https://openai.com/index/omio",
+        "sourceName": "OpenAI Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "3fc3e65ee68830f29d168461108cda8631bc8157",
+        "title": "Daybreak: Tools for securing every organization in the world",
+        "url": "https://openai.com/index/daybreak-securing-the-world",
+        "sourceName": "OpenAI Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "14950e4199be31eca398a16151c0e8cd3b646ff7",
+        "title": "Patch the Planet: a Daybreak initiative to support open source maintainers",
+        "url": "https://openai.com/index/patch-the-planet",
+        "sourceName": "OpenAI Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "b6f0ddc63b3a1f13be62489a27db8a2d486599fd",
+        "title": "Codex-maxxing for long-running work",
+        "url": "https://openai.com/index/codex-maxxing-long-running-work",
+        "sourceName": "OpenAI Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "a2534cfda163f23488535eaa5b6075c53ebea92c",
+        "title": "Samsung Electronics brings ChatGPT and Codex to employees",
+        "url": "https://openai.com/index/samsung-electronics-chatgpt-codex-deployment",
+        "sourceName": "OpenAI Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "4fdf1e1abbec423a7fd58ccc82d0fb5f8b9a070c",
+        "title": "New usage analytics and updated spend controls for enterprises",
+        "url": "https://openai.com/index/chatgpt-enterprise-spend-controls",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6b7f95229c7562d2dbd8ebea49af6a7dca96d01c",
-        "title": "From data to decisions: how LSEG is scaling trusted AI",
-        "url": "https://openai.com/index/lseg",
+        "id": "c58a1016128c635b29979caaf08caa0107eda282",
+        "title": "Improving health intelligence in ChatGPT",
+        "url": "https://openai.com/index/improving-health-intelligence-in-chatgpt",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "1aa8e31ab451ccb84541aa7736dba3e3c7925711",
-        "title": "How engineers at Nextdoor use Codex to build without limits",
-        "url": "https://openai.com/index/nextdoor",
+        "id": "c22e04e1ac63bf208766b1c54c8355fb67f03bf2",
+        "title": "Using AI to help physicians diagnose rare genetic diseases affecting children",
+        "url": "https://openai.com/index/diagnose-rare-childhood-diseases",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "ed270276bc3c7ad966e0203c45aeea7c0612d7f7",
-        "title": "What Codex unlocks for Notion",
-        "url": "https://openai.com/index/notion",
+        "id": "14eed7365151a332abc6793cd8adc01e4cf88acb",
+        "title": "A near-autonomous AI chemist improves a challenging reaction in medicinal chemistry",
+        "url": "https://openai.com/index/ai-chemist-improves-reaction",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "0f8380c7a42947bfc767b637594d6c2dbec425fa",
-        "title": "Industrial policy for the Intelligence Age",
-        "url": "https://openai.com/index/industrial-policy-for-the-intelligence-age",
+        "id": "45f8857d8d3216d032bc4cbc5b1a3fc9523679d2",
+        "title": "Introducing LifeSciBench",
+        "url": "https://openai.com/index/introducing-life-sci-bench",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "d301d9c69e115fd2727a9a2fcabe39d25b645ef4",
-        "title": "Confidential submission of draft S-1 to the SEC",
-        "url": "https://openai.com/index/openai-submits-confidential-s-1",
+        "id": "fa8d25f4c0de45f8b1fa38a5e95a7cac1b8d7688",
+        "title": "Predicting model behavior before release by simulating deployment",
+        "url": "https://openai.com/index/deployment-simulation",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "679b2ff91de5a5458f5f17c110657fe0446914e0",
-        "title": "Built to benefit everyone: our plan",
-        "url": "https://openai.com/index/built-to-benefit-everyone-our-plan",
+        "id": "3641fa25f4509c91789b4eea58bb39cf9d463bdb",
+        "title": "Introducing the OpenAI Partner Network",
+        "url": "https://openai.com/index/introducing-openai-partner-network",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "93d5c395ebfbf44714eadcc895b77c2ab6d13b92",
-        "title": "Introducing the OpenAI Economic Research Exchange",
-        "url": "https://openai.com/index/economic-research-exchange",
+        "id": "747f418ca6a8677a24c481b81d8d36108ea3a9de",
+        "title": "New OpenAI Academy courses for the next era of work",
+        "url": "https://openai.com/index/academy-courses-applying-ai-at-work",
         "sourceName": "OpenAI Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "69b95669d5308461673e34e13a68b9bef423936f",
-        "title": "How Endava is redesigning software delivery around AI agents",
-        "url": "https://openai.com/index/endava-frontiers",
+        "id": "898395075a6ccbc7033589d8d1d172421ad517e7",
+        "title": "How Preply combines AI and human tutors to personalize learning",
+        "url": "https://openai.com/index/preply",
         "sourceName": "OpenAI Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4685ec3a87c9113811b3a539125bcc96439b6ddd",
+        "title": "BBVA puts AI at the core of banking with OpenAI",
+        "url": "https://openai.com/index/bbva",
+        "sourceName": "OpenAI Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7ff09c61ac5284b61c37838681aca37dbf1469af",
+        "title": "How an astrophysicist uses Codex to help simulate black holes",
+        "url": "https://openai.com/index/using-codex-to-simulate-black-holes",
+        "sourceName": "OpenAI Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3299fdc1323fd0e425319b78485744d7e06a402f",
+        "title": "Ire identifies another LOTUSLITE specimen",
+        "url": "https://www.microsoft.com/en-us/research/blog/ire-identifies-another-lotuslite-specimen/",
+        "sourceName": "Microsoft Research Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -623,94 +752,353 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "3342e18b02c5eadbf4de53f430d6f90809821e62",
-        "title": "Save Big and Play Bigger: GeForce NOW Summer Sale Brings Major Membership Savings",
-        "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-summer-sale-2026/",
-        "sourceName": "NVIDIA Blog",
-        "reason": "Rejected as promotional shopping or low-signal deal coverage."
+        "id": "71a5996c629a965bf5a9ade3ac6192ba6ca857cf",
+        "title": "Build real agentic apps using CUGA: two dozen working examples on a lightweight harness",
+        "url": "https://huggingface.co/blog/ibm-research/cuga-apps",
+        "sourceName": "Hugging Face Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "f2ff37e8d77822dfd52e7f7eb1e33e73989180ce",
-        "title": "NVIDIA Confidential Computing to Help Expand Apple's Private Cloud Compute",
-        "url": "https://blogs.nvidia.com/blog/nvidia-confidential-computing-apple-private-cloud-compute/",
-        "sourceName": "NVIDIA Blog",
+        "id": "55be2449fddc5c44b97dc0223dfb9ba49133c753",
+        "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
+        "url": "https://huggingface.co/blog/huggingface-hub-release-ci",
+        "sourceName": "Hugging Face Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "fec73d3e022e3ef62cf202abe8ad19c3997ce305",
+        "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
+        "url": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
+        "sourceName": "Hugging Face Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "3e42ec22a85122ecb6d6949a529a99956f64606a",
+        "title": "We got local models to triage the OpenClaw repo for FREE!*",
+        "url": "https://huggingface.co/blog/local-models-pr-triage",
+        "sourceName": "Hugging Face Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "ec68a14d909f6e9a9003df65afc55e8eda369524",
+        "title": "MosaicLeaks: Can your research agent keep a secret?",
+        "url": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "9bb1ec0c7cc1eed202703faa7fe529fa3dc20971",
-        "title": "How the UK Is Turning Sovereign AI Ambition Into Action With NVIDIA Technologies",
-        "url": "https://blogs.nvidia.com/blog/uk-sovereign-ai-advancements/",
-        "sourceName": "NVIDIA Blog",
+        "id": "b3d3e223dbfea0dbf8a31fa3b521615e68beba7a",
+        "title": "Beyond LoRA: Can you beat the most popular fine-tuning technique?",
+        "url": "https://huggingface.co/blog/peft-beyond-lora",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "fcfe6ab3c28a391894bc57876df3dae493285572",
-        "title": "NVIDIA and LG Group Build an AI Factory to Advance Physical AI, Mobility and AI Infrastructure",
-        "url": "https://blogs.nvidia.com/blog/nvidia-and-lg-group-ai-factory/",
-        "sourceName": "NVIDIA Blog",
+        "id": "774698c35736153b421e42231d2062cb2788a073",
+        "title": "Is it agentic enough? Benchmarking open models on your own tooling",
+        "url": "https://huggingface.co/blog/is-it-agentic-enough",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "e6b418227cb4fdb19bffda353ca82719a319ae9a",
-        "title": "NVIDIA and Doosan Group Collaborate to Advance Physical AI and AI Factory Infrastructure",
-        "url": "https://blogs.nvidia.com/blog/nvidia-and-doosan-group-physical-ai/",
-        "sourceName": "NVIDIA Blog",
+        "id": "6bc6220bb775dfd95ebba43e889183041b2c720e",
+        "title": "MolmoMotion: Language-guided 3D motion forecasting",
+        "url": "https://huggingface.co/blog/allenai/molmomotion",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "78566f7912649216389af34e8deb8fe4646f6dc2",
-        "title": "NVIDIA, KRAFTON, NC and Reigning 'League of Legends' Champions T1 Celebrate RTX Spark at Korea's PC Bangs",
-        "url": "https://blogs.nvidia.com/blog/krafton-nc-t1-korea-gaming-pc-bang-rtx-spark/",
-        "sourceName": "NVIDIA Blog",
+        "id": "93a09c1b540777cccfdc9cecc8f5cce7b94ba6c0",
+        "title": "From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot",
+        "url": "https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "5dbf24f9605ca1f7933f9aee868ca83f11b5f7b9",
-        "title": "Seoul Purpose: How NVIDIA and South Korea Are Building the Future of AI",
-        "url": "https://blogs.nvidia.com/blog/korea-ecosystem-2026/",
-        "sourceName": "NVIDIA Blog",
+        "id": "febd292da3e51fb0c89d1c882e85bab9a0671535",
+        "title": "GLM-5.2: Built for Long-Horizon Tasks",
+        "url": "https://huggingface.co/blog/zai-org/glm-52-blog",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "b6257b43cfa128f7f3a6fd8981885f57a622942c",
-        "title": "Forecast: Fun Ahead — 18 Games Join in June to Stream on GeForce NOW",
-        "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-june-2026-games-list/",
-        "sourceName": "NVIDIA Blog",
+        "id": "944309c3c36e1bc455f90b37c9d79c40bd7f942c",
+        "title": "Agentic Resource Discovery: Let agents search",
+        "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "897c1956795f0fc45c4bdfae77aed48de4d3138b",
-        "title": "NVIDIA Research Unlocks Advanced Grasping, Smarter Autonomous Driving and Agent Training at Scale",
-        "url": "https://blogs.nvidia.com/blog/cvpr-research-grasping-driving-agent-training/",
-        "sourceName": "NVIDIA Blog",
+        "id": "5100f109ecab3e652d9f4b72bc25c2b3cb6a5dfb",
+        "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
+        "url": "https://huggingface.co/blog/torch-mlp-fusion",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6b0815443cc5f29f4857ff20e23323decf5bcfc5",
-        "title": "NVIDIA Enables the Next Era Of Physical AI Research With Agent Skills For Autonomous Vehicles, Robotics And Vision AI",
-        "url": "https://blogs.nvidia.com/blog/cvpr-physical-ai-research-agent-skills/",
-        "sourceName": "NVIDIA Blog",
+        "id": "663066a005e87db6a01b0151194669611d0438cf",
+        "title": "How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces",
+        "url": "https://huggingface.co/blog/mishig/spaces-agents-md",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "21cdbe69f658d52765001388dc5b91785ebf94af",
-        "title": "Industrial Software Leaders Build Secure, Autonomous AI Engineers With NVIDIA NemoClaw",
-        "url": "https://blogs.nvidia.com/blog/industrial-software-leaders-secure-autonomous-ai-engineers-nemoclaw/",
-        "sourceName": "NVIDIA Blog",
+        "id": "fe06855f36ec10c0a4a30087c9b8d48b1ee619a3",
+        "title": "Migrating Your GitHub CI to Hugging Face Jobs",
+        "url": "https://huggingface.co/blog/github-ci-hf-jobs",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "b3864429498076977e6648a08d1c19c058ce6df2",
-        "title": "NVIDIA Partners With Microsoft on Unified Stack for Agentic AI Deployment, From Windows Devices to Cloud to Local",
-        "url": "https://blogs.nvidia.com/blog/microsoft-build-windows-local-cloud-devices/",
-        "sourceName": "NVIDIA Blog",
+        "id": "c140be5512be1c5a27b7e2d561e3d0e570947cfd",
+        "title": "The Open Source Community is backing OpenEnv for Agentic RL",
+        "url": "https://huggingface.co/blog/openenv-agentic-rl",
+        "sourceName": "Hugging Face Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "7d0e1dbb57730aa89259e06632c50fd08ac3cd7a",
-        "title": "Why Financial Institutions Are Converging on Transaction Foundation Models to Build Their Own Intelligence",
-        "url": "https://blogs.nvidia.com/blog/financial-institutions-transaction-foundation-models/",
-        "sourceName": "NVIDIA Blog",
+        "id": "9cac9b3fdfc325f56b4ea811edb908c3e46c8711",
+        "title": "Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI",
+        "url": "https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety",
+        "sourceName": "Hugging Face Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3f3fa7ba1686101c432ec50406bb5e55716092cc",
+        "title": "Adaptive Parallel Reasoning: The Next Paradigm in Efficient Inference Scaling",
+        "url": "http://bair.berkeley.edu/blog/2026/05/08/adaptive-parallel-reasoning/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "8a6071fe458c75d3dd1ac61987af72ad6cd82d82",
+        "title": "Gradient-based Planning for World Models at Longer Horizons",
+        "url": "http://bair.berkeley.edu/blog/2026/04/20/grasp/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7568b061f3b960bcdd05876840b3cf2c665b9fca",
+        "title": "Identifying Interactions at Scale for LLMs",
+        "url": "http://bair.berkeley.edu/blog/2026/03/13/spex/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "53d9686e2776bc996a17efab4f12bc29077e824f",
+        "title": "Information-Driven Design of Imaging Systems",
+        "url": "http://bair.berkeley.edu/blog/2026/01/10/information-driven-imaging/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a588eb06fca8cf606e0f9fbf452620b121e50c65",
+        "title": "RL without TD learning",
+        "url": "http://bair.berkeley.edu/blog/2025/11/01/rl-without-td-learning/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "05c6f5100074e2e3e8407a09d8b7346007a84b19",
+        "title": "What exactly does word2vec learn?",
+        "url": "http://bair.berkeley.edu/blog/2025/09/01/qwem-word2vec-theory/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "31e30d3c8127df345080bd9f2213b06816e28a24",
+        "title": "Whole-Body Conditioned Egocentric Video Prediction",
+        "url": "http://bair.berkeley.edu/blog/2025/07/01/peva/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1dfd0e59e9c7565f26c062867470b66091791dba",
+        "title": "Defending against Prompt Injection with Structured Queries (StruQ) and Preference Optimization (SecAlign)",
+        "url": "http://bair.berkeley.edu/blog/2025/04/11/prompt-injection-defense/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a5f26bf45e23d58e4c69b852eaefea1408bbd617",
+        "title": "Repurposing Protein Folding Models for Generation with Latent Diffusion",
+        "url": "http://bair.berkeley.edu/blog/2025/04/08/plaid/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bdc03ad4aacfd7c8e4492ed1c0981337176636eb",
+        "title": "Scaling Up Reinforcement Learning for Traffic Smoothing: A 100-AV Highway Deployment",
+        "url": "http://bair.berkeley.edu/blog/2025/03/25/rl-av-smoothing/",
+        "sourceName": "Berkeley AI Research Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a435fe7202df8367a2fcc2c03cf42eb9f562781f",
+        "title": "Build an AI Scientist for Life Science Discovery with NVIDIA BioNeMo Agent Toolkit",
+        "url": "https://developer.nvidia.com/blog/build-an-ai-scientist-for-life-science-discovery-with-nvidia-bionemo-agent-toolkit/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "28e97125f3af03ea5abf77f1d1226a58180363ad",
+        "title": "Building AI Agents for AR Glasses and XR Devices with NVIDIA XR AI",
+        "url": "https://developer.nvidia.com/blog/building-ai-agents-for-ar-glasses-and-xr-devices-with-nvidia-xr-ai/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1359fc56b8026ac9b44f97073300f7073d26005c",
+        "title": "Build Your Own Transaction Foundation Model for Financial Intelligence",
+        "url": "https://developer.nvidia.com/blog/build-your-own-transaction-foundation-model-for-financial-intelligence/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4afbc716a048009e1ce2e988742a24c933eca5e0",
+        "title": "Build On-Device AI Companions with the NVIDIA ACE Game Agent SDK and Unreal Engine 5 Plugins",
+        "url": "https://developer.nvidia.com/blog/build-on-device-ai-companions-with-the-nvidia-ace-game-agent-sdk-and-unreal-engine-5-plugins/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7a9a18ffba4e5faee679c4421127173b4ec4a42a",
+        "title": "How to Optimize Transformer-Based Models for Low-Precision Training",
+        "url": "https://developer.nvidia.com/blog/how-to-optimize-transformer-based-models-for-low-precision-training/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "9cc967750367274347a98ad6457bc145db949ba3",
+        "title": "NVIDIA Blackwell Tops MLPerf Training 6.0 with Industry-Leading Scale and Performance",
+        "url": "https://developer.nvidia.com/blog/nvidia-blackwell-tops-mlperf-training-6-0-with-industry-leading-scale-and-performance/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "26103be32e131f04ec01632836f7547ac6b823c4",
+        "title": "Fine-Tuning Biological Foundation Models with LoRA Using NVIDIA BioNeMo Recipes",
+        "url": "https://developer.nvidia.com/blog/fine-tuning-biological-foundation-models-with-lora-using-nvidia-bionemo-recipes/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "73dab0cb9a4d064faa63677a8ab229227b5351b5",
+        "title": "Boosting MoE Training Throughput with Advanced Fusion Kernels",
+        "url": "https://developer.nvidia.com/blog/boosting-moe-training-throughput-with-advanced-fusion-kernels/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bb983c8e60413f507164348c94b259fac27ef1ef",
+        "title": "Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models",
+        "url": "https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4d275e68d36635d03d579b7ded7979ef68c493cf",
+        "title": "NVIDIA Achieves Leading Agentic Coding Performance on First Agentic AI Benchmark",
+        "url": "https://developer.nvidia.com/blog/nvidia-achieves-leading-agentic-coding-performance-on-first-agentic-ai-benchmark/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ccb7fb285a85e38133aec60ee62f5ff44c63eb4e",
+        "title": "Deploy Long-Context Reasoning and Agentic Workflows with MiniMax M3 on NVIDIA Accelerated Infrastructure",
+        "url": "https://developer.nvidia.com/blog/deploy-long-context-reasoning-and-agentic-workflows-with-minimax-m3-on-nvidia-accelerated-infrastructure/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "756ded5b7a53ece2b33887d33b111153433d94c0",
+        "title": "One-Click Multi-Tenant Security with NVIDIA Quantum InfiniBand",
+        "url": "https://developer.nvidia.com/blog/one-click-multi-tenant-security-with-nvidia-quantum-infiniband/",
+        "sourceName": "NVIDIA Technical Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "32590bbff37490a7e6cee94ea30792cff0631dcf",
+        "title": "Announcing Amazon EC2 G7 instances accelerated by NVIDIA RTX PRO 4500 Blackwell Server Edition GPUs",
+        "url": "https://aws.amazon.com/blogs/aws/announcing-amazon-ec2-g7-instances-accelerated-by-nvidia-rtx-pro-4500-blackwell-server-edition-gpus/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c203b555e2b194ae8a5891590a95ce7102c0296a",
+        "title": "Amazon ECS introduces new high-resolution metrics for faster service auto scaling",
+        "url": "https://aws.amazon.com/blogs/aws/amazon-ecs-introduces-new-high-resolution-metrics-for-faster-service-auto-scaling/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2e4277b7f9c00f8e1e7caae3750c30014ecad23f",
+        "title": "Top announcements of the AWS Summit in New York, 2026",
+        "url": "https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "15436160a2c32f967a23fb2cc61481546553a039",
+        "title": "Introducing Amazon Bedrock Managed Knowledge Base for faster, more accurate enterprise AI applications",
+        "url": "https://aws.amazon.com/blogs/aws/introducing-amazon-bedrock-managed-knowledge-base-for-faster-more-accurate-enterprise-ai-applications/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0e563a525857a1d275c316d5e5640b1fe4cdf579",
+        "title": "Announcing Web Search on Amazon Bedrock AgentCore: Ground your AI agents in current, accurate web knowledge",
+        "url": "https://aws.amazon.com/blogs/aws/announcing-web-search-on-amazon-bedrock-agentcore-ground-your-ai-agents-in-current-accurate-web-knowledge/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bc7c3842385681222d44d413dd73ace27e8047b7",
+        "title": "Proactively reduce tech debt autonomously with AWS Transform – continuous modernization (preview)",
+        "url": "https://aws.amazon.com/blogs/aws/proactively-reduce-tech-debt-autonomously-with-aws-transform-continuous-modernization-preview/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6add183b56917e1ae7b6d28b05a19dbff30bda9c",
+        "title": "AWS DevOps Agent adds release management capabilities to assess code changes before production (preview)",
+        "url": "https://aws.amazon.com/blogs/aws/aws-devops-agent-adds-release-management-capabilities-to-assess-code-changes-before-production-preview/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "01b9368eed998bb1fe90aa5b3e86970dbe976843",
+        "title": "AWS Security Agent adds threat modeling, Kiro power and Claude Code plugin, and more",
+        "url": "https://aws.amazon.com/blogs/aws/aws-security-agent-adds-threat-modeling-kiro-power-and-claude-code-plugin-and-more/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "43f6c0643ab8def0477e017de5795987de24269a",
+        "title": "Amazon S3 annotations: attach rich, queryable context directly to your objects",
+        "url": "https://aws.amazon.com/blogs/aws/amazon-s3-annotations-attach-rich-queryable-context-directly-to-your-objects/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d7f2b2d5e66b374b3284a14ab58d3fba9862aed1",
+        "title": "AWS WAF adds AI traffic monetization capability to help content owners charge AI bots for content access",
+        "url": "https://aws.amazon.com/blogs/aws/aws-waf-adds-ai-traffic-monetization-capability-to-help-content-owners-charge-ai-bots-for-content-access/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "cfe4760c0a700b108fdc8bbd7e543558bc0f6ab4",
+        "title": "AWS Weekly Roundup: AWS FinOps Agent in preview, Gemma 4 on Bedrock, Kiro Pro Max, and more (June 15, 2026)",
+        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-finops-agent-in-preview-gemma-4-on-bedrock-kiro-pro-max-and-more-june-15-2026/",
+        "sourceName": "AWS Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "69a782fc7d6b7f366c67e52fc45ff3fbfa0ff0b0",
+        "title": "Now available: Amazon EC2 M9g and M9gd instances powered by new AWS Graviton5 processors",
+        "url": "https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/",
+        "sourceName": "AWS Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -728,94 +1116,255 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "9e2e8697bda63d571da89f722be72273d72f2286",
-        "title": "Try the new console experience in Amazon Bedrock, optimized for Anthropic- and OpenAI-compatible APIs",
-        "url": "https://aws.amazon.com/blogs/aws/try-the-new-console-experience-in-amazon-bedrock-optimized-for-anthropic-and-openai-compatible-apis/",
-        "sourceName": "AWS Blog",
+        "id": "55e05601eb4a0c368b08283a00e89500e42c78e0",
+        "title": "Reducing SMS OTP fraud with Vonage network-powered solutions and Amazon Cognito",
+        "url": "https://aws.amazon.com/blogs/architecture/reducing-sms-otp-fraud-with-vonage-network-powered-solutions-and-amazon-cognito/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "5655430d425e80abea0a8511e5f50ac12839ed3e",
-        "title": "Improve your application resilience with Amazon Cognito multi-Region replication",
-        "url": "https://aws.amazon.com/blogs/aws/improve-your-application-resilience-with-amazon-cognito-multi-region-replication/",
-        "sourceName": "AWS Blog",
+        "id": "1369cae948793ea40a40503ce4628fca10168a89",
+        "title": "How Samsung achieved real-time pricing with AWS Lambda Response Streaming",
+        "url": "https://aws.amazon.com/blogs/architecture/how-samsung-achieved-real-time-pricing-with-aws-lambda-response-streaming/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "c415d1484b38f2907b7edbf6d384c9ccd41e6af2",
-        "title": "Get started with OpenAI GPT-5.5, GPT-5.4 models, and Codex on Amazon Bedrock",
-        "url": "https://aws.amazon.com/blogs/aws/get-started-with-openai-gpt-5-5-gpt-5-4-models-and-codex-on-amazon-bedrock/",
-        "sourceName": "AWS Blog",
+        "id": "f081027b2d8944f9a1edca10cd27b3010a5f5876",
+        "title": "Introducing the Snowflake and AWS Custom Lens for the AWS Well-Architected Framework",
+        "url": "https://aws.amazon.com/blogs/architecture/introducing-the-snowflake-and-aws-custom-lens-for-the-aws-well-architected-framework/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6d97d13a2bdd73130eaebb4b7272c47f88ffd550",
-        "title": "AWS Weekly Roundup: Claude Opus 4.8 on AWS, Aurora MySQL with Kiro Powers, and more (June 1, 2026)",
-        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-8-on-aws-aurora-mysql-with-kiro-powers-and-more-june-1-2026/",
-        "sourceName": "AWS Blog",
+        "id": "7e90ecdc772a66d48a6844620865288f84b30250",
+        "title": "Automate medical record digitization with Amazon Bedrock Data Automation and AWS HealthLake",
+        "url": "https://aws.amazon.com/blogs/architecture/automate-medical-record-digitization-with-amazon-bedrock-data-automation-and-aws-healthlake/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "641e6b8a6a0a16854f51b271bd04f3f8781619d5",
-        "title": "Introducing the next generation of AWS Resilience Hub for generative AI-based SRE resilience journey",
-        "url": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-aws-resilience-hub-for-generative-ai-based-sre-resilience-journey/",
-        "sourceName": "AWS Blog",
+        "id": "64eae5ffd7be5f391d852d38b5e575b7e6bf541d",
+        "title": "Align your architecture backlog with Tech Roadmap Prioritization (TRP)",
+        "url": "https://aws.amazon.com/blogs/architecture/align-your-architecture-backlog-with-tech-roadmap-prioritization-trp/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "697e315e2085dcffe7963505911bae4861927ab3",
-        "title": "Introducing the next generation of Amazon OpenSearch Serverless for building your agentic AI applications",
-        "url": "https://aws.amazon.com/blogs/aws/introducing-the-next-generation-of-amazon-opensearch-serverless-for-building-your-agentic-ai-applications/",
-        "sourceName": "AWS Blog",
+        "id": "7904bdd9eb8884b5917d8aa488bdb2bd42da48e2",
+        "title": "Building highly available Oracle databases with Amazon FSx for NetApp ONTAP",
+        "url": "https://aws.amazon.com/blogs/architecture/building-highly-available-oracle-databases-with-amazon-fsx-for-netapp-ontap/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "18e19080c4b2733dc7301912f37bddba7a332ea3",
-        "title": "Meet Our Newest AWS Heroes – May 2026",
-        "url": "https://aws.amazon.com/blogs/aws/meet-our-newest-aws-heroes-may-2026/",
-        "sourceName": "AWS Blog",
+        "id": "5e3ffedfaca85cf80f6860922780720a159e30cd",
+        "title": "Automating contract intelligence with Doczy.ai™ on AWS",
+        "url": "https://aws.amazon.com/blogs/architecture/automating-contract-intelligence-with-doczy-ai-on-aws/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "86eb1ad56da0711df281cd00114887be6bac3d1f",
-        "title": "AWS Weekly Roundup: AWS Local Zones in Istanbul, open-source ExtendDB, Kiro Web, and more (May 25, 2026)",
-        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-local-zones-in-istanbul-open-source-extenddb-kiro-web-and-more-may-25-2026/",
-        "sourceName": "AWS Blog",
+        "id": "d329872ed7385bd4aedd60a05a2a43d62f13b13a",
+        "title": "Scaling oncology patient support: How New York Cancer and Blood Specialists transformed customer experience with AWS and Pronetx, now part of Caylent",
+        "url": "https://aws.amazon.com/blogs/architecture/scaling-oncology-patient-support-how-new-york-cancer-and-blood-specialists-transformed-customer-experience-with-aws-and-pronetx-now-part-of-caylent/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "0a1f282ed780145d789a1a9d8e42dd28b1e99144",
-        "title": "AWS Weekly Roundup: AWS Transform at 1 year, Claude Platform on AWS, EC2 M3 Ultra Mac instances, and more (May 18, 2026)",
-        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-aws-transform-at-1-year-claude-platform-on-aws-ec2-m3-ultra-mac-instances-and-more-may-18-2026/",
-        "sourceName": "AWS Blog",
+        "id": "809674216296720fcb45ef0b71d1a5901ecbcf5e",
+        "title": "Building a scalable user search layer on top of Amazon Cognito",
+        "url": "https://aws.amazon.com/blogs/architecture/building-a-scalable-user-search-layer-on-top-of-amazon-cognito/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "1c9d8032307ded5085158cc52eb401ea44b851a4",
-        "title": "Amazon Bedrock introduces new advanced prompt optimization and migration tool",
-        "url": "https://aws.amazon.com/blogs/aws/amazon-bedrock-introduces-new-advanced-prompt-optimization-and-migration-tool/",
-        "sourceName": "AWS Blog",
+        "id": "ba41fdddc8cb092f40c3db80b50a97ccb180542b",
+        "title": "Cyber resilience on AWS: A reference approach for recovery from ransomware and destructive events",
+        "url": "https://aws.amazon.com/blogs/architecture/cyber-resilience-on-aws-a-reference-approach-for-recovery-from-ransomware-and-destructive-events/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "4fe7e8da5cc3a4a3b2597f413c004d4a0413e4a8",
-        "title": "Amazon Redshift introduces AWS Graviton-based RG instances with an integrated data lake query engine",
-        "url": "https://aws.amazon.com/blogs/aws/amazon-redshift-introduces-aws-graviton-based-rg-instances-with-an-integrated-data-lake-query-engine/",
-        "sourceName": "AWS Blog",
+        "id": "077a5ddf1fa37d791641a0404992108aae7d16bf",
+        "title": "How ALS GeoAnalytics LITHOLENS ™ revolutionizes core logging through machine learning with Amazon EKS",
+        "url": "https://aws.amazon.com/blogs/architecture/how-als-geoanalytics-litholens-revolutionizes-core-logging-through-machine-learning-with-amazon-eks/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "c0072f9f90d35af609a4df9a256f449444f14494",
-        "title": "AWS Weekly Roundup: Amazon Bedrock AgentCore payments, Agent Toolkit for AWS, and more (May 11, 2026)",
-        "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-bedrock-agentcore-payments-agent-toolkit-for-aws-and-more-may-11-2026/",
-        "sourceName": "AWS Blog",
+        "id": "cad6fadf3d6de40a3cde233c37f702424c70de96",
+        "title": "How Synthesia optimizes generative AI video inference on Amazon EC2 G7e instances",
+        "url": "https://aws.amazon.com/blogs/architecture/how-synthesia-optimizes-generative-ai-video-inference-on-amazon-ec2-g7e-instances/",
+        "sourceName": "AWS Architecture Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "e61847540240fdb3dc2b1e0365408e4f421a6691",
-        "title": "The AWS MCP Server is now generally available",
-        "url": "https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/",
-        "sourceName": "AWS Blog",
+        "id": "d4118f9ebbf5fa44db788ca82891aacc9e0174d3",
+        "title": "Streaming CloudWatch metrics to VPC-based OpenTelemetry collectors using Lambda",
+        "url": "https://aws.amazon.com/blogs/architecture/streaming-cloudwatch-metrics-to-vpc-based-opentelemetry-collectors-using-lambda/",
+        "sourceName": "AWS Architecture Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c0850e6bdda979fee129c309950ed45c547679a9",
+        "title": "Upgrading Lambda function runtimes at scale with AWS Transform custom",
+        "url": "https://aws.amazon.com/blogs/compute/upgrading-lambda-function-runtimes-at-scale-with-aws-transform-custom/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2d53a3ae4fd293df801e80b2c31d6eff4e922262",
+        "title": "Simulating Amazon EC2 EBS burst credits before downsizing an instance",
+        "url": "https://aws.amazon.com/blogs/compute/simulating-amazon-ec2-ebs-burst-credits-before-downsizing-an-instance/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "77b1ebc22f30b0809ab17c3b8121dea20881eb9a",
+        "title": "AWS Nitro Isolation Engine: Formally verifying the hypervisor in the AWS Nitro System",
+        "url": "https://aws.amazon.com/blogs/compute/aws-nitro-isolation-engine-formally-verifying-the-hypervisor-in-the-aws-nitro-system/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "14821fbb0f4396308388773e954492ebf4c009fd",
+        "title": "Build RAG-powered AI solutions at the edge with AWS Local Zones and Outposts",
+        "url": "https://aws.amazon.com/blogs/compute/build-rag-powered-ai-solutions-at-the-edge-with-aws-local-zones-and-outposts/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "44a656b30ec2bec136e1dfc09873bae45856f383",
+        "title": "Optimize EC2 costs with AWS Compute Optimizer right sizing",
+        "url": "https://aws.amazon.com/blogs/compute/optimize-ec2-costs-with-aws-compute-optimizer-right-sizing/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0a13c5218c72ae7d19648ddd5a84da16d11ada19",
+        "title": "Integrating Event Source Mappings with AWS Lambda tenant isolation mode",
+        "url": "https://aws.amazon.com/blogs/compute/integrating-event-source-mappings-with-aws-lambda-tenant-isolation-mode/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ae7e6c1de464094fa2cf996d0bd752735da84d91",
+        "title": "Multi-Region event-driven failover architecture with Amazon EventBridge and Route 53",
+        "url": "https://aws.amazon.com/blogs/compute/multi-region-event-driven-failover-architecture-with-amazon-eventbridge-and-route-53/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "cd3f57971cd3fce6eae3d6550592b30b80837ff7",
+        "title": "Migrating your Java applications to AWS Graviton using AWS Transform custom",
+        "url": "https://aws.amazon.com/blogs/compute/migrating-your-java-applications-to-aws-graviton-using-aws-transform-custom/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "05d1c76462b8a43654dc88cdca18c055760fdb72",
+        "title": "Streamline your infrastructure: Automating AMI creation with Kiro CLI and EC2 Image Builder",
+        "url": "https://aws.amazon.com/blogs/compute/streamline-your-infrastructure-automating-ami-creation-with-kiro-cli-and-ec2-image-builder/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3dc8990f40d2f40fbddcbc6446390edc2a4dc9b7",
+        "title": "Sharing Capacity Blocks for ML Across Your AWS Organization",
+        "url": "https://aws.amazon.com/blogs/compute/sharing-capacity-blocks-for-ml-across-your-aws-organization/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "9f3d3ec68f508062732fe4634d4ec033ef483b56",
+        "title": "Enhancing network observability with new AWS Outposts racks LAG metrics",
+        "url": "https://aws.amazon.com/blogs/compute/enhancing-network-observability-with-new-aws-outposts-racks-lag-metrics/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "9bc6c6ef019bc606050faf3bcdfddc13bed1af9f",
+        "title": "Serverless ICYMI Q1 2026",
+        "url": "https://aws.amazon.com/blogs/compute/serverless-icymi-q1-2026/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "9d32247d35a38bd3039df2714f20132c38de97b1",
+        "title": "AWS Outposts monitoring and reporting: A comprehensive Amazon EventBridge solution",
+        "url": "https://aws.amazon.com/blogs/compute/aws-outposts-monitoring-and-reporting-a-comprehensive-amazon-eventbridge-solution/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "08a18a7031002bcef4940f87af6f3e5da4df5fb4",
+        "title": "Building Memory-Intensive Apps with AWS Lambda Managed Instances",
+        "url": "https://aws.amazon.com/blogs/compute/building-memory-intensive-apps-with-aws-lambda-managed-instances/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ff976c6c62077a6f6277076164edc52efaa5a1ee",
+        "title": "Accelerate CPU-based AI inference workloads using Intel AMX on Amazon EC2",
+        "url": "https://aws.amazon.com/blogs/compute/accelerate-cpu-based-ai-inference-workloads-using-intel-amx-on-amazon-ec2/",
+        "sourceName": "AWS Compute Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e7ca1c5dced8fde3911acd158250b76b03f63740",
+        "title": "Temporary Cloudflare Accounts for AI agents",
+        "url": "https://blog.cloudflare.com/temporary-accounts/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3feb5420f4004041607426825e60589a40eb7220",
+        "title": "Build your own vulnerability harness",
+        "url": "https://blog.cloudflare.com/build-your-own-vulnerability-harness/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fab2b3f2c4bdaacd8249384dac1bcc88a92576fb",
+        "title": "Celebrating 12 years of Project Galileo",
+        "url": "https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "044e64a9b29997cc9c6d46f84c53c335df17a960",
+        "title": "Bringing more agent harnesses and frameworks to Cloudflare, starting with Flue",
+        "url": "https://blog.cloudflare.com/agents-platform-flue-sdk/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "de84f9989d40b9f9a6b734cf54d6147f6238d135",
+        "title": "Introducing the Cloudflare One stack: agent-powered deployment",
+        "url": "https://blog.cloudflare.com/cloudflare-one-stack/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fa2d5558ea7a5da6ad3d2a9827d31da123c4d975",
+        "title": "Cloudflare DMARC Management is now generally available",
+        "url": "https://blog.cloudflare.com/dmarc-management-ga/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0a5eedfd63778e4935983ed745544a13cbbd32a5",
+        "title": "Growing the Cloudflare AI team with talent from Ensemble AI",
+        "url": "https://blog.cloudflare.com/ensemble-ai-talent-joins-cloudflare/",
+        "sourceName": "Cloudflare Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "02311c400507a7d4d8c519525632b4c92fcf4ab4",
+        "title": "Scaling Security Insights: how we achieved a 10x increase in global scanning capacity",
+        "url": "https://blog.cloudflare.com/scaling-security-scans/",
+        "sourceName": "Cloudflare Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -868,101 +1417,311 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "b89c7bf3d9a669147fef2bbbaac837d39a415b87",
-        "title": "How we built Cloudflare's data platform and an AI agent on top of it",
-        "url": "https://blog.cloudflare.com/our-unified-data-platform/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
+        "id": "33221738c602619d620fb9e0fca4e8e04d74e677",
+        "title": "From pledge to practice: Building a more inclusive open source ecosystem",
+        "url": "https://github.blog/open-source/from-pledge-to-practice-building-a-more-inclusive-open-source-ecosystem/",
+        "sourceName": "GitHub Blog",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
       },
       {
-        "id": "d297526c5700bab1e9b7ff36dc1267f4dec1429d",
-        "title": "Iran's Internet is partially restored, Cloudflare Radar data shows",
-        "url": "https://blog.cloudflare.com/iran-internet-partially-restored-may-2026/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "763b9e33e7a2d59a04027ce1a08f1f3e1bb5a632",
-        "title": "Announcing Claude Compliance API support with Cloudflare CASB",
-        "url": "https://blog.cloudflare.com/casb-anthropic-integration/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "d48c9a4edc9e15fdf59e92de1107ce54f5d93e30",
-        "title": "Announcing Claude Managed Agents on Cloudflare",
-        "url": "https://blog.cloudflare.com/claude-managed-agents/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "0daf55c75beec2c48a3de8d8f7b0a5376708b366",
-        "title": "Project Glasswing: what Mythos showed us",
-        "url": "https://blog.cloudflare.com/cyber-frontier-models/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "5160b22f467f12fcc21ca8e00b7acc111de0480d",
-        "title": "Our billing pipeline was suddenly slow. The culprit was a hidden bottleneck in ClickHouse",
-        "url": "https://blog.cloudflare.com/clickhouse-query-plan-contention/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "877180665f189e38b2b9f97756d20e193ad8b18c",
-        "title": "Browser Run: now running on Cloudflare Containers, it's faster and more scalable",
-        "url": "https://blog.cloudflare.com/browser-run-containers/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "5c18b8cc29f5c6e44403c20c90213786e85d3e98",
-        "title": "When \"idle\" isn't idle: how a Linux kernel optimization became a QUIC bug",
-        "url": "https://blog.cloudflare.com/quic-death-spiral-fix/",
-        "sourceName": "Cloudflare Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "e88d096653a15720b37546d267596bb2d6378f0b",
-        "title": "From one-off prompts to workflows: How to use custom agents in GitHub Copilot CLI",
-        "url": "https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/",
+        "id": "ce1a9afe378edbc63c08a296f1fd5f066da32385",
+        "title": "How we built an internal data analytics agent",
+        "url": "https://github.blog/ai-and-ml/github-copilot/how-we-built-an-internal-data-analytics-agent/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "174262aa0a28f45ed9df74284f3013ccbdb38737",
-        "title": "GitHub for Beginners: Answers to some common questions",
-        "url": "https://github.blog/developer-skills/github/github-for-beginners-answers-to-some-common-questions/",
+        "id": "e732fff9943a77f2751c1894927029cffa4c92a0",
+        "title": "How pull request limits are cutting down the noise",
+        "url": "https://github.blog/open-source/maintainers/how-pull-request-limits-are-cutting-down-the-noise/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "37fc38cbd896b02b6547d0c3bc219350dabff13a",
-        "title": "GitHub Universe is back: All together now, in the agentic era",
-        "url": "https://github.blog/news-insights/company-news/github-universe-is-back-all-together-now-in-the-agentic-era/",
+        "id": "59d4beffc71acd66df88935b7736cc6008f6b310",
+        "title": "Getting more from each token: How Copilot improves context handling and model routing",
+        "url": "https://github.blog/ai-and-ml/github-copilot/getting-more-from-each-token-how-copilot-improves-context-handling-and-model-routing/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "8442c65fd797d6a7c97f50baa8e2a18068615d5e",
-        "title": "GitHub Copilot app: The agent-native desktop experience",
-        "url": "https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/",
+        "id": "c765280dbb436cb0bc88be09cdb7d8d418e21898",
+        "title": "What are git worktrees, and why should I use them?",
+        "url": "https://github.blog/ai-and-ml/github-copilot/what-are-git-worktrees-and-why-should-i-use-them/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "df54953df8f4bb2336a7c3bea705c3b7ee93ae67",
-        "title": "Still a developer. Just outside. Our latest GitHub Shop collection is here.",
-        "url": "https://github.blog/news-insights/company-news/still-a-developer-just-outside-our-latest-github-shop-collection-is-here/",
+        "id": "bdf56853291fec1e3b4c94c7a3224a6d147bc93b",
+        "title": "GitHub Copilot CLI for Beginners: Overview of common slash commands",
+        "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-overview-of-common-slash-commands/",
         "sourceName": "GitHub Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "1ea80c69020fa40332b395110c5538c951d12220",
-        "title": "GitHub for Beginners: Getting started with Git and GitHub in VS Code",
-        "url": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/",
+        "id": "60d3f3deb7447fdf3e476acc2f17eec124e69f86",
+        "title": "Accelerating researchers and developers building multilingual AI with a new open dataset",
+        "url": "https://github.blog/ai-and-ml/llms/accelerating-researchers-and-developers-building-multilingual-ai-with-a-new-open-dataset/",
         "sourceName": "GitHub Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "46cc46032cb784aaf18b3c2b9b55d93ca89d9980",
+        "title": "How we made GitHub Copilot CLI more selective about delegation",
+        "url": "https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/",
+        "sourceName": "GitHub Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e46fbb2694eb95576ac4cd36966dbb8fd50a028c",
+        "title": "GitHub availability report: May 2026",
+        "url": "https://github.blog/news-insights/company-news/github-availability-report-may-2026/",
+        "sourceName": "GitHub Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d765414b43a9dc717f4a7444738ea5c37ec3d34f",
+        "title": "Making secret scanning more trustworthy: Reducing false positives at scale",
+        "url": "https://github.blog/security/making-secret-scanning-more-trustworthy-reducing-false-positives-at-scale/",
+        "sourceName": "GitHub Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "52007de2336125006d1c5f36965720fcf832de58",
+        "title": "From latency to instant: Modernizing GitHub Issues navigation performance",
+        "url": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ba2bfe7fa28dbb0a1d77bc3aeb259b18d5bbffc0",
+        "title": "How GitHub uses eBPF to improve deployment safety",
+        "url": "https://github.blog/engineering/infrastructure/how-github-uses-ebpf-to-improve-deployment-safety/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d789e88dd30ac34415a301b0fa1d92ed7a207d04",
+        "title": "The uphill climb of making diff lines performant",
+        "url": "https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ae212f5039a97721b00542ea17119341057f2f90",
+        "title": "Agent-driven development in Copilot Applied Science",
+        "url": "https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f3c790fa695fe836c675562182b827907fe10181",
+        "title": "Continuous AI for accessibility: How GitHub transforms feedback into inclusion",
+        "url": "https://github.blog/ai-and-ml/github-copilot/continuous-ai-for-accessibility-how-github-transforms-feedback-into-inclusion/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0bb5c55035ce8562165a6aa1d06a07baf969befb",
+        "title": "How we rebuilt the search architecture for high availability in GitHub Enterprise Server",
+        "url": "https://github.blog/engineering/architecture-optimization/how-we-rebuilt-the-search-architecture-for-high-availability-in-github-enterprise-server/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3d39d68b954f49b2f4308a3ec81d36bf01749c15",
+        "title": "From pixels to characters: The engineering behind GitHub Copilot CLI's animated ASCII banner",
+        "url": "https://github.blog/engineering/from-pixels-to-characters-the-engineering-behind-github-copilot-clis-animated-ascii-banner/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a08c1f522c44838d5069c61becd2a874e2c83f21",
+        "title": "When protections outlive their purpose: A lesson on managing defense systems at scale",
+        "url": "https://github.blog/engineering/infrastructure/when-protections-outlive-their-purpose-a-lesson-on-managing-defense-systems-at-scale/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a08addc4dc4198ba59fe1482b051eab98bfd1bf8",
+        "title": "Post-quantum security for SSH access on GitHub",
+        "url": "https://github.blog/engineering/platform-security/post-quantum-security-for-ssh-access-on-github/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5d45c6b0933083c2fec1c1bff19153246046df0c",
+        "title": "How GitHub engineers tackle platform problems",
+        "url": "https://github.blog/engineering/infrastructure/how-github-engineers-tackle-platform-problems/",
+        "sourceName": "GitHub Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b1dbe412229043d061948e9d7605ff80091eef3e",
+        "title": "Docker Content Trust: Retirement and Migration Guidance",
+        "url": "https://www.docker.com/blog/docker-content-trust-retirement-and-migration-guidance/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "063e8dfb155e6996520877333e182beeea387224",
+        "title": "Docker joins the Athena coalition: a cross-industry collaboration for supply chain security",
+        "url": "https://www.docker.com/blog/docker-joins-the-athena-coalition-a-cross-industry-collaboration-for-supply-chain-security/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "18b9197c00aec3c110c0ba904a42aad6057f73a9",
+        "title": "Docker Hardened Images enhanced vulnerability scanning with Docker and Aikido",
+        "url": "https://www.docker.com/blog/docker-hardened-images-enhanced-vulnerability-scanning-with-docker-and-aikido/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1f099576e2a036858356352680f9f8647551800f",
+        "title": "5 Software Supply Chain Security Best Practices for Development Teams",
+        "url": "https://www.docker.com/blog/software-supply-chain-security-best-practices/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "207cec72b13fd71f761369e98c904eac8861a0e8",
+        "title": "What is AI Governance? Frameworks, Principles, and Best Practices",
+        "url": "https://www.docker.com/blog/what-is-ai-governance/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1962e18bb4aee0cfbff8e3e5c332ef8e7462896a",
+        "title": "Hardened Images Explained: Fewer CVEs, Smaller Attack Surface",
+        "url": "https://www.docker.com/blog/what-are-hardened-images/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d9965c78545f9fb55aac761caa0bfa12e30f4a6f",
+        "title": "What is Software Supply Chain Security?",
+        "url": "https://www.docker.com/blog/what-is-software-supply-chain-security/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "8732380419dddf08c06492d14e196c1e7ff780d7",
+        "title": "How to Secure AI Agents: A Practical Overview for Development Teams",
+        "url": "https://www.docker.com/blog/how-to-secure-ai-agents/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "4523cfcc757060bdf0271d9f984334dfa69da71e",
+        "title": "Coding Agent Horror Stories: The rm -rf ~/Incident",
+        "url": "https://www.docker.com/blog/coding-agent-horror-stories-the-rm-rf-incident/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5840257dbbefd96f20dc3575133cf4fc322b79a1",
+        "title": "Mitigating CVE-2026-31431 (\"Copy Fail\") in Docker Engine",
+        "url": "https://www.docker.com/blog/mitigating-cve-2026-31431-copy-fail-in-docker-engine/",
+        "sourceName": "Docker Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7b64e94d8eff4d8682958633ecebf47533be0fbd",
+        "title": "Deploy from Claude Design to Vercel",
+        "url": "https://vercel.com/changelog/claude-design-and-vercel",
+        "sourceName": "Vercel Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "43e6c39f2183865346a064e042a8fcac94460df8",
+        "title": "Increased limit for projects per Git repo",
+        "url": "https://vercel.com/changelog/increased-limit-for-projects-per-git-repo",
+        "sourceName": "Vercel Blog",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "52def143e295df35bddb08af0686bfff706d3d10",
+        "title": "WebSocket support is now in Public Beta",
+        "url": "https://vercel.com/changelog/websocket-support-is-now-in-public-beta",
+        "sourceName": "Vercel Blog",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "1e8c95d515df2fd0910e146dc6ba202261b1db08",
+        "title": "Vercel Ship 2026 recap",
+        "url": "https://vercel.com/blog/vercel-ship-2026-recap",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a8a30dd4310c7dac77a2f817d9cca658c5ac5936",
+        "title": "The Agent Stack",
+        "url": "https://vercel.com/blog/agent-stack",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b8817ee0eacf563e828a69cbc559fb96d22b9d2d",
+        "title": "Introducing Vercel Connect",
+        "url": "https://vercel.com/blog/introducing-vercel-connect",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f96fb8d1a52f6c33ea3acdb78b701351b1c8a2d5",
+        "title": "Introducing eve",
+        "url": "https://vercel.com/blog/introducing-eve",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1100185dfdbe7b3aaf84a6192d503b0978c27d1f",
+        "title": "CLI deployment limits removed",
+        "url": "https://vercel.com/changelog/cli-deployment-limits-removed",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d2c1e5dadccaa0411196f1abc80155ece29404f3",
+        "title": "Vercel Passport is now in Public Beta",
+        "url": "https://vercel.com/changelog/vercel-passport-is-now-in-public-beta",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "16eabaa3c6ad2c98d35862362e9070ee4144fdc7",
+        "title": "Vercel Connect: Secure access to external services for your agents",
+        "url": "https://vercel.com/changelog/vercel-connect-secure-access-to-external-services-for-your-agents",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "59eafbea976a02bd328d81ad6385e2637f15ec40",
+        "title": "Introducing eve, an open-source agent framework",
+        "url": "https://vercel.com/changelog/introducing-eve-an-open-source-agent-framework",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e6eebc372ffdfb9c192aae64ae0b6feec79a03b8",
+        "title": "Vercel for Enterprise Apps and Agents",
+        "url": "https://vercel.com/blog/vercel-for-enterprise-apps-and-agents",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ee2dfebe5e02b24d51084b7edba2c6171d536fbd",
+        "title": "Vercel Sandbox can now run for up to 24 hours",
+        "url": "https://vercel.com/changelog/vercel-sandbox-can-now-run-for-up-to-24-hours",
+        "sourceName": "Vercel Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "9a9d97035c2711e733b1eb504c9f257a2c3a5390",
+        "title": "Spotlight on SIG Storage",
+        "url": "https://kubernetes.io/blog/2026/06/15/sig-storage-spotlight-2026/",
+        "sourceName": "Kubernetes Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
@@ -1071,123 +1830,676 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "c1bbd5fac3b77a27fd6db6ef173fa518c651c581",
-        "title": "Kubernetes v1.36: Tiered Memory Protection with Memory QoS",
-        "url": "https://kubernetes.io/blog/2026/04/29/kubernetes-v1-36-memory-qos-tiered-protection/",
-        "sourceName": "Kubernetes Blog",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "5c1ce7b6fe3d4c73f3b0ba1f119ec55f8d8472e9",
-        "title": "Solving secret sprawl in multi-account Kubernetes with External Secrets Operator",
-        "url": "https://www.cncf.io/blog/2026/06/09/solving-secret-sprawl-in-multi-account-kubernetes-with-external-secrets-operator/",
+        "id": "fde45904bfc3ebf9c02ea2632a886bfdd419aa5e",
+        "title": "KubeCon + CloudNativeCon, OpenInfra Summit and PyTorch Conference Unite in China to Scale AI",
+        "url": "https://www.cncf.io/announcements/2026/06/18/kubecon-cloudnativecon-openinfra-summit-and-pytorch-conference-unite-in-china-to-scale-ai/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "11878711224854646ad492aa5c24fec904f9a5f6",
-        "title": "Breaking free of a single datacenter: Practical geo-distributed AI operations with the k0smos platforms",
-        "url": "https://www.cncf.io/blog/2026/06/08/breaking-free-of-a-single-datacenter-practical-geo-distributed-ai-operations-with-the-k0smos-platforms/",
+        "id": "b0270cfaa6cafbf3a598eebdbf6cb3d89ba323d9",
+        "title": "Flipkart Wins CNCF End User Case Study Contest for Kubernetes and Chaos Engineering Scale",
+        "url": "https://www.cncf.io/announcements/2026/06/17/flipkart-wins-cncf-end-user-case-study-contest-for-kubernetes-and-chaos-engineering-scale/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "bd4c74f2950337afa555dda72356a4495b17b0f3",
-        "title": "Benchmarking KubeVirt performance with virtbench",
-        "url": "https://www.cncf.io/blog/2026/06/08/benchmarking-kubevirt-performance-with-virtbench/",
+        "id": "75c65715ff0b6f462a01e05e5efcc4b67ce5fe35",
+        "title": "Expanding CARE: Passing CKS can now extend your CKA certification",
+        "url": "https://www.cncf.io/blog/2026/06/17/expanding-care-passing-cks-can-now-extend-your-cka-certification/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "6c8b8a36ec5c242b0bfcd7387f774b5eabef8f63",
-        "title": "Identity and Access Management Whitepaper",
-        "url": "https://www.cncf.io/blog/2026/06/04/identity-and-access-management-whitepaper/",
+        "id": "05e898c88bf656cfe4a5e84d6163a1a228b582a0",
+        "title": "CNCF and SlashData Report Confirms India as One of the Largest Cloud Native Communities with 2.25 Million Developers",
+        "url": "https://www.cncf.io/announcements/2026/06/17/cncf-and-slashdata-report-confirms-india-as-one-of-the-largest-cloud-native-communities-with-2-25-million-developers/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "7d9f7020cd59da1852a55324c09216eef8cd374b",
-        "title": "Securing CI/CD for an open source project: Controlling who runs what",
-        "url": "https://www.cncf.io/blog/2026/06/04/securing-ci-cd-for-an-open-source-project-controlling-who-runs-what/",
+        "id": "7e839d9f28261979e871e13a8ea53c2a02590432",
+        "title": "CNCF Welcomes New Silver Members as Global Demand for Cloud Native Infrastructure Grows",
+        "url": "https://www.cncf.io/announcements/2026/06/17/cncf-welcomes-new-silver-members-as-global-demand-for-cloud-native-infrastructure-grows/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "06554f86ab642dd29791a89971c0ec6936bb8104",
-        "title": "Inspektor Gadget: Results from the first security audit",
-        "url": "https://www.cncf.io/blog/2026/06/03/inspektor-gadget-results-from-the-first-security-audit/",
+        "id": "57d3cb13ea4f73986efbcef420b826973de1cfb5",
+        "title": "CNCF and Linux Foundation Education Partner with Udemy to Provide a Unified Cloud Native Training & Certification Opportunity",
+        "url": "https://www.cncf.io/announcements/2026/06/17/cncf-and-linux-foundation-education-partner-with-udemy-to-provide-a-unified-cloud-native-training-certification-opportunity/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "5eed6a72084d20d30bf8c7811b13bb0172fdd1cd",
-        "title": "Mumbai Maha Mahotsav – KubeCon + CloudNativeCon India edition",
-        "url": "https://www.cncf.io/blog/2026/06/02/mumbai-maha-mahotsav-kubecon-cloudnativecon-india-edition/",
+        "id": "c7021ed2c73032159d2e8d496a37f1a01daacbc6",
+        "title": "Why cloud native belongs at the heart of agentic AI: Lessons from building a multi-agent security platform on Kubernetes",
+        "url": "https://www.cncf.io/blog/2026/06/17/why-cloud-native-belongs-at-the-heart-of-agentic-ai-lessons-from-building-a-multi-agent-security-platform-on-kubernetes/",
         "sourceName": "CNCF Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "2184bfb12623c29addaa043fd1cf74e7a54a9fed",
-        "title": "Cloud native is now AI-native: Engineering production-ready AI",
-        "url": "https://www.cncf.io/blog/2026/06/02/cloud-native-is-now-ai-native-engineering-production-ready-ai/",
-        "sourceName": "CNCF Blog",
+        "id": "8bf84a4a7ab3a676cbfc71d5177f4ed3af63db9c",
+        "title": "Launching the Rust Foundation Maintainers Fund",
+        "url": "https://blog.rust-lang.org/2026/06/02/launching-the-rust-foundation-maintainers-fund/",
+        "sourceName": "Rust Blog",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "ebb819a18ca4eacfec0acbaa3c6d1dbf4e019914",
-        "title": "Behold a 60 Hz Refresh Rate E-ink Monitor",
-        "url": "https://hackaday.com/2026/06/13/behold-a-60-hz-refresh-rate-e-ink-monitor/",
+        "id": "f7b82b2e0c4e4af5a4b003d3cd9bd3e0f2ff007e",
+        "title": "Announcing Rust 1.96.0",
+        "url": "https://blog.rust-lang.org/2026/05/28/Rust-1.96.0/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0c83b0721b324b552023d0ebad1d493873b7bd77",
+        "title": "Security Advisory for Cargo (CVE-2026-5223)",
+        "url": "https://blog.rust-lang.org/2026/05/25/cve-2026-5223/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "742525e63c83a68e909feb051be50d30cacf4b49",
+        "title": "Security Advisory for Cargo (CVE-2026-5222)",
+        "url": "https://blog.rust-lang.org/2026/05/25/cve-2026-5222/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0baeab6139879a58e6b463824b030c3ddf701432",
+        "title": "Project goals update — April 2026 (end of 2025H2)",
+        "url": "https://blog.rust-lang.org/2026/05/18/project-goals-2026-04/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1501c2dbd57bb05536e8e40d62c472cd1de79807",
+        "title": "Rust is participating in Outreachy",
+        "url": "https://blog.rust-lang.org/2026/05/04/outreachy-2026-may/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bd0cc8be3147275eaad03648da8a353def118309",
+        "title": "Raising the baseline for the `nvptx64-nvidia-cuda` target",
+        "url": "https://blog.rust-lang.org/2026/05/01/nvptx-baseline-update/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3391cf621db074d0a84bccbb14d6c3f35afc880e",
+        "title": "Announcing Google Summer of Code 2026 selected projects",
+        "url": "https://blog.rust-lang.org/2026/04/30/gsoc-2026-selected-projects/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5fef602396750f4a61a41929fad04abe98bed653",
+        "title": "Announcing Rust 1.95.0",
+        "url": "https://blog.rust-lang.org/2026/04/16/Rust-1.95.0/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "89f8a8bca73678fccccbfd93739f49d43f71e6bc",
+        "title": "docs.rs: building fewer targets by default",
+        "url": "https://blog.rust-lang.org/2026/04/04/docsrs-only-default-targets/",
+        "sourceName": "Rust Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "258a24010a8bd466b8ef114f315fcfcd83062481",
+        "title": "Node.js 26.3.1 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v26.3.1",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "21251c4297848dce789d0159f67835aca305aeb8",
+        "title": "Node.js 24.17.0 (LTS)",
+        "url": "https://nodejs.org/en/blog/release/v24.17.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ce62b56d1a8657f3e307f268ff5cfa76d5bc3bf1",
+        "title": "Node.js 22.23.0 (LTS)",
+        "url": "https://nodejs.org/en/blog/release/v22.23.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7f959ad003b37de24ff49300cb4d444e8e35d1f6",
+        "title": "Thursday, June 18, 2026 Security Releases",
+        "url": "https://nodejs.org/en/blog/vulnerability/june-2026-security-releases",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7a4128ae295bdd157ada4acff7473db75bff51cb",
+        "title": "Node.js 26.3.0 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v26.3.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b36c5be2dc65af36c0d1542f924e2ec6d17a91ef",
+        "title": "Node.js 24.16.0 (LTS)",
+        "url": "https://nodejs.org/en/blog/release/v24.16.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "64e7cbe2f38c9f3ec58ecf4ba349c5a5c83fa207",
+        "title": "Node.js 26.2.0 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v26.2.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5e31fe5d5162cfcbefacfd3691b79254bd0d4d60",
+        "title": "Node.js 22.22.3 (LTS)",
+        "url": "https://nodejs.org/en/blog/release/v22.22.3",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "24eb49f822ba24ebb283d5cc9049c8304a7d3c10",
+        "title": "Axios to WHATWG Fetch",
+        "url": "https://nodejs.org/en/blog/migrations/axios-to-fetch",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "aeda3d8f2198a2c54c8fa0d0b5b3199c69c59890",
+        "title": "Node.js 26.1.0 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v26.1.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "127ef9fc45366f53593d280b98a5c823a734d5dc",
+        "title": "Node.js 26.0.0 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v26.0.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "006fff7dad8c1d760ccd1caeb69029ea038d281f",
+        "title": "Trip report: Node.js collaboration summit (2026 London)",
+        "url": "https://nodejs.org/en/blog/events/collab-summit-2026-london",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ce0ebaada9c2c11b3b4b26c90ccb122f673c9aae",
+        "title": "Node.js 24.15.0 (LTS)",
+        "url": "https://nodejs.org/en/blog/release/v24.15.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "3f9cd84cdba93920532343cf22f615884995d75a",
+        "title": "Security Bug Bounty Program Paused Due to Loss of Funding",
+        "url": "https://nodejs.org/en/blog/announcements/discontinuing-security-bug-bounties",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "faa9172cd430a5dd332dec67689b47b774e7429b",
+        "title": "Node.js 25.9.0 (Current)",
+        "url": "https://nodejs.org/en/blog/release/v25.9.0",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0290d53bf7373b1ce98443a63c0d343dcd563d96",
+        "title": "Developing a minimally HashDoS resistant, yet quickly reversible integer hash for V8",
+        "url": "https://nodejs.org/en/blog/vulnerability/march-2026-hashdos",
+        "sourceName": "Node.js Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "dbd24f355bab0b5d4efccfe607e256a587afbe0d",
+        "title": "Announcing TypeScript 7.0 RC",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-rc/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "63e04f082e43285664b4512f6a72dd20ca938083",
+        "title": "Announcing TypeScript 7.0 Beta",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "93cf828627bad518435bfaab67fe69525d2c9b5b",
+        "title": "Announcing TypeScript 6.0",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "24a8317a8bf2631a72b90cf90627952f23ab2774",
+        "title": "Announcing TypeScript 6.0 RC",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0-rc/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e5d78b2fd072b5e6751696eb74bd94aae16c3ea0",
+        "title": "Announcing TypeScript 6.0 Beta",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0-beta/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ed64afe3c3f17a29b1ae710797d17ff8c5767513",
+        "title": "Progress on TypeScript 7 – December 2025",
+        "url": "https://devblogs.microsoft.com/typescript/progress-on-typescript-7-december-2025/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fbd6009f462fce35c0c1cc023ed24a544ecec5cc",
+        "title": "Announcing TypeScript 5.9",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ffb6f8b9c15ce364eb1794995b44ba86bbdf0d22",
+        "title": "Announcing TypeScript 5.9 RC",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-rc/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "8216977a5600bda543321fb1858f7e8bd87c87a3",
+        "title": "Announcing TypeScript 5.9 Beta",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-beta/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fad492630881f7757fbb7f0c94042b680a1cf46e",
+        "title": "Announcing TypeScript Native Previews",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-native-previews/",
+        "sourceName": "TypeScript Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bbdbe68348e8b7ca8c3937f9f91be787b605529d",
+        "title": "Modernize your data with Azure Storage: Plan and migrate with confidence",
+        "url": "https://azure.microsoft.com/en-us/blog/modernize-your-data-with-azure-storage-plan-and-migrate-with-confidence/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "395273c81cfa7f490a764ac86511eb9c14250a3d",
+        "title": "3 things leaders need to know from Microsoft Build 2026",
+        "url": "https://azure.microsoft.com/en-us/blog/3-things-leaders-need-to-know-from-microsoft-build-2026/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6da7a86c7104160f3d1494aba5b091ce52c259b0",
+        "title": "Claude Fable 5 available today in Microsoft Foundry: Powering the next era of autonomous agents",
+        "url": "https://azure.microsoft.com/en-us/blog/claude-fable-5-is-now-available-in-microsoft-foundry-powering-the-next-era-of-autonomous-agents/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a2c0bff1726ff1d8b2a59dfcec479247402b0e2a",
+        "title": "AI alone won't change your business. The system running it will.",
+        "url": "https://blogs.microsoft.com/blog/2026/06/02/ai-alone-wont-change-your-business-the-system-running-it-will/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ae1fcd5794cbccc6c94ff2dd6ceecc935eb2f698",
+        "title": "Announcing Microsoft Discovery general availability and Microsoft Discovery app preview",
+        "url": "https://azure.microsoft.com/en-us/blog/announcing-microsoft-discovery-general-availability-and-microsoft-discovery-app-preview/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "033c0ec93ffeeb3fcf7301581284e73964f50e87",
+        "title": "Microsoft Build 2026: Building agentic apps with Microsoft Fabric and Microsoft Databases",
+        "url": "https://azure.microsoft.com/en-us/blog/microsoft-build-2026-building-agentic-apps-with-microsoft-fabric-and-microsoft-databases/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fabfe4cf1bb74040c5e44bc91808bf2a51cdcaba",
+        "title": "New Azure Cobalt 200 VMs deliver 50% performance improvement, fully optimized for modern agentic AI workloads",
+        "url": "https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1e3e52740cd131cb37a000024cf41a4e7d5da5e9",
+        "title": "Foundry IQ: Build smarter agents faster with unified knowledge and serverless retrieval",
+        "url": "https://devblogs.microsoft.com/foundry/build-smarter-agents-faster-with-foundry-iq/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "53c1e6e1db958e857292c9cf65185ad299d537b4",
+        "title": "A Developer's Guide to Managing Models, Cost and Quality in Microsoft Foundry",
+        "url": "https://devblogs.microsoft.com/foundry/build-2026-foundry-models/",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c498a3d73e2bc1b9884d95335de4e963d02ff2df",
+        "title": "Claude Opus 4.8 is now available in Microsoft Foundry",
+        "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-4-8-is-now-available-in-microsoft-foundry/4523367",
+        "sourceName": "Microsoft Azure Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a5cf0c7538d4b79fda8462cdf1364610589090dd",
+        "title": "In Code They Think; In Proof We Trust",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3806226",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fb3ce1d5f04048aaf92e1c179b22a5db475be0f0",
+        "title": "The SPACE of AI",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3807964",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "750ceb249eb7ef62a417fb67d684dd28b5318c28",
+        "title": "From Technical Debt to Cognitive and Intent Debt",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3807966",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "59c7e2225cd8150aa2280a2f1cc1509d9e547641",
+        "title": "Eight Myths on Software Engineering and GenAI",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3807963",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "10cb08da141e9d3f3be149808f0766a0ab05f086",
+        "title": "Climbing the Generative AI Mountain",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3807965",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b97fa4361f93cb966355724aa791f6a77d4e55d0",
+        "title": "The AI-Native Developer",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3807961",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d0bfe14f0f4666d7b49cc6ce2f35417988c16991",
+        "title": "Knowledge Graphs over Two Decades",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3806227",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "bf452c2ba4075c409726e04cb49b222bf9a12fad",
+        "title": "The Important Decision Document",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3806210",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d5c60764a1206337f06c29bffc54a53f0d8a3a28",
+        "title": "KV the Apostate",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3806209",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "df947899ff932e770c642a7a1b288b712663abd1",
+        "title": "Security for the Layperson",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3800616",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "e5edfa2abe65fda73c15157db06c932ee7c1e7dc",
+        "title": "The Second-System Pit of Failure",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3799736",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "97b14642bc34a410505dab84383a1fce45300652",
+        "title": "Building Malleable Systems, not Future-Proof Ones: Design for Change",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3799886",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "13c5be5d2a56d689020547e34fc2b4a81fc9f895",
+        "title": "Escape Routes",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3799735",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7383f6906af5a28fa62de6800f61a61c72006bf2",
+        "title": "Open Source and the Iceberg Theory",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3799738",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "1ba9306deb259112fc6d098115df4f3bbebe0f63",
+        "title": "On the Evolution of Program State",
+        "url": "https://queue.acm.org/detail.cfm?ref=rss&id=3799737",
+        "sourceName": "ACM Queue",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "47324226fe3a7ca9196abfee1c0ec33898c715d7",
+        "title": "The Data Canary: How Netflix Validates Catalog Metadata",
+        "url": "https://netflixtechblog.com/the-data-canary-how-netflix-validates-catalog-metadata-18b699d58e36?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a7ffa6f1e3385bc5eb49897fa058d57b2fba2997",
+        "title": "Data Projects: Managing Data Assets at Netflix Scale",
+        "url": "https://netflixtechblog.com/data-projects-managing-data-assets-at-netflix-scale-7ca25888591e?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "080a3c3a6b19ce71e4a33b0b023d8384323e790e",
+        "title": "Predicting Risk in Content Launches: How Data-Driven Insights can Transform Launch Planning",
+        "url": "https://netflixtechblog.com/predicting-risk-in-content-launches-how-data-driven-insights-can-transform-launch-planning-587b1f2de928?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "c763216331cace34286d8d436db48e22520f6176",
+        "title": "The Evolution of Cassandra Data Movement at Netflix",
+        "url": "https://netflixtechblog.com/the-evolution-of-cassandra-data-movement-at-netflix-6e13329c80a1?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5d1aaa82d5061a8bcab13eed4e28f72c0a294187",
+        "title": "Thinking Fast & Slow for a Personalized Notification System",
+        "url": "https://netflixtechblog.com/thinking-fast-slow-for-a-personalized-notification-system-4d89b26525cd?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b397e2f0011a886f768b198ecee9427592de4fc3",
+        "title": "A Human-Augmenting Agentic Workflow for Causal Inference",
+        "url": "https://netflixtechblog.com/a-human-augmenting-agentic-workflow-for-causal-inference-4623f0a9c5af?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f75563aff7141d0a9026900864d77a9c32108192",
+        "title": "From Silos to Service Topology: Why Netflix Built a Real-Time Service Map",
+        "url": "https://netflixtechblog.com/from-silos-to-service-topology-why-netflix-built-a-real-time-service-map-0165ba13a7bc?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "5a808c40c37fa13ad0c1e80741e236db7cd0174f",
+        "title": "VMAF v1: Good Is Not Good Enough",
+        "url": "https://netflixtechblog.com/vmaf-v1-good-is-not-good-enough-60d7e4244ea8?source=rss----2615bd06b42e---4",
+        "sourceName": "Netflix Tech Blog",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "74fd7c8d62b415d422a7c5f96221a353d344301f",
+        "title": "Adopting AV1 for Real-Time Communication (RTC) at Scale",
+        "url": "https://engineering.fb.com/2026/06/22/video-engineering/adopting-av1-for-real-time-communication-rtc-meta/",
+        "sourceName": "Meta Engineering",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "472a375bdf03a5aa7da431433b9bf615faebd2c1",
+        "title": "Lights Out, Systems On: Validating Instant Power Loss Readiness",
+        "url": "https://engineering.fb.com/2026/06/03/data-center-engineering/lights-out-systems-on-validating-instant-power-loss-readiness/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "746675cde7e5851e9317c4618cb43496627225dd",
+        "title": "SilverTorch: Index as Model — A New Retrieval Paradigm for Recommendation Systems",
+        "url": "https://engineering.fb.com/2026/05/26/ml-applications/silvertorch-index-as-model-new-retrieval-paradigm-recommendation-systems/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "f250548371fef8bd595bd0b5bb706905f031f980",
+        "title": "Reel Friends: Building Social Discovery that Scales to Billions",
+        "url": "https://engineering.fb.com/2026/05/13/ml-applications/reel-friends-building-social-discovery-that-scales-to-billions/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "0790cdc084f89416d132442407bfb2cf0023325e",
+        "title": "Migrating Data Ingestion Systems at Meta Scale",
+        "url": "https://engineering.fb.com/2026/05/12/data-infrastructure/migrating-data-ingestion-systems-at-meta-scale/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b1ec26ccf728f9a4bd9f6b6ccd45d0b5b5e30bd8",
+        "title": "Labyrinth 1.1: Making End-to-End Encrypted Backups Even More Reliable",
+        "url": "https://engineering.fb.com/2026/05/11/security/labyrinth-1-1-end-to-end-encrypted-e2ee-backups-more-reliable/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7f917fcff4d8910e8d42b65173d658a3b26e0234",
+        "title": "How Meta Is Strengthening End-to-End Encrypted Backups",
+        "url": "https://engineering.fb.com/2026/05/01/security/meta-strengthening-end-to-end-encrypted-backups/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "2ac2163611cf26c3abda0aae427da5884c62a154",
+        "title": "Modernizing the Facebook Groups Search to Unlock the Power of Community Knowledge",
+        "url": "https://engineering.fb.com/2026/04/21/ml-applications/modernizing-the-facebook-groups-search-to-unlock-the-power-of-community-knowledge/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "be2c5213a924b46306787fa6a06e8f2df6322a0e",
+        "title": "Capacity Efficiency at Meta: How Unified AI Agents Optimize Performance at Hyperscale",
+        "url": "https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/",
+        "sourceName": "Meta Engineering",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fb2ae36f1d1b7533d679c065c9af4c036bf9f37b",
+        "title": "Linux Fu: Upcycling an Old Router",
+        "url": "https://hackaday.com/2026/06/23/linux-fu-upcycling-an-old-router/",
+        "sourceName": "Hackaday",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "43ab4d1e0e2c8dbfdef93a5b589cb6ad83ad0fe9",
+        "title": "Status Display Keeps Eye on Your Prusa Fleet",
+        "url": "https://hackaday.com/2026/06/23/status-display-keeps-eye-on-your-prusa-fleet/",
         "sourceName": "Hackaday",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "19679febe152231344d5f8b27b0dc391687ba486",
-        "title": "GentleOS, A Simple OS For Your Old PC",
-        "url": "https://hackaday.com/2026/06/13/gentleos-a-simple-os-for-your-old-pc/",
+        "id": "7a6ad9efdea0354093c9ac771c66758d70102a27",
+        "title": "Long-Theorized GPS Weakness Exploited on Large Scale",
+        "url": "https://hackaday.com/2026/06/23/long-theorized-gps-weakness-exploited-on-large-scale/",
         "sourceName": "Hackaday",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "ea1dfcf1aa74b60b48996d888ca3d6da32264452",
-        "title": "Deeply optimized MSX emulation on ESP32-S3 with VGA output",
-        "url": "https://hackaday.com/2026/06/12/deeply-optimized-msx-emulation-on-esp32-s3-with-vga-output/",
+        "id": "134be7a4a1ad6f02a02707f138aca2642664fdac",
+        "title": "Rickrolling the World Cup",
+        "url": "https://hackaday.com/2026/06/22/rickrolling-the-world-cup/",
+        "sourceName": "Hackaday",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "57db48cee96f9d6c01e355ebe2e2fd573a739469",
+        "title": "Dynamic RAM from First Principles",
+        "url": "https://hackaday.com/2026/06/22/dynamic-ram-from-first-principles/",
+        "sourceName": "Hackaday",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "ca32a377c2f81eb792a19eb6f42b656d263b0fbd",
+        "title": "LightComposer – Reach Out and Touch Your Lighting",
+        "url": "https://hackaday.com/2026/06/22/lightcomposer-reach-out-and-touch-your-lighting/",
         "sourceName": "Hackaday",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "93ac9d642a6e3cef21202d7fb9da6f329e28d681",
-        "title": "Homebrew Macropad Looks Good",
-        "url": "https://hackaday.com/2026/06/12/homebrew-macropad-looks-good/",
-        "sourceName": "Hackaday",
+        "id": "932d7e5c114e6a04c8a8ea22a7163d266806251e",
+        "title": "Maker Monday: A summer of Raspberry Pi community events",
+        "url": "https://www.raspberrypi.com/news/maker-monday-a-summer-of-raspberry-pi-community-events/",
+        "sourceName": "Raspberry Pi News",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "00da11cfdd6f4bf9d961351a810714d8f023be18",
-        "title": "The Air Position Indicator for the B-29",
-        "url": "https://hackaday.com/2026/06/12/the-air-position-indicator-for-the-b-29/",
-        "sourceName": "Hackaday",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "9ef8517a5355c77205749c91a56afd79a5e8cf5c",
+        "title": "Koi-pond-shaped guitar powered by Raspberry Pi spotted at New York Fashion Week",
+        "url": "https://www.raspberrypi.com/news/koi-pond-shaped-guitar-powered-by-raspberry-pi-spotted-at-new-york-fashion-week/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "f4eb0e489e52630cfc3a479e10ebcdd20b4ab466",
-        "title": "Building a 1:150 scale Toyota ProBox Micro Remote Control Car",
-        "url": "https://hackaday.com/2026/06/12/building-a-1150-scale-toyota-probox-micro-remote-control-car/",
-        "sourceName": "Hackaday",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
+        "id": "dcff4a37ba3db7c9e58b411236ddb722608968b1",
+        "title": "Track planes on your ceiling",
+        "url": "https://www.raspberrypi.com/news/track-planes-on-your-ceiling/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "a6d103bab5f549ec87eb305a310b11e7306cbdea",
-        "title": "Adding Weight to a 3D Print With Plaster of Paris, Cleanly",
-        "url": "https://hackaday.com/2026/06/12/adding-weight-to-a-3d-print-with-plaster-of-paris-cleanly/",
-        "sourceName": "Hackaday",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "id": "cc7f76db6941a4a3ae48e5715b25e86dade1f4de",
+        "title": "Your Maker Monday projects",
+        "url": "https://www.raspberrypi.com/news/maker-monday-projects/",
+        "sourceName": "Raspberry Pi News",
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "6c6151c8c5b25a5fcd7897e3da9bab40cc830b64",
         "title": "Saving family football footage with a Raspberry Pi and a 1928 projector",
         "url": "https://www.raspberrypi.com/news/saving-family-football-footage-with-a-raspberry-pi-and-a-1928-projector/",
         "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it lacked a clear technical category fit."
+        "reason": "Rejected because it is older than 72 hours."
       },
       {
         "id": "dc9d2167a9064360593bbb02a0cdf3ca2b0453cf",
@@ -1225,217 +2537,325 @@
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "886e6cc26660cdf1231bdca56e329f6295d0fc70",
-        "title": "Raspberry Pi Official Magazine presents: Flapulator, the 3D printed calculator",
-        "url": "https://www.raspberrypi.com/news/raspberry-pi-official-magazine-presents-flapulator-the-3d-printed-calculator/",
-        "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "028dbe25372e0223a4d4a8e24df85e90ad031349",
-        "title": "Bringing LLMs to the edge",
-        "url": "https://www.raspberrypi.com/news/bringing-llms-to-the-edge/",
-        "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "ea08cffe31ac21e2e8ce42310b654d26c189758f",
-        "title": "Welcome to the Raspberry Pi Podcast",
-        "url": "https://www.raspberrypi.com/news/welcome-to-the-raspberry-pi-podcast/",
-        "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "f3941534ac93e9559ebac7e99466e4e37847f0fc",
-        "title": "OVCS: Raspberry Pi–powered electric car",
-        "url": "https://www.raspberrypi.com/news/ovcs-raspberry-pi-powered-electric-car/",
-        "sourceName": "Raspberry Pi News",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "41310f7120b77e5e63cff987951edafc725c0a78",
-        "title": "Hundreds of AUR packages compromised",
-        "url": "https://lwn.net/Articles/1077718/",
-        "sourceName": "LWN.net",
+        "id": "3255e717d57d31a254fec8e2d68b31812c3e81f1",
+        "title": "Drones Are Learning to Fly by Sight",
+        "url": "https://www.hackster.io/news/drones-are-learning-to-fly-by-sight-a0b736638621",
+        "sourceName": "Hackster.io",
         "reason": "Rejected because it lacked a clear technical category fit."
       },
       {
-        "id": "99acdf41c5c98dc05d1d742646a9101bd2b62321",
+        "id": "22702ffb5a5bd58708bb2886c924e24a222e234a",
+        "title": "Doom Is Officially Running on the Xiaomi Mi Band 10",
+        "url": "https://www.hackster.io/news/doom-is-officially-running-on-the-xiaomi-mi-band-10-639dca68619e",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "640517aaa9c53385a178b776968eef1c3978264c",
+        "title": "Mark Rober Steals a Car to Prevent Car Theft",
+        "url": "https://www.hackster.io/news/mark-rober-steals-a-car-to-prevent-car-theft-90b3982e6970",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it lacked a clear technical category fit."
+      },
+      {
+        "id": "19934969275d722ecde625186bad71f0e624dcfb",
+        "title": "The DIY Robot Giving Control Back to Farmers",
+        "url": "https://www.hackster.io/news/the-diy-robot-giving-control-back-to-farmers-17f4a0a7772f",
+        "sourceName": "Hackster.io",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "a08d90130e94cc04865592d32e7d99e705361c2f",
+        "title": "Dadlexa: The No-AI Smart Speaker",
+        "url": "https://www.hackster.io/news/dadlexa-the-no-ai-smart-speaker-9867ff1e6087",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "d6591e09518cde69a17e16623660c76c3ffec487",
+        "title": "DIYing a Robot Actuator, for Better or Worse",
+        "url": "https://www.hackster.io/news/diying-a-robot-actuator-for-better-or-worse-1123a3aa831b",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "68e8281b9393ab31c58937065f7fd6a49b8696e3",
+        "title": "This Electronic Business Card Visualizes Audio, Demonstrates Skillz",
+        "url": "https://www.hackster.io/news/this-electronic-business-card-visualizes-audio-demonstrates-skillz-efe73ff3825b",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "90f953f603e410171201e8ffe95d93d4e1151d20",
+        "title": "Your Next Fridge Might Smell Better Than You Do",
+        "url": "https://www.hackster.io/news/your-next-fridge-might-smell-better-than-you-do-bb1ac26bbadb",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "b8e703fd052de6f28f7e26bc3f811714570b7dea",
+        "title": "Robots Can See, But CMU's New Glove Teaches Them to Feel",
+        "url": "https://www.hackster.io/news/robots-can-see-but-cmu-s-new-glove-teaches-them-to-feel-f8a6a19d5082",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a526892a4bf9414b6a171ea17f206dae7ecba398",
+        "title": "Million-Dollar PCBA Precision for Just $200",
+        "url": "https://www.hackster.io/news/million-dollar-pcba-precision-for-just-200-5bdc0c8724e6",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "13ef5eb0571f66933ae115022aa25fb21240b86e",
+        "title": "An Organic Flow Battery Built From Matcha Tea",
+        "url": "https://www.hackster.io/news/an-organic-flow-battery-built-from-matcha-tea-ac06fa1d7204",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "cdb7639ce931dee78672e97f9fe4398fb82b48af",
+        "title": "UTFS: Lightweight Storage for Microcontrollers",
+        "url": "https://www.hackster.io/news/utfs-lightweight-storage-for-microcontrollers-6062e9bdfe2e",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "6ac1d15f58be389dd4d6f2f1e4155bb68efe7608",
+        "title": "Open Healthware Conference 2026 Is Almost Here!",
+        "url": "https://www.hackster.io/news/open-healthware-conference-2026-is-almost-here-e0da32918d19",
+        "sourceName": "Hackster.io",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "a1a759d3a8be906388fd551bc18166a41eca33de",
+        "title": "Sunsetting Tor 0.4.8",
+        "url": "https://lwn.net/Articles/1079119/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "14e002ae2d513b68a0bcc041834069924b7e3048",
+        "title": "Security updates for Tuesday",
+        "url": "https://lwn.net/Articles/1079083/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "e30d5dcd49ea439472420d05f40ed65452fe29c7",
+        "title": "GIMP 0.54.1 in a Flatpak",
+        "url": "https://lwn.net/Articles/1078969/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "4db98b149d06b45ac98f0def6f1dc5f41651c94a",
+        "title": "Free-threaded Python: past, present, and future",
+        "url": "https://lwn.net/Articles/1078367/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "f4d23e6e61edd4949f512a3124172ebbb5ca5c70",
+        "title": "First preview release of Xfce's Wayland compositor",
+        "url": "https://lwn.net/Articles/1078942/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "87dc9acb6142c61c798d2d4551c8913f2d8c5e33",
+        "title": "Security updates for Monday",
+        "url": "https://lwn.net/Articles/1078922/",
+        "sourceName": "LWN.net",
+        "reason": "Excluded as consumer/filler low-value coverage without enough educational technical value."
+      },
+      {
+        "id": "e15dcc73f3551ec724fbcb518cda9f2c923504e7",
+        "title": "Systemd v261 released",
+        "url": "https://lwn.net/Articles/1078708/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "ec9330d1949b5d036c15c082ebd794c7285fb26c",
+        "title": "Suspending and resuming BPF programs",
+        "url": "https://lwn.net/Articles/1076210/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "7ec34a20bfcf4ce3cca5f1baf59b001a2a6497aa",
+        "title": "AURpocalypse now: a look at the recent AUR attacks",
+        "url": "https://lwn.net/Articles/1077619/",
+        "sourceName": "LWN.net",
+        "reason": "Rejected because it is older than 72 hours."
+      },
+      {
+        "id": "fe038cc1f56eaaf8a453c3dc07065994cab15803",
         "title": "Security updates for Friday",
-        "url": "https://lwn.net/Articles/1077703/",
-        "sourceName": "LWN.net",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "a6a7fe14420f94f4beb07e568ac8cf50ae93f37c",
-        "title": "Homebrew 6.0.0 released",
-        "url": "https://lwn.net/Articles/1077587/",
-        "sourceName": "LWN.net",
-        "reason": "Rejected because it lacked a clear technical category fit."
-      },
-      {
-        "id": "725e07942eb93d6d3fe5e24fe6d45b4f5c0285a9",
-        "title": "Security updates for Thursday",
-        "url": "https://lwn.net/Articles/1077536/",
-        "sourceName": "LWN.net",
-        "reason": "Excluded as low-value novelty, drama, or entertainment-only coverage."
-      },
-      {
-        "id": "9cda8b2bb03ce363bfe9b2043a7137154a98a4a5",
-        "title": "Buildroot 2026.05 released",
-        "url": "https://lwn.net/Articles/1077379/",
+        "url": "https://lwn.net/Articles/1078662/",
         "sourceName": "LWN.net",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "fffda5da16145393224e73eb655c3b26d1c222ce",
-        "title": "Security updates for Wednesday",
-        "url": "https://lwn.net/Articles/1077362/",
+        "id": "14aeffba6c2eb272c12ef3a3e3e24adb8cc5d512",
+        "title": "Eight new stable kernels for Friday",
+        "url": "https://lwn.net/Articles/1078590/",
         "sourceName": "LWN.net",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "d562e9b123756f201e06e92faa93e00c85469588",
-        "title": "Future of Ubuntu MATE",
-        "url": "https://lwn.net/Articles/1077221/",
+        "id": "7a40bddda71c8338ceee4f6865b3c3c92d968b9b",
+        "title": "The Software Freedom Conservancy's LLM-backed generative AI recommendations",
+        "url": "https://lwn.net/Articles/1078521/",
         "sourceName": "LWN.net",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "d11d679c8fb609bc7bdca2c50af7c122109bd107",
-        "title": "Eliminating long-lived credentials with trusted publishing",
-        "url": "https://lwn.net/Articles/1076205/",
+        "id": "e54d69e193c5f69befbea2605b37a10fdf8fdb8a",
+        "title": "The first half of the 7.2 merge window",
+        "url": "https://lwn.net/Articles/1078068/",
         "sourceName": "LWN.net",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "da361b0abb20f13e61f35b55ccd8f0616c80373b",
-        "title": "Asahi Linux warns users not to upgrade to macOS 27 beta",
-        "url": "https://lwn.net/Articles/1077209/",
+        "id": "95b4edf232d5276c51ef2c0c7a4287176d1fb158",
+        "title": "Mastodon 4.6 released",
+        "url": "https://lwn.net/Articles/1078466/",
         "sourceName": "LWN.net",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "c9aac0de1cfaf1212b0165f50de3024dd51519a6",
-        "title": "BPF loop verification with scalar evolution",
-        "url": "https://lwn.net/Articles/1076121/",
-        "sourceName": "LWN.net",
-        "reason": "Rejected because it is older than 72 hours."
-      },
-      {
-        "id": "74f11c73b93a11ec5c2e359880ab27e9b833dd8a",
-        "title": "AI OSS tool repo goes archived over night after raising $7.3M Seed",
-        "url": "https://github.com/tensorzero/tensorzero",
+        "id": "fb314474e551940d82ea0505a419ae8f16c81088",
+        "title": "Unlimited OCR: One-Shot Long-Horizon Parsing",
+        "url": "https://github.com/baidu/Unlimited-OCR",
         "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "a65de5d240289cc5a08b729cccaa1e061cc9e8a3",
-        "title": "An Interview with Intel's Kira Boyko: Xeon 6's Product Director",
-        "url": "https://chipsandcheese.com/p/an-interview-with-intels-kira-boyko",
+        "id": "678721351be48c7c033f73c59d03ef17a2d2b3da",
+        "title": "Steam Machine launches today",
+        "url": "https://store.steampowered.com/news/group/45479024/view/685257114654870245",
         "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "f361bba0d2469fcb44fbd1917fdebf945ff0b720",
-        "title": "The state of building user interfaces in Rust",
-        "url": "https://areweguiyet.com/#ecosystem",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "3422765b7a05015730c63c68501b7c10161faee0",
-        "title": "Leaving Mozilla",
-        "url": "https://blog.unitedheroes.net/5751",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "c5710da25a4d91cacba82761be484c6d93b8fb5d",
-        "title": "Electric motors with no rare earths",
-        "url": "https://www.renaultgroup.com/en/magazine/energy-and-powertrains/all-about-electric-motors-with-no-rare-earths/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "782bc2383ac2f4b65432cfa44db912e3512663ed",
-        "title": "CRISPR tech selectively shreds cancer cells, including \"undruggable\" cancers",
-        "url": "https://innovativegenomics.org/news/crispr-technique-selectively-shreds-cancer-cells/",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "eac2863782662d8fd4d16cce0664a86b9d0a5ad7",
-        "title": "Arch Linux Now Believes Malware Incident Under Control: More Than 1,500 Packages",
-        "url": "https://www.phoronix.com/news/Arch-Linux-AUR-More-Than-1500",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "6f33d51a3d8221421a9531d5869b73af481eb014",
-        "title": "Statement on US government directive to suspend access to Fable 5 and Mythos 5",
-        "url": "https://www.anthropic.com/news/fable-mythos-access",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "958dda31af6c035c8aaaea5bbdbb7e9d5ae5567d",
-        "title": "Show HN: 2 Weeks of Hallucinate – The Photo Gallery",
-        "url": "https://hallucinate.site/gallery",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "a340eeb887b89617c95fc6ff9b405a938f9ccc01",
-        "title": "Show HN: Paca – Lightweight Jira alternative for human-AI collaboration",
-        "url": "https://github.com/Paca-AI/paca",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "bf6dbf339db95f09f110e271f90d4420bd947e80",
-        "title": "Open source AI must win",
-        "url": "https://opensourceaimustwin.com/?share=v2",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "4bec297e4812c8533afcce9dad1a24d07d521b32",
-        "title": "How to setup a local coding agent on macOS",
-        "url": "https://ikyle.me/blog/2026/how-to-setup-a-local-coding-agent-on-macos",
-        "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
-      },
-      {
-        "id": "cda2fc73cabe40b6fb07a3152eca488ca74f9e34",
-        "title": "The computer science degree isn't dead",
-        "url": "https://spectrum.ieee.org/computer-science-degree-isnt-dead",
+        "id": "6477b65b822fd49487babf10074e17860a709209",
+        "title": "Plotnine",
+        "url": "https://plotnine.org/",
         "sourceName": "Hacker News",
         "reason": "Rejected because it is older than 72 hours."
       },
       {
-        "id": "4167a1b89abe1296a25dbba16ee2828143eb523c",
-        "title": "There is a shadow hanging over this Fable thing",
-        "url": "https://12gramsofcarbon.com/p/tech-things-there-is-a-massive-shadow",
+        "id": "05a9df461a787490f342ab7dd59e32a59f1eab20",
+        "title": "Will It Mythos?",
+        "url": "https://swelljoe.com/post/will-it-mythos/",
         "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "076766a531dd33c9d62771c3b824618737e2ed22",
-        "title": "Show HN: Putt.day a daily mini golf game",
-        "url": "https://putt.day/",
+        "id": "74c2d0f577bba386516ce0be93440ffbca2598ae",
+        "title": "GLM-5.2 – How to Run Locally",
+        "url": "https://unsloth.ai/docs/models/glm-5.2",
         "sourceName": "Hacker News",
-        "reason": "Excluded as low-information coverage without enough educational or technical depth."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
       },
       {
-        "id": "5b5b309f4c65b2c8fa1f03ce16a0708190fee940",
-        "title": "A low-carbon computing platform from your retired phones",
-        "url": "https://research.google/blog/a-low-carbon-computing-platform-from-your-retired-phones/",
+        "id": "f579c968b3beaaa22a7c1a843a1e3965b5c283f8",
+        "title": "Crypto in 2026: Oh, This Is the Bad Place",
+        "url": "https://www.stephendiehl.com/posts/bad_place_2026/",
         "sourceName": "Hacker News",
-        "reason": "Rejected as a duplicate canonical URL."
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "31a99c36d0907b9c424208a6cd7a6c30f0256ca3",
+        "title": "VibeThinker: 3B param model that beats Opus 4.5 on reasoning with novel SFT+GRPO",
+        "url": "https://arxiv.org/abs/2606.16140",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "c867032733f922c41bfc6565ebfc0599555a3716",
+        "title": "Epidurals are a miracle technology",
+        "url": "https://worksinprogress.co/issue/the-wonder-of-epidurals/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "2e63ce4c074c5703f570c21a2872c1f1fdbace13",
+        "title": "The Traditional Vi",
+        "url": "https://ex-vi.sourceforge.net/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "ddb8be34d310da1854e68e5960426686ec8ceb91",
+        "title": "Show HN: Neural Particle Automata",
+        "url": "https://selforg-npa.github.io/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "4d20e8aaf9de8645c958023aa5bf3cbcb470130e",
+        "title": "In praise of memcached",
+        "url": "https://jchri.st/blog/in-praise-of-memcached/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "d593018ec3322e91d098bc7e8624a1dbe0b0f927",
+        "title": "The Coming Loop",
+        "url": "https://lucumr.pocoo.org/2026/6/23/the-coming-loop/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "50507cf6aa112b470f5e39d49b0dc80554696991",
+        "title": "Show HN: Shumai – open-source Frame.io alternative for creative work",
+        "url": "https://github.com/shumaiOne/shumai",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "15da249b8198ccd617db06bdaffec54ac4c4a25e",
+        "title": "Apple is going to raise device prices, but when?",
+        "url": "https://daringfireball.net/linked/2026/06/22/apple-device-prices-when",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "4754da3726b10984a5a96357f26fcbe01988e08d",
+        "title": "Oracle shed about 20k roles globally in the last year",
+        "url": "https://www.bbc.com/news/articles/c4gy0x0j5deo",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "feebdbe26fbcfd4fe27252ea46906f75847f8c96",
+        "title": "OpenAI DayBreak – GPT-5.5-Cyber",
+        "url": "https://openai.com/index/daybreak-securing-the-world/",
+        "sourceName": "Hacker News",
+        "reason": "Excluded as low-information coverage with low technical depth and insufficient educational implementation detail."
+      },
+      {
+        "id": "c2d8b4f20c9cba760d1f17d59ab77c7391b10ca7",
+        "title": "PHAST-Net: Attention-Guided, Physics-Informed Network for Unified Estimation of Ideal Time-Frequency Representations",
+        "url": "https://arxiv.org/abs/2606.23665v1",
+        "sourceName": "arXiv",
+        "reason": "Rejected as promotional shopping or low-signal deal coverage."
       }
     ],
     "fallbackCandidateCount": 0,
+    "sourceDiagnostics": {
+      "arXiv": {
+        "requestUrl": "https://export.arxiv.org/api/query?search_query=cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.CV+OR+cat:cs.RO+OR+cat:cs.DC+OR+cat:cs.OS+OR+cat:cs.CR+OR+cat:cs.SE+OR+cat:cs.HC+OR+cat:cs.SY+OR+cat:stat.ML&start=0&max_results=75&sortBy=submittedDate&sortOrder=descending",
+        "rawCount": 75,
+        "afterFreshnessCount": 75,
+        "afterQualityCount": 75,
+        "selectedCount": 15
+      }
+    },
+    "failedSources": [],
     "underfilledCategories": {}
   }
 }
