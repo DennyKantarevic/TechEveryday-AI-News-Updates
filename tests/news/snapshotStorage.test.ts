@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createCategoryRecord } from "@/config/categories";
-import type { DailyNews, LastRefresh } from "@/types/news";
+import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
 
 const localDailyNews: DailyNews = {
   refreshedAt: "2026-06-01T00:00:00.000Z",
@@ -18,7 +18,7 @@ const localLastRefresh: LastRefresh = {
   errors: []
 };
 
-async function importSnapshotStorageWithEmptySupabaseRow() {
+async function importSnapshotStorageWithSupabaseRow(dailyNews: DailyNews | null = null) {
   vi.resetModules();
   vi.doMock("@/lib/storage", () => ({
     fileStorage: {
@@ -33,7 +33,16 @@ async function importSnapshotStorageWithEmptySupabaseRow() {
       from: () => ({
         select: () => ({
           eq: () => ({
-            maybeSingle: async () => ({ data: null, error: null })
+            maybeSingle: async () => ({
+              data: dailyNews
+                ? {
+                    id: "current",
+                    daily_news: dailyNews,
+                    last_refresh: null
+                  }
+                : null,
+              error: null
+            })
           })
         })
       })
@@ -55,12 +64,66 @@ describe("news snapshot storage", () => {
     vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
     vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "service-role-key");
 
-    const { newsSnapshotStorage } = await importSnapshotStorageWithEmptySupabaseRow();
+    const { newsSnapshotStorage } = await importSnapshotStorageWithSupabaseRow();
     const dailyNews = await newsSnapshotStorage.readDailyNews();
     const lastRefresh = await newsSnapshotStorage.readLastRefresh();
 
     expect(dailyNews.refreshedAt).toBe("1970-01-01T00:00:00.000Z");
     expect(lastRefresh.status).toBe("error");
     expect(lastRefresh.message).toMatch(/No Supabase newsletter snapshot exists/i);
+  });
+
+  it("filters commercial items from an existing Supabase snapshot", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
+    vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "service-role-key");
+
+    const technicalItem: NewsItem = {
+      id: "technical-item",
+      title: "Cloudflare explains routing incident mitigation",
+      summary:
+        "An engineering writeup with routing architecture, incident analysis, and implementation details.",
+      url: "https://blog.cloudflare.com/routing-incident/",
+      canonicalUrl: "https://blog.cloudflare.com/routing-incident",
+      sourceName: "Cloudflare Blog",
+      sourceType: "official",
+      category: "cloud-infrastructure",
+      publishedAt: "2026-06-24T10:00:00.000Z",
+      foundAt: "2026-06-24T10:00:00.000Z",
+      trustScore: 0.9,
+      freshnessScore: 4,
+      technicalDepthScore: 4,
+      educationalScore: 4,
+      practicalUsefulnessScore: 4,
+      noveltyScore: 0,
+      finalScore: 4.5,
+      saved: false,
+      tags: ["routing", "architecture"],
+      keyClaims: ["The incident exposed a routing constraint."],
+      whyItMatters: "The writeup explains a reproducible routing mitigation."
+    };
+    const categories = createCategoryRecord(() => [] as NewsItem[]);
+    categories["cloud-infrastructure"] = [
+      technicalItem,
+      {
+        ...technicalItem,
+        id: "prime-day-deal",
+        title: "The best robot vacuum deals available during Prime Day",
+        summary: "Save on robot vacuums during Amazon Prime Day.",
+        url: "https://www.theverge.com/gadgets/robot-vacuum-deals",
+        canonicalUrl: "https://www.theverge.com/gadgets/robot-vacuum-deals"
+      }
+    ];
+    const { newsSnapshotStorage } = await importSnapshotStorageWithSupabaseRow({
+      refreshedAt: "2026-06-24T11:17:22.927Z",
+      timezone: "America/New_York",
+      categories
+    });
+
+    const dailyNews = await newsSnapshotStorage.readDailyNews();
+
+    expect(
+      dailyNews.categories["cloud-infrastructure"].map((newsItem) => newsItem.id)
+    ).toEqual(["technical-item"]);
   });
 });

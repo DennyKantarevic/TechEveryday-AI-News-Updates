@@ -1,4 +1,5 @@
 import { createCategoryRecord } from "@/config/categories";
+import { filterCommercialNewsItems } from "@/lib/news/commercialContent";
 import { fileStorage } from "@/lib/storage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 import type { DailyNews, LastRefresh } from "@/types/news";
@@ -37,6 +38,15 @@ function emptyDailyNews(): DailyNews {
     refreshedAt: new Date(0).toISOString(),
     timezone: REFRESH_TIME_ZONE,
     categories: createCategoryRecord(() => [])
+  };
+}
+
+function filterDailyNews(dailyNews: DailyNews): DailyNews {
+  return {
+    ...dailyNews,
+    categories: createCategoryRecord((categoryId) =>
+      filterCommercialNewsItems(dailyNews.categories?.[categoryId] ?? [])
+    )
   };
 }
 
@@ -291,14 +301,14 @@ export const newsSnapshotStorage: NewsSnapshotStorage = {
 
     const snapshot = await readSnapshotRow();
     if (snapshot?.daily_news) {
-      return snapshot.daily_news;
+      return filterDailyNews(snapshot.daily_news);
     }
 
     return process.env.NODE_ENV === "production" ? emptyDailyNews() : fileStorage.readDailyNews();
   },
 
   async writeDailyNews(dailyNews) {
-    await upsertSnapshot({ dailyNews });
+    await upsertSnapshot({ dailyNews: filterDailyNews(dailyNews) });
   },
 
   async readLastRefresh() {
