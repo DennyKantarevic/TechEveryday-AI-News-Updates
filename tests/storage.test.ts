@@ -2,6 +2,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it } from "vitest";
+import { createCategoryRecord } from "@/config/categories";
 import { createFileStorage } from "@/lib/storage";
 import type { NewsItem } from "@/types/news";
 
@@ -40,5 +41,33 @@ describe("createFileStorage", () => {
 
     await storage.removeGalleryItem("stored-item");
     expect(await storage.readGallery()).toEqual([]);
+  });
+
+  it("filters commercial items from an existing daily snapshot", async () => {
+    tempDir = await mkdtemp(join(tmpdir(), "techeveryday-"));
+    const storage = createFileStorage(tempDir);
+    const categories = createCategoryRecord(() => [] as NewsItem[]);
+    categories["developer-tools-open-source"] = [
+      item,
+      {
+        ...item,
+        id: "prime-day-deal",
+        title: "Best Prime Day laptop deals under $500",
+        summary: "Save 40% on laptops during Amazon Prime Day.",
+        url: "https://consumer.example/deals/prime-day-laptops"
+      }
+    ];
+
+    await storage.writeDailyNews({
+      refreshedAt: "2026-06-24T12:00:00.000Z",
+      timezone: "America/New_York",
+      categories
+    });
+
+    const dailyNews = await storage.readDailyNews();
+
+    expect(
+      dailyNews.categories["developer-tools-open-source"].map((newsItem) => newsItem.id)
+    ).toEqual(["stored-item"]);
   });
 });

@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
+import { filterCommercialNewsItems } from "@/lib/news/commercialContent";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
 import type { CategoryId } from "@/config/categories";
@@ -79,7 +80,9 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
     async readDailyNews() {
       const daily = await readJson<DailyNews>(dailyPath, emptyDailyNews());
       const categories = createCategoryRecord((categoryId) =>
-        (daily.categories?.[categoryId] ?? []).map(normalizeNewsItem)
+        filterCommercialNewsItems(
+          (daily.categories?.[categoryId] ?? []).map(normalizeNewsItem)
+        )
       );
 
       return {
