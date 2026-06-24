@@ -512,6 +512,37 @@ describe("selectDailyItems", () => {
       repo: 1
     });
   });
+
+  it("rejects commercial candidates before selection and reports the reason code", () => {
+    const selected = selectDailyItemsWithDebug({
+      candidates: [
+        baseItem({
+          id: "prime-day-deal",
+          title: "Best Prime Day laptop deals under $500",
+          url: "https://consumer.example/deals/prime-day-laptops",
+          summary: "Save 40% on our favorite laptops during Amazon Prime Day.",
+          sourceName: "Consumer Tech"
+        }),
+        baseItem({
+          id: "scheduler-notes",
+          title: "Kubernetes SIG releases technical notes on scheduler changes",
+          url: "https://kubernetes.io/blog/2026/06/12/scheduler-notes/",
+          sourceName: "Kubernetes"
+        })
+      ],
+      previousCategories: emptyPreviousCategories(),
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected.categories["ai-ml"].map((item) => item.id)).toEqual(["scheduler-notes"]);
+    expect(selected.debug.rejectedBySalesPromotion).toBe(1);
+    expect(selected.debug.rejected).toContainEqual(
+      expect.objectContaining({
+        id: "prime-day-deal",
+        reasonCode: "shopping_or_deal"
+      })
+    );
+  });
 });
 
 describe("scoreContentQuality", () => {

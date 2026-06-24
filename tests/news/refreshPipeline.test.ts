@@ -103,6 +103,16 @@ describe("refreshNews diagnostics", () => {
         tags: ["viral", "drama", "fake podcast"]
       }),
       item({
+        id: "prime-day-deal",
+        title: "Best Prime Day laptop deals under $500",
+        summary: "Save 40% on laptops with a limited-time affiliate offer.",
+        url: "https://consumer.example/deals/prime-day-laptops",
+        canonicalUrl: "https://consumer.example/deals/prime-day-laptops",
+        sourceName: "Consumer Tech",
+        sourceType: "news",
+        tags: ["shopping", "deal", "affiliate"]
+      }),
+      item({
         id: "accepted",
         title: "Cloudflare explains Workers runtime observability architecture"
       }),
@@ -134,13 +144,15 @@ describe("refreshNews diagnostics", () => {
       "accepted"
     ]);
     expect(result.debug.rejectedByAge).toBe(1);
-    expect(result.debug.rejectedByLowQuality).toBe(1);
+    expect(result.debug.rejectedBySalesPromotion).toBe(1);
+    expect(result.debug.rejectedByLowQuality).toBe(2);
     expect(result.debug.rejectedByDuplicate).toBe(1);
-    expect(result.debug.rejectedAsConsumerFiller).toBe(1);
-    expect(result.debug.sourceTypeCounts).toEqual({ article: 4, paper: 0, repo: 0 });
+    expect(result.debug.rejectedAsConsumerFiller).toBe(2);
+    expect(result.debug.sourceTypeCounts).toEqual({ article: 5, paper: 0, repo: 0 });
     expect(result.debug.finalSelectedByCategory["cloud-infrastructure"]).toBe(1);
     expect(result.debug.sourcesUsed).toContain("Example Engineering");
     expect(writtenLastRefresh?.debug?.rejectedByAge).toBe(1);
+    expect(writtenLastRefresh?.debug?.rejectedBySalesPromotion).toBe(1);
   });
 
   it("runs fallback discovery for sections with fewer than three selected items", async () => {

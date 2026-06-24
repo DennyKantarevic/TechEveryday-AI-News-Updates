@@ -1,5 +1,6 @@
 import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
 import { TRUSTED_SOURCES } from "@/config/sources";
+import { classifyCommercialContent } from "@/lib/news/commercialContent";
 import { evaluateFreshness, isFreshNewsItem } from "@/lib/news/freshness";
 import type { CategoryId } from "@/config/categories";
 import type { NewsItem, RefreshDebug, SourceType } from "@/types/news";
@@ -122,22 +123,6 @@ const GLOBAL_TECH_SIGNALS = Array.from(
     "acm"
   ])
 );
-
-const LOW_VALUE_PROMO_SIGNALS = [
-  "affiliate",
-  "best deals",
-  "deal",
-  "deals",
-  "discount",
-  "sponsored",
-  "summer sale",
-  "sale brings",
-  "save big",
-  "membership saving",
-  "gift guide",
-  "shopping",
-  "gaming sale"
-];
 
 const LOW_VALUE_CONTENT_SIGNALS = [
   "affiliate",
@@ -513,12 +498,11 @@ function scoreItemForSelection(item: NewsItem, now: Date): NewsItem {
 }
 
 export function scoreContentQuality(item: NewsItem): ContentQualityScore {
-  const title = normalizeText(item.title);
+  const commercial = classifyCommercialContent(item);
   const haystack = normalizeText(
     [item.title, item.summary, item.sourceName, item.tags.join(" ")].join(" ")
   );
   const lowValueSignals = signalScore(haystack, LOW_VALUE_CONTENT_SIGNALS, 1);
-  const lowValuePromoSignals = signalScore(haystack, LOW_VALUE_PROMO_SIGNALS, 1);
   const categoryDepthSignals = KEYWORDS[item.category].filter((keyword) =>
     containsSignal(haystack, keyword)
   ).length;
@@ -546,11 +530,7 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
       (trustedTechnicalSource ? 1 : 0) +
       (item.sourceType === "repo" ? 2 : 0)
   );
-  const noveltyScore = clampScore(
-    lowValueSignals * 2 +
-      lowValuePromoSignals * 2 +
-      (LOW_VALUE_PROMO_SIGNALS.some((signal) => title.includes(signal)) ? 2 : 0)
-  );
+  const noveltyScore = clampScore(lowValueSignals * 2 + (commercial.rejected ? 4 : 0));
   const negatesTechnicalDepth =
     /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no (?:model architecture|benchmark result|implementation detail|developer workflow|focused (?:architecture|benchmark|implementation|engineering|technical))|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
       haystack
@@ -561,16 +541,20 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
     technicalDepthScore >= 3 &&
     (educationalScore >= 2 || practicalUsefulnessScore >= 2) &&
     !negatesTechnicalDepth;
-  const isWired = /^wired$/i.test(item.sourceName.trim());
+  const isConsumerOutlet =
+    /^(?:wired|the verge|cnet|engadget|techradar|pcmag|tom['’]s guide)$/i.test(
+      item.sourceName.trim()
+    );
   const isConsumerFiller =
     lowValueSignals >= 1 ||
-    lowValuePromoSignals >= 1 ||
     /best .*(?:gadgets?|phones?|laptops?|deals)|(?:gadget|phone|camera|launch) (?:rumou?r|leak|deal)|startup raises|social media|culture story|founder quotes/i.test(
       `${item.title} ${item.summary}`
     );
   const excludedReason =
-    isWired && !hasStrongTechnicalDepth
-      ? "Excluded as WIRED-style consumer/filler low-value coverage without rare technical explainer depth."
+    commercial.rejected
+      ? commercial.reason
+      : isConsumerOutlet && !hasStrongTechnicalDepth
+        ? "Excluded as low-value consumer-media filler without rare technical explainer depth."
       : isConsumerFiller && !hasHighSignalSubstance
         ? "Excluded as consumer/filler low-value coverage without enough educational technical value."
         : noveltyScore >= 2 && (negatesTechnicalDepth || !hasHighSignalSubstance)
@@ -595,6 +579,10 @@ function isTrustedRelevant(item: NewsItem) {
     return false;
   }
 
+  if (classifyCommercialContent(item).rejected) {
+    return false;
+  }
+
   const configuredSource = TRUSTED_SOURCES.find((source) => source.name === item.sourceName);
   const configuredCategories = configuredSource?.allowedCategories ?? configuredSource?.categoryHints;
 
@@ -602,7 +590,6 @@ function isTrustedRelevant(item: NewsItem) {
     return false;
   }
 
-  const title = normalizeText(item.title);
   const quality = scoreContentQuality(item);
   const externalTags = item.tags.filter(
     (tag) => !CATEGORY_IDS.includes(tag as CategoryId) && tag !== item.category
@@ -614,30 +601,34 @@ function isTrustedRelevant(item: NewsItem) {
     containsSignal(haystack, keyword)
   );
   const globalSignal = GLOBAL_TECH_SIGNALS.some((keyword) => containsSignal(haystack, keyword));
-  const lowValuePromo = LOW_VALUE_PROMO_SIGNALS.some((keyword) => title.includes(keyword));
-
-  return (categorySignal || globalSignal) && !lowValuePromo && !quality.excludedReason;
+  return (categorySignal || globalSignal) && !quality.excludedReason;
 }
 
 function rejectionReason(item: NewsItem, now: Date) {
   if (item.trustScore < 0.65 || !item.title.trim() || !item.url.trim()) {
-    return "Rejected because the source trust score or required fields were insufficient.";
+    return {
+      reason: "Rejected because the source trust score or required fields were insufficient."
+    };
+  }
+
+  const commercial = classifyCommercialContent(item);
+  if (commercial.rejected) {
+    return {
+      reason: commercial.reason,
+      reasonCode: commercial.reasonCode
+    };
   }
 
   const freshness = evaluateFreshness({ publishedAt: item.publishedAt, now });
   if (!freshness.accepted) {
-    return freshness.excludedReason ?? "Rejected by the 72-hour freshness gate.";
-  }
-
-  const title = normalizeText(item.title);
-  const lowValuePromo = LOW_VALUE_PROMO_SIGNALS.some((keyword) => title.includes(keyword));
-  if (lowValuePromo) {
-    return "Rejected as promotional shopping or low-signal deal coverage.";
+    return {
+      reason: freshness.excludedReason ?? "Rejected by the 72-hour freshness gate."
+    };
   }
 
   const quality = scoreContentQuality(item);
   if (quality.excludedReason) {
-    return quality.excludedReason;
+    return { reason: quality.excludedReason };
   }
 
   const externalTags = item.tags.filter(
@@ -652,7 +643,7 @@ function rejectionReason(item: NewsItem, now: Date) {
   const globalSignal = GLOBAL_TECH_SIGNALS.some((keyword) => containsSignal(haystack, keyword));
 
   if (!categorySignal && !globalSignal) {
-    return "Rejected because it lacked a clear technical category fit.";
+    return { reason: "Rejected because it lacked a clear technical category fit." };
   }
 
   return undefined;
@@ -764,11 +755,10 @@ export function selectDailyItemsWithDebug({
   now: Date;
 }) {
   const rejected: RefreshDebug["rejected"] = [];
-  const scoredCandidates = candidates.map((item) => scoreItemForSelection(item, now));
-  const candidatesAfterQuality = scoredCandidates.filter((item) => {
-    const reason = rejectionReason(item, now);
+  const candidatesAfterQuality = candidates.filter((item) => {
+    const rejection = rejectionReason(item, now);
 
-    if (!reason) {
+    if (!rejection) {
       return true;
     }
 
@@ -777,11 +767,12 @@ export function selectDailyItemsWithDebug({
       title: item.title,
       url: item.url,
       sourceName: item.sourceName,
-      reason
+      ...rejection
     });
     return false;
   });
-  const deduped = dedupeCandidatesWithDebug(candidatesAfterQuality);
+  const scoredCandidates = candidatesAfterQuality.map((item) => scoreItemForSelection(item, now));
+  const deduped = dedupeCandidatesWithDebug(scoredCandidates);
   rejected.push(...deduped.rejected);
 
   const freshCandidates = deduped.accepted.sort((left, right) => {
@@ -834,6 +825,11 @@ export function selectDailyItemsWithDebug({
 
   const rejectedByAge = rejected.filter((item) => /older than 72|trustworthy date|future/i.test(item.reason)).length;
   const rejectedByDuplicate = rejected.filter((item) => /duplicate/i.test(item.reason)).length;
+  const rejectedBySalesPromotion = rejected.filter((item) =>
+    ["sales_or_promotion", "shopping_or_deal", "consumer_buying_guide"].includes(
+      item.reasonCode ?? ""
+    )
+  ).length;
   const rejectedAsConsumerFiller = rejected.filter((item) =>
     /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
       item.reason
@@ -843,7 +839,7 @@ export function selectDailyItemsWithDebug({
     /low technical depth|low-information|category fit|implementation detail/i.test(item.reason)
   ).length;
   const rejectedByLowQuality = rejected.filter((item) =>
-    /low-information|low-value|low technical depth|consumer|filler|category fit|promotional/i.test(
+    /low-information|low-value|low technical depth|consumer|filler|category fit|promotional|shopping|deal|buying-guide|sales/i.test(
       item.reason
     )
   ).length;
@@ -853,6 +849,7 @@ export function selectDailyItemsWithDebug({
     totalCandidatesFound: candidates.length,
     candidatesAfterFreshness: candidates.length - rejectedByAge,
     rejectedByAge,
+    rejectedBySalesPromotion,
     rejectedAsConsumerFiller,
     rejectedByLowTechnicalDepth,
     rejectedByLowQuality,
