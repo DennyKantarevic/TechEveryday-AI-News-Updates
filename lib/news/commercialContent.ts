@@ -258,3 +258,7 @@ export function classifyCommercialContent(
 
   return { rejected: false };
 }
+
+export function filterCommercialNewsItems(items: NewsItem[]) {
+  return items.filter((item) => !classifyCommercialContent(item).rejected);
+}
