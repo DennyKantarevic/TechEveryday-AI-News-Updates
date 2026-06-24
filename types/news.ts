@@ -47,6 +47,10 @@ export type RejectedCandidate = {
   url: string;
   sourceName: string;
   reason: string;
+  reasonCode?:
+    | "sales_or_promotion"
+    | "shopping_or_deal"
+    | "consumer_buying_guide";
 };
 
 export type RefreshDebug = {
@@ -54,6 +58,7 @@ export type RefreshDebug = {
   fallbackCandidateCount?: number;
   candidatesAfterFreshness: number;
   rejectedByAge: number;
+  rejectedBySalesPromotion: number;
   rejectedAsConsumerFiller: number;
   rejectedByLowTechnicalDepth: number;
   rejectedByLowQuality: number;
