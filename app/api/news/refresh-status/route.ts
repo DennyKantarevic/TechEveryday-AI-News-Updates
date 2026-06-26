@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { archiveMetadata } from "@/lib/news/calendar";
 import {
   newsSnapshotStorage,
   snapshotStorageMetadata,
@@ -13,9 +14,16 @@ export const dynamic = "force-dynamic";
 const configuredCronSchedules = ["0 11 * * *", "0 12 * * *"];
 
 export async function GET() {
-  const lastRefresh = await newsSnapshotStorage.readLastRefresh();
+  const [lastRefresh, archiveSummaries] = await Promise.all([
+    newsSnapshotStorage.readLastRefresh(),
+    newsSnapshotStorage.listArchiveSnapshots()
+  ]);
   const storage = snapshotStorageStatus();
   const metadata = await snapshotStorageMetadata();
+  const archive = archiveMetadata(
+    archiveSummaries,
+    lastRefresh.lastRefreshDateAmericaNewYork ?? null
+  );
   const errors = lastRefresh.errors ?? [];
   const failedSources = lastRefresh.failedSources ?? lastRefresh.debug?.failedSources ?? [];
 
@@ -31,6 +39,13 @@ export async function GET() {
     finalSelectedItems:
       lastRefresh.itemsSelected ??
       Object.values(lastRefresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
+    categoryCounts: lastRefresh.categoryCounts ?? {},
+    minimumMetByCategory: lastRefresh.debug?.minimumMetByCategory ?? {},
+    rejectedBySalesPromotion: lastRefresh.debug?.rejectedBySalesPromotion ?? 0,
+    rejectedByLowQuality: lastRefresh.debug?.rejectedByLowQuality ?? 0,
+    rejectedByLowTechnicalDepth:
+      lastRefresh.debug?.rejectedByLowTechnicalDepth ?? 0,
+    ...archive,
     failedSources,
     lastSafeErrorMessage: errors.length
       ? safeRefreshErrorMessage(errors[errors.length - 1])

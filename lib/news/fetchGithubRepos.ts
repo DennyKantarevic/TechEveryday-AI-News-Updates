@@ -1,7 +1,7 @@
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { createNewsId } from "@/lib/news/ids";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
-import type { CategoryId } from "@/config/categories";
+import type { CategoryId, RequiredSectionId } from "@/config/categories";
 import type { NewsItem } from "@/types/news";
 
 type GithubRepo = {
@@ -28,8 +28,20 @@ type GithubReadmeResponse = {
   encoding?: string;
 };
 
+type GithubRepositoryFetchOptions = {
+  now?: Date;
+  categoryIds?: readonly RequiredSectionId[];
+  perCategoryLimit?: number;
+  maxReadmes?: number;
+};
+
+export type GithubTargetedFetchResult = {
+  items: NewsItem[];
+  failure?: unknown;
+};
+
 const REPO_DISCOVERY_QUERIES: Array<{
-  category: CategoryId;
+  category: RequiredSectionId;
   query: string;
 }> = [
   {
@@ -181,31 +193,42 @@ function categoryForRepo(repo: GithubRepo, readme: string, fallback: CategoryId)
     return "cloud-infrastructure";
   }
 
-  if (/(machine learning|inference|training|dataset|model|benchmark|evals?)\b/.test(haystack)) {
-    return "ai-ml";
-  }
-
   if (/(compiler|kernel|database|storage|distributed|scheduler|operating system|memory)\b/.test(haystack)) {
     return "computer-systems";
+  }
+
+  if (/(machine learning|inference|training|dataset|model|benchmark|evals?)\b/.test(haystack)) {
+    return "ai-ml";
   }
 
   return fallback;
 }
 
-async function fetchJson<T>(url: string): Promise<T | undefined> {
+async function fetchJson<T>(url: string, strict: boolean): Promise<T | undefined> {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(9000),
     headers: githubHeaders()
   });
 
   if (!response.ok) {
+    if (strict) {
+      throw new Error(
+        `HTTP ${response.status}${response.statusText ? ` ${response.statusText}` : ""}`
+      );
+    }
+
     return undefined;
   }
 
   return (await response.json()) as T;
 }
 
-async function searchRepos(query: string, now: Date, perCategoryLimit: number) {
+async function searchRepos(
+  query: string,
+  now: Date,
+  perCategoryLimit: number,
+  strict: boolean
+) {
   const url = new URL("https://api.github.com/search/repositories");
   url.searchParams.set(
     "q",
@@ -215,18 +238,18 @@ async function searchRepos(query: string, now: Date, perCategoryLimit: number) {
   url.searchParams.set("order", "desc");
   url.searchParams.set("per_page", String(perCategoryLimit));
 
-  const payload = await fetchJson<GithubSearchResponse>(url.toString());
+  const payload = await fetchJson<GithubSearchResponse>(url.toString(), strict);
   return payload?.items ?? [];
 }
 
-async function fetchReadme(repo: GithubRepo) {
+async function fetchReadme(repo: GithubRepo, strict: boolean) {
   const fullName = repo.full_name;
   if (!fullName || !/^[^/]+\/[^/]+$/.test(fullName)) {
     return "";
   }
 
   const url = `https://api.github.com/repos/${fullName}/readme`;
-  const payload = await fetchJson<GithubReadmeResponse>(url);
+  const payload = await fetchJson<GithubReadmeResponse>(url, strict);
 
   if (!payload?.content || payload.encoding !== "base64") {
     return "";
@@ -316,86 +339,114 @@ function repoEligible(repo: GithubRepo, now: Date) {
   return !excludedRepo(repo);
 }
 
-export async function fetchGithubRepositories({
+async function discoverGithubRepositories({
   now = new Date(),
+  categoryIds,
   perCategoryLimit = 6,
   maxReadmes = 18
-}: {
-  now?: Date;
-  perCategoryLimit?: number;
-  maxReadmes?: number;
-} = {}) {
-  try {
-    const discovered = new Map<string, { repo: GithubRepo; category: CategoryId }>();
+}: GithubRepositoryFetchOptions) {
+  const strict = categoryIds !== undefined;
+  const discovered = new Map<string, { repo: GithubRepo; category: CategoryId }>();
+  const requestedCategories = categoryIds ? new Set(categoryIds) : undefined;
+  const discoveries = requestedCategories
+    ? REPO_DISCOVERY_QUERIES.filter((discovery) =>
+        requestedCategories.has(discovery.category)
+      )
+    : REPO_DISCOVERY_QUERIES;
 
-    for (const discovery of REPO_DISCOVERY_QUERIES) {
-      const repos = await searchRepos(discovery.query, now, perCategoryLimit);
+  for (const discovery of discoveries) {
+    const repos = await searchRepos(discovery.query, now, perCategoryLimit, strict);
 
-      for (const repo of repos) {
-        if (repo.full_name && !discovered.has(repo.full_name) && repoEligible(repo, now)) {
-          discovered.set(repo.full_name, { repo, category: discovery.category });
-        }
+    for (const repo of repos) {
+      if (repo.full_name && !discovered.has(repo.full_name) && repoEligible(repo, now)) {
+        discovered.set(repo.full_name, { repo, category: discovery.category });
       }
     }
+  }
 
-    const items: NewsItem[] = [];
-    let readmeRequests = 0;
+  const items: NewsItem[] = [];
+  let readmeRequests = 0;
 
-    for (const { repo, category: fallbackCategory } of discovered.values()) {
-      if (readmeRequests >= maxReadmes) {
-        break;
-      }
-
-      readmeRequests += 1;
-      const readme = await fetchReadme(repo);
-
-      if (!readmeHasLearningValue(readme)) {
-        continue;
-      }
-
-      const category = categoryForRepo(repo, readme, fallbackCategory);
-      const title = repo.full_name ?? repo.name ?? "GitHub repository";
-      const url = repo.html_url ?? "";
-      const summary = repoSummary(repo, readme);
-
-      items.push(
-        scoreNewsItem(
-          {
-            id: createNewsId(url, title),
-            title,
-            summary,
-            url,
-            canonicalUrl: canonicalizeUrl(url),
-            sourceName: "GitHub",
-            sourceType: "repo",
-            category,
-            publishedAt: parseDate(repo.pushed_at || repo.updated_at, now).toISOString(),
-            foundAt: now.toISOString(),
-            imageUrl: placeholderImageForCategory(category, title),
-            trustScore: Math.min(0.94, 0.78 + Math.log10((repo.stargazers_count ?? 0) + 1) / 20),
-            freshnessScore: 0,
-            technicalDepthScore: 0,
-            educationalScore: 0,
-            practicalUsefulnessScore: 0,
-            noveltyScore: 0,
-            finalScore: 0,
-            saved: false,
-            tags: repoTags(repo, category),
-            keyClaims: [],
-            whyItMatters: repoWhyItMatters(repo, readme)
-          } satisfies NewsItem,
-          now
-        )
-      );
+  for (const { repo, category: fallbackCategory } of discovered.values()) {
+    if (readmeRequests >= maxReadmes) {
+      break;
     }
 
-    return items.sort(
-      (left, right) =>
-        right.finalScore - left.finalScore ||
-        right.trustScore - left.trustScore ||
-        new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime()
+    readmeRequests += 1;
+    const readme = await fetchReadme(repo, strict);
+
+    if (!readmeHasLearningValue(readme)) {
+      continue;
+    }
+
+    const category = categoryForRepo(repo, readme, fallbackCategory);
+    const title = repo.full_name ?? repo.name ?? "GitHub repository";
+    const url = repo.html_url ?? "";
+    const summary = repoSummary(repo, readme);
+
+    items.push(
+      scoreNewsItem(
+        {
+          id: createNewsId(url, title),
+          title,
+          summary,
+          url,
+          canonicalUrl: canonicalizeUrl(url),
+          sourceName: "GitHub",
+          sourceType: "repo",
+          category,
+          publishedAt: parseDate(repo.pushed_at || repo.updated_at, now).toISOString(),
+          foundAt: now.toISOString(),
+          imageUrl: placeholderImageForCategory(category, title),
+          trustScore: Math.min(0.94, 0.78 + Math.log10((repo.stargazers_count ?? 0) + 1) / 20),
+          freshnessScore: 0,
+          technicalDepthScore: 0,
+          educationalScore: 0,
+          practicalUsefulnessScore: 0,
+          noveltyScore: 0,
+          finalScore: 0,
+          saved: false,
+          tags: repoTags(repo, category),
+          keyClaims: [],
+          whyItMatters: repoWhyItMatters(repo, readme)
+        } satisfies NewsItem,
+        now
+      )
     );
-  } catch {
+  }
+
+  return items.sort(
+    (left, right) =>
+      right.finalScore - left.finalScore ||
+      right.trustScore - left.trustScore ||
+      new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime()
+  );
+}
+
+export function fetchGithubRepositories(
+  options: GithubRepositoryFetchOptions & {
+    categoryIds: readonly RequiredSectionId[];
+  }
+): Promise<GithubTargetedFetchResult>;
+export function fetchGithubRepositories(
+  options?: GithubRepositoryFetchOptions & {
+    categoryIds?: undefined;
+  }
+): Promise<NewsItem[]>;
+export async function fetchGithubRepositories(
+  options: GithubRepositoryFetchOptions = {}
+): Promise<NewsItem[] | GithubTargetedFetchResult> {
+  try {
+    const items = await discoverGithubRepositories(options);
+    return options.categoryIds ? { items } : items;
+  } catch (error) {
+    if (options.categoryIds) {
+      return {
+        items: [],
+        failure: error
+      };
+    }
+
     return [];
   }
 }

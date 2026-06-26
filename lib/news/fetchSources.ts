@@ -17,6 +17,11 @@ type CustomItem = Parser.Item & {
 
 type RssTrustedSourceConfig = TrustedSourceConfig & { rssUrl: string };
 
+export type SourceFetchFailureDiagnostic = {
+  sourceName: string;
+  error: unknown;
+};
+
 const parser = new Parser<Record<string, unknown>, CustomItem>({
   customFields: {
     item: [
@@ -130,7 +135,8 @@ function categoryForSource(
 async function fetchFeed(
   source: RssTrustedSourceConfig,
   now: Date,
-  itemLimit: number
+  itemLimit: number,
+  onSourceFailure?: (failure: SourceFetchFailureDiagnostic) => void
 ): Promise<NewsItem[]> {
   try {
     const response = await fetch(source.rssUrl, {
@@ -141,7 +147,9 @@ async function fetchFeed(
     });
 
     if (!response.ok) {
-      return [];
+      throw new Error(
+        `HTTP ${response.status}${response.statusText ? ` ${response.statusText}` : ""}`
+      );
     }
 
     const xml = await response.text();
@@ -213,7 +221,11 @@ async function fetchFeed(
     );
 
     return items.filter(Boolean) as NewsItem[];
-  } catch {
+  } catch (error) {
+    onSourceFailure?.({
+      sourceName: source.name,
+      error
+    });
     return [];
   }
 }
@@ -221,17 +233,19 @@ async function fetchFeed(
 export async function fetchSourceCandidates({
   sources = TRUSTED_SOURCES,
   now = new Date(),
-  itemLimit = 16
+  itemLimit = 16,
+  onSourceFailure
 }: {
   sources?: TrustedSourceConfig[];
   now?: Date;
   itemLimit?: number;
+  onSourceFailure?: (failure: SourceFetchFailureDiagnostic) => void;
 } = {}) {
   const rssSources = sources.filter(
     (source): source is RssTrustedSourceConfig => Boolean(source.rssUrl)
   );
   const results = await Promise.allSettled(
-    rssSources.map((source) => fetchFeed(source, now, itemLimit))
+    rssSources.map((source) => fetchFeed(source, now, itemLimit, onSourceFailure))
   );
   return results.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
 }
@@ -239,11 +253,13 @@ export async function fetchSourceCandidates({
 export async function fetchCategoryFallbackCandidates({
   categoryId,
   sources = TRUSTED_SOURCES,
-  now = new Date()
+  now = new Date(),
+  onSourceFailure
 }: {
   categoryId: CategoryId;
   sources?: TrustedSourceConfig[];
   now?: Date;
+  onSourceFailure?: (failure: SourceFetchFailureDiagnostic) => void;
 }) {
   const categorySources = sources.filter((source) =>
     (source.allowedCategories ?? source.categoryHints).includes(categoryId)
@@ -251,7 +267,8 @@ export async function fetchCategoryFallbackCandidates({
   const candidates = await fetchSourceCandidates({
     sources: categorySources,
     now,
-    itemLimit: 48
+    itemLimit: 48,
+    onSourceFailure
   });
 
   return candidates.filter((item) => item.category === categoryId);

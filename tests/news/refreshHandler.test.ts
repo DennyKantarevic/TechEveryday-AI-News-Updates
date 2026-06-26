@@ -1,6 +1,12 @@
 import { NextRequest } from "next/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { createCategoryRecord } from "@/config/categories";
 import { handleRefreshRequest } from "@/lib/news/refreshHandler";
+import { refreshNews } from "@/lib/news/refreshPipeline";
+import {
+  newsSnapshotStorage,
+  snapshotStorageStatus
+} from "@/lib/news/snapshotStorage";
 
 vi.mock("@/lib/news/snapshotStorage", () => ({
   newsSnapshotStorage: {
@@ -27,6 +33,14 @@ describe("refresh request handler", () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-06-13T14:30:00.000Z"));
     vi.stubEnv("NODE_ENV", "production");
+    vi.mocked(newsSnapshotStorage.readLastRefresh).mockResolvedValue({} as never);
+    vi.mocked(newsSnapshotStorage.writeLastRefresh).mockResolvedValue();
+    vi.mocked(snapshotStorageStatus).mockReturnValue({
+      persistentStorageConfigured: false,
+      storageBackend: "local-json",
+      missingEnvVars: []
+    });
+    vi.mocked(refreshNews).mockReset();
   });
 
   afterEach(() => {
@@ -121,5 +135,50 @@ describe("refresh request handler", () => {
     });
 
     expect(response.status).toBe(401);
+  });
+
+  it("revalidates the Calendar page after a successful refresh", async () => {
+    vi.stubEnv("CRON_SECRET", "test-cron-secret");
+    vi.mocked(snapshotStorageStatus).mockReturnValue({
+      persistentStorageConfigured: true,
+      storageBackend: "supabase",
+      missingEnvVars: []
+    });
+    const dailyNews = {
+      refreshedAt: "2026-06-13T14:30:00.000Z",
+      timezone: "America/New_York" as const,
+      categories: createCategoryRecord(() => [])
+    };
+    vi.mocked(refreshNews).mockResolvedValue({
+      dailyNews,
+      candidateCount: 0,
+      failedSources: [],
+      sourceBreakdown: {
+        rss: 0,
+        arxiv: 0,
+        repos: 0,
+        newsApi: 0,
+        x: 0
+      },
+      debug: {} as never
+    });
+    const revalidate = vi.fn();
+    const request = new NextRequest(
+      "https://tech-everyday-ai-news-updates.vercel.app/api/refresh-news?force=true",
+      {
+        headers: {
+          authorization: "Bearer test-cron-secret"
+        }
+      }
+    );
+
+    const response = await handleRefreshRequest(request, {
+      scheduled: false,
+      allowVercelCron: false,
+      revalidate
+    });
+
+    expect(response.status).toBe(200);
+    expect(revalidate).toHaveBeenCalledWith("/calendar");
   });
 });

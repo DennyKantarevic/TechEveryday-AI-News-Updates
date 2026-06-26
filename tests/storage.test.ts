@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it } from "vitest";
 import { createCategoryRecord } from "@/config/categories";
 import { createFileStorage } from "@/lib/storage";
-import type { NewsItem } from "@/types/news";
+import type { DailyNews, LastRefresh, NewsItem } from "@/types/news";
 
 let tempDir: string | undefined;
 
@@ -69,5 +69,97 @@ describe("createFileStorage", () => {
     expect(
       dailyNews.categories["developer-tools-open-source"].map((newsItem) => newsItem.id)
     ).toEqual(["stored-item"]);
+  });
+
+  it("persists, lists, and intentionally replaces dated archive snapshots", async () => {
+    tempDir = await mkdtemp(join(tmpdir(), "techeveryday-"));
+    const storage = createFileStorage(tempDir);
+    const categories = createCategoryRecord(() => [] as NewsItem[]);
+    categories["developer-tools-open-source"] = [item];
+    const dailyNews: DailyNews = {
+      refreshedAt: "2026-06-25T11:00:00.000Z",
+      timezone: "America/New_York",
+      categories
+    };
+    const lastRefresh: LastRefresh = {
+      refreshedAt: dailyNews.refreshedAt,
+      nextRefreshAt: "2026-06-26T11:00:00.000Z",
+      candidateCount: 10,
+      categoryCounts: createCategoryRecord(
+        (categoryId) => dailyNews.categories[categoryId].length
+      ),
+      status: "success"
+    };
+
+    await storage.writeArchiveSnapshot("2026-06-24", dailyNews, lastRefresh);
+    await storage.writeArchiveSnapshot("2026-06-25", dailyNews, lastRefresh);
+
+    const replacement = {
+      ...dailyNews,
+      categories: {
+        ...dailyNews.categories,
+        "developer-tools-open-source": [
+          {
+            ...item,
+            id: "replacement",
+            title: "Replacement archive item",
+            whyItMatters: "Stored archive reasoning must remain unchanged."
+          }
+        ]
+      }
+    };
+    await storage.writeArchiveSnapshot("2026-06-25", replacement, {
+      ...lastRefresh,
+      candidateCount: 11
+    });
+
+    expect((await storage.readArchiveSnapshot("2026-06-25"))?.dailyNews).toEqual(
+      replacement
+    );
+    expect((await storage.readArchiveSnapshot("2026-06-24"))?.dailyNews).toEqual(
+      dailyNews
+    );
+    expect((await storage.listArchiveSnapshots()).map((snapshot) => snapshot.date)).toEqual([
+      "2026-06-25",
+      "2026-06-24"
+    ]);
+    expect((await storage.listArchiveSnapshots())[0]).toMatchObject({
+      itemCount: 1,
+      sectionCounts: {
+        "developer-tools-open-source": 1
+      }
+    });
+  });
+
+  it("exposes the current snapshot when a dated archive has not been backfilled", async () => {
+    tempDir = await mkdtemp(join(tmpdir(), "techeveryday-"));
+    const storage = createFileStorage(tempDir);
+    const categories = createCategoryRecord(() => [] as NewsItem[]);
+    categories["developer-tools-open-source"] = [item];
+    const dailyNews: DailyNews = {
+      refreshedAt: "2026-06-23T11:00:00.000Z",
+      timezone: "America/New_York",
+      categories
+    };
+    const lastRefresh: LastRefresh = {
+      refreshedAt: dailyNews.refreshedAt,
+      nextRefreshAt: "2026-06-24T11:00:00.000Z",
+      lastRefreshDateAmericaNewYork: "2026-06-23",
+      candidateCount: 1,
+      categoryCounts: createCategoryRecord(
+        (categoryId) => dailyNews.categories[categoryId].length
+      ),
+      status: "success"
+    };
+
+    await storage.writeDailyNews(dailyNews);
+    await storage.writeLastRefresh(lastRefresh);
+
+    expect((await storage.listArchiveSnapshots()).map((summary) => summary.date)).toEqual([
+      "2026-06-23"
+    ]);
+    expect((await storage.readArchiveSnapshot("2026-06-23"))?.dailyNews).toMatchObject({
+      refreshedAt: dailyNews.refreshedAt
+    });
   });
 });

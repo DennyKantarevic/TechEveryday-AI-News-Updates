@@ -1,9 +1,14 @@
-import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
+import {
+  CATEGORY_IDS,
+  MIN_ITEMS_PER_SECTION,
+  REQUIRED_SECTION_IDS,
+  createCategoryRecord
+} from "@/config/categories";
 import { TRUSTED_SOURCES } from "@/config/sources";
 import { classifyCommercialContent } from "@/lib/news/commercialContent";
 import { evaluateFreshness, isFreshNewsItem } from "@/lib/news/freshness";
-import type { CategoryId } from "@/config/categories";
-import type { NewsItem, RefreshDebug, SourceType } from "@/types/news";
+import type { CategoryId, RequiredSectionId } from "@/config/categories";
+import type { NewsItem, RefreshDebug, RejectedCandidate, SourceType } from "@/types/news";
 
 type ClassificationInput = {
   title: string;
@@ -430,6 +435,8 @@ export function dedupeCandidatesWithDebug(items: NewsItem[]) {
         title: item.title,
         url: item.url,
         sourceName: item.sourceName,
+        category: item.category,
+        kind: "duplicate",
         reason: "Rejected as a duplicate canonical URL."
       });
       continue;
@@ -447,6 +454,8 @@ export function dedupeCandidatesWithDebug(items: NewsItem[]) {
         title: item.title,
         url: item.url,
         sourceName: item.sourceName,
+        category: item.category,
+        kind: "duplicate",
         reason: `Rejected as a duplicate story cluster of "${similarTitle.title}".`
       });
       continue;
@@ -499,6 +508,7 @@ function scoreItemForSelection(item: NewsItem, now: Date): NewsItem {
 
 export function scoreContentQuality(item: NewsItem): ContentQualityScore {
   const commercial = classifyCommercialContent(item);
+  const normalizedTitle = normalizeText(item.title);
   const haystack = normalizeText(
     [item.title, item.summary, item.sourceName, item.tags.join(" ")].join(" ")
   );
@@ -532,8 +542,50 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
   );
   const noveltyScore = clampScore(lowValueSignals * 2 + (commercial.rejected ? 4 : 0));
   const negatesTechnicalDepth =
-    /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no (?:model architecture|benchmark result|implementation detail|developer workflow|focused (?:architecture|benchmark|implementation|engineering|technical))|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
+    /without (?:explaining|technical|engineering|infrastructure|systems|architecture|benchmarks?|implementation|developer|code|testing|firmware|schematics?)|does not (?:explain|provide)|lacks (?:technical|engineering|educational)|no (?:model architecture|benchmark result|implementation detail|developer workflow|focused (?:architecture|benchmark|implementation|engineering|technical))|rather than (?:model architecture|technical|engineering|infrastructure|benchmarks?|implementation)|legal story focused/.test(
       haystack
+    );
+  const hasReusableTechnicalDetail =
+    !negatesTechnicalDepth &&
+    /\b(architecture|benchmarks?|implementation|apis?|source code|code examples?|testing|firmware|schematics?|migration|runtime|storage|protocol|instrumentation|scheduler|database|memory|data structures?|verifier|libraries?)\b/.test(
+      haystack
+    );
+  const isPolicyOrOrganizationalFiller =
+    educationalScore < 2 &&
+    !hasReusableTechnicalDetail &&
+    /\b(policy|regulatory|legislation|transparency act|coalition|advocat(?:e|es|ing)|amendments?|accessibility|inclusion|inclusive|contributor)\b/.test(
+      haystack
+    );
+  const isCareerCultureFiller =
+    educationalScore < 2 &&
+    /\b(career growth|better leader|senior leader|my job|my favorites?|leadership lessons?)\b/.test(
+      haystack
+    );
+  const isConsumerUpgradeFiller =
+    !hasReusableTechnicalDetail &&
+    /\b(in the market|smart speakers?|old speakers?|upgrades? your|consumer upgrade)\b/.test(
+      haystack
+    );
+  const isShallowAnnouncement =
+    educationalScore < 2 &&
+    practicalUsefulnessScore <= 1 &&
+    !hasReusableTechnicalDetail &&
+    /\b(unveil(?:s|ed)?|introduce(?:s|d)?|announce(?:s|d)?)\b/.test(haystack);
+  const isProductAvailabilityAnnouncement =
+    educationalScore < 2 &&
+    /\b(now available|brings? [0-9]+|unveil(?:s|ed)?|introduce(?:s|d)? new)\b/.test(
+      normalizedTitle
+    );
+  const isLowInformationEditorial =
+    !primaryLearningSource &&
+    educationalScore < 2 &&
+    practicalUsefulnessScore <= 2 &&
+    !hasReusableTechnicalDetail;
+  const isTechCultureEssay =
+    educationalScore <= 2 &&
+    practicalUsefulnessScore === 0 &&
+    /\b(what it means to be|when ai does|the future of being)\b/.test(
+      normalizedTitle
     );
   const hasHighSignalSubstance =
     educationalScore >= 2 && technicalDepthScore >= 3 && practicalUsefulnessScore >= 1;
@@ -553,6 +605,14 @@ export function scoreContentQuality(item: NewsItem): ContentQualityScore {
   const excludedReason =
     commercial.rejected
       ? commercial.reason
+      : isPolicyOrOrganizationalFiller ||
+          isCareerCultureFiller ||
+          isConsumerUpgradeFiller ||
+          isShallowAnnouncement ||
+          isProductAvailabilityAnnouncement ||
+          isLowInformationEditorial ||
+          isTechCultureEssay
+        ? "Excluded as low-value policy, organizational, career, consumer, or announcement filler without reusable technical detail."
       : isConsumerOutlet && !hasStrongTechnicalDepth
         ? "Excluded as low-value consumer-media filler without rare technical explainer depth."
       : isConsumerFiller && !hasHighSignalSubstance
@@ -604,9 +664,13 @@ function isTrustedRelevant(item: NewsItem) {
   return (categorySignal || globalSignal) && !quality.excludedReason;
 }
 
-function rejectionReason(item: NewsItem, now: Date) {
+function rejectionReason(
+  item: NewsItem,
+  now: Date
+): Pick<RejectedCandidate, "kind" | "reason" | "reasonCode"> | undefined {
   if (item.trustScore < 0.65 || !item.title.trim() || !item.url.trim()) {
     return {
+      kind: "trust",
       reason: "Rejected because the source trust score or required fields were insufficient."
     };
   }
@@ -614,6 +678,7 @@ function rejectionReason(item: NewsItem, now: Date) {
   const commercial = classifyCommercialContent(item);
   if (commercial.rejected) {
     return {
+      kind: "quality",
       reason: commercial.reason,
       reasonCode: commercial.reasonCode
     };
@@ -622,13 +687,14 @@ function rejectionReason(item: NewsItem, now: Date) {
   const freshness = evaluateFreshness({ publishedAt: item.publishedAt, now });
   if (!freshness.accepted) {
     return {
+      kind: "age",
       reason: freshness.excludedReason ?? "Rejected by the 72-hour freshness gate."
     };
   }
 
   const quality = scoreContentQuality(item);
   if (quality.excludedReason) {
-    return { reason: quality.excludedReason };
+    return { kind: "quality", reason: quality.excludedReason };
   }
 
   const externalTags = item.tags.filter(
@@ -643,7 +709,10 @@ function rejectionReason(item: NewsItem, now: Date) {
   const globalSignal = GLOBAL_TECH_SIGNALS.some((keyword) => containsSignal(haystack, keyword));
 
   if (!categorySignal && !globalSignal) {
-    return { reason: "Rejected because it lacked a clear technical category fit." };
+    return {
+      kind: "quality",
+      reason: "Rejected because it lacked a clear technical category fit."
+    };
   }
 
   return undefined;
@@ -681,6 +750,15 @@ function sourceTypeCounts(items: NewsItem[]): RefreshDebug["sourceTypeCounts"] {
     },
     { article: 0, paper: 0, repo: 0 }
   );
+}
+
+function minimumMetByCategory(categories: Record<CategoryId, NewsItem[]>) {
+  return Object.fromEntries(
+    REQUIRED_SECTION_IDS.map((categoryId) => [
+      categoryId,
+      (categories[categoryId]?.length ?? 0) >= MIN_ITEMS_PER_SECTION
+    ])
+  ) as Record<RequiredSectionId, boolean>;
 }
 
 function selectDiverseCategoryItems(items: NewsItem[], limit: number) {
@@ -767,6 +845,7 @@ export function selectDailyItemsWithDebug({
       title: item.title,
       url: item.url,
       sourceName: item.sourceName,
+      category: item.category,
       ...rejection
     });
     return false;
@@ -823,27 +902,33 @@ export function selectDailyItemsWithDebug({
       .slice(0, 5);
   });
 
-  const rejectedByAge = rejected.filter((item) => /older than 72|trustworthy date|future/i.test(item.reason)).length;
-  const rejectedByDuplicate = rejected.filter((item) => /duplicate/i.test(item.reason)).length;
+  const rejectedByAge = rejected.filter((item) => item.kind === "age").length;
+  const rejectedByDuplicate = rejected.filter((item) => item.kind === "duplicate").length;
   const rejectedBySalesPromotion = rejected.filter((item) =>
     ["sales_or_promotion", "shopping_or_deal", "consumer_buying_guide"].includes(
       item.reasonCode ?? ""
     )
   ).length;
-  const rejectedAsConsumerFiller = rejected.filter((item) =>
-    /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
-      item.reason
-    )
+  const rejectedAsConsumerFiller = rejected.filter(
+    (item) =>
+      item.kind === "quality" &&
+      /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
+        item.reason
+      )
   ).length;
-  const rejectedByLowTechnicalDepth = rejected.filter((item) =>
-    /low technical depth|low-information|category fit|implementation detail/i.test(item.reason)
+  const rejectedByLowTechnicalDepth = rejected.filter(
+    (item) =>
+      item.kind === "quality" &&
+      /low technical depth|low-information|category fit|implementation detail/i.test(item.reason)
   ).length;
-  const rejectedByLowQuality = rejected.filter((item) =>
-    /low-information|low-value|low technical depth|consumer|filler|category fit|promotional|shopping|deal|buying-guide|sales/i.test(
-      item.reason
-    )
+  const rejectedByLowQuality = rejected.filter(
+    (item) =>
+      item.kind === "quality" &&
+      /low-information|low-value|low technical depth|consumer|filler|category fit|promotional|shopping|deal|buying-guide|sales/i.test(
+        item.reason
+      )
   ).length;
-  const rejectedByTrust = rejected.filter((item) => /trust score|required fields/i.test(item.reason)).length;
+  const rejectedByTrust = rejected.filter((item) => item.kind === "trust").length;
   const finalItems = Object.values(categories).flat();
   const debug: RefreshDebug = {
     totalCandidatesFound: candidates.length,
@@ -859,6 +944,7 @@ export function selectDailyItemsWithDebug({
     finalSelectedByCategory: createCategoryRecord(
       (categoryId) => categories[categoryId]?.length ?? 0
     ),
+    minimumMetByCategory: minimumMetByCategory(categories),
     sourcesUsed: Array.from(new Set(finalItems.map((item) => item.sourceName))).sort(),
     rejected
   };

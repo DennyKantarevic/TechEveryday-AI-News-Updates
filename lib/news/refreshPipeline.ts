@@ -1,7 +1,17 @@
-import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
+import {
+  CATEGORY_IDS,
+  MIN_ITEMS_PER_SECTION,
+  REQUIRED_SECTION_IDS,
+  createCategoryRecord
+} from "@/config/categories";
+import { archiveMetadata } from "@/lib/news/calendar";
 import { scoreContentQuality, selectDailyItemsWithDebug } from "@/lib/news/classify";
 import { evaluateFreshness } from "@/lib/news/freshness";
-import { arxivRequestUrl, fetchArxivPapersWithDiagnostics } from "@/lib/news/fetchArxiv";
+import {
+  arxivRequestUrl,
+  fetchArxivCategoryCandidates,
+  fetchArxivPapersWithDiagnostics
+} from "@/lib/news/fetchArxiv";
 import { fetchGithubRepositories } from "@/lib/news/fetchGithubRepos";
 import { fetchNewsApiCandidates } from "@/lib/news/fetchNewsApi";
 import {
@@ -10,9 +20,18 @@ import {
 } from "@/lib/news/fetchSources";
 import { fetchTrustedXPosts } from "@/lib/news/fetchX";
 import { safeRefreshErrorMessage } from "@/lib/news/refreshErrors";
+import { getAmericaNewYorkDateKey } from "@/lib/news/refreshSchedule";
 import { newsSnapshotStorage, type NewsSnapshotStorage } from "@/lib/news/snapshotStorage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
-import type { DailyNews, LastRefresh, NewsItem, RefreshSourceFailure } from "@/types/news";
+import type { RequiredSectionId } from "@/config/categories";
+import type {
+  DailyNews,
+  LastRefresh,
+  NewsItem,
+  RefreshDebug,
+  RefreshSourceFailure,
+  UnderfilledCategoryDiagnostic
+} from "@/types/news";
 
 type RefreshOptions = {
   now?: Date;
@@ -21,8 +40,6 @@ type RefreshOptions = {
   trigger?: LastRefresh["trigger"];
   lastRefreshDateAmericaNewYork?: string;
 };
-
-const TARGET_ITEMS_PER_CATEGORY = 3;
 
 function previousXItems(previousDailyNews: DailyNews, now: Date) {
   if (process.env.X_BEARER_TOKEN) {
@@ -50,28 +67,65 @@ function categoryCounts(categories: DailyNews["categories"]) {
 }
 
 function underfilledCategoryIds(categories: DailyNews["categories"]) {
-  return CATEGORY_IDS.filter(
-    (categoryId) => (categories[categoryId]?.length ?? 0) < TARGET_ITEMS_PER_CATEGORY
+  return REQUIRED_SECTION_IDS.filter(
+    (categoryId) => (categories[categoryId]?.length ?? 0) < MIN_ITEMS_PER_SECTION
   );
+}
+
+function isQualityRejection(rejection: RefreshDebug["rejected"][number]) {
+  return (
+    rejection.kind === "quality" ||
+    ["sales_or_promotion", "shopping_or_deal", "consumer_buying_guide"].includes(
+      rejection.reasonCode ?? ""
+    )
+  );
+}
+
+function underfilledMessage({
+  reason,
+  selectedCount
+}: {
+  reason: UnderfilledCategoryDiagnostic["reason"];
+  selectedCount: number;
+}) {
+  if (reason === "fallback_source_failure") {
+    return `Selected ${selectedCount} of ${MIN_ITEMS_PER_SECTION} required high-signal fresh items because fallback discovery failed. No filler was added; the section shows only candidates that passed the existing quality gates.`;
+  }
+
+  if (reason === "quality_filters_rejected_candidates") {
+    return `Selected ${selectedCount} of ${MIN_ITEMS_PER_SECTION} required high-signal fresh items after additional candidates were rejected by the existing quality filters. No filler was added; the section shows only candidates that passed the existing quality gates.`;
+  }
+
+  return `Selected ${selectedCount} of ${MIN_ITEMS_PER_SECTION} required high-signal fresh items after fallback discovery. No filler was added; the section shows only candidates that passed the existing quality gates.`;
 }
 
 function underfilledDebug(
   categories: DailyNews["categories"],
-  attemptedFallback: Set<string>
+  attemptedFallback: Set<RequiredSectionId>,
+  fallbackFailedCategoryIds: Set<RequiredSectionId>,
+  rejected: RefreshDebug["rejected"]
 ) {
   return Object.fromEntries(
     underfilledCategoryIds(categories).map((categoryId) => {
       const selectedCount = categories[categoryId]?.length ?? 0;
+      const reason: UnderfilledCategoryDiagnostic["reason"] =
+        fallbackFailedCategoryIds.has(categoryId)
+          ? "fallback_source_failure"
+          : rejected.some(
+                (candidate) =>
+                  candidate.category === categoryId && isQualityRejection(candidate)
+              )
+            ? "quality_filters_rejected_candidates"
+            : "insufficient_fresh_candidates";
 
       return [
         categoryId,
         {
           attemptedFallback: attemptedFallback.has(categoryId),
           selectedCount,
-          targetCount: TARGET_ITEMS_PER_CATEGORY,
-          message: `Only ${selectedCount} high-signal fresh ${
-            selectedCount === 1 ? "item" : "items"
-          } found after fallback discovery; showing the best available fresh items.`
+          targetCount: MIN_ITEMS_PER_SECTION,
+          reason,
+          message: underfilledMessage({ reason, selectedCount })
         }
       ];
     })
@@ -188,29 +242,106 @@ export async function refreshNews(options: RefreshOptions = {}) {
   });
   const fallbackCategoryIds = underfilledCategoryIds(firstSelection.categories);
   const attemptedFallback = new Set(fallbackCategoryIds);
-  const fallbackResults = await Promise.allSettled(
-    fallbackCategoryIds.map((categoryId) =>
-      fetchCategoryFallbackCandidates({
-        categoryId,
-        now
-      })
-    )
-  );
-  const fallbackFailures = fallbackResults.flatMap((result, index) =>
-    result.status === "rejected"
-      ? [
-          {
-            sourceName: `Fallback discovery: ${fallbackCategoryIds[index]}`,
-            reason: safeRefreshErrorMessage(result.reason),
-            at: startedAt
-          } satisfies RefreshSourceFailure
-        ]
-      : []
+  const fallbackFailedCategoryIds = new Set<RequiredSectionId>();
+  const fallbackFailures: RefreshSourceFailure[] = [];
+  const recordFallbackFailure = ({
+    categoryId,
+    poolName,
+    error,
+    sourceName
+  }: {
+    categoryId: RequiredSectionId;
+    poolName: "RSS" | "arXiv" | "GitHub";
+    error: unknown;
+    sourceName?: string;
+  }) => {
+    fallbackFailedCategoryIds.add(categoryId);
+    fallbackFailures.push({
+      sourceName: `Fallback discovery: ${categoryId} ${poolName}${sourceName ? `: ${sourceName}` : ""}`,
+      reason: safeRefreshErrorMessage(error),
+      at: startedAt
+    });
+  };
+  const fallbackResults = await Promise.all(
+    fallbackCategoryIds.map(async (categoryId) => {
+      const [rssResult, arxivFallbackResult, githubFallbackResult] = await Promise.allSettled([
+        fetchCategoryFallbackCandidates({
+          categoryId,
+          now,
+          onSourceFailure: ({ sourceName, error }) => {
+            recordFallbackFailure({
+              categoryId,
+              poolName: "RSS",
+              sourceName,
+              error
+            });
+          }
+        }),
+        fetchArxivCategoryCandidates({
+          categoryId,
+          now
+        }),
+        fetchGithubRepositories({
+          categoryIds: [categoryId],
+          now
+        })
+      ]);
+
+      const items: NewsItem[] = [];
+
+      if (rssResult.status === "rejected") {
+        recordFallbackFailure({
+          categoryId,
+          poolName: "RSS",
+          error: rssResult.reason
+        });
+      } else {
+        items.push(...rssResult.value.filter((item) => item.category === categoryId));
+      }
+
+      if (arxivFallbackResult.status === "rejected") {
+        recordFallbackFailure({
+          categoryId,
+          poolName: "arXiv",
+          error: arxivFallbackResult.reason
+        });
+      } else {
+        if (arxivFallbackResult.value.failure) {
+          recordFallbackFailure({
+            categoryId,
+            poolName: "arXiv",
+            error: arxivFallbackResult.value.failure
+          });
+        }
+        items.push(
+          ...arxivFallbackResult.value.items.filter((item) => item.category === categoryId)
+        );
+      }
+
+      if (githubFallbackResult.status === "rejected") {
+        recordFallbackFailure({
+          categoryId,
+          poolName: "GitHub",
+          error: githubFallbackResult.reason
+        });
+      } else {
+        if (githubFallbackResult.value.failure) {
+          recordFallbackFailure({
+            categoryId,
+            poolName: "GitHub",
+            error: githubFallbackResult.value.failure
+          });
+        }
+        items.push(
+          ...githubFallbackResult.value.items.filter((item) => item.category === categoryId)
+        );
+      }
+
+      return items;
+    })
   );
   failedSources.push(...fallbackFailures);
-  const fallbackItems = fallbackResults.flatMap((result) =>
-    result.status === "fulfilled" ? result.value : []
-  );
+  const fallbackItems = fallbackResults.flat();
   const finalSelection = fallbackItems.length
     ? selectDailyItemsWithDebug({
         candidates: [...candidates, ...fallbackItems],
@@ -229,6 +360,25 @@ export async function refreshNews(options: RefreshOptions = {}) {
     const quality = scoreContentQuality(item);
     return freshness.accepted && !quality.excludedReason;
   }).length;
+  const archiveSnapshotDate =
+    options.lastRefreshDateAmericaNewYork ?? getAmericaNewYorkDateKey(now);
+  const existingArchiveSummaries =
+    typeof storage.listArchiveSnapshots === "function"
+      ? await storage.listArchiveSnapshots()
+      : [];
+  const nextArchiveSummary = {
+    date: archiveSnapshotDate,
+    itemCount: selectedItems.length,
+    sectionCounts: categoryCounts(categories),
+    updatedAt: now.toISOString()
+  };
+  const archiveSummaries = [
+    nextArchiveSummary,
+    ...existingArchiveSummaries.filter(
+      (summary) => summary.date !== archiveSnapshotDate
+    )
+  ].sort((left, right) => right.date.localeCompare(left.date));
+  const archiveDebug = archiveMetadata(archiveSummaries, archiveSnapshotDate);
   const debug = {
     ...finalSelection.debug,
     fallbackCandidateCount: fallbackItems.length,
@@ -242,7 +392,14 @@ export async function refreshNews(options: RefreshOptions = {}) {
       }
     },
     failedSources,
-    underfilledCategories: underfilledDebug(categories, attemptedFallback)
+    archiveSnapshotDate,
+    ...archiveDebug,
+    underfilledCategories: underfilledDebug(
+      categories,
+      attemptedFallback,
+      fallbackFailedCategoryIds,
+      finalSelection.debug.rejected
+    )
   };
   const dailyNews: DailyNews = {
     refreshedAt: now.toISOString(),
@@ -254,7 +411,7 @@ export async function refreshNews(options: RefreshOptions = {}) {
     nextRefreshAt: getNextRefreshAt(now).toISOString(),
     lastRefreshStartedAt: startedAt,
     lastRefreshCompletedAt: now.toISOString(),
-    lastRefreshDateAmericaNewYork: options.lastRefreshDateAmericaNewYork,
+    lastRefreshDateAmericaNewYork: archiveSnapshotDate,
     itemsFound: candidates.length,
     itemsSelected: selectedItems.length,
     errors: [],
@@ -270,8 +427,16 @@ export async function refreshNews(options: RefreshOptions = {}) {
     debug
   };
 
-  await storage.writeDailyNews(dailyNews);
-  await storage.writeLastRefresh(refreshStatus);
+  if (typeof storage.writeSuccessfulSnapshot === "function") {
+    await storage.writeSuccessfulSnapshot({
+      date: archiveSnapshotDate,
+      dailyNews,
+      lastRefresh: refreshStatus
+    });
+  } else {
+    await storage.writeDailyNews(dailyNews);
+    await storage.writeLastRefresh(refreshStatus);
+  }
 
   return {
     dailyNews,

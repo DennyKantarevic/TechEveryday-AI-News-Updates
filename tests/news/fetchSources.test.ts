@@ -1,5 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fetchSourceCandidates } from "@/lib/news/fetchSources";
+import {
+  fetchCategoryFallbackCandidates,
+  fetchSourceCandidates
+} from "@/lib/news/fetchSources";
 import type { TrustedSourceConfig } from "@/config/sources";
 
 const source = (
@@ -143,5 +146,117 @@ describe("fetchSourceCandidates", () => {
     });
 
     expect(items[0].category).toBe("embedded-systems");
+  });
+});
+
+describe("fetchCategoryFallbackCandidates diagnostics", () => {
+  it("keeps healthy fallback items while reporting a non-OK feed failure", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: string | URL | Request) => {
+        const url = String(input);
+
+        if (url.includes("healthy-feed")) {
+          return new Response(
+            feedXml(
+              feedItemXml({
+                title: "Cloud runtime observability implementation guide",
+                link: "https://healthy.example/cloud-runtime",
+                description:
+                  "A technical cloud infrastructure guide with runtime architecture, observability, reliability, benchmarks, and production implementation details."
+              })
+            ),
+            { status: 200 }
+          );
+        }
+
+        return new Response("Service unavailable", {
+          status: 503,
+          statusText: "Service Unavailable"
+        });
+      })
+    );
+    const onSourceFailure = vi.fn();
+
+    const items = await fetchCategoryFallbackCandidates({
+      categoryId: "cloud-infrastructure",
+      sources: [
+        source({
+          name: "Healthy Cloud Feed",
+          rssUrl: "https://healthy.example/healthy-feed.xml",
+          categoryHints: ["cloud-infrastructure"],
+          allowedCategories: ["cloud-infrastructure"]
+        }),
+        source({
+          name: "Broken Cloud Feed",
+          rssUrl: "https://broken.example/broken-feed.xml",
+          categoryHints: ["cloud-infrastructure"],
+          allowedCategories: ["cloud-infrastructure"]
+        })
+      ],
+      now: new Date("2026-06-11T13:00:00.000Z"),
+      onSourceFailure
+    });
+
+    expect(items.map((item) => item.url)).toEqual(["https://healthy.example/cloud-runtime"]);
+    expect(onSourceFailure).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceName: "Broken Cloud Feed",
+        error: expect.objectContaining({
+          message: expect.stringMatching(/503.*service unavailable/i)
+        })
+      })
+    );
+  });
+
+  it("reports thrown fetch and feed parse errors per source", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: string | URL | Request) => {
+        const url = String(input);
+
+        if (url.includes("fetch-error")) {
+          throw new Error("socket reset");
+        }
+
+        return new Response("<rss><channel><item>", { status: 200 });
+      })
+    );
+    const onSourceFailure = vi.fn();
+
+    const items = await fetchCategoryFallbackCandidates({
+      categoryId: "cloud-infrastructure",
+      sources: [
+        source({
+          name: "Fetch Error Feed",
+          rssUrl: "https://broken.example/fetch-error.xml",
+          categoryHints: ["cloud-infrastructure"],
+          allowedCategories: ["cloud-infrastructure"]
+        }),
+        source({
+          name: "Parse Error Feed",
+          rssUrl: "https://broken.example/parse-error.xml",
+          categoryHints: ["cloud-infrastructure"],
+          allowedCategories: ["cloud-infrastructure"]
+        })
+      ],
+      now: new Date("2026-06-11T13:00:00.000Z"),
+      onSourceFailure
+    });
+
+    expect(items).toEqual([]);
+    expect(onSourceFailure).toHaveBeenCalledTimes(2);
+    expect(onSourceFailure).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceName: "Fetch Error Feed",
+        error: expect.objectContaining({ message: "socket reset" })
+      })
+    );
+    expect(onSourceFailure).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceName: "Parse Error Feed",
+        error: expect.anything()
+      })
+    );
   });
 });

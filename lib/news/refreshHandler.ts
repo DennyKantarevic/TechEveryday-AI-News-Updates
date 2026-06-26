@@ -159,6 +159,7 @@ export async function handleRefreshRequest(
     options.revalidate("/");
     options.revalidate("/learning");
     options.revalidate("/for-you");
+    options.revalidate("/calendar");
 
     return NextResponse.json({
       ok: true,

@@ -1,8 +1,18 @@
 import { createCategoryRecord } from "@/config/categories";
+import {
+  isCalendarDate,
+  sectionCounts,
+  totalItems
+} from "@/lib/news/calendar";
 import { filterCommercialNewsItems } from "@/lib/news/commercialContent";
 import { fileStorage } from "@/lib/storage";
 import { getNextRefreshAt, REFRESH_TIME_ZONE } from "@/lib/time";
-import type { DailyNews, LastRefresh } from "@/types/news";
+import type {
+  ArchiveSnapshot,
+  ArchiveSnapshotSummary,
+  DailyNews,
+  LastRefresh
+} from "@/types/news";
 
 const SNAPSHOT_ID = "current";
 const SNAPSHOT_TABLE = "newsletter_snapshots";
@@ -13,12 +23,20 @@ export type NewsSnapshotStorage = {
   writeDailyNews(dailyNews: DailyNews): Promise<void>;
   readLastRefresh(): Promise<LastRefresh>;
   writeLastRefresh(lastRefresh: LastRefresh): Promise<void>;
+  listArchiveSnapshots(): Promise<ArchiveSnapshotSummary[]>;
+  readArchiveSnapshot(date: string): Promise<ArchiveSnapshot | null>;
+  writeSuccessfulSnapshot(input: {
+    date: string;
+    dailyNews: DailyNews;
+    lastRefresh: LastRefresh;
+  }): Promise<void>;
 };
 
 type SnapshotRow = {
   id: string;
   daily_news: DailyNews | null;
   last_refresh: LastRefresh | null;
+  updated_at?: string | null;
 };
 
 type SnapshotMetadata = {
@@ -91,7 +109,7 @@ function requirePersistentStorageForProduction() {
   }
 }
 
-async function readSnapshotRow() {
+async function readSnapshotRow(id = SNAPSHOT_ID) {
   if (!hasSupabaseSnapshotEnv()) {
     return null;
   }
@@ -101,8 +119,8 @@ async function readSnapshotRow() {
     const admin = createAdminSupabaseClient();
     const modern = await admin
       .from(SNAPSHOT_TABLE)
-      .select("id,daily_news,last_refresh")
-      .eq("id", SNAPSHOT_ID)
+      .select("id,daily_news,last_refresh,updated_at")
+      .eq("id", id)
       .maybeSingle();
 
     if (!modern.error) {
@@ -110,6 +128,10 @@ async function readSnapshotRow() {
     }
 
     console.error("[news:snapshot] read_failed", { message: modern.error.message });
+
+    if (id !== SNAPSHOT_ID) {
+      return null;
+    }
 
     const { data, error } = await admin
       .from(LEGACY_SNAPSHOT_TABLE)
@@ -129,6 +151,33 @@ async function readSnapshotRow() {
     });
     return null;
   }
+}
+
+function snapshotRow({
+  id,
+  dailyNews,
+  lastRefresh,
+  updatedAt
+}: {
+  id: string;
+  dailyNews: DailyNews;
+  lastRefresh: LastRefresh;
+  updatedAt: string;
+}) {
+  return {
+    id,
+    daily_news: dailyNews,
+    last_refresh: lastRefresh,
+    refreshed_at: dailyNews.refreshedAt,
+    last_refresh_date_america_new_york:
+      lastRefresh.lastRefreshDateAmericaNewYork ?? null,
+    candidates_found: lastRefresh.itemsFound ?? lastRefresh.candidateCount ?? 0,
+    items_selected:
+      lastRefresh.itemsSelected ??
+      Object.values(lastRefresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
+    failed_sources: lastRefresh.failedSources ?? [],
+    updated_at: updatedAt
+  };
 }
 
 async function readSnapshotMetadata(): Promise<SnapshotMetadata> {
@@ -269,20 +318,14 @@ async function upsertSnapshot(values: {
     (process.env.NODE_ENV === "production"
       ? emptyLastRefresh("No Supabase newsletter snapshot exists. Run a protected refresh after applying refresh migrations.")
       : await fileStorage.readLastRefresh());
-  const { error } = await admin.from(SNAPSHOT_TABLE).upsert({
-    id: SNAPSHOT_ID,
-    daily_news: dailyNews,
-    last_refresh: lastRefresh,
-    refreshed_at: dailyNews.refreshedAt,
-    last_refresh_date_america_new_york:
-      lastRefresh.lastRefreshDateAmericaNewYork ?? null,
-    candidates_found: lastRefresh.itemsFound ?? lastRefresh.candidateCount ?? 0,
-    items_selected:
-      lastRefresh.itemsSelected ??
-      Object.values(lastRefresh.categoryCounts ?? {}).reduce((sum, count) => sum + count, 0),
-    failed_sources: lastRefresh.failedSources ?? [],
-    updated_at: new Date().toISOString()
-  });
+  const { error } = await admin.from(SNAPSHOT_TABLE).upsert(
+    snapshotRow({
+      id: SNAPSHOT_ID,
+      dailyNews,
+      lastRefresh,
+      updatedAt: new Date().toISOString()
+    })
+  );
 
   if (error) {
     throw new Error(`Could not persist news snapshot: ${error.message}`);
@@ -330,6 +373,136 @@ export const newsSnapshotStorage: NewsSnapshotStorage = {
 
   async writeLastRefresh(lastRefresh) {
     await upsertSnapshot({ lastRefresh });
+  },
+
+  async listArchiveSnapshots() {
+    if (productionWithoutPersistentStorage()) {
+      return [];
+    }
+
+    if (!hasSupabaseSnapshotEnv()) {
+      return fileStorage.listArchiveSnapshots();
+    }
+
+    const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+    const admin = createAdminSupabaseClient();
+    const { data, error } = await admin
+      .from(SNAPSHOT_TABLE)
+      .select("id,daily_news,last_refresh,updated_at")
+      .order("id", { ascending: false });
+
+    if (error) {
+      throw new Error(`Could not list news snapshots: ${error.message}`);
+    }
+
+    const rows = (data ?? []) as SnapshotRow[];
+    const summaries = rows
+      .filter(
+        (row): row is SnapshotRow & { daily_news: DailyNews } =>
+          isCalendarDate(row.id) && Boolean(row.daily_news)
+      )
+      .map((row) => {
+        const dailyNews = filterDailyNews(row.daily_news);
+        return {
+          date: row.id,
+          itemCount: totalItems(dailyNews),
+          sectionCounts: sectionCounts(dailyNews),
+          updatedAt: row.updated_at ?? dailyNews.refreshedAt
+        };
+      });
+    const current = rows.find((row) => row.id === SNAPSHOT_ID);
+    const currentDate = current?.last_refresh?.lastRefreshDateAmericaNewYork;
+
+    if (
+      current?.daily_news &&
+      currentDate &&
+      isCalendarDate(currentDate) &&
+      !summaries.some((summary) => summary.date === currentDate)
+    ) {
+      const dailyNews = filterDailyNews(current.daily_news);
+      summaries.push({
+        date: currentDate,
+        itemCount: totalItems(dailyNews),
+        sectionCounts: sectionCounts(dailyNews),
+        updatedAt: current.updated_at ?? dailyNews.refreshedAt
+      });
+    }
+
+    return summaries.sort((left, right) => right.date.localeCompare(left.date));
+  },
+
+  async readArchiveSnapshot(date) {
+    if (!isCalendarDate(date) || productionWithoutPersistentStorage()) {
+      return null;
+    }
+
+    if (!hasSupabaseSnapshotEnv()) {
+      return fileStorage.readArchiveSnapshot(date);
+    }
+
+    const datedRow = await readSnapshotRow(date);
+    const row =
+      datedRow ??
+      (await (async () => {
+        const current = await readSnapshotRow();
+        return current?.last_refresh?.lastRefreshDateAmericaNewYork === date
+          ? current
+          : null;
+      })());
+
+    if (!row?.daily_news || !row.last_refresh) {
+      return null;
+    }
+
+    const dailyNews = filterDailyNews(row.daily_news);
+    return {
+      date,
+      dailyNews,
+      lastRefresh: row.last_refresh,
+      itemCount: totalItems(dailyNews),
+      sectionCounts: sectionCounts(dailyNews),
+      updatedAt: row.updated_at ?? dailyNews.refreshedAt
+    };
+  },
+
+  async writeSuccessfulSnapshot({ date, dailyNews, lastRefresh }) {
+    if (!isCalendarDate(date)) {
+      throw new Error(`Invalid archive date: ${date}`);
+    }
+
+    requirePersistentStorageForProduction();
+    const filteredDailyNews = filterDailyNews(dailyNews);
+
+    if (!hasSupabaseSnapshotEnv()) {
+      await fileStorage.writeDailyNews(filteredDailyNews);
+      await fileStorage.writeLastRefresh(lastRefresh);
+      await fileStorage.writeArchiveSnapshot(date, filteredDailyNews, lastRefresh);
+      return;
+    }
+
+    const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+    const admin = createAdminSupabaseClient();
+    const updatedAt = new Date().toISOString();
+    const { error } = await admin.from(SNAPSHOT_TABLE).upsert([
+      snapshotRow({
+        id: SNAPSHOT_ID,
+        dailyNews: filteredDailyNews,
+        lastRefresh,
+        updatedAt
+      }),
+      snapshotRow({
+        id: date,
+        dailyNews: filteredDailyNews,
+        lastRefresh,
+        updatedAt
+      })
+    ]);
+
+    if (error) {
+      throw new Error(`Could not persist successful news snapshot: ${error.message}`);
+    }
+
+    await recordRefreshRun(lastRefresh);
   }
 };
 

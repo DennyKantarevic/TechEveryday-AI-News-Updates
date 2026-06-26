@@ -1,10 +1,10 @@
-import { XMLParser } from "fast-xml-parser";
+import { XMLParser, XMLValidator } from "fast-xml-parser";
 import { placeholderImageForCategory } from "@/lib/placeholders";
 import { createNewsId } from "@/lib/news/ids";
 import { normalizeTitle } from "@/lib/news/normalizeContent";
 import { canonicalizeUrl, scoreNewsItem } from "@/lib/news/scoring";
 import { summarizeCandidate } from "@/lib/news/summarize";
-import type { CategoryId } from "@/config/categories";
+import type { CategoryId, RequiredSectionId } from "@/config/categories";
 import type { NewsItem } from "@/types/news";
 
 export const ARXIV_CATEGORIES = [
@@ -15,15 +15,31 @@ export const ARXIV_CATEGORIES = [
   "cat:cs.RO",
   "cat:cs.DC",
   "cat:cs.OS",
+  "cat:cs.AR",
+  "cat:cs.PF",
   "cat:cs.CR",
   "cat:cs.SE",
   "cat:cs.HC",
   "cat:cs.SY",
+  "cat:eess.SY",
   "cat:stat.ML"
 ];
 
-const ARXIV_QUERY = ARXIV_CATEGORIES.join("+OR+");
+const ARXIV_QUERY = ARXIV_CATEGORIES.join(" OR ");
 const MAX_RESULTS = 75;
+const TARGETED_MAX_RESULTS = 60;
+
+const ARXIV_CATEGORY_QUERIES: Record<RequiredSectionId, string> = {
+  "ai-ml": "(cat:cs.AI OR cat:cs.LG OR cat:cs.CL OR cat:cs.CV OR cat:stat.ML)",
+  "automation-agentic-systems":
+    '((cat:cs.AI OR cat:cs.LG OR cat:cs.CL OR cat:cs.SE) AND (all:agent OR all:agentic OR all:"tool use" OR all:"multi-agent" OR all:"workflow automation"))',
+  "embedded-systems": "(cat:cs.RO OR cat:cs.SY OR cat:eess.SY)",
+  "computer-systems": "(cat:cs.DC OR cat:cs.OS OR cat:cs.AR OR cat:cs.PF)",
+  "developer-tools-open-source":
+    '((cat:cs.SE) AND (all:"developer tool" OR all:compiler OR all:debugger OR all:testing OR all:"build system"))',
+  "cloud-infrastructure":
+    '((cat:cs.DC OR cat:cs.NI OR cat:cs.PF) AND (all:"cloud computing" OR all:kubernetes OR all:serverless OR all:observability))'
+};
 
 type ArxivEntry = {
   id?: string;
@@ -67,6 +83,30 @@ function categoryForArxivTags(tags: string[], title: string, summary: string): C
   const haystack = `${title} ${summary}`.toLowerCase();
 
   if (
+    /\b(agent|agents|agentic|autonomous agent|tool use|tool-use|multi-agent|llm agent|language model agent|workflow automation)\b/.test(
+      haystack
+    )
+  ) {
+    return "automation-agentic-systems";
+  }
+
+  if (normalized.has("cs.se")) {
+    return "developer-tools-open-source";
+  }
+
+  if (normalized.has("cs.ro") || normalized.has("cs.sy") || normalized.has("eess.sy")) {
+    return "embedded-systems";
+  }
+
+  if (
+    /\b(cloud computing|cloud infrastructure|kubernetes|serverless|observability platform)\b/.test(
+      haystack
+    )
+  ) {
+    return "cloud-infrastructure";
+  }
+
+  if (
     normalized.has("cs.dc") ||
     normalized.has("cs.os") ||
     normalized.has("cs.ar") ||
@@ -75,20 +115,22 @@ function categoryForArxivTags(tags: string[], title: string, summary: string): C
     return "computer-systems";
   }
 
-  if (normalized.has("cs.ro") || normalized.has("cs.sy") || normalized.has("eess.sy")) {
-    return "embedded-systems";
-  }
-
-  if (normalized.has("cs.se")) {
-    return "developer-tools-open-source";
+  if (
+    normalized.has("cs.ai") ||
+    normalized.has("cs.lg") ||
+    normalized.has("cs.cl") ||
+    normalized.has("cs.cv") ||
+    normalized.has("stat.ml")
+  ) {
+    return "ai-ml";
   }
 
   if (
-    /\b(agent|agents|agentic|autonomous|tool use|tool-use|workflow|multi-agent|llm agent|language model agent)\b/.test(
+    /\b(operating system|kernel|compiler|storage|database|distributed systems?|memory management|runtime scheduler|computer architecture)\b/.test(
       haystack
     )
   ) {
-    return "automation-agentic-systems";
+    return "computer-systems";
   }
 
   return "research-papers";
@@ -105,15 +147,26 @@ export type ArxivFetchResult = {
   diagnostics: ArxivFetchDiagnostics;
 };
 
-export function arxivRequestUrl() {
-  return `https://export.arxiv.org/api/query?search_query=${ARXIV_QUERY}&start=0&max_results=${MAX_RESULTS}&sortBy=submittedDate&sortOrder=descending`;
+export type ArxivCategoryFetchResult = {
+  items: NewsItem[];
+  failure?: unknown;
+};
+
+type ArxivFetchAttempt = ArxivFetchResult & {
+  failure?: unknown;
+};
+
+function requestUrl(searchQuery: string, maxResults: number) {
+  const url = new URL("https://export.arxiv.org/api/query");
+  url.searchParams.set("search_query", searchQuery);
+  url.searchParams.set("start", "0");
+  url.searchParams.set("max_results", String(maxResults));
+  url.searchParams.set("sortBy", "submittedDate");
+  url.searchParams.set("sortOrder", "descending");
+  return url.toString();
 }
 
-export async function fetchArxivPapersWithDiagnostics({
-  now = new Date()
-}: { now?: Date } = {}): Promise<ArxivFetchResult> {
-  const url = arxivRequestUrl();
-
+async function fetchArxivUrlWithDiagnostics(url: string, now: Date): Promise<ArxivFetchAttempt> {
   const emptyDiagnostics = {
     requestUrl: url,
     rawCount: 0,
@@ -131,11 +184,19 @@ export async function fetchArxivPapersWithDiagnostics({
     if (!response.ok) {
       return {
         items: [],
-        diagnostics: emptyDiagnostics
+        diagnostics: emptyDiagnostics,
+        failure: new Error(
+          `HTTP ${response.status}${response.statusText ? ` ${response.statusText}` : ""}`
+        )
       };
     }
 
     const xml = await response.text();
+    const validation = XMLValidator.validate(xml);
+    if (validation !== true) {
+      throw new Error(`Invalid XML: ${validation.err.msg}`);
+    }
+
     const parsed = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: ""
@@ -201,15 +262,45 @@ export async function fetchArxivPapersWithDiagnostics({
         parsedCount: items.length
       }
     };
-  } catch {
+  } catch (error) {
     return {
       items: [],
-      diagnostics: emptyDiagnostics
+      diagnostics: emptyDiagnostics,
+      failure: error
     };
   }
+}
+
+export function arxivRequestUrl() {
+  return requestUrl(ARXIV_QUERY, MAX_RESULTS);
+}
+
+export function arxivCategoryRequestUrl(categoryId: RequiredSectionId) {
+  return requestUrl(ARXIV_CATEGORY_QUERIES[categoryId], TARGETED_MAX_RESULTS);
+}
+
+export async function fetchArxivPapersWithDiagnostics({
+  now = new Date()
+}: { now?: Date } = {}): Promise<ArxivFetchResult> {
+  const { items, diagnostics } = await fetchArxivUrlWithDiagnostics(arxivRequestUrl(), now);
+  return { items, diagnostics };
 }
 
 export async function fetchArxivPapers({ now = new Date() }: { now?: Date } = {}) {
   const result = await fetchArxivPapersWithDiagnostics({ now });
   return result.items;
+}
+
+export async function fetchArxivCategoryCandidates({
+  categoryId,
+  now = new Date()
+}: {
+  categoryId: RequiredSectionId;
+  now?: Date;
+}): Promise<ArxivCategoryFetchResult> {
+  const result = await fetchArxivUrlWithDiagnostics(arxivCategoryRequestUrl(categoryId), now);
+  return {
+    items: result.items.filter((item) => item.category === categoryId),
+    ...(result.failure ? { failure: result.failure } : {})
+  };
 }

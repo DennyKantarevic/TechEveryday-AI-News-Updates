@@ -539,6 +539,8 @@ describe("selectDailyItems", () => {
     expect(selected.debug.rejected).toContainEqual(
       expect.objectContaining({
         id: "prime-day-deal",
+        category: "ai-ml",
+        kind: "quality",
         reasonCode: "shopping_or_deal"
       })
     );
@@ -546,6 +548,153 @@ describe("selectDailyItems", () => {
 });
 
 describe("scoreContentQuality", () => {
+  it("rejects policy advocacy, career essays, consumer upgrades, and shallow launch announcements", () => {
+    const filler = [
+      baseItem({
+        title:
+          "GitHub joins coalition advocating for fixes to California AI Transparency Act to protect open source",
+        summary:
+          "The company calls for amendments to align policy and regulatory frameworks while preserving legislative intent.",
+        sourceName: "GitHub Blog",
+        sourceType: "official",
+        category: "developer-tools-open-source",
+        tags: ["policy", "News & insights"]
+      }),
+      baseItem({
+        title: "I automated my job (and it made me a better leader)",
+        summary:
+          "A senior leader shares favorite automations and career growth lessons without architecture, benchmarks, or implementation details.",
+        sourceName: "GitHub Blog",
+        sourceType: "official",
+        category: "automation-agentic-systems",
+        tags: ["Career growth", "GitHub Copilot"]
+      }),
+      baseItem({
+        title: "Louder ESP32 Mini Upgrades Your Old Speakers",
+        summary:
+          "If you are in the market for a new smart speaker, this consumer upgrade describes available options without firmware timing, schematics, or benchmarks.",
+        sourceName: "Hackster.io",
+        sourceType: "blog",
+        category: "embedded-systems",
+        tags: ["embedded-systems"]
+      }),
+      baseItem({
+        title: "OpenAI and Broadcom unveil LLM-optimized inference chip",
+        summary:
+          "The companies introduce a custom AI chip intended to improve performance, efficiency, and scale.",
+        sourceName: "OpenAI Blog",
+        sourceType: "official",
+        category: "ai-ml",
+        tags: ["Company"]
+      }),
+      baseItem({
+        title: "From Awareness to Engineered Accessibility in Open Source",
+        summary:
+          "The ecosystem discusses contributor inclusion, written context, and synchronous calls without code, testing, architecture, or implementation details.",
+        sourceName: "CNCF Blog",
+        sourceType: "official",
+        category: "developer-tools-open-source",
+        tags: ["Blog"]
+      }),
+      baseItem({
+        title: "NeoEyes NE503 Brings 20 TOPS of On-Device AI to Industrial Cameras",
+        summary:
+          "Industrial cameras have traditionally captured images and sent them to a local server or cloud for processing. This solution adds local interpretation and reduces latency.",
+        sourceName: "Hackster.io",
+        sourceType: "blog",
+        category: "embedded-systems",
+        tags: ["embedded-systems"]
+      }),
+      baseItem({
+        title: "GLM 5.2 Fast via Wafer now available on AI Gateway",
+        summary:
+          "The model leads on decode and end-to-end speed for sustained generation. AI Gateway provides a unified API for calling models, tracking usage and cost, configuring retries, failover, and performance optimizations.",
+        sourceName: "Vercel Blog",
+        sourceType: "official",
+        category: "developer-tools-open-source",
+        tags: ["developer-tools-open-source"]
+      }),
+      baseItem({
+        title: "Build Your Own Retro VFD Desk Clock",
+        summary:
+          "Smartphones replaced many standalone devices, but one piece of hardware has resisted the same fate: the desk clock.",
+        sourceName: "Hackster.io",
+        sourceType: "blog",
+        category: "embedded-systems",
+        tags: ["embedded-systems"]
+      }),
+      baseItem({
+        title: "From insight to action: The next phase of agentic cloud operations",
+        summary:
+          "What if your cloud environment could move from insight to action in real time, with systems working through the next set of decisions?",
+        sourceName: "Microsoft Azure Blog",
+        sourceType: "official",
+        category: "cloud-infrastructure",
+        tags: ["AI", "Management and governance"]
+      }),
+      baseItem({
+        title: "What it Means to Be a Mathematician When AI Does the Math",
+        summary:
+          "A personal reflection on applied mathematics, liquid crystals, and what the profession means as AI changes mathematical work.",
+        sourceName: "IEEE Spectrum",
+        sourceType: "news",
+        category: "ai-ml",
+        tags: ["Mathematics", "Stem-education"]
+      })
+    ];
+
+    for (const item of filler) {
+      expect(scoreContentQuality(item).excludedReason).toMatch(
+        /consumer|filler|low-information|low-value/i
+      );
+    }
+  });
+
+  it("keeps concise technical release and infrastructure posts with reusable details", () => {
+    const technical = [
+      baseItem({
+        title: "AI SDK 7",
+        summary:
+          "The SDK release documents API migration, tool calling, runtime behavior, testing workflows, and TypeScript implementation changes.",
+        sourceName: "Vercel Blog",
+        sourceType: "official",
+        category: "developer-tools-open-source",
+        tags: ["sdk", "typescript", "api"]
+      }),
+      baseItem({
+        title: "Modernizing Lambda and S3 workloads with Amazon S3 Files",
+        summary:
+          "The engineering post explains storage architecture, migration constraints, runtime behavior, and production implementation tradeoffs.",
+        sourceName: "AWS Compute Blog",
+        sourceType: "official",
+        category: "computer-systems",
+        tags: ["storage", "runtime"]
+      }),
+      baseItem({
+        title: "A helper library for BPF arenas",
+        summary:
+          "The kernel library provides shared-memory data structures, verifier-aware source code, runtime instrumentation, and reusable implementation utilities for BPF programs.",
+        sourceName: "LWN.net",
+        sourceType: "news",
+        category: "computer-systems",
+        tags: ["bpf", "memory", "library"]
+      }),
+      baseItem({
+        title: "CSS On The ESP32",
+        summary:
+          "The technical build compares graphics libraries, firmware implementation, source code, and benchmark tradeoffs for rendering CSS-driven interfaces on an ESP32.",
+        sourceName: "Hackaday",
+        sourceType: "blog",
+        category: "embedded-systems",
+        tags: ["esp32", "libraries"]
+      })
+    ];
+
+    for (const item of technical) {
+      expect(scoreContentQuality(item).excludedReason).toBeUndefined();
+    }
+  });
+
   it("rejects consumer, culture, funding-only, vague hype, listicle, and sponsored filler", () => {
     const cases = [
       baseItem({

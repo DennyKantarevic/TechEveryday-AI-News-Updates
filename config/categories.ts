@@ -38,6 +38,19 @@ export const CATEGORIES = [
 
 export type CategoryId = (typeof CATEGORIES)[number]["id"];
 
+export const REQUIRED_SECTION_IDS = [
+  "ai-ml",
+  "automation-agentic-systems",
+  "embedded-systems",
+  "computer-systems",
+  "developer-tools-open-source",
+  "cloud-infrastructure"
+] as const satisfies readonly CategoryId[];
+
+export type RequiredSectionId = (typeof REQUIRED_SECTION_IDS)[number];
+
+export const MIN_ITEMS_PER_SECTION = 4;
+
 export const CATEGORY_IDS = CATEGORIES.map((category) => category.id) as CategoryId[];
 
 export const CATEGORY_BY_ID = Object.fromEntries(

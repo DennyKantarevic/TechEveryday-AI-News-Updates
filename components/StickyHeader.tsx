@@ -3,7 +3,13 @@
 import Link from "next/link";
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Bookmark, BookOpen, Newspaper, Sparkles } from "lucide-react";
+import {
+  Bookmark,
+  BookOpen,
+  CalendarDays,
+  Newspaper,
+  Sparkles
+} from "lucide-react";
 import AuthButton from "@/components/AuthButton";
 import BrandWordmark from "@/components/BrandWordmark";
 
@@ -57,7 +63,7 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
         <div
           data-testid="sticky-brand-wordmark"
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 -translate-x-1/2 font-display text-lg font-black leading-none md:text-2xl"
+          className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-display text-lg font-black leading-none md:block md:text-2xl"
         >
           <BrandWordmark />
         </div>
@@ -70,6 +76,16 @@ export default function StickyHeader({ alwaysVisible = false }: { alwaysVisible?
             <Bookmark size={18} strokeWidth={2.5} />
             <span className="hidden text-xs font-black uppercase tracking-[0.12em] lg:inline">
               Gallery
+            </span>
+          </Link>
+          <Link
+            href="/calendar"
+            className="inline-flex h-10 items-center justify-center gap-2 border-2 border-ink bg-white px-2 transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#111] md:px-3"
+            aria-label="Calendar"
+          >
+            <CalendarDays size={18} strokeWidth={2.5} />
+            <span className="hidden text-xs font-black uppercase tracking-[0.12em] lg:inline">
+              Calendar
             </span>
           </Link>
           <AuthButton />

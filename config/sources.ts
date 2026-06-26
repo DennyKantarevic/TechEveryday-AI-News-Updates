@@ -315,7 +315,12 @@ const PLATFORM_AND_INFRASTRUCTURE_SOURCES: TrustedSourceConfig[] = [
     rssUrl: "https://netflixtechblog.com/feed",
     sourceType: "blog",
     trustScore: 0.88,
-    categoryHints: ["cloud-infrastructure", "computer-systems", "developer-tools-open-source"]
+    categoryHints: [
+      "cloud-infrastructure",
+      "computer-systems",
+      "developer-tools-open-source",
+      "ai-ml"
+    ]
   },
   {
     name: "Uber Engineering",
