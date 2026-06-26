@@ -44,6 +44,8 @@ describe("calendar news API", () => {
   });
 
   it("lists refresh dates and archive metadata", async () => {
+    listArchiveSnapshots.mockResolvedValue([summaries[1], summaries[0]]);
+
     const response = await GET(
       new NextRequest("https://techeveryday.example/api/news/calendar")
     );
@@ -57,18 +59,18 @@ describe("calendar news API", () => {
     });
   });
 
-  it("returns an exact dated snapshot", async () => {
+  it("returns an exact yesterday snapshot when it exists", async () => {
     const snapshot = {
-      ...summaries[0],
+      ...summaries[1],
       dailyNews: {
-        refreshedAt: "2026-06-25T11:00:00.000Z",
+        refreshedAt: "2026-06-24T11:00:00.000Z",
         timezone: "America/New_York",
         categories: createCategoryRecord(() => [])
       },
       lastRefresh: {
-        refreshedAt: "2026-06-25T11:00:00.000Z",
-        nextRefreshAt: "2026-06-26T11:00:00.000Z",
-        candidateCount: 8,
+        refreshedAt: "2026-06-24T11:00:00.000Z",
+        nextRefreshAt: "2026-06-25T11:00:00.000Z",
+        candidateCount: 7,
         categoryCounts: createCategoryRecord(() => 0),
         status: "success"
       }
@@ -77,13 +79,13 @@ describe("calendar news API", () => {
 
     const response = await GET(
       new NextRequest(
-        "https://techeveryday.example/api/news/calendar?date=2026-06-25"
+        "https://techeveryday.example/api/news/calendar?date=2026-06-24"
       )
     );
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
-      date: "2026-06-25",
+      date: "2026-06-24",
       snapshot
     });
   });

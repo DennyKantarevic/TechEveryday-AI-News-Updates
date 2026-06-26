@@ -17,10 +17,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ date, snapshot });
   }
 
-  const [dates, lastRefresh] = await Promise.all([
+  const [archiveDates, lastRefresh] = await Promise.all([
     newsSnapshotStorage.listArchiveSnapshots(),
     newsSnapshotStorage.readLastRefresh()
   ]);
+  const dates = [...archiveDates].sort((left, right) =>
+    right.date.localeCompare(left.date)
+  );
 
   return NextResponse.json({
     dates,

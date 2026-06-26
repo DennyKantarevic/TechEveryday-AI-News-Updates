@@ -50,8 +50,7 @@ export default async function CalendarPage({
             Refresh calendar
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-6 md:text-base">
-            Browse the exact educational articles selected during each successful
-            TechEveryday refresh.
+            Pick a day and revisit the stories TechEveryday saved for you.
           </p>
         </section>
 

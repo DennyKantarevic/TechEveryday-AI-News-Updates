@@ -102,7 +102,11 @@ describe("CalendarArchive", () => {
       "href",
       "/calendar?date=2026-05-01"
     );
-    expect(screen.getByRole("link", { name: /April 30, 2026/i })).toBeInTheDocument();
+    expect(
+      screen
+        .getAllByRole("link", { name: /April 30, 2026/i })
+        .some((link) => link.getAttribute("href") === "/calendar?date=2026-04-30")
+    ).toBe(true);
     expect(screen.getByText("Archived kernel scheduler deep dive")).toBeInTheDocument();
     expect(
       screen.getByText("This exact stored explanation must remain visible.")
@@ -121,5 +125,52 @@ describe("CalendarArchive", () => {
     );
 
     expect(screen.getByText(/No refresh was stored for April 29, 2026/i)).toBeInTheDocument();
+  });
+
+  it("shows previous and next date controls that use available archived dates", () => {
+    const { summaries, snapshot } = archiveFixture();
+    const gappedSummaries = [
+      {
+        ...summaries[0],
+        date: "2026-05-05",
+        updatedAt: "2026-05-05T11:05:00.000Z"
+      },
+      {
+        ...summaries[0],
+        date: "2026-05-01",
+        updatedAt: "2026-05-01T11:05:00.000Z"
+      },
+      {
+        ...summaries[0],
+        date: "2026-04-27",
+        updatedAt: "2026-04-27T11:05:00.000Z"
+      }
+    ];
+
+    render(
+      <CalendarArchive
+        summaries={gappedSummaries}
+        selectedDate="2026-05-01"
+        snapshot={{
+          ...snapshot,
+          date: "2026-05-01"
+        }}
+        gallery={[]}
+      />
+    );
+
+    expect(
+      screen.getByRole("link", { name: /previous archived date/i })
+    ).toHaveAttribute("href", "/calendar?date=2026-04-27");
+    expect(screen.getByRole("link", { name: /next archived date/i })).toHaveAttribute(
+      "href",
+      "/calendar?date=2026-05-05"
+    );
+    expect(
+      screen.queryByRole("link", { name: /April 30, 2026/i })
+    ).not.toBeInTheDocument();
+    expect(screen.getByLabelText("Selected refresh date")).toHaveTextContent(
+      "May 1, 2026"
+    );
   });
 });

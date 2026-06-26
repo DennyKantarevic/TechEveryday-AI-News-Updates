@@ -177,6 +177,24 @@ export function createFileStorage(baseDir = DEFAULT_DATA_DIR) {
     },
 
     async writeLastRefresh(lastRefresh: LastRefresh) {
+      if (lastRefresh.status !== "success") {
+        const currentLastRefresh = await this.readLastRefresh();
+        const currentDate = currentLastRefresh.lastRefreshDateAmericaNewYork;
+
+        if (
+          currentLastRefresh.status === "success" &&
+          currentDate &&
+          isCalendarDate(currentDate)
+        ) {
+          const currentDailyNews = await this.readDailyNews();
+          await this.writeArchiveSnapshot(
+            currentDate,
+            currentDailyNews,
+            currentLastRefresh
+          );
+        }
+      }
+
       await writeJson(lastRefreshPath, lastRefresh);
     },
 

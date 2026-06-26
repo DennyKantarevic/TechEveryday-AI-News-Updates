@@ -180,6 +180,33 @@ function snapshotRow({
   };
 }
 
+function archivedCurrentSnapshotRow({
+  existing,
+  updatedAt
+}: {
+  existing: SnapshotRow | null;
+  updatedAt: string;
+}) {
+  const currentDate = existing?.last_refresh?.lastRefreshDateAmericaNewYork;
+
+  if (
+    !existing?.daily_news ||
+    !existing.last_refresh ||
+    existing.last_refresh.status !== "success" ||
+    !currentDate ||
+    !isCalendarDate(currentDate)
+  ) {
+    return null;
+  }
+
+  return snapshotRow({
+    id: currentDate,
+    dailyNews: filterDailyNews(existing.daily_news),
+    lastRefresh: existing.last_refresh,
+    updatedAt
+  });
+}
+
 async function readSnapshotMetadata(): Promise<SnapshotMetadata> {
   if (!hasSupabaseSnapshotEnv()) {
     return {
@@ -308,6 +335,7 @@ async function upsertSnapshot(values: {
   const existing = await readSnapshotRow();
   const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
   const admin = createAdminSupabaseClient();
+  const updatedAt = new Date().toISOString();
   const dailyNews =
     values.dailyNews ??
     existing?.daily_news ??
@@ -318,13 +346,20 @@ async function upsertSnapshot(values: {
     (process.env.NODE_ENV === "production"
       ? emptyLastRefresh("No Supabase newsletter snapshot exists. Run a protected refresh after applying refresh migrations.")
       : await fileStorage.readLastRefresh());
+  const currentRow = snapshotRow({
+    id: SNAPSHOT_ID,
+    dailyNews,
+    lastRefresh,
+    updatedAt
+  });
+  const archivedRow = archivedCurrentSnapshotRow({
+    existing,
+    updatedAt
+  });
+  const shouldPreserveCurrent =
+    values.lastRefresh !== undefined && values.lastRefresh.status !== "success";
   const { error } = await admin.from(SNAPSHOT_TABLE).upsert(
-    snapshotRow({
-      id: SNAPSHOT_ID,
-      dailyNews,
-      lastRefresh,
-      updatedAt: new Date().toISOString()
-    })
+    shouldPreserveCurrent && archivedRow ? [archivedRow, currentRow] : currentRow
   );
 
   if (error) {
@@ -474,6 +509,23 @@ export const newsSnapshotStorage: NewsSnapshotStorage = {
     const filteredDailyNews = filterDailyNews(dailyNews);
 
     if (!hasSupabaseSnapshotEnv()) {
+      const previousLastRefresh = await fileStorage.readLastRefresh();
+      const previousDate = previousLastRefresh.lastRefreshDateAmericaNewYork;
+
+      if (
+        previousLastRefresh.status === "success" &&
+        previousDate &&
+        previousDate !== date &&
+        isCalendarDate(previousDate)
+      ) {
+        const previousDailyNews = await fileStorage.readDailyNews();
+        await fileStorage.writeArchiveSnapshot(
+          previousDate,
+          previousDailyNews,
+          previousLastRefresh
+        );
+      }
+
       await fileStorage.writeDailyNews(filteredDailyNews);
       await fileStorage.writeLastRefresh(lastRefresh);
       await fileStorage.writeArchiveSnapshot(date, filteredDailyNews, lastRefresh);
@@ -483,7 +535,15 @@ export const newsSnapshotStorage: NewsSnapshotStorage = {
     const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
     const admin = createAdminSupabaseClient();
     const updatedAt = new Date().toISOString();
-    const { error } = await admin.from(SNAPSHOT_TABLE).upsert([
+    const existing = await readSnapshotRow();
+    const previousArchiveRow = archivedCurrentSnapshotRow({
+      existing,
+      updatedAt
+    });
+    const rows = [
+      ...(previousArchiveRow && previousArchiveRow.id !== date
+        ? [previousArchiveRow]
+        : []),
       snapshotRow({
         id: SNAPSHOT_ID,
         dailyNews: filteredDailyNews,
@@ -496,7 +556,8 @@ export const newsSnapshotStorage: NewsSnapshotStorage = {
         lastRefresh,
         updatedAt
       })
-    ]);
+    ];
+    const { error } = await admin.from(SNAPSHOT_TABLE).upsert(rows);
 
     if (error) {
       throw new Error(`Could not persist successful news snapshot: ${error.message}`);

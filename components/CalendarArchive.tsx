@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import NewsCard from "@/components/NewsCard";
@@ -18,6 +19,10 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T12:00:00.000Z`));
 }
 
+function dateHref(date: string) {
+  return `/calendar?date=${date}`;
+}
+
 export default function CalendarArchive({
   summaries,
   selectedDate,
@@ -29,29 +34,85 @@ export default function CalendarArchive({
   snapshot: ArchiveSnapshot | null;
   gallery: NewsItem[];
 }) {
+  const sortedSummaries = [...summaries].sort((left, right) =>
+    right.date.localeCompare(left.date)
+  );
+  const selectedIndex = selectedDate
+    ? sortedSummaries.findIndex((summary) => summary.date === selectedDate)
+    : -1;
+  const selectedSummary =
+    selectedIndex >= 0 ? sortedSummaries[selectedIndex] : null;
+  const previousSummary =
+    selectedIndex >= 0 ? sortedSummaries[selectedIndex + 1] : null;
+  const nextSummary = selectedIndex > 0 ? sortedSummaries[selectedIndex - 1] : null;
+  const selectedItemCount = selectedSummary?.itemCount ?? snapshot?.itemCount ?? 0;
+
   return (
-    <div className="mt-10 grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
-      <aside>
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-clay">
-          Refresh dates
-        </p>
-        {summaries.length ? (
+    <div className="mt-10 space-y-10">
+      <section
+        aria-label="Refresh date selector"
+        className="border-2 border-ink bg-bone p-3 shadow-[5px_5px_0_#111] sm:p-5"
+      >
+        {selectedDate ? (
+          <div className="grid grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-2 sm:grid-cols-[3.25rem_minmax(0,1fr)_3.25rem] sm:gap-4">
+            {previousSummary ? (
+              <Link
+                href={dateHref(previousSummary.date)}
+                aria-label={`Previous archived date, ${formatDate(previousSummary.date)}`}
+                className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
+              >
+                <ChevronLeft aria-hidden="true" size={22} strokeWidth={2.75} />
+              </Link>
+            ) : (
+              <span className="aspect-square" aria-hidden="true" />
+            )}
+
+            <div
+              aria-label="Selected refresh date"
+              className="calendar-date-wheel min-w-0 text-center"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-clay">
+                Selected refresh
+              </p>
+              <p className="mx-auto mt-2 max-w-full break-words font-display text-3xl font-black leading-none sm:text-4xl md:text-5xl">
+                {formatDate(selectedDate)}
+              </p>
+              <p className="mt-3 text-xs font-bold uppercase tracking-[0.12em] text-ink/65">
+                {selectedItemCount} archived items
+              </p>
+            </div>
+
+            {nextSummary ? (
+              <Link
+                href={dateHref(nextSummary.date)}
+                aria-label={`Next archived date, ${formatDate(nextSummary.date)}`}
+                className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
+              >
+                <ChevronRight aria-hidden="true" size={22} strokeWidth={2.75} />
+              </Link>
+            ) : (
+              <span className="aspect-square" aria-hidden="true" />
+            )}
+          </div>
+        ) : null}
+
+        {sortedSummaries.length ? (
           <nav
             aria-label="Available refresh dates"
-            className="mt-4 flex gap-3 overflow-x-auto pb-3 lg:flex-col lg:overflow-visible"
+            className="mt-5 flex flex-wrap justify-center gap-2"
           >
-            {summaries.map((summary) => {
+            {sortedSummaries.map((summary) => {
               const selected = summary.date === selectedDate;
               return (
                 <Link
                   key={summary.date}
-                  href={`/calendar?date=${summary.date}`}
+                  href={dateHref(summary.date)}
                   aria-current={selected ? "date" : undefined}
-                  className={`min-w-44 border-2 border-ink px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#111] lg:min-w-0 ${
+                  className={`max-w-full border-2 border-ink px-3 py-2 text-center transition hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#111] ${
                     selected ? "bg-ink text-white" : "bg-white"
                   }`}
                 >
-                  <span className="block font-display text-lg font-black">
+                  <span className="block truncate font-display text-sm font-black sm:text-base">
                     {formatDate(summary.date)}
                   </span>
                   <span className="mt-1 block text-xs font-bold uppercase tracking-[0.12em]">
@@ -62,29 +123,15 @@ export default function CalendarArchive({
             })}
           </nav>
         ) : (
-          <p className="mt-4 border-2 border-dashed border-ink bg-bone p-4 text-sm leading-6">
+          <p className="border-2 border-dashed border-ink bg-bone p-4 text-sm leading-6">
             No refresh dates are available yet.
           </p>
         )}
-      </aside>
+      </section>
 
       <div className="min-w-0">
-        {selectedDate ? (
-          <div className="border-b-2 border-ink pb-6">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-brass">
-              Selected refresh
-            </p>
-            <h2 className="mt-2 font-display text-4xl font-black leading-none md:text-6xl">
-              {formatDate(selectedDate)}
-            </h2>
-            <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-ink/65">
-              {snapshot?.itemCount ?? 0} archived items
-            </p>
-          </div>
-        ) : null}
-
         {!snapshot ? (
-          <div className="mt-8 border-2 border-dashed border-ink bg-bone p-8 text-center shadow-[5px_5px_0_#111]">
+          <div className="border-2 border-dashed border-ink bg-bone p-8 text-center shadow-[5px_5px_0_#111]">
             <p className="font-display text-2xl font-black">
               {selectedDate
                 ? `No refresh was stored for ${formatDate(selectedDate)}.`
@@ -142,6 +189,50 @@ export default function CalendarArchive({
           </>
         )}
       </div>
+
+      <style>{`
+        .calendar-date-wheel {
+          animation: calendar-date-wheel-spin 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+          transform-origin: 50% 50%;
+        }
+
+        .calendar-date-arrow {
+          transition:
+            background-color 160ms ease,
+            box-shadow 160ms ease,
+            transform 160ms ease;
+        }
+
+        .calendar-date-arrow:hover {
+          transform: translateY(-1px) rotate(-2deg);
+        }
+
+        @keyframes calendar-date-wheel-spin {
+          from {
+            opacity: 0;
+            transform: perspective(500px) rotateX(-16deg) translateY(8px);
+          }
+
+          to {
+            opacity: 1;
+            transform: perspective(500px) rotateX(0deg) translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .calendar-date-wheel {
+            animation: none;
+          }
+
+          .calendar-date-arrow {
+            transition: none;
+          }
+
+          .calendar-date-arrow:hover {
+            transform: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }

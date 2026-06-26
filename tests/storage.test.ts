@@ -162,4 +162,52 @@ describe("createFileStorage", () => {
       refreshedAt: dailyNews.refreshedAt
     });
   });
+
+  it("archives the current successful snapshot before replacing latest refresh status", async () => {
+    tempDir = await mkdtemp(join(tmpdir(), "techeveryday-"));
+    const storage = createFileStorage(tempDir);
+    const categories = createCategoryRecord(() => [] as NewsItem[]);
+    categories["developer-tools-open-source"] = [item];
+    const dailyNews: DailyNews = {
+      refreshedAt: "2026-06-25T11:00:00.000Z",
+      timezone: "America/New_York",
+      categories
+    };
+    const lastRefresh: LastRefresh = {
+      refreshedAt: dailyNews.refreshedAt,
+      nextRefreshAt: "2026-06-26T11:00:00.000Z",
+      lastRefreshDateAmericaNewYork: "2026-06-25",
+      candidateCount: 1,
+      categoryCounts: createCategoryRecord(
+        (categoryId) => dailyNews.categories[categoryId].length
+      ),
+      status: "success"
+    };
+
+    await storage.writeDailyNews(dailyNews);
+    await storage.writeLastRefresh(lastRefresh);
+    await storage.writeLastRefresh({
+      ...lastRefresh,
+      refreshedAt: dailyNews.refreshedAt,
+      lastRefreshStartedAt: "2026-06-26T11:00:00.000Z",
+      lastRefreshCompletedAt: null,
+      lastRefreshDateAmericaNewYork: "2026-06-26",
+      status: "running"
+    });
+
+    expect((await storage.readArchiveSnapshot("2026-06-25"))?.dailyNews).toMatchObject({
+      refreshedAt: dailyNews.refreshedAt,
+      categories: {
+        "developer-tools-open-source": [
+          expect.objectContaining({
+            id: "stored-item",
+            title: "Stored item"
+          })
+        ]
+      }
+    });
+    expect((await storage.listArchiveSnapshots()).map((summary) => summary.date)).toEqual([
+      "2026-06-25"
+    ]);
+  });
 });

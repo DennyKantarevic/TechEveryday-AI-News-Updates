@@ -139,7 +139,17 @@ describe("news snapshot storage", () => {
       createAdminSupabaseClient: () => ({
         from: (table: string) =>
           table === "newsletter_snapshots"
-            ? { upsert }
+            ? {
+                select: () => ({
+                  eq: () => ({
+                    maybeSingle: async () => ({
+                      data: null,
+                      error: null
+                    })
+                  })
+                }),
+                upsert
+              }
             : { insert }
       })
     }));
@@ -173,6 +183,207 @@ describe("news snapshot storage", () => {
       expect.objectContaining({
         id: "2026-06-25",
         daily_news: localDailyNews
+      })
+    ]);
+    expect(insert).toHaveBeenCalledTimes(1);
+  });
+
+  it("preserves the previous current row when a successful refresh writes a new Supabase date", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
+    vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "service-role-key");
+    const upsert = vi.fn(async () => ({ error: null }));
+    const insert = vi.fn(async () => ({ error: null }));
+    const previousLastRefresh = {
+      ...localLastRefresh,
+      lastRefreshDateAmericaNewYork: "2026-06-24"
+    };
+    const nextLastRefresh = {
+      ...localLastRefresh,
+      lastRefreshDateAmericaNewYork: "2026-06-25"
+    };
+
+    vi.resetModules();
+    vi.doMock("@/lib/supabase/admin", () => ({
+      createAdminSupabaseClient: () => ({
+        from: (table: string) =>
+          table === "newsletter_snapshots"
+            ? {
+                select: () => ({
+                  eq: () => ({
+                    maybeSingle: async () => ({
+                      data: {
+                        id: "current",
+                        daily_news: localDailyNews,
+                        last_refresh: previousLastRefresh,
+                        updated_at: "2026-06-24T11:00:00.000Z"
+                      },
+                      error: null
+                    })
+                  })
+                }),
+                upsert
+              }
+            : { insert }
+      })
+    }));
+    vi.doMock("@/lib/storage", () => ({
+      fileStorage: {
+        readDailyNews: vi.fn(async () => localDailyNews),
+        writeDailyNews: vi.fn(),
+        readLastRefresh: vi.fn(async () => localLastRefresh),
+        writeLastRefresh: vi.fn(),
+        readArchiveSnapshot: vi.fn(),
+        writeArchiveSnapshot: vi.fn(),
+        listArchiveSnapshots: vi.fn(async () => [])
+      }
+    }));
+    const { newsSnapshotStorage } = await import("@/lib/news/snapshotStorage");
+
+    await newsSnapshotStorage.writeSuccessfulSnapshot({
+      date: "2026-06-25",
+      dailyNews: localDailyNews,
+      lastRefresh: nextLastRefresh
+    });
+
+    expect(upsert).toHaveBeenCalledWith([
+      expect.objectContaining({
+        id: "2026-06-24",
+        daily_news: localDailyNews,
+        last_refresh: previousLastRefresh
+      }),
+      expect.objectContaining({
+        id: "current",
+        daily_news: localDailyNews,
+        last_refresh: nextLastRefresh
+      }),
+      expect.objectContaining({
+        id: "2026-06-25",
+        daily_news: localDailyNews,
+        last_refresh: nextLastRefresh
+      })
+    ]);
+    expect(insert).toHaveBeenCalledTimes(1);
+  });
+
+  it("preserves the previous local current snapshot before a successful refresh replaces latest", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const previousLastRefresh = {
+      ...localLastRefresh,
+      lastRefreshDateAmericaNewYork: "2026-06-24"
+    };
+    const nextDailyNews = {
+      ...localDailyNews,
+      refreshedAt: "2026-06-25T00:00:00.000Z"
+    };
+    const nextLastRefresh = {
+      ...localLastRefresh,
+      refreshedAt: nextDailyNews.refreshedAt,
+      lastRefreshDateAmericaNewYork: "2026-06-25"
+    };
+    const writeArchiveSnapshot = vi.fn();
+
+    vi.resetModules();
+    vi.doMock("@/lib/storage", () => ({
+      fileStorage: {
+        readDailyNews: vi.fn(async () => localDailyNews),
+        writeDailyNews: vi.fn(),
+        readLastRefresh: vi.fn(async () => previousLastRefresh),
+        writeLastRefresh: vi.fn(),
+        readArchiveSnapshot: vi.fn(),
+        writeArchiveSnapshot,
+        listArchiveSnapshots: vi.fn(async () => [])
+      }
+    }));
+    const { newsSnapshotStorage } = await import("@/lib/news/snapshotStorage");
+
+    await newsSnapshotStorage.writeSuccessfulSnapshot({
+      date: "2026-06-25",
+      dailyNews: nextDailyNews,
+      lastRefresh: nextLastRefresh
+    });
+
+    expect(writeArchiveSnapshot).toHaveBeenNthCalledWith(
+      1,
+      "2026-06-24",
+      localDailyNews,
+      previousLastRefresh
+    );
+    expect(writeArchiveSnapshot).toHaveBeenNthCalledWith(
+      2,
+      "2026-06-25",
+      nextDailyNews,
+      nextLastRefresh
+    );
+  });
+
+  it("archives an existing current success before replacing latest refresh status", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
+    vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "service-role-key");
+    const upsert = vi.fn(async () => ({ error: null }));
+    const insert = vi.fn(async () => ({ error: null }));
+    const previousLastRefresh = {
+      ...localLastRefresh,
+      lastRefreshDateAmericaNewYork: "2026-06-25"
+    };
+
+    vi.resetModules();
+    vi.doMock("@/lib/supabase/admin", () => ({
+      createAdminSupabaseClient: () => ({
+        from: (table: string) =>
+          table === "newsletter_snapshots"
+            ? {
+                select: () => ({
+                  eq: () => ({
+                    maybeSingle: async () => ({
+                      data: {
+                        id: "current",
+                        daily_news: localDailyNews,
+                        last_refresh: previousLastRefresh,
+                        updated_at: "2026-06-25T11:00:00.000Z"
+                      },
+                      error: null
+                    })
+                  })
+                }),
+                upsert
+              }
+            : { insert }
+      })
+    }));
+    vi.doMock("@/lib/storage", () => ({
+      fileStorage: {
+        readDailyNews: vi.fn(async () => localDailyNews),
+        writeDailyNews: vi.fn(),
+        readLastRefresh: vi.fn(async () => localLastRefresh),
+        writeLastRefresh: vi.fn(),
+        readArchiveSnapshot: vi.fn(),
+        writeArchiveSnapshot: vi.fn(),
+        listArchiveSnapshots: vi.fn(async () => [])
+      }
+    }));
+    const { newsSnapshotStorage } = await import("@/lib/news/snapshotStorage");
+
+    await newsSnapshotStorage.writeLastRefresh({
+      ...localLastRefresh,
+      lastRefreshDateAmericaNewYork: "2026-06-26",
+      status: "running"
+    });
+
+    expect(upsert).toHaveBeenCalledWith([
+      expect.objectContaining({
+        id: "2026-06-25",
+        daily_news: localDailyNews,
+        last_refresh: previousLastRefresh
+      }),
+      expect.objectContaining({
+        id: "current",
+        daily_news: localDailyNews,
+        last_refresh: expect.objectContaining({
+          lastRefreshDateAmericaNewYork: "2026-06-26",
+          status: "running"
+        })
       })
     ]);
     expect(insert).toHaveBeenCalledTimes(1);
