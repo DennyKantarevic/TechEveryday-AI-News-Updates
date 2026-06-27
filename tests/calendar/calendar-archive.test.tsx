@@ -169,8 +169,10 @@ describe("CalendarArchive", () => {
     expect(
       screen.queryByRole("link", { name: /April 30, 2026/i })
     ).not.toBeInTheDocument();
-    expect(screen.getByLabelText("Selected refresh date")).toHaveTextContent(
-      "May 1, 2026"
+    expect(screen.queryByLabelText("Selected refresh date")).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /May 1, 2026/i })).toHaveAttribute(
+      "aria-current",
+      "date"
     );
   });
 

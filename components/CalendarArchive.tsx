@@ -35,19 +35,15 @@ export default function CalendarArchive({
   const selectedIndex = selectedDate
     ? sortedSummaries.findIndex((summary) => summary.date === selectedDate)
     : -1;
-  const selectedSummary =
-    selectedIndex >= 0 ? sortedSummaries[selectedIndex] : null;
   const previousSummary =
     selectedIndex >= 0 ? sortedSummaries[selectedIndex + 1] : null;
   const nextSummary = selectedIndex > 0 ? sortedSummaries[selectedIndex - 1] : null;
-  const selectedItemCount = selectedSummary?.itemCount ?? snapshot?.itemCount ?? 0;
 
   return (
     <div className="mt-10 space-y-10">
       <CalendarDateSelector
         summaries={sortedSummaries}
         selectedDate={selectedDate}
-        selectedItemCount={selectedItemCount}
         previousSummary={previousSummary}
         nextSummary={nextSummary}
       />

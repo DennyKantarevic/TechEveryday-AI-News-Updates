@@ -40,13 +40,11 @@ function resetCardMotion(card: HTMLElement) {
 export default function CalendarDateSelector({
   summaries,
   selectedDate,
-  selectedItemCount,
   previousSummary,
   nextSummary
 }: {
   summaries: ArchiveSnapshotSummary[];
   selectedDate: string | null;
-  selectedItemCount: number;
   previousSummary: ArchiveSnapshotSummary | null;
   nextSummary: ArchiveSnapshotSummary | null;
 }) {
@@ -154,7 +152,7 @@ export default function CalendarDateSelector({
       className="border-2 border-ink bg-bone p-3 shadow-[5px_5px_0_#111] sm:p-5"
     >
       {selectedDate ? (
-        <div className="grid grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-2 sm:grid-cols-[3.25rem_minmax(0,1fr)_3.25rem] sm:gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {previousSummary ? (
             <Link
               href={dateHref(previousSummary.date)}
@@ -171,21 +169,6 @@ export default function CalendarDateSelector({
           ) : (
             <span className="aspect-square" aria-hidden="true" />
           )}
-
-          <div
-            aria-label="Selected refresh date"
-            className="calendar-date-wheel min-w-0 text-center"
-          >
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-clay">
-              Selected refresh
-            </p>
-            <p className="mx-auto mt-2 max-w-full break-words font-display text-3xl font-black leading-none sm:text-4xl md:text-5xl">
-              {formatDate(selectedDate)}
-            </p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-[0.12em] text-ink/65">
-              {selectedItemCount} archived items
-            </p>
-          </div>
 
           {nextSummary ? (
             <Link
@@ -243,11 +226,6 @@ export default function CalendarDateSelector({
       )}
 
       <style>{`
-        .calendar-date-wheel {
-          animation: calendar-date-wheel-spin 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
-          transform-origin: 50% 50%;
-        }
-
         .calendar-date-arrow {
           transition:
             background-color 160ms ease,
@@ -314,23 +292,7 @@ export default function CalendarDateSelector({
           box-shadow: 4px 4px 0 #111;
         }
 
-        @keyframes calendar-date-wheel-spin {
-          from {
-            opacity: 0;
-            transform: perspective(500px) rotateX(-16deg) translateY(8px);
-          }
-
-          to {
-            opacity: 1;
-            transform: perspective(500px) rotateX(0deg) translateY(0);
-          }
-        }
-
         @media (prefers-reduced-motion: reduce) {
-          .calendar-date-wheel {
-            animation: none;
-          }
-
           .calendar-date-arrow,
           .calendar-date-card {
             transition: none;
