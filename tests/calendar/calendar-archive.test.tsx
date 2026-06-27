@@ -173,4 +173,34 @@ describe("CalendarArchive", () => {
       "May 1, 2026"
     );
   });
+
+  it("uses a horizontal scrolling date rail with subtle animated date items", () => {
+    const { summaries, snapshot } = archiveFixture();
+
+    render(
+      <CalendarArchive
+        summaries={summaries}
+        selectedDate="2026-05-01"
+        snapshot={snapshot}
+        gallery={[]}
+      />
+    );
+
+    expect(screen.getByLabelText("Available refresh dates")).toHaveClass(
+      "calendar-date-rail",
+      "overflow-x-auto"
+    );
+    expect(screen.getByRole("link", { name: /May 1, 2026/i })).toHaveClass(
+      "calendar-date-card",
+      "calendar-date-card-current"
+    );
+    expect(
+      screen
+        .getByRole("link", { name: /previous archived date/i })
+        .querySelector(".calendar-date-arrow-icon")
+    ).not.toBeNull();
+    expect(screen.getByRole("link", { name: /previous archived date/i })).toHaveClass(
+      "calendar-date-arrow"
+    );
+  });
 });

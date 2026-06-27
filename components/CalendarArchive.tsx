@@ -1,6 +1,5 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import React from "react";
+import CalendarDateSelector from "@/components/CalendarDateSelector";
 import NewsCard from "@/components/NewsCard";
 import { CATEGORIES } from "@/config/categories";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
@@ -17,10 +16,6 @@ function formatDate(date: string) {
     year: "numeric",
     timeZone: "UTC"
   }).format(new Date(`${date}T12:00:00.000Z`));
-}
-
-function dateHref(date: string) {
-  return `/calendar?date=${date}`;
 }
 
 export default function CalendarArchive({
@@ -49,85 +44,13 @@ export default function CalendarArchive({
 
   return (
     <div className="mt-10 space-y-10">
-      <section
-        aria-label="Refresh date selector"
-        className="border-2 border-ink bg-bone p-3 shadow-[5px_5px_0_#111] sm:p-5"
-      >
-        {selectedDate ? (
-          <div className="grid grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] items-center gap-2 sm:grid-cols-[3.25rem_minmax(0,1fr)_3.25rem] sm:gap-4">
-            {previousSummary ? (
-              <Link
-                href={dateHref(previousSummary.date)}
-                aria-label={`Previous archived date, ${formatDate(previousSummary.date)}`}
-                className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
-              >
-                <ChevronLeft aria-hidden="true" size={22} strokeWidth={2.75} />
-              </Link>
-            ) : (
-              <span className="aspect-square" aria-hidden="true" />
-            )}
-
-            <div
-              aria-label="Selected refresh date"
-              className="calendar-date-wheel min-w-0 text-center"
-            >
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-clay">
-                Selected refresh
-              </p>
-              <p className="mx-auto mt-2 max-w-full break-words font-display text-3xl font-black leading-none sm:text-4xl md:text-5xl">
-                {formatDate(selectedDate)}
-              </p>
-              <p className="mt-3 text-xs font-bold uppercase tracking-[0.12em] text-ink/65">
-                {selectedItemCount} archived items
-              </p>
-            </div>
-
-            {nextSummary ? (
-              <Link
-                href={dateHref(nextSummary.date)}
-                aria-label={`Next archived date, ${formatDate(nextSummary.date)}`}
-                className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
-              >
-                <ChevronRight aria-hidden="true" size={22} strokeWidth={2.75} />
-              </Link>
-            ) : (
-              <span className="aspect-square" aria-hidden="true" />
-            )}
-          </div>
-        ) : null}
-
-        {sortedSummaries.length ? (
-          <nav
-            aria-label="Available refresh dates"
-            className="mt-5 flex flex-wrap justify-center gap-2"
-          >
-            {sortedSummaries.map((summary) => {
-              const selected = summary.date === selectedDate;
-              return (
-                <Link
-                  key={summary.date}
-                  href={dateHref(summary.date)}
-                  aria-current={selected ? "date" : undefined}
-                  className={`max-w-full border-2 border-ink px-3 py-2 text-center transition hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#111] ${
-                    selected ? "bg-ink text-white" : "bg-white"
-                  }`}
-                >
-                  <span className="block truncate font-display text-sm font-black sm:text-base">
-                    {formatDate(summary.date)}
-                  </span>
-                  <span className="mt-1 block text-xs font-bold uppercase tracking-[0.12em]">
-                    {summary.itemCount} items
-                  </span>
-                </Link>
-              );
-            })}
-          </nav>
-        ) : (
-          <p className="border-2 border-dashed border-ink bg-bone p-4 text-sm leading-6">
-            No refresh dates are available yet.
-          </p>
-        )}
-      </section>
+      <CalendarDateSelector
+        summaries={sortedSummaries}
+        selectedDate={selectedDate}
+        selectedItemCount={selectedItemCount}
+        previousSummary={previousSummary}
+        nextSummary={nextSummary}
+      />
 
       <div className="min-w-0">
         {!snapshot ? (
@@ -189,50 +112,6 @@ export default function CalendarArchive({
           </>
         )}
       </div>
-
-      <style>{`
-        .calendar-date-wheel {
-          animation: calendar-date-wheel-spin 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
-          transform-origin: 50% 50%;
-        }
-
-        .calendar-date-arrow {
-          transition:
-            background-color 160ms ease,
-            box-shadow 160ms ease,
-            transform 160ms ease;
-        }
-
-        .calendar-date-arrow:hover {
-          transform: translateY(-1px) rotate(-2deg);
-        }
-
-        @keyframes calendar-date-wheel-spin {
-          from {
-            opacity: 0;
-            transform: perspective(500px) rotateX(-16deg) translateY(8px);
-          }
-
-          to {
-            opacity: 1;
-            transform: perspective(500px) rotateX(0deg) translateY(0);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .calendar-date-wheel {
-            animation: none;
-          }
-
-          .calendar-date-arrow {
-            transition: none;
-          }
-
-          .calendar-date-arrow:hover {
-            transform: none;
-          }
-        }
-      `}</style>
     </div>
   );
 }
