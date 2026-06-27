@@ -2,7 +2,13 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from "react";
 import type { ArchiveSnapshotSummary } from "@/types/news";
 
 function formatDate(date: string) {
@@ -14,8 +20,10 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T12:00:00.000Z`));
 }
 
-function dateHref(date: string) {
-  return `/calendar?date=${date}`;
+function dateHref(date: string, selectorPreview: boolean) {
+  return selectorPreview
+    ? `/calendar?date=${date}&preview=selector`
+    : `/calendar?date=${date}`;
 }
 
 function setCardMotion(card: HTMLElement, progress: number) {
@@ -37,18 +45,68 @@ function resetCardMotion(card: HTMLElement) {
   card.style.setProperty("--calendar-opacity", "1");
 }
 
+function prefersReducedMotion() {
+  return (
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 export default function CalendarDateSelector({
   summaries,
   selectedDate,
-  previousSummary,
-  nextSummary
+  selectorPreview = false
 }: {
   summaries: ArchiveSnapshotSummary[];
   selectedDate: string | null;
-  previousSummary: ArchiveSnapshotSummary | null;
-  nextSummary: ArchiveSnapshotSummary | null;
+  selectorPreview?: boolean;
 }) {
   const railRef = useRef<HTMLElement | null>(null);
+  const [scrollState, setScrollState] = useState({
+    canScrollLeft: false,
+    canScrollRight: false
+  });
+
+  const updateRailEdgePadding = useCallback(() => {
+    const rail = railRef.current;
+
+    if (!rail) {
+      return;
+    }
+
+    const selectedCard =
+      rail.querySelector<HTMLElement>('[aria-current="date"]') ??
+      rail.querySelector<HTMLElement>("[data-calendar-date-card]");
+
+    if (!selectedCard) {
+      return;
+    }
+
+    const startPadding = 52;
+    rail.style.setProperty("--calendar-rail-start-padding", `${startPadding}px`);
+    rail.style.setProperty("--calendar-rail-end-padding", "0px");
+  }, []);
+
+  const updateScrollState = useCallback(() => {
+    const rail = railRef.current;
+
+    if (!rail) {
+      return;
+    }
+
+    const maxScrollLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    const nextState = {
+      canScrollLeft: rail.scrollLeft > 2,
+      canScrollRight: rail.scrollLeft < maxScrollLeft - 2
+    };
+
+    setScrollState((currentState) =>
+      currentState.canScrollLeft === nextState.canScrollLeft &&
+      currentState.canScrollRight === nextState.canScrollRight
+        ? currentState
+        : nextState
+    );
+  }, []);
 
   const updateCardMotion = useCallback((reducedMotion = false) => {
     const rail = railRef.current;
@@ -77,30 +135,83 @@ export default function CalendarDateSelector({
     });
   }, []);
 
-  useEffect(() => {
+  const alignSelectedDateLeft = useCallback(
+    (behavior: ScrollBehavior = "auto") => {
+      const rail = railRef.current;
+
+      if (!rail) {
+        return;
+      }
+
+      const selectedCard = rail.querySelector<HTMLElement>('[aria-current="date"]');
+
+      if (!selectedCard) {
+        return;
+      }
+
+      updateRailEdgePadding();
+
+      const startPadding = Number.parseFloat(
+        rail.style.getPropertyValue("--calendar-rail-start-padding")
+      );
+      const maxScrollLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
+      const left = Math.max(
+        0,
+        Math.min(
+          selectedCard.offsetLeft - (Number.isNaN(startPadding) ? 52 : startPadding),
+          maxScrollLeft
+        )
+      );
+
+      if (typeof rail.scrollTo === "function") {
+        rail.scrollTo({ left, behavior });
+      } else {
+        rail.scrollLeft = left;
+      }
+
+      updateScrollState();
+    },
+    [updateRailEdgePadding, updateScrollState]
+  );
+
+  const scrollRailByPage = useCallback(
+    (direction: -1 | 1) => {
+      const rail = railRef.current;
+
+      if (!rail) {
+        return;
+      }
+
+      updateRailEdgePadding();
+
+      const distance = Math.max(rail.clientWidth * 0.72, 220);
+
+      if (typeof rail.scrollBy === "function") {
+        rail.scrollBy({
+          left: direction * distance,
+          behavior: prefersReducedMotion() ? "auto" : "smooth"
+        });
+      } else {
+        rail.scrollLeft += direction * distance;
+      }
+    },
+    [updateRailEdgePadding]
+  );
+
+  useLayoutEffect(() => {
     const rail = railRef.current;
 
     if (!rail) {
       return;
     }
 
-    const selectedCard = rail.querySelector<HTMLElement>('[aria-current="date"]');
+    const frame = window.requestAnimationFrame(() => {
+      alignSelectedDateLeft("auto");
+      updateCardMotion(prefersReducedMotion());
+    });
 
-    if (!selectedCard) {
-      return;
-    }
-
-    const left = Math.max(
-      0,
-      selectedCard.offsetLeft - (rail.clientWidth - selectedCard.offsetWidth) / 2
-    );
-
-    if (typeof rail.scrollTo === "function") {
-      rail.scrollTo({ left, behavior: "auto" });
-    } else {
-      rail.scrollLeft = left;
-    }
-  }, [selectedDate, summaries.length]);
+    return () => window.cancelAnimationFrame(frame);
+  }, [alignSelectedDateLeft, selectedDate, summaries.length, updateCardMotion]);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -122,7 +233,9 @@ export default function CalendarDateSelector({
 
       frame = window.requestAnimationFrame(() => {
         frame = 0;
+        updateRailEdgePadding();
         updateCardMotion(Boolean(reducedMotionQuery?.matches));
+        updateScrollState();
       });
     };
 
@@ -131,8 +244,13 @@ export default function CalendarDateSelector({
     };
 
     scheduleUpdate();
+    const handleResize = () => {
+      alignSelectedDateLeft("auto");
+      scheduleUpdate();
+    };
+
     rail.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("resize", handleResize);
     reducedMotionQuery?.addEventListener?.("change", handleReducedMotionChange);
 
     return () => {
@@ -141,84 +259,89 @@ export default function CalendarDateSelector({
       }
 
       rail.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("resize", handleResize);
       reducedMotionQuery?.removeEventListener?.("change", handleReducedMotionChange);
     };
-  }, [summaries.length, selectedDate, updateCardMotion]);
+  }, [
+    alignSelectedDateLeft,
+    summaries.length,
+    selectedDate,
+    updateCardMotion,
+    updateRailEdgePadding,
+    updateScrollState
+  ]);
 
   return (
     <section
       aria-label="Refresh date selector"
       className="border-2 border-ink bg-bone p-3 shadow-[5px_5px_0_#111] sm:p-5"
     >
-      {selectedDate ? (
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
-          {previousSummary ? (
-            <Link
-              href={dateHref(previousSummary.date)}
-              aria-label={`Previous archived date, ${formatDate(previousSummary.date)}`}
-              className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
-            >
-              <ChevronLeft
-                aria-hidden="true"
-                className="calendar-date-arrow-icon"
-                size={22}
-                strokeWidth={2.75}
-              />
-            </Link>
-          ) : (
-            <span className="aspect-square" aria-hidden="true" />
-          )}
-
-          {nextSummary ? (
-            <Link
-              href={dateHref(nextSummary.date)}
-              aria-label={`Next archived date, ${formatDate(nextSummary.date)}`}
-              className="calendar-date-arrow flex aspect-square items-center justify-center border-2 border-ink bg-white shadow-[3px_3px_0_#111] hover:bg-brass"
-            >
-              <ChevronRight
-                aria-hidden="true"
-                className="calendar-date-arrow-icon"
-                size={22}
-                strokeWidth={2.75}
-              />
-            </Link>
-          ) : (
-            <span className="aspect-square" aria-hidden="true" />
-          )}
-        </div>
-      ) : null}
-
       {summaries.length ? (
-        <nav
-          ref={railRef}
-          aria-label="Available refresh dates"
-          className="calendar-date-rail -mx-3 mt-5 flex min-w-0 gap-2 overflow-x-auto overscroll-x-contain px-3 pb-3 pt-1 sm:-mx-5 sm:gap-3 sm:px-5"
+        <div
+          role="group"
+          aria-label="Date selector rail"
+          className="calendar-date-rail-shell"
         >
-          {summaries.map((summary) => {
-            const selected = summary.date === selectedDate;
-            return (
-              <Link
-                key={summary.date}
-                href={dateHref(summary.date)}
-                aria-current={selected ? "date" : undefined}
-                data-calendar-date-card
-                className={`calendar-date-card max-w-[74vw] flex-none border-2 border-ink px-3 py-2 text-center outline-offset-4 ${
-                  selected
-                    ? "calendar-date-card-current bg-ink text-white"
-                    : "bg-white text-ink"
-                }`}
-              >
-                <span className="block truncate font-display text-sm font-black sm:text-base">
-                  {formatDate(summary.date)}
-                </span>
-                <span className="mt-1 block text-xs font-bold uppercase tracking-[0.12em]">
-                  {summary.itemCount} items
-                </span>
-              </Link>
-            );
-          })}
-        </nav>
+          <button
+            type="button"
+            aria-label="Scroll date selector left"
+            className="calendar-date-arrow calendar-date-rail-arrow calendar-date-rail-arrow-left bg-white hover:bg-brass"
+            disabled={!scrollState.canScrollLeft}
+            onClick={() => scrollRailByPage(-1)}
+          >
+            <ChevronLeft
+              aria-hidden="true"
+              className="calendar-date-arrow-icon"
+              size={22}
+              strokeWidth={2.75}
+            />
+          </button>
+
+          <nav
+            ref={railRef}
+            aria-label="Available refresh dates"
+            className="calendar-date-rail calendar-date-rail-left calendar-date-rail-stop-at-oldest flex min-w-0 gap-2 overflow-x-auto overscroll-x-contain pb-4 pt-2 sm:gap-3"
+          >
+            {summaries.map((summary) => {
+              const selected = summary.date === selectedDate;
+              return (
+                <Link
+                  key={summary.date}
+                  href={dateHref(summary.date, selectorPreview)}
+                  aria-current={selected ? "date" : undefined}
+                  data-calendar-date-card
+                  className={`calendar-date-card max-w-[74vw] flex-none border-2 border-ink px-3 py-2 text-center outline-offset-4 ${
+                    selected
+                      ? "calendar-date-card-current bg-ink text-white"
+                      : "bg-white text-ink"
+                  }`}
+                >
+                  <span className="block truncate font-display text-sm font-black sm:text-base">
+                    {formatDate(summary.date)}
+                  </span>
+                  <span className="mt-1 block text-xs font-bold uppercase tracking-[0.12em]">
+                    {summary.itemCount} items
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <button
+            type="button"
+            aria-label="Scroll date selector right"
+            className="calendar-date-arrow calendar-date-rail-arrow calendar-date-rail-arrow-right bg-white hover:bg-brass"
+            disabled={!scrollState.canScrollRight}
+            onClick={() => scrollRailByPage(1)}
+          >
+            <ChevronRight
+              aria-hidden="true"
+              className="calendar-date-arrow-icon"
+              size={22}
+              strokeWidth={2.75}
+            />
+          </button>
+        </div>
       ) : (
         <p className="border-2 border-dashed border-ink bg-bone p-4 text-sm leading-6">
           No refresh dates are available yet.
@@ -226,6 +349,11 @@ export default function CalendarDateSelector({
       )}
 
       <style>{`
+        .calendar-date-rail-shell {
+          position: relative;
+          isolation: isolate;
+        }
+
         .calendar-date-arrow {
           transition:
             background-color 160ms ease,
@@ -233,17 +361,51 @@ export default function CalendarDateSelector({
             transform 160ms ease;
         }
 
+        .calendar-date-rail-arrow {
+          align-items: center;
+          border: 2px solid #111;
+          box-shadow: 3px 3px 0 #111;
+          color: #111;
+          display: flex;
+          height: 2.75rem;
+          justify-content: center;
+          position: absolute;
+          top: 50%;
+          transform: translate3d(0, -50%, 0);
+          width: 2.75rem;
+          z-index: 2;
+        }
+
+        .calendar-date-rail-arrow-left {
+          left: 0;
+        }
+
+        .calendar-date-rail-arrow-right {
+          right: 0;
+        }
+
         .calendar-date-arrow-icon {
           transform: translateY(1.5px);
         }
 
-        .calendar-date-arrow:hover {
-          transform: translateY(-1px) rotate(-2deg);
+        .calendar-date-rail-arrow:hover:not(:disabled) {
+          transform: translate3d(0, calc(-50% - 1px), 0) rotate(-2deg);
+        }
+
+        .calendar-date-rail-arrow:disabled {
+          box-shadow: none;
+          cursor: not-allowed;
+          opacity: 0.32;
         }
 
         .calendar-date-rail {
           -webkit-overflow-scrolling: touch;
+          padding-inline: var(--calendar-rail-start-padding, 3.25rem)
+            var(--calendar-rail-end-padding, 0);
           perspective: 900px;
+          scroll-padding-inline: var(--calendar-rail-start-padding, 3.25rem)
+            var(--calendar-rail-end-padding, 0);
+          scroll-snap-type: x proximity;
           scrollbar-color: rgba(17, 17, 17, 0.55) transparent;
           scrollbar-width: thin;
           transform-style: preserve-3d;
@@ -265,6 +427,7 @@ export default function CalendarDateSelector({
         .calendar-date-card {
           min-width: min(11rem, 74vw);
           opacity: var(--calendar-opacity, 1);
+          scroll-snap-align: start;
           transform:
             translate3d(var(--calendar-shift, 0px), 0, var(--calendar-depth, 0px))
             rotateY(var(--calendar-tilt, 0deg))
@@ -274,8 +437,7 @@ export default function CalendarDateSelector({
             background-color 160ms ease,
             box-shadow 160ms ease,
             color 160ms ease,
-            opacity 180ms ease,
-            transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+            opacity 180ms ease;
           will-change: transform;
         }
 
@@ -300,6 +462,11 @@ export default function CalendarDateSelector({
 
           .calendar-date-arrow:hover {
             transform: none;
+          }
+
+          .calendar-date-rail {
+            scroll-behavior: auto;
+            scroll-snap-type: none;
           }
 
           .calendar-date-card,

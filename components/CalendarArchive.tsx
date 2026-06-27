@@ -22,30 +22,25 @@ export default function CalendarArchive({
   summaries,
   selectedDate,
   snapshot,
-  gallery
+  gallery,
+  selectorPreview = false
 }: {
   summaries: ArchiveSnapshotSummary[];
   selectedDate: string | null;
   snapshot: ArchiveSnapshot | null;
   gallery: NewsItem[];
+  selectorPreview?: boolean;
 }) {
   const sortedSummaries = [...summaries].sort((left, right) =>
     right.date.localeCompare(left.date)
   );
-  const selectedIndex = selectedDate
-    ? sortedSummaries.findIndex((summary) => summary.date === selectedDate)
-    : -1;
-  const previousSummary =
-    selectedIndex >= 0 ? sortedSummaries[selectedIndex + 1] : null;
-  const nextSummary = selectedIndex > 0 ? sortedSummaries[selectedIndex - 1] : null;
 
   return (
     <div className="mt-10 space-y-10">
       <CalendarDateSelector
         summaries={sortedSummaries}
         selectedDate={selectedDate}
-        previousSummary={previousSummary}
-        nextSummary={nextSummary}
+        selectorPreview={selectorPreview}
       />
 
       <div className="min-w-0">

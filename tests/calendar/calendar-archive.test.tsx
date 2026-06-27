@@ -127,7 +127,7 @@ describe("CalendarArchive", () => {
     expect(screen.getByText(/No refresh was stored for April 29, 2026/i)).toBeInTheDocument();
   });
 
-  it("shows previous and next date controls that use available archived dates", () => {
+  it("keeps date selection in the rail and uses arrows as rail scroll helpers", () => {
     const { summaries, snapshot } = archiveFixture();
     const gappedSummaries = [
       {
@@ -159,13 +159,21 @@ describe("CalendarArchive", () => {
       />
     );
 
-    expect(
-      screen.getByRole("link", { name: /previous archived date/i })
-    ).toHaveAttribute("href", "/calendar?date=2026-04-27");
-    expect(screen.getByRole("link", { name: /next archived date/i })).toHaveAttribute(
-      "href",
-      "/calendar?date=2026-05-05"
+    expect(screen.getByLabelText("Date selector rail")).toHaveClass(
+      "calendar-date-rail-shell"
     );
+    expect(
+      screen.getByRole("button", { name: /scroll date selector left/i })
+    ).toHaveClass("calendar-date-arrow", "calendar-date-rail-arrow");
+    expect(
+      screen.getByRole("button", { name: /scroll date selector right/i })
+    ).toHaveClass("calendar-date-arrow", "calendar-date-rail-arrow");
+    expect(
+      screen.queryByRole("link", { name: /previous archived date/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /next archived date/i })
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("link", { name: /April 30, 2026/i })
     ).not.toBeInTheDocument();
@@ -190,6 +198,8 @@ describe("CalendarArchive", () => {
 
     expect(screen.getByLabelText("Available refresh dates")).toHaveClass(
       "calendar-date-rail",
+      "calendar-date-rail-left",
+      "calendar-date-rail-stop-at-oldest",
       "overflow-x-auto"
     );
     expect(screen.getByRole("link", { name: /May 1, 2026/i })).toHaveClass(
@@ -198,11 +208,11 @@ describe("CalendarArchive", () => {
     );
     expect(
       screen
-        .getByRole("link", { name: /previous archived date/i })
+        .getByRole("button", { name: /scroll date selector left/i })
         .querySelector(".calendar-date-arrow-icon")
     ).not.toBeNull();
-    expect(screen.getByRole("link", { name: /previous archived date/i })).toHaveClass(
-      "calendar-date-arrow"
-    );
+    expect(
+      screen.getByRole("button", { name: /scroll date selector left/i })
+    ).toHaveClass("calendar-date-arrow", "calendar-date-rail-arrow");
   });
 });

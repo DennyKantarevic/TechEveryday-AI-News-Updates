@@ -21,4 +21,13 @@ describe("Calendar page source", () => {
     expect(source).toContain("readArchiveSnapshot");
     expect(source).not.toContain("filterFreshNewsItems");
   });
+
+  it("offers an explicit selector preview mode for reviewing the date rail", () => {
+    const source = readFileSync(join(process.cwd(), "app/calendar/page.tsx"), "utf8");
+
+    expect(source).toContain('params.preview === "selector"');
+    expect(source).toContain("selectorPreviewSummaries");
+    expect(source).toContain("calendarSummaries");
+    expect(source).toContain("selectorPreview={useSelectorPreview}");
+  });
 });
