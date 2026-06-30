@@ -2,6 +2,7 @@ import { CATEGORY_IDS, createCategoryRecord } from "@/config/categories";
 import { TRUSTED_SOURCES } from "@/config/sources";
 import { classifyCommercialContent } from "@/lib/news/commercialContent";
 import { evaluateFreshness, isFreshNewsItem } from "@/lib/news/freshness";
+import { MAX_ITEMS_PER_SECTION } from "@/lib/news/sectionQuotas";
 import type { CategoryId } from "@/config/categories";
 import type { NewsItem, RefreshDebug, SourceType } from "@/types/news";
 
@@ -430,6 +431,7 @@ export function dedupeCandidatesWithDebug(items: NewsItem[]) {
         title: item.title,
         url: item.url,
         sourceName: item.sourceName,
+        category: item.category,
         reason: "Rejected as a duplicate canonical URL."
       });
       continue;
@@ -447,6 +449,7 @@ export function dedupeCandidatesWithDebug(items: NewsItem[]) {
         title: item.title,
         url: item.url,
         sourceName: item.sourceName,
+        category: item.category,
         reason: `Rejected as a duplicate story cluster of "${similarTitle.title}".`
       });
       continue;
@@ -683,6 +686,42 @@ function sourceTypeCounts(items: NewsItem[]): RefreshDebug["sourceTypeCounts"] {
   );
 }
 
+function isAgeRejection(reason: string) {
+  return /older than 72|trustworthy date|future/i.test(reason);
+}
+
+function isDuplicateRejection(reason: string) {
+  return /duplicate/i.test(reason);
+}
+
+function isSalesPromotionRejection(reasonCode?: string) {
+  return ["sales_or_promotion", "shopping_or_deal", "consumer_buying_guide"].includes(
+    reasonCode ?? ""
+  );
+}
+
+function isConsumerFillerRejection(reason: string) {
+  return /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
+    reason
+  );
+}
+
+function isLowTechnicalDepthRejection(reason: string) {
+  return /low technical depth|low-information|category fit|implementation detail/i.test(
+    reason
+  );
+}
+
+function isLowQualityRejection(reason: string) {
+  return /low-information|low-value|low technical depth|consumer|filler|category fit|promotional|shopping|deal|buying-guide|sales/i.test(
+    reason
+  );
+}
+
+function isTrustRejection(reason: string) {
+  return /trust score|required fields/i.test(reason);
+}
+
 function selectDiverseCategoryItems(items: NewsItem[], limit: number) {
   const uniqueSourceCount = new Set(items.map((item) => item.sourceName)).size;
 
@@ -767,6 +806,7 @@ export function selectDailyItemsWithDebug({
       title: item.title,
       url: item.url,
       sourceName: item.sourceName,
+      category: item.category,
       ...rejection
     });
     return false;
@@ -788,7 +828,7 @@ export function selectDailyItemsWithDebug({
   const selectedNewItemsByCategory = createCategoryRecord((categoryId) =>
     selectDiverseCategoryItems(
       freshCandidates.filter((item) => item.category === categoryId),
-      5
+      MAX_ITEMS_PER_SECTION
     )
   );
   const allSelectedNewItems = Object.values(selectedNewItemsByCategory).flat();
@@ -820,31 +860,56 @@ export function selectDailyItemsWithDebug({
           right.trustScore - left.trustScore ||
           itemTime(right) - itemTime(left)
       )
-      .slice(0, 5);
+      .slice(0, MAX_ITEMS_PER_SECTION);
   });
 
-  const rejectedByAge = rejected.filter((item) => /older than 72|trustworthy date|future/i.test(item.reason)).length;
-  const rejectedByDuplicate = rejected.filter((item) => /duplicate/i.test(item.reason)).length;
+  const rejectedByAge = rejected.filter((item) => isAgeRejection(item.reason)).length;
+  const rejectedByDuplicate = rejected.filter((item) => isDuplicateRejection(item.reason)).length;
   const rejectedBySalesPromotion = rejected.filter((item) =>
-    ["sales_or_promotion", "shopping_or_deal", "consumer_buying_guide"].includes(
-      item.reasonCode ?? ""
-    )
+    isSalesPromotionRejection(item.reasonCode)
   ).length;
   const rejectedAsConsumerFiller = rejected.filter((item) =>
-    /consumer|filler|shopping|deal|sponsored|listicle|promo|culture|entertainment|drama|funding|rumou?r/i.test(
-      item.reason
-    )
+    isConsumerFillerRejection(item.reason)
   ).length;
   const rejectedByLowTechnicalDepth = rejected.filter((item) =>
-    /low technical depth|low-information|category fit|implementation detail/i.test(item.reason)
+    isLowTechnicalDepthRejection(item.reason)
   ).length;
   const rejectedByLowQuality = rejected.filter((item) =>
-    /low-information|low-value|low technical depth|consumer|filler|category fit|promotional|shopping|deal|buying-guide|sales/i.test(
-      item.reason
-    )
+    isLowQualityRejection(item.reason)
   ).length;
-  const rejectedByTrust = rejected.filter((item) => /trust score|required fields/i.test(item.reason)).length;
+  const rejectedByTrust = rejected.filter((item) => isTrustRejection(item.reason)).length;
   const finalItems = Object.values(categories).flat();
+  const sectionSelectionDiagnostics = createCategoryRecord((categoryId) => {
+    const categoryRejected = rejected.filter((item) => item.category === categoryId);
+
+    return {
+      totalCandidates: candidates.filter((item) => item.category === categoryId).length,
+      candidatesAfterFreshness:
+        candidates.filter((item) => item.category === categoryId).length -
+        categoryRejected.filter((item) => isAgeRejection(item.reason)).length,
+      candidatesAfterQuality: candidatesAfterQuality.filter(
+        (item) => item.category === categoryId
+      ).length,
+      candidatesAfterDeduplication: deduped.accepted.filter(
+        (item) => item.category === categoryId
+      ).length,
+      selectedCount: categories[categoryId]?.length ?? 0,
+      rejectedByAge: categoryRejected.filter((item) => isAgeRejection(item.reason)).length,
+      rejectedByQuality: categoryRejected.filter((item) =>
+        isLowQualityRejection(item.reason)
+      ).length,
+      rejectedBySalesPromotion: categoryRejected.filter((item) =>
+        isSalesPromotionRejection(item.reasonCode)
+      ).length,
+      rejectedAsConsumerFiller: categoryRejected.filter((item) =>
+        isConsumerFillerRejection(item.reason)
+      ).length,
+      rejectedByDuplicate: categoryRejected.filter((item) =>
+        isDuplicateRejection(item.reason)
+      ).length,
+      rejectedByTrust: categoryRejected.filter((item) => isTrustRejection(item.reason)).length
+    };
+  });
   const debug: RefreshDebug = {
     totalCandidatesFound: candidates.length,
     candidatesAfterFreshness: candidates.length - rejectedByAge,
@@ -856,6 +921,7 @@ export function selectDailyItemsWithDebug({
     rejectedByDuplicate,
     rejectedByTrust,
     sourceTypeCounts: sourceTypeCounts(candidates),
+    sectionSelectionDiagnostics,
     finalSelectedByCategory: createCategoryRecord(
       (categoryId) => categories[categoryId]?.length ?? 0
     ),

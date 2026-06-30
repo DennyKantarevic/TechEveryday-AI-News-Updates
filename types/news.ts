@@ -46,11 +46,34 @@ export type RejectedCandidate = {
   title: string;
   url: string;
   sourceName: string;
+  category?: CategoryId;
   reason: string;
   reasonCode?:
     | "sales_or_promotion"
     | "shopping_or_deal"
     | "consumer_buying_guide";
+};
+
+export type UnderfilledSectionReason =
+  | "not enough fresh candidates"
+  | "rejected by quality filter"
+  | "rejected as sales/promotion/filler"
+  | "deduplicated"
+  | "section cap/final cap issue"
+  | "source/category shortage";
+
+export type SectionSelectionDiagnostics = {
+  totalCandidates: number;
+  candidatesAfterFreshness: number;
+  candidatesAfterQuality: number;
+  candidatesAfterDeduplication: number;
+  selectedCount: number;
+  rejectedByAge: number;
+  rejectedByQuality: number;
+  rejectedBySalesPromotion: number;
+  rejectedAsConsumerFiller: number;
+  rejectedByDuplicate: number;
+  rejectedByTrust: number;
 };
 
 export type RefreshDebug = {
@@ -69,6 +92,7 @@ export type RefreshDebug = {
     paper: number;
     repo: number;
   };
+  sectionSelectionDiagnostics?: Record<CategoryId, SectionSelectionDiagnostics>;
   finalSelectedByCategory: Record<CategoryId, number>;
   underfilledCategories?: Partial<
     Record<
@@ -77,6 +101,7 @@ export type RefreshDebug = {
         attemptedFallback: boolean;
         selectedCount: number;
         targetCount: number;
+        reasons: UnderfilledSectionReason[];
         message: string;
       }
     >

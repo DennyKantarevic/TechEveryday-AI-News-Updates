@@ -2,7 +2,6 @@ import ForYouFeed from "@/components/ForYouFeed";
 import StickyHeader from "@/components/StickyHeader";
 import { CATEGORY_IDS } from "@/config/categories";
 import { LEARNING_FOUNDATIONS } from "@/lib/learning";
-import { filterFreshNewsItems } from "@/lib/news/freshness";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
 import { fileStorage } from "@/lib/storage";
 
@@ -14,7 +13,7 @@ export default async function ForYouPage() {
     fileStorage.readGallery()
   ]);
   const articles = CATEGORY_IDS.flatMap((categoryId) =>
-    mergeSavedState(filterFreshNewsItems(dailyNews.categories[categoryId] ?? []), gallery)
+    mergeSavedState(dailyNews.categories[categoryId] ?? [], gallery)
   );
 
   return (

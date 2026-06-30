@@ -543,6 +543,48 @@ describe("selectDailyItems", () => {
       })
     );
   });
+
+  it("does not use sales or filler items to reach four selected items", () => {
+    const selected = selectDailyItemsWithDebug({
+      candidates: [
+        baseItem({
+          id: "ai-valid-1",
+          title: "AI model inference architecture benchmark",
+          url: "https://example.com/ai-valid-1",
+          tags: ["ai", "model", "inference", "benchmark"]
+        }),
+        baseItem({
+          id: "ai-valid-2",
+          title: "Machine learning training evaluation analysis",
+          url: "https://example.com/ai-valid-2",
+          tags: ["machine learning", "training", "evaluation"]
+        }),
+        baseItem({
+          id: "ai-valid-3",
+          title: "Multimodal neural model implementation guide",
+          url: "https://example.com/ai-valid-3",
+          tags: ["multimodal", "neural", "implementation"]
+        }),
+        baseItem({
+          id: "ai-laptop-deal",
+          title: "Best AI laptop deals under $500",
+          url: "https://consumer.example/deals/ai-laptops",
+          canonicalUrl: "https://consumer.example/deals/ai-laptops",
+          summary: "Save 40% on AI-ready laptops during a limited-time affiliate offer.",
+          sourceName: "Consumer Tech",
+          tags: ["shopping", "deal", "affiliate"]
+        })
+      ],
+      previousCategories: emptyPreviousCategories(),
+      now: new Date("2026-06-12T13:00:00.000Z")
+    });
+
+    expect(selected.categories["ai-ml"].map((item) => item.id)).toEqual(
+      expect.arrayContaining(["ai-valid-1", "ai-valid-2", "ai-valid-3"])
+    );
+    expect(selected.categories["ai-ml"]).toHaveLength(3);
+    expect(selected.debug.rejectedBySalesPromotion).toBe(1);
+  });
 });
 
 describe("scoreContentQuality", () => {

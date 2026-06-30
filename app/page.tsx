@@ -4,7 +4,6 @@ import Countdown from "@/components/Countdown";
 import BrandWordmark from "@/components/BrandWordmark";
 import HeroTitle from "@/components/HeroTitle";
 import StickyHeader from "@/components/StickyHeader";
-import { filterFreshNewsItems } from "@/lib/news/freshness";
 import { mergeSavedState } from "@/lib/news/refreshPipeline";
 import { fileStorage } from "@/lib/storage";
 
@@ -16,7 +15,6 @@ export default async function HomePage() {
     fileStorage.readGallery(),
     fileStorage.readLastRefresh()
   ]);
-  const now = new Date();
   return (
     <>
       <StickyHeader />
@@ -45,10 +43,7 @@ export default async function HomePage() {
             <CategorySection
               key={category.id}
               category={category}
-              items={mergeSavedState(
-                filterFreshNewsItems(dailyNews.categories[category.id] ?? [], now),
-                gallery
-              )}
+              items={mergeSavedState(dailyNews.categories[category.id] ?? [], gallery)}
             />
           ))}
         </div>
